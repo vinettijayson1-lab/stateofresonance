@@ -47,6 +47,30 @@ const collections = [
         image: '/assets/alchemy_collection.png',
         handle: 'alchemy',
         description: 'Vibrational Elixirs & Ritual Oils'
+    },
+    {
+        name: 'Earth Relics',
+        image: '/assets/earth_relics_collection.png',
+        handle: 'earth-relics',
+        description: 'Crystals, Minerals & Tumbled Stones'
+    },
+    {
+        name: 'Ritual Tools',
+        image: '/assets/ritual_tools_collection.png',
+        handle: 'ritual-tools',
+        description: 'Masterpieces of Transition & Forged Intent'
+    },
+    {
+        name: 'Divination Tools',
+        image: '/assets/divination_tools_collection.png',
+        handle: 'divination-tools',
+        description: 'Tarot, Oracles & Celestial Alignment'
+    },
+    {
+        name: 'Shrine Artifacts',
+        image: '/assets/shrine_artifacts_collection.png',
+        handle: 'shrine-artifacts',
+        description: 'Statues, Altars & Sacred Spaces'
     }
 ];
 

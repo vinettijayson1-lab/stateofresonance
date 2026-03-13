@@ -13,7 +13,10 @@ export interface Product {
   status?: 'active' | 'archived' | 'draft';
 }
 
+import { catalogProducts } from './catalog_products';
+
 export const products: Product[] = [
+  ...catalogProducts,
   // --- ATTIRE (Authentic Photoshoot Style) ---
   {
     id: 'pt-001',

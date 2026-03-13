@@ -48,11 +48,15 @@ const renderCollection = () => {
         if (!p.collections) return false;
         
         // Map target handles to official collection names from the Way to Resonance
-        if (target === 'candles') return p.collections.some(c => c.includes('Candle'));
+        if (target === 'candles') return p.collections.some(c => c.includes('Candle') || c.includes('Illuminations'));
         if (target === 'amulets') return p.collections.some(c => c.includes('Amulet') || c.includes('Adornment'));
-        if (target === 'incense') return p.collections.some(c => c.includes('Smoke') || c.includes('Incense'));
-        if (target === 'manuscripts') return p.collections.some(c => c.includes('Manuscript') || c.includes('Journal') || c.includes('Book'));
-        if (target === 'alchemy') return p.collections.some(c => c.includes('Oil') || c.includes('Elixir') || c.includes('Essence'));
+        if (target === 'incense') return p.collections.some(c => c.includes('Smoke') || c.includes('Incense') || c.includes('Sacred Smoke'));
+        if (target === 'manuscripts') return p.collections.some(c => c.includes('Manuscript') || c.includes('Journal') || c.includes('Book') || c.includes('Esoteric Manuscripts'));
+        if (target === 'alchemy') return p.collections.some(c => c.includes('Oil') || c.includes('Elixir') || c.includes('Essence') || c.includes('Alchemical Elixirs'));
+        if (target === 'earth-relics') return p.collections.some(c => c.includes('Earth Relics') || c.includes('Stone') || c.includes('Crystal') || c.includes('Mineral') || c.includes('Gemstone'));
+        if (target === 'ritual-tools') return p.collections.some(c => c.includes('Ritual Tools') || c.includes('Wicca') || c.includes('Pagan'));
+        if (target === 'divination-tools') return p.collections.some(c => c.includes('Divination') || c.includes('Tarot') || c.includes('Oracle') || c.includes('Pendulum'));
+        if (target === 'shrine-artifacts') return p.collections.some(c => c.includes('Shrine Artifacts') || c.includes('Statue') || c.includes('Figure') || c.includes('Altar'));
         
         return p.collections.some(c => c.toLowerCase() === target);
     });
