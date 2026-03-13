@@ -1,0 +1,3 @@
+{
+  "query": "{ products(first: 250) { pageInfo { hasNextPage endCursor } edges { node { id title handle descriptionHtml images(first: 1) { edges { node { url } } } } } } }"
+}

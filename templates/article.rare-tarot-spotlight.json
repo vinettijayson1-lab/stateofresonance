@@ -1,0 +1,21 @@
+{
+    "sections": {
+        "main": {
+            "type": "main-blog-post",
+            "settings": {
+                "color_scheme": "scheme-1"
+            }
+        },
+        "article-content": {
+            "type": "custom-liquid",
+            "settings": {
+                "color_scheme": "scheme-1",
+                "custom_liquid": "<h2>Rare Tarot Spotlight: Beyond the Traditional Rider-Waite-Smith</h2><p>While the Rider-Waite-Smith system is a cornerstone of modern divination, there is a world of esoteric symbolism waiting to be explored. In this spotlight, we highlight some of the most unique and rare decks currently available in our 5,000+ item collection.</p><h3>The Power of Indie Artistry</h3><p>Independent tarot creators are pushing the boundaries of traditional imagery, blending ancient wisdom with modern aesthetics. These decks often carry a unique resonance that can unlock new layers of intuition and insight during your readings.</p><h3>Choosing Your Resonance</h3><p>When selecting a rare or indie deck, pay attention to the 'frequency' of the artwork. Does it speak to your subconscious? Does the symbolism align with your personal practice? At State of Resonance, we pride ourselves on stocking decks that you won't find anywhere else in Canada.</p><br><a href=\"/collections/all\" class=\"button button--primary\">Browse Rare Divination Tools</a><br><br>"
+            }
+        }
+    },
+    "order": [
+        "main",
+        "article-content"
+    ]
+}

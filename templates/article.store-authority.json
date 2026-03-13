@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog-post",
+      "settings": {
+        "blog_show_date": true,
+        "blog_show_author": false,
+        "show_share_buttons": true
+      }
+    },
+    "article-content": {
+      "type": "custom-liquid",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "custom_liquid": "<h2>Why We Built Canada's Largest Esoteric Shop: Sourcing 5,000 Tools for Resonance</h2><p>When we launched State of Resonance, we had a single, unifying vision: to tear down the barriers between seekers and the tools they need to elevate their spiritual practice. We realized that as practitioners progressed, finding high-quality spiritual supplies online in Canada was becoming increasingly fragmented. You had to buy your sage from one shop, your tuning forks from another, and your rare tarot decks from international sellers with massive shipping delays.</p><p>We decided to change the paradigm. We decided to build Canada's largest esoteric shop.</p><h3>The Catalog of 5,000 Frequencies</h3><p>Today, the State of Resonance catalog exceeds 5,000 unique items. This isn't just a number to us; it represents an incredible depth of possibility for your altar. Whether you are drawn to the precise vibrations of sacred geometry, the acoustic healing of Tibetan bowls, or the ancient wisdom held in independent oracle decks, we guarantee that the exact tool you need to shift your frequency is waiting for you here.</p><h3>Sourcing with Intention</h3><p>Scaling to become the premier esoteric shop in Canada meant uncompromising on our quality standards. Every crystal, every resin, and every book on our digital shelves has been vetted for its authenticity and energetic resonance.</p><p>We believe that an apothecary is only as powerful as the intention poured into it. We work closely with our suppliers to ensure that the tools you bring into your sacred space are ethically harvested, structurally pure, and vibrating at their highest potential.</p><h3>Your Journey Starts Here</h3><p>If you are feeling overwhelmed by the sheer volume of 5,000 esoteric tools, do not worry. We have specifically curated our shop into intuitive collections like 'The Alchemist's Shelf' and our 'Starter Guides' to help you navigate.</p><p>Trust your intuition. The exact frequency you need right now is already calling you.</p><br><a href=\"/collections/all\" class=\"button button--primary\">Explore Canada's Largest Esoteric Shop</a><br><br>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "article-content"
+  ]
+}

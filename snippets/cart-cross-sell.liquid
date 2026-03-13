@@ -1,0 +1,97 @@
+{%- liquid
+  assign cross_sell_product = null
+  for product in collections.all.products
+    assign in_cart = false
+    for item in cart.items
+      if item.product.id == product.id
+        assign in_cart = true
+        break
+      endif
+    endfor
+    if in_cart == false and product.available
+      assign cross_sell_product = product
+      break
+    endif
+  endfor
+-%}
+
+{%- if cross_sell_product != null -%}
+  <div class="cart-cross-sell">
+    <p class="cart-cross-sell__title">Pairs well with...</p>
+    <div class="cart-cross-sell__product">
+      <div class="cart-cross-sell__image">
+        {{ cross_sell_product.featured_image | image_url: width: 100 | image_tag: loading: 'lazy' }}
+      </div>
+      <div class="cart-cross-sell__info">
+        <a href="{{ cross_sell_product.url }}" class="cart-cross-sell__name">{{ cross_sell_product.title }}</a>
+        <div class="cart-cross-sell__price">{{ cross_sell_product.price | money }}</div>
+        
+        <form method="post" action="/cart/add" class="cart-cross-sell__form">
+          <input type="hidden" name="id" value="{{ cross_sell_product.variants.first.id }}">
+          <button type="submit" class="button button--secondary cart-cross-sell__button" style="min-height: 44px;">
+            Add <span class="visually-hidden"> {{ cross_sell_product.title }} to cart</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .cart-cross-sell {
+      margin-top: 20px;
+      margin-bottom: 16px;
+      padding: 16px;
+      border: 1px solid var(--color-border);
+      background-color: var(--color-background);
+      border-radius: 8px; /* Matches input radius */
+    }
+    .cart-cross-sell__title {
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+      color: var(--color-foreground-heading);
+    }
+    .cart-cross-sell__product {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .cart-cross-sell__image img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .cart-cross-sell__info {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 4px;
+    }
+    .cart-cross-sell__name {
+      text-decoration: none;
+      color: var(--color-foreground);
+      font-size: 1.3rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+    .cart-cross-sell__name:hover {
+      text-decoration: underline;
+    }
+    .cart-cross-sell__price {
+      font-size: 1.2rem;
+      color: var(--color-foreground);
+      opacity: 0.85;
+    }
+    .cart-cross-sell__form {
+      margin-top: 6px;
+    }
+    .cart-cross-sell__button {
+      padding: 6px 16px;
+      font-size: 1.2rem;
+      width: auto;
+      min-height: 44px; /* Ensure accessible touch target */
+    }
+  </style>
+{%- endif -%}

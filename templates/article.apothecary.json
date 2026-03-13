@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog-post",
+      "settings": {
+        "blog_show_date": true,
+        "blog_show_author": false,
+        "show_share_buttons": true
+      }
+    },
+    "article-content": {
+      "type": "custom-liquid",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "custom_liquid": "<h2>The Essential Alchemist's Apothecary: 5 Resins and Botanicals Every Practitioner Needs</h2><p>A true esoteric practice engages every sense, and the manipulation of sacred smoke is one of the oldest spiritual traditions in human history. Whether you are cleansing a space, entering a deep meditative trance, or offering a physical manifestation of your prayers, building an alchemist's apothecary is essential.</p><p>While many practitioners start with basic sage or palo santo, sourcing premium, ethically harvested esoteric herbs in Canada allows you to access a much wider spectrum of frequencies.</p><h3>1. Copal Resin: The Nectar of the Sun</h3><p>Copal resin, often called the \u201cblood of trees,\u201d is a staple in ancient Mesoamerican ceremonies. When burned on a charcoal disk, it releases a sweet, crisp, piney smoke that is instantly uplifting.</p><p>We highly recommend stocking Copal on your Alchemist\u2019s Shelf. Unlike heavier, grounding resins, Copal is incredibly purifying and light\u2014perfect for clearing stagnant energy after an argument or preparing a space for creative, solar-focused ritual work.</p><h3>2. Frankincense: The Ancient Protector</h3><p>Frankincense (Boswellia) is perhaps the most famous resin in history. Its deep, earthy, slightly citrusy aroma has been used in temples, churches, and sacred spaces for thousands of years to induce meditative states.</p><p>Frankincense holds the frequency of pure protection and spiritual elevation. It slows the breathing rate and quiets the mind, making it the perfect resin to burn during deep divination or when invoking higher states of consciousness.</p><h3>3. Blue Lotus: The Flower of Intuition</h3><p>Moving away from the purifying resins, the Blue Lotus flower (Nymphaea caerulea) is a staple for the intuitive practitioner. Revered by the ancient Egyptians, these dried petals can be burned as loose incense or steeped as a tea.</p><p>Blue Lotus is deeply tied to the third eye and the crown chakra. It carries a mild, euphoric frequency that relaxes the nervous system, making it an incredible botanical for lucid dreaming, astral projection, or deep state meditation.</p><h3>Ready to build your Apothecary?</h3><p>With over 5,000 tools in stock, State of Resonance is the premier destination to buy esoteric herbs and resins online in Canada. Every botanical we carry is sourced with intention, ensuring you receive the purest possible frequency for your practice.</p><br><a href=\"/collections/all\" class=\"button button--primary\">Shop The Alchemist's Shelf</a><br><br>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "article-content"
+  ]
+}

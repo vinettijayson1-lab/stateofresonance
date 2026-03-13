@@ -1,0 +1,117 @@
+{% comment %}
+  Esoteric Background: Seed of Life & Solfeggio Resonance
+  Inspired by Thoth Tarot color palettes and sacred geometry.
+{% endcomment %}
+
+<style>
+  :root {
+    /* Thoth Tarot Inspired Palette */
+    --color-thoth-midnight: #0B0E14; /* Deep, mystical indigo base */
+    --color-thoth-gold: #C69C6D;     /* Intellectual/spiritual yellow-gold */
+    --color-thoth-crimson: #8A2BE2;  /* Transmuted vibrant purple/crimson for resonance */
+    --color-thoth-emerald: #143621;  /* Deep earthy grounding color */
+  }
+
+  .cro-esoteric-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Behind all content */
+    background: radial-gradient(circle at center, var(--color-thoth-emerald) 0%, var(--color-thoth-midnight) 70%);
+    overflow: hidden;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Gentle, rotating resonance hum in the deep background */
+  .cro-resonance-hum {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150vw;
+    height: 150vw;
+    transform: translate(-50%, -50%);
+    background: conic-gradient(from 0deg, transparent, rgba(138, 43, 226, 0.05), transparent, rgba(198, 156, 109, 0.05), transparent);
+    filter: blur(100px);
+    animation: cro-rotate-hum 144s linear infinite; /* Based on 144Hz geometry */
+  }
+
+  @keyframes cro-rotate-hum {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .cro-seed-of-life {
+    width: 60vmin;
+    height: 60vmin;
+    opacity: 0.15; /* Subtle presence */
+    mix-blend-mode: color-dodge;
+  }
+
+  .cro-seed-circle {
+    fill: transparent;
+    stroke: var(--color-thoth-gold);
+    stroke-width: 1;
+    transform-origin: center;
+    /* Solfeggio Frequency Base Animation (e.g., mimicking 528Hz healing resonance) */
+    animation: cro-solfeggio-pulse 8s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+  }
+
+  /* Delay animations for each circle to create a ripple/resonance effect */
+  .cro-seed-circle:nth-child(1) { animation-delay: 0s; }
+  .cro-seed-circle:nth-child(2) { animation-delay: -1.2s; }
+  .cro-seed-circle:nth-child(3) { animation-delay: -2.4s; }
+  .cro-seed-circle:nth-child(4) { animation-delay: -3.6s; }
+  .cro-seed-circle:nth-child(5) { animation-delay: -4.8s; }
+  .cro-seed-circle:nth-child(6) { animation-delay: -6.0s; }
+  .cro-seed-circle:nth-child(7) { animation-delay: -7.2s; }
+
+  @keyframes cro-solfeggio-pulse {
+    0% {
+      transform: scale(0.98);
+      stroke-width: 0.5;
+      stroke: rgba(198, 156, 109, 0.4); /* Faded Gold */
+    }
+    50% {
+      stroke: rgba(138, 43, 226, 0.6);   /* Shift to subtle Tarot Crimson/Purple */
+    }
+    100% {
+      transform: scale(1.02);
+      stroke-width: 2;
+      stroke: rgba(198, 156, 109, 0.9); /* Vibrant Gold */
+      filter: drop-shadow(0 0 12px var(--color-thoth-gold));
+    }
+  }
+</style>
+
+<div class="cro-esoteric-background">
+  <div class="cro-resonance-hum"></div>
+  
+  {% comment %}
+    Seed of Life SVG Construction:
+    One central circle, surrounded by six circles whose centers lie on the circumference of the central circle.
+    Radius = 100. Grid is 400x400. Center is 200,200.
+    Points of surrounding circles calculated via basic trigonometry on an equilateral triangle grid.
+  {% endcomment %}
+  <svg class="cro-seed-of-life" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Center -->
+    <circle class="cro-seed-circle" cx="200" cy="200" r="80" />
+    
+    <!-- Top -->
+    <circle class="cro-seed-circle" cx="200" cy="120" r="80" />
+    <!-- Top Right (cos(30)*80 = ~69.28, sin(30)*80 = 40) -->
+    <circle class="cro-seed-circle" cx="269.28" cy="160" r="80" />
+    <!-- Bottom Right -->
+    <circle class="cro-seed-circle" cx="269.28" cy="240" r="80" />
+    <!-- Bottom -->
+    <circle class="cro-seed-circle" cx="200" cy="280" r="80" />
+    <!-- Bottom Left -->
+    <circle class="cro-seed-circle" cx="130.72" cy="240" r="80" />
+    <!-- Top Left -->
+    <circle class="cro-seed-circle" cx="130.72" cy="160" r="80" />
+  </svg>
+</div>

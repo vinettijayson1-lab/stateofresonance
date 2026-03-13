@@ -1,0 +1,21 @@
+{
+    "sections": {
+        "main": {
+            "type": "main-blog-post",
+            "settings": {
+                "color_scheme": "scheme-1"
+            }
+        },
+        "article-content": {
+            "type": "custom-liquid",
+            "settings": {
+                "color_scheme": "scheme-1",
+                "custom_liquid": "<h2>The Alchemist's Shelf: Essential Resins, Herbs, and Elixirs</h2><p>Alchemy is the art of transformation, and every alchemist needs a well-stocked shelf. Whether you are performing a simple space clearing or a complex ritual, the quality of your botanicals and resins is paramount.</p><h3>Authentic Tools for True Transformation</h3><p>We source only the finest resins, ethically-harvested herbs, and traditionally crafted elixirs. From rare Frankincense and Myrrh to local Canadian sage and handcrafted tinctures, we ensure that every item on 'The Alchemist's Shelf' carries the purity required for your work.</p><h3>Building Your Apothecary</h3><p>Start with the basics: a high-quality resin burner, a selection of charcoal, and a versatile cleansing herb. As your practice evolves, you can begin to incorporate more specialized tools and rare botanicals from our extensive collection.</p><br><a href=\"/collections/all\" class=\"button button--primary\">Visit The Alchemist's Shelf</a><br><br>"
+            }
+        }
+    },
+    "order": [
+        "main",
+        "article-content"
+    ]
+}

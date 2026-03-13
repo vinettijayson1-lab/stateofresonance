@@ -1,0 +1,21 @@
+{
+    "sections": {
+        "main": {
+            "type": "main-blog-post",
+            "settings": {
+                "color_scheme": "scheme-1"
+            }
+        },
+        "article-content": {
+            "type": "custom-liquid",
+            "settings": {
+                "color_scheme": "scheme-1",
+                "custom_liquid": "<h2>Feeling Overwhelmed? A Guide to Navigating Canada's Largest Esoteric Shop</h2><p>With over 5,000 unique items in our catalog, we know that finding the perfect tool can feel like searching for a single star in a vast nebula. If you're feeling overwhelmed, don't worry—this guide is designed to help you find exactly what you need.</p><h3>1. Start with Your Intention</h3><p>Before you browse, take a breath and set an intention. Are you looking for grounding? Clarity? Protection? Or perhaps you're seeking to deepen your knowledge of a specific tradition? Let your intention be your compass.</p><h3>2. Explore Curated Collections</h3><p>We've organized our 5,000+ items into clear categories to make browsing easier. Visit our <strong>Earth Relics</strong> for crystals, <strong>Divination</strong> for tarot and oracle decks, or <strong>The Alchemist’s Shelf</strong> for resins and herbs.</p><h3>3. Lean on the Ritual</h3><p>If you're new, a simple ritual kit or a beginner-friendly tarot deck is a great way to start. We’ve hand-selected tools that are accessible yet profound, ensuring your first steps are supported by authentic energy.</p><br><a href=\"/collections/all\" class=\"button button--primary\">Start Your Journey Here</a><br><br>"
+            }
+        }
+    },
+    "order": [
+        "main",
+        "article-content"
+    ]
+}

@@ -1,0 +1,40 @@
+<div class="cart-trust-badges">
+  <div class="trust-badge">
+    <svg viewBox="0 0 24 24" fill="none" class="trust-badge__icon" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C9.243 2 7 4.243 7 7V10H6C4.897 10 4 10.897 4 12V20C4 21.103 4.897 22 6 22H18C19.103 22 20 21.103 20 20V12C20 10.897 19.103 10 18 10H17V7C17 4.243 14.757 2 12 2ZM9 7C9 5.346 10.346 4 12 4C13.654 4 15 5.346 15 7V10H9V7ZM12 18C10.897 18 10 17.103 10 16C10 14.897 10.897 14 12 14C13.103 14 14 14.897 14 16C14 17.103 13.103 18 12 18Z" fill="currentColor"/>
+    </svg>
+    <span class="trust-badge__text">Secure Checkout</span>
+  </div>
+  <div class="trust-badge">
+    <svg viewBox="0 0 24 24" fill="none" class="trust-badge__icon" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L2 6V11C2 16.55 6.16 21.74 12 23C17.84 21.74 22 16.55 22 11V6L12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
+    </svg>
+    <span class="trust-badge__text">Guaranteed</span>
+  </div>
+</div>
+
+<style>
+  .cart-trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 12px;
+    padding: 8px 0;
+    width: 100%;
+  }
+  .cart-trust-badges .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-foreground);
+    opacity: 0.85;
+  }
+  .cart-trust-badges .trust-badge__icon {
+    width: 18px;
+    height: 18px;
+  }
+  .cart-trust-badges .trust-badge__text {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+</style>

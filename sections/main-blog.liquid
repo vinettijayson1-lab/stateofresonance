@@ -1,0 +1,238 @@
+
+
+<script
+  src="{{ 'blog-posts-list.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+<blog-posts-list section-id="{{ section.id }}">
+  <style>
+    .header-logo { display: none !important; }
+  </style>
+  <div class="section-background color-{{ section.settings.color_scheme }}"></div>
+  <div
+    class="
+      section
+      color-{{ section.settings.color_scheme }}
+      blog-posts
+      spacing-style
+      size-style
+    "
+    style="{% render 'spacing-style', settings: section.settings %}"
+  >
+    {% content_for 'blocks' %}
+
+    {% if blog.all_tags.size > 0 %}
+      <div class="blog-category-filters">
+        <ul class="blog-category-filters__list">
+          <li class="blog-category-filters__item">
+            <a href="{{ blog.url }}" class="blog-category-filters__link {% if current_tags == blank %}blog-category-filters__link--active{% endif %}">
+              {{ 'blogs.article.all_topics' | t | default: 'All Topics' }}
+            </a>
+          </li>
+          {% for tag in blog.all_tags %}
+            <li class="blog-category-filters__item">
+              <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" class="blog-category-filters__link {% if current_tags contains tag %}blog-category-filters__link--active{% endif %}">
+                {{ tag }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {%- paginate blog.articles by 12 -%}
+      <span ref="viewMorePrevious"></span>
+      <div
+        ref="grid"
+        class="blog-posts-container"
+        data-last-page="{{ paginate.pages }}"
+      >
+        {% for article in blog.articles %}
+          <div
+            class="blog-post-item"
+            ref="cards[]"
+            data-page="{{ paginate.current_page }}"
+          >
+            {% content_for 'block', id: 'static-blog-post-card', type: '_blog-post-card', article: article %}
+          </div>
+        {% endfor %}
+      </div>
+      <span ref="viewMoreNext"></span>
+    {%- endpaginate -%}
+  </div>
+</blog-posts-list>
+
+{% stylesheet %}
+  /**
+   * Blog posts page layout
+   */
+  .blog-posts {
+    --page-content-width: var(--narrow-page-width);
+    --page-width: calc(var(--page-content-width) + (var(--page-margin) * 2));
+    --columns-gap: 36px;
+    --rows-gap: 36px;
+  }
+
+  /* Blog Category Filters */
+  .blog-category-filters {
+    margin-bottom: var(--margin-2xl);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .blog-category-filters::-webkit-scrollbar {
+    display: none;
+  }
+  .blog-category-filters__list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--gap-md);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .blog-category-filters__item {
+    flex-shrink: 0;
+  }
+  .blog-category-filters__link {
+    display: inline-block;
+    padding: var(--padding-sm) var(--padding-lg);
+    font-family: var(--font-heading--family);
+    font-size: var(--font-size--body-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+    border: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-10));
+    border-radius: 40px;
+    transition: all 0.2s ease;
+  }
+  .blog-category-filters__link:hover {
+    color: var(--color-foreground);
+    border-color: rgba(198, 156, 109, 0.6);
+    box-shadow: 0 0 10px rgba(198, 156, 109, 0.2);
+  }
+  .blog-category-filters__link--active {
+    color: var(--color-background);
+    background-color: rgba(198, 156, 109, 0.9);
+    border-color: rgba(198, 156, 109, 0.9);
+    box-shadow: 0 0 15px rgba(198, 156, 109, 0.4);
+    font-weight: bold;
+  }
+
+  .blog-posts-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    width: 100%;
+    column-gap: var(--columns-gap);
+    row-gap: var(--rows-gap);
+  }
+
+  .blog-post-item {
+    --blog-post-card-scale: 0.8;
+
+    grid-column: span 2;
+
+    @media screen and (max-width: 749px) {
+      --blog-post-card-scale: 0.5;
+
+      grid-column: span 6;
+    }
+  }
+
+  .blog-post-item {
+    border: 1px solid rgba(198, 156, 109, 0.1); /* Subtle gold border */
+    padding: 0 1rem 1rem;
+    transition: transform var(--hover-transition-duration) var(--surface-transition-timing), box-shadow var(--hover-transition-duration) var(--surface-transition-timing);
+    border-radius: 8px; /* Slightly softer edges */
+    background: rgba(11, 14, 20, 0.3); /* Subtle glass background */
+  }
+
+  .blog-post-item:has(.blog-post-card__image-container) {
+    border: 1px solid rgba(198, 156, 109, 0.1); /* Ensure border remains even with images */
+    padding: 0;
+  }
+  
+  /* Esoteric Resonance Hover Physics */
+  .blog-post-item:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(138, 43, 226, 0.2), 0 0 15px rgba(198, 156, 109, 0.1); /* Purple and Gold Glow */
+    border-color: rgba(198, 156, 109, 0.4);
+    z-index: 10;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.blog_posts",
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    },
+    {
+      "type": "text"
+    },
+    {
+      "type": "icon"
+    },
+    {
+      "type": "image"
+    },
+    {
+      "type": "button"
+    },
+    {
+      "type": "video"
+    },
+    {
+      "type": "group"
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "_divider"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}

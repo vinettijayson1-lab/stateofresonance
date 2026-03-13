@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog-post",
+      "settings": {
+        "blog_show_date": true,
+        "blog_show_author": false,
+        "show_share_buttons": true
+      }
+    },
+    "article-content": {
+      "type": "custom-liquid",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "custom_liquid": "<h2>The Power of Sacred Geometry: Using Grids to Amplify Crystal Frequencies</h2><p>When you place a crystal on your altar, it radiates its own natural frequency. But when you arrange multiple crystals into specific, mathematically perfect shapes\u2014known as <strong>sacred geometry grids</strong>\u2014you don't just add their energies together; you multiply them exponentially.</p><p>As Canada's largest esoteric shop, State of Resonance stocks thousands of precision-cut crystals and geometrically aligned altar cloths designed to help you build powerful manifestation matrices in your own home.</p><h3>What is a Crystal Grid?</h3><p>A crystal grid is an arrangement of stones placed upon a specific piece of sacred geometry (like the Flower of Life or Metatron's Cube). The geometric pattern acts as a circuit board, directing the frequency of the crystals toward a unified, specific intention\u2014whether that is manifesting abundance, clearing negative energy, or deepening your meditation practice.</p><h3>The Flower of Life: The Universal Blueprint</h3><p>The most common and versatile symbol for crystal healing in Canada is the Flower of Life. Consisting of exactly 19 overlapping circles, this ancient pattern is believed to contain the fundamental blueprint of all creation.</p><p>When you build a grid on the Flower of Life, you are tapping into a frequency of pure creation and interconnectedness. It is the perfect foundational grid for beginners and advanced practitioners alike, ideal for charging water, purifying tools, or manifesting new beginnings.</p><h3>How to Activate Your Grid</h3><p>Placing the stones is only the first step. To truly harness the power of sacred geometry grids, you must 'activate' the circuit. You can do this by using a wand (typically clear quartz or selenite) to trace the invisible lines of energy between your stones, starting from the center 'keystone' and moving outward.</p><p>As you trace the connections, visualize the energy flowing through the geometric pathways, locking your intention into the physical realm.</p><br><a href=\"/collections/all\" class=\"button button--primary\">Shop Sacred Geometry Tools</a><br><br>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "article-content"
+  ]
+}

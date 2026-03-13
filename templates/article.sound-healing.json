@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog-post",
+      "settings": {
+        "blog_show_date": true,
+        "blog_show_author": false,
+        "show_share_buttons": true
+      }
+    },
+    "article-content": {
+      "type": "custom-liquid",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "custom_liquid": "<h2>Tuning Forks vs. Singing Bowls: Which Frequency Tool is Right for Your Practice?</h2><p>Sound healing is one of the most direct ways to alter the resonant frequency of your physical body and your environment. But when you are looking to invest in a premium tool, you might find yourself stuck between two distinct paths: should you buy tuning forks, or invest in Tibetan singing bowls?</p><p>At Canada's largest esoteric shop, we heavily prioritize acoustic resonance. Here is how to choose the right sonic instrument for your altar.</p><h3>The Precision of Tuning Forks</h3><p>Tuning forks offer pure, unadulterated, and mathematically exact frequencies. Whether you are using a 528Hz fork (known as the 'Miracle' or DNA repair frequency) or an OM tuner resting at 136.1Hz, you are delivering a targeted laser beam of sound into your energy field.</p><p><strong>Best for:</strong> Precision healing, acupressure (using weighted forks on the body), space clearing in small areas, and practitioners who want exact control over the hertz they expose themselves to.</p><h3>The Immersion of Singing Bowls</h3><p>A high-quality Tibetan singing bowl does not just produce a single note; it sings with rich, complex overtones. These cascading harmonics create a 'sound bath' effect that doesn't just target a specific chakra, but washes over your entire aura.</p><p>Hand-hammered brass bowls produce deep, grounding vibrations that you can physically feel in your chest, while frosted crystal bowls produce piercing, ethereal resonances that can immediately shift the energy of a massive room.</p><h3>Making Your Choice</h3><p>If you prefer a clinical, structured approach to sound therapy where you use specific frequencies for specific ailments, buy tuning forks. If you want to facilitate deep meditation, perform group sound baths, or simply want a beautiful ritualistic object to center your practice around, a singing bowl is the ultimate investment.</p><br><a href=\"/collections/all\" class=\"button button--primary\">Explore Our Sound Healing Instruments</a><br><br>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "article-content"
+  ]
+}

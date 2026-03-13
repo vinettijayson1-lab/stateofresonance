@@ -1,0 +1,21 @@
+{
+    "sections": {
+        "main": {
+            "type": "main-blog-post",
+            "settings": {
+                "color_scheme": "scheme-1"
+            }
+        },
+        "article-content": {
+            "type": "custom-liquid",
+            "settings": {
+                "color_scheme": "scheme-1",
+                "custom_liquid": "<h2>Canada’s #1 Spiritual & Esoteric Destination: Over 5,000 Tools for Your Practice</h2><p>Today marks a significant milestone for the Canadian spiritual community. We are officially <strong>Canada's largest esoteric shop</strong>, featuring a catalog of over 5,000 carefully curated items designed to elevate your resonance and support your unique path.</p><h3>Bridging the Gap</h3><p>For years, seeking high-quality, authentic esoteric tools in Canada often meant navigating international shipping and unexpected duties. We built State of Resonance to change that—creating a local sanctuary where the veil is lifted and the tools you need are always within reach.</p><h3>What Defines a 5,000+ Item Sanctuary?</h3><p>Our collection isn't just about quantity; it's about depth. We have meticulously sourced everything from rare, ethically-obtained crystals and traditional divination tools to alchemical resins and sacred texts. Whether you are a seasoned practitioner or just beginning your awakening, you will find the resonance you seek here.</p><br><a href=\"/collections/all\" class=\"button button--primary\">Explore the 5,000+ Collection</a><br><br>"
+            }
+        }
+    },
+    "order": [
+        "main",
+        "article-content"
+    ]
+}

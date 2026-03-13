@@ -1,0 +1,355 @@
+{% comment %} CRO - Frequently Bought Together (FBT) Bundle Snippet {% endcomment %}
+{% liquid
+  assign current_product = product
+  assign fbt_products = current_product.metafields.custom.frequently_bought_together.value
+  
+  # Create a fallback array of products if metafield is empty (using a collection)
+  if fbt_products == blank
+    for c in current_product.collections
+      if c.products_count > 1
+        assign fallback_collection = c
+        break
+      endif
+    endfor
+    if fallback_collection != blank
+      assign fbt_products = fallback_collection.products | where: "id", "!=", current_product.id | slice: 0, 2
+    endif
+  endif
+%}
+
+{% if fbt_products != blank and fbt_products.size > 0 %}
+<div class="cro-fbt-wrapper spacing-style">
+  <h3 class="cro-fbt-title">Frequently Bought Together</h3>
+  
+  <div class="cro-fbt-container">
+    {% comment %} Current Product Column {% endcomment %}
+    <div class="cro-fbt-item is-main">
+      <div class="cro-fbt-image">
+        <img src="{{ current_product.featured_image | image_url: width: 100, height: 100, crop: 'center' }}" width="100" height="100" alt="{{ current_product.title | escape }}" loading="lazy">
+        <div class="cro-fbt-plus">+</div>
+      </div>
+      <div class="cro-fbt-details">
+        <span class="cro-fbt-name"><strong>This item:</strong> {{ current_product.title | truncate: 35 }}</span>
+        <span class="cro-fbt-price">{{ current_product.price | money }}</span>
+      </div>
+      <input type="checkbox" checked disabled class="cro-fbt-checkbox">
+    </div>
+
+    {% comment %} Recommended Products Columns {% endcomment %}
+    <form method="post" action="/cart/add" class="cro-fbt-form" id="cro-fbt-form">
+      <!-- Main product is already added by the main buy button, but we could hook into the main form. For demonstration, we'll build a standalone "Add All to Cart" form utilizing AJAX -->
+      <input type="hidden" name="id[]" value="{{ current_product.selected_or_first_available_variant.id }}">
+      
+      {% for item in fbt_products limit: 2 %}
+      <div class="cro-fbt-item">
+        <div class="cro-fbt-image">
+          <img src="{{ item.featured_image | image_url: width: 100, height: 100, crop: 'center' }}" width="100" height="100" alt="{{ item.title | escape }}" loading="lazy">
+          {% unless forloop.last %}<div class="cro-fbt-plus">+</div>{% endunless %}
+        </div>
+        <div class="cro-fbt-details">
+          <a href="{{ item.url }}" class="cro-fbt-name">{{ item.title | truncate: 35 }}</a>
+          <span class="cro-fbt-price">{{ item.price | money }}</span>
+        </div>
+        <input type="checkbox" checked class="cro-fbt-checkbox" data-variant-id="{{ item.selected_or_first_available_variant.id }}" data-price="{{ item.price }}">
+      </div>
+      {% endfor %}
+      
+      <div class="cro-fbt-summary">
+        <div class="cro-fbt-total-price">
+          Total price: <strong id="cro-fbt-total">{{ current_product.price | plus: fbt_products[0].price | plus: fbt_products[1].price | money }}</strong>
+        </div>
+        <button type="button" class="button button--primary cro-fbt-add-btn" id="cro-fbt-add-btn">
+          Add Selected To Cart
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  .cro-fbt-wrapper {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+  }
+  .cro-fbt-title {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .cro-fbt-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .cro-fbt-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+  .cro-fbt-item:hover {
+    background: rgb(var(--color-foreground-rgb) / 0.02);
+  }
+  .cro-fbt-image {
+    position: relative;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+  .cro-fbt-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cro-fbt-plus {
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: rgb(var(--color-foreground-rgb) / 0.4);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .cro-fbt-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-right: 30px;
+  }
+  .cro-fbt-name {
+    font-size: 0.85rem;
+    color: var(--color-foreground);
+    text-decoration: none;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .cro-fbt-name:hover {
+    text-decoration: underline;
+  }
+  .cro-fbt-price {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .cro-fbt-checkbox {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+  }
+  
+  .cro-fbt-summary {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgb(var(--color-foreground-rgb) / 0.03);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .cro-fbt-total-price {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+  }
+  .cro-fbt-total-price strong {
+    font-size: 1.2rem;
+    color: var(--color-primary);
+  }
+  .cro-fbt-add-btn {
+    width: 100%;
+  }
+
+  /* Add button hover pulse to match ATC */
+  .cro-fbt-add-btn:hover {
+    animation: cro-fbt-pulse 1s infinite;
+  }
+  
+  @keyframes cro-fbt-pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(var(--color-primary-rgb), 0.4); }
+    70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(var(--color-primary-rgb), 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(var(--color-primary-rgb), 0); }
+  }
+  
+  @media (min-width: 750px) {
+    .cro-fbt-container {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .cro-fbt-item {
+      width: calc(33.333% - 10px);
+      flex-direction: column;
+      text-align: center;
+      padding-top: 15px;
+    }
+    .cro-fbt-details {
+      padding-right: 0;
+      align-items: center;
+    }
+    .cro-fbt-image {
+      width: 80px;
+      height: 80px;
+    }
+    .cro-fbt-plus {
+      right: -25px;
+      top: 50%;
+    }
+    .cro-fbt-checkbox {
+      top: 10px;
+      right: 10px;
+      transform: none;
+    }
+    .cro-fbt-summary {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
+    .cro-fbt-total-price {
+      margin-bottom: 0;
+      font-size: 1.1rem;
+    }
+    .cro-fbt-add-btn {
+      width: auto;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const fbtForm = document.getElementById('cro-fbt-form');
+    if(!fbtForm) return;
+    
+    const checkboxes = fbtForm.querySelectorAll('.cro-fbt-checkbox:not(:disabled)');
+    const totalPriceEl = document.getElementById('cro-fbt-total');
+    const addBtn = document.getElementById('cro-fbt-add-btn');
+    const mainProductPrice = {{ current_product.price }};
+    const shopMoneyFormat = "{{ shop.money_format }}";
+
+    // Format Money Helper
+    function formatMoney(cents, format) {
+      if (typeof cents === 'string') {
+        cents = cents.replace('.', '');
+      }
+      let value = '';
+      const placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
+      const formatString = (format || '${{amount}}');
+
+      function formatWithDelimiters(number, precision, thousands, decimal) {
+        precision = precision || 2;
+        thousands = thousands || ',';
+        decimal = decimal || '.';
+        if (isNaN(number) || number == null) return 0;
+        number = (number / 100.0).toFixed(precision);
+        const parts = number.split('.');
+        const dollars = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1' + thousands);
+        const cents = parts[1] ? (decimal + parts[1]) : '';
+        return dollars + cents;
+      }
+
+      switch (formatString.match(placeholderRegex)[1]) {
+        case 'amount':
+          value = formatWithDelimiters(cents, 2);
+          break;
+        case 'amount_no_decimals':
+          value = formatWithDelimiters(cents, 0);
+          break;
+        case 'amount_with_comma_separator':
+          value = formatWithDelimiters(cents, 2, '.', ',');
+          break;
+        case 'amount_no_decimals_with_comma_separator':
+          value = formatWithDelimiters(cents, 0, '.', ',');
+          break;
+      }
+      return formatString.replace(placeholderRegex, value);
+    }
+
+    // Update Price Logic
+    function updateTotalPrice() {
+      let total = mainProductPrice;
+      let selectedCount = 1; // Main product
+      
+      checkboxes.forEach(cb => {
+        if(cb.checked) {
+          total += parseInt(cb.getAttribute('data-price'), 10);
+          selectedCount++;
+        }
+      });
+      
+      totalPriceEl.innerHTML = formatMoney(total, shopMoneyFormat);
+      
+      if(selectedCount === 1) {
+        addBtn.innerHTML = "Add Main Item to Cart";
+      } else {
+        addBtn.innerHTML = `Add All ${selectedCount} to Cart`;
+      }
+    }
+
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', updateTotalPrice);
+    });
+
+    // Handle Add to Cart AJAX
+    addBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const originalAddText = this.innerHTML;
+      this.innerHTML = "Adding...";
+      this.disabled = true;
+
+      const itemsToAdd = [];
+      // Main product is implicitly intended to be added by the user reading the page.
+      itemsToAdd.push({
+        id: {{ current_product.selected_or_first_available_variant.id }},
+        quantity: 1
+      });
+
+      checkboxes.forEach(cb => {
+        if(cb.checked) {
+          itemsToAdd.push({
+            id: cb.getAttribute('data-variant-id'),
+            quantity: 1
+          });
+        }
+      });
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ items: itemsToAdd })
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Trigger generic custom event that theme cart drawers usually listen to
+        document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', {
+          bubbles: true
+        }));
+        
+        // For a seamless visual in mostly all themes
+        window.location.href = '/cart';
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        this.innerHTML = originalAddText;
+        this.disabled = false;
+        alert("There was an issue adding items to your cart.");
+      });
+    });
+
+  });
+</script>
+{% endif %}

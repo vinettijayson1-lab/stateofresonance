@@ -1,0 +1,101 @@
+{% comment %}
+  Renders an inline product card for embedding inside blog articles.
+  Accepts:
+  - product: {Object} Product Liquid object
+{% endcomment %}
+
+{%- if product != blank -%}
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  <div class="inline-product-card">
+    <a href="{{ product.url }}" class="inline-product-card__link">
+      <div class="inline-product-card__image-wrapper">
+        {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: product.title, class: 'inline-product-card__image' }}
+      </div>
+      <div class="inline-product-card__info">
+        <h4 class="inline-product-card__title">{{ product.title }}</h4>
+        <div class="inline-product-card__price">
+          {% if current_variant.compare_at_price > current_variant.price %}
+            <s class="inline-product-card__compare-price">{{ current_variant.compare_at_price | money }}</s>
+          {% endif %}
+          <span class="inline-product-card__current-price">{{ current_variant.price | money }}</span>
+        </div>
+        <span class="button button--secondary button--small inline-product-card__btn">Shop Now</span>
+      </div>
+    </a>
+  </div>
+
+  <style>
+    .inline-product-card {
+      margin: 2.5rem auto;
+      border: 1px solid rgb(var(--color-foreground-rgb) / 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 600px;
+      background: var(--color-background);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .inline-product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgb(var(--color-foreground-rgb) / 0.08);
+      border-color: rgb(var(--color-foreground-rgb) / 0.2);
+    }
+    .inline-product-card__link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+    .inline-product-card__image-wrapper {
+      flex: 0 0 140px;
+      height: 140px;
+      background: rgb(var(--color-foreground-rgb) / 0.03);
+    }
+    .inline-product-card__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .inline-product-card__info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+    }
+    .inline-product-card__title {
+      font-family: var(--font-heading--family);
+      font-size: 1.1rem;
+      margin: 0 0 0.5rem 0;
+      line-height: 1.2;
+    }
+    .inline-product-card__price {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .inline-product-card__compare-price {
+      color: rgb(var(--color-foreground-rgb) / 0.5);
+      margin-right: 0.5rem;
+    }
+    .inline-product-card__btn {
+      align-self: flex-start;
+      margin-top: auto;
+      min-height: 36px;
+      padding: 0 1.5rem;
+    }
+
+    @media screen and (max-width: 500px) {
+      .inline-product-card__link {
+        flex-direction: column;
+      }
+      .inline-product-card__image-wrapper {
+        flex: 1 1 100%;
+        width: 100%;
+        height: 200px;
+      }
+      .inline-product-card__btn {
+        width: 100%;
+        margin-top: 1rem;
+      }
+    }
+  </style>
+{%- endif -%}

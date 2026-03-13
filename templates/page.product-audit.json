@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "product-audit-output",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

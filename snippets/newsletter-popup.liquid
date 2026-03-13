@@ -1,0 +1,239 @@
+{% comment %} CRO - Exit-Intent / Delayed Newsletter Popup {% endcomment %}
+<div id="cro-newsletter-popup" class="cro-newsletter-popup" style="display: none;">
+  <div class="cro-newsletter-popup-overlay"></div>
+  <div class="cro-newsletter-popup-content">
+    <button id="cro-newsletter-close" class="cro-newsletter-close" aria-label="Close popup">×</button>
+    <div class="cro-newsletter-header">
+      <h2>Unlock 10% Off Your First Order</h2>
+      <p>Join our VIP list for exclusive offers, styling tips, and early access to new collections.</p>
+    </div>
+    
+    <div class="cro-newsletter-form-container">
+      {% form 'customer', class: 'cro-newsletter-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter, popup">
+        
+        {% if form.posted_successfully? %}
+          <div class="cro-newsletter-success">
+            <p>Thank you for subscribing! Your 10% discount code is: <strong>WELCOME10</strong></p>
+          </div>
+        {% else %}
+          <div class="cro-newsletter-input-group">
+            <input type="email" 
+                   name="contact[email]" 
+                   id="cro-newsletter-email" 
+                   class="cro-newsletter-input" 
+                   value="{% if customer %}{{ customer.email }}{% endif %}" 
+                   placeholder="Enter your email address" 
+                   required>
+            <button type="submit" class="cro-newsletter-submit button button--primary">
+              Unlock My 10% Off
+            </button>
+          </div>
+          {% if form.errors %}
+            <div class="cro-newsletter-error">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+        {% endif %}
+      {% endform %}
+    </div>
+    <div class="cro-newsletter-footer">
+      <button id="cro-newsletter-decline" class="cro-newsletter-decline-btn">No thanks, I prefer paying full price</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cro-newsletter-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cro-newsletter-popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+  
+  .cro-newsletter-popup-content {
+    position: relative;
+    background-color: var(--color-background);
+    padding: 3rem;
+    border-radius: var(--style-border-radius-cards, 12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    z-index: 10000;
+    animation: cro-popup-slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  @keyframes cro-popup-slide-up {
+    0% { transform: translateY(30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
+  .cro-newsletter-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--color-foreground);
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+  
+  .cro-newsletter-close:hover {
+    opacity: 1;
+  }
+  
+  .cro-newsletter-header h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 700;
+    color: var(--color-foreground);
+  }
+  
+  .cro-newsletter-header p {
+    margin-bottom: 25px;
+    color: rgb(var(--color-foreground-rgb) / 0.8);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .cro-newsletter-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .cro-newsletter-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--style-border-radius-inputs, 4px);
+    font-size: 16px;
+    background-color: var(--color-input-background);
+    color: var(--color-input-text);
+  }
+  
+  .cro-newsletter-submit {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .cro-newsletter-footer {
+    margin-top: 20px;
+  }
+  
+  .cro-newsletter-decline-btn {
+    background: none;
+    border: none;
+    color: rgb(var(--color-foreground-rgb) / 0.5);
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .cro-newsletter-decline-btn:hover {
+    color: var(--color-foreground);
+  }
+  
+  .cro-newsletter-success {
+    background-color: rgba(var(--color-success-rgb, 40, 167, 69), 0.1);
+    color: rgb(var(--color-success-rgb, 40, 167, 69));
+    padding: 15px;
+    border-radius: var(--style-border-radius-inputs, 4px);
+    border: 1px solid rgba(var(--color-success-rgb, 40, 167, 69), 0.3);
+  }
+  
+  .cro-newsletter-error {
+    color: #d93025;
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: left;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('cro-newsletter-popup');
+    const closeBtn = document.getElementById('cro-newsletter-close');
+    const declineBtn = document.getElementById('cro-newsletter-decline');
+    
+    // Check if user has already seen or submitted
+    const hasSeenPopup = localStorage.getItem('cro_newsletter_seen');
+    const urlParams = new URLSearchParams(window.location.search);
+    const formSubmitted = urlParams.has('customer_posted');
+    
+    // If form was submitted successfully, show popup with thank you message
+    if (formSubmitted && document.querySelector('.cro-newsletter-success')) {
+      popup.style.display = 'flex';
+      localStorage.setItem('cro_newsletter_seen', 'true');
+    }
+    
+    if (!hasSeenPopup && !formSubmitted) {
+      // 1. Exit Intent Logic
+      document.addEventListener('mouseleave', function(e) {
+        if (e.clientY < 0 && popup.style.display === 'none' && !localStorage.getItem('cro_newsletter_seen')) {
+          showPopup();
+        }
+      });
+      
+      // 2. Delayed Trigger (fallback for mobile/no exit intent)
+      setTimeout(function() {
+        if (popup.style.display === 'none' && !localStorage.getItem('cro_newsletter_seen')) {
+          showPopup();
+        }
+      }, 15000); // 15 seconds
+    }
+    
+    function showPopup() {
+      popup.style.display = 'flex';
+      // Prevent scrolling on body
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closePopup() {
+      popup.style.display = 'none';
+      document.body.style.overflow = '';
+      localStorage.setItem('cro_newsletter_seen', 'true');
+    }
+    
+    closeBtn.addEventListener('click', closePopup);
+    declineBtn.addEventListener('click', closePopup);
+    
+    // Close on overlay click
+    popup.addEventListener('click', function(e) {
+      if (e.target.classList.contains('cro-newsletter-popup-overlay')) {
+        closePopup();
+      }
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && popup.style.display === 'flex') {
+        closePopup();
+      }
+    });
+  });
+</script>

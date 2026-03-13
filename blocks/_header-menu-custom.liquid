@@ -1,0 +1,217 @@
+
+{%- doc -%}
+  Renders a custom header menu block with hardcoded links for State of Resonance.
+  This is a 'live workaround' to bypass Shopify Admin Navigation restrictions.
+
+  @param {string} [variant] - What version of the menu to render. Defaults to header menu.
+  @param {string} [transparent] - Show a transparent menu
+{%- enddoc -%}
+
+{% liquid
+  assign block_settings = block.settings
+  assign animation_speed = 200
+
+  # Define Hardcoded Menu Items
+  # Format: "Title|URL"
+  assign menu_items = "Home|/,Shop All|/collections/all,Adornments|/collections/adornments,Manuscripts|/collections/manuscripts,Protocols & Tools|/collections/protocols-tools,Resonance Blog|/blogs/resonance-blog" | split: ","
+%}
+
+{% case variant %}
+  {% when 'mobile' %}
+    <div
+      class="header__drawer desktop:hidden"
+      ref="headerDrawerContainer"
+      {{ block.shopify_attributes }}
+    >
+      <div class="header__drawer--mobile">
+        <nav class="menu-drawer__navigation">
+          <ul class="menu-drawer__menu list-unstyled" role="list">
+            {% for item in menu_items %}
+              {% assign parts = item | split: "|" %}
+              {% assign item_title = parts[0] %}
+              {% assign item_url = parts[1] %}
+              <li>
+                <a href="{{ item_url }}" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                  {{ item_title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+  {% when 'navigation_bar' %}
+    {% if block_settings.navigation_bar == true %}
+      <div
+        class="menu-list menu-list--mobile{% if transparent == blank %} color-{{ block_settings.color_scheme_navigation_bar }}{% endif %}"
+        style="--menu-horizontal-gap: 15px; --mobile-nav-margin: auto;"
+      >
+        <div class="menu-list__scroll-container">
+          <ul
+            class="menu-list__list list-unstyled"
+            role="list"
+          >
+            {% for item in menu_items %}
+              {% assign parts = item | split: "|" %}
+              {% assign item_title = parts[0] %}
+              {% assign item_url = parts[1] %}
+              <li>
+                <a
+                  href="{{ item_url }}"
+                  class="menu-list__item"
+                >
+                  {{- item_title -}}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endif %}
+  {% else %}
+    {% liquid
+      assign color_scheme_classes = ''
+      assign color_scheme_setting_id = 'color_scheme_' | append: section.settings.menu_row
+      assign current_color_scheme = block_settings.color_scheme
+      assign parent_color_scheme = section.settings[color_scheme_setting_id]
+
+      if parent_color_scheme.id != current_color_scheme.id
+        assign color_scheme_classes = ' color-' | append: current_color_scheme
+      endif
+
+      if parent_color_scheme.settings.background.rgb == current_color_scheme.settings.background.rgb
+        assign color_scheme_classes = color_scheme_classes | append: ' color-scheme-matches-parent'
+      endif
+    %}
+
+    {% capture children %}
+      {% for item in menu_items %}
+        {% assign parts = item | split: "|" %}
+        {% assign item_title = parts[0] %}
+        {% assign item_url = parts[1] %}
+        <li
+          role="presentation"
+          class="menu-list__list-item"
+        >
+          <a
+            href="{{ item_url }}"
+            data-skip-node-update="true"
+            class="menu-list__link"
+            ref="menuitem"
+          >
+            <span class="menu-list__link-title">{{- item_title -}}</span>
+          </a>
+        </li>
+      {% endfor %}
+    {% endcapture %}
+
+    <header-menu
+      ref="headerMenu"
+      class="header-menu mobile:hidden"
+      data-animation-delay="{{ animation_speed }}"
+      {{ block.shopify_attributes }}
+      style="--submenu-animation-speed: {{ animation_speed }}ms;"
+    >
+      <div class="header-menu__inner">
+        <nav header-menu>
+          <div
+            class="menu-list"
+            style="{% render 'menu-font-styles', settings: block_settings %}"
+          >
+            {% assign class = 'overflow-menu' | append: color_scheme_classes %}
+            {% render 'overflow-list',
+              class: class,
+              ref: 'overflowMenu',
+              children: children,
+              minimum-items: 2,
+              data-testid: 'header-menu-overflow-list',
+              attributes: 'data-skip-node-update'
+            %}
+          </div>
+        </nav>
+      </div>
+
+      <script
+        src="{{ 'header-menu.js' | asset_url }}"
+        type="module"
+        fetchpriority="low"
+      ></script>
+    </header-menu>
+{% endcase %}
+
+{% schema %}
+{
+  "name": "Custom Header Menu",
+  "tag": null,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "primary"
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "type_font_primary_size",
+      "label": "t:settings.top_level_size",
+      "options": [
+        {
+          "value": "0.625rem",
+          "label": "10px"
+        },
+        {
+          "value": "0.75rem",
+          "label": "12px"
+        },
+        {
+          "value": "0.875rem",
+          "label": "14px"
+        },
+        {
+          "value": "1rem",
+          "label": "16px"
+        },
+        {
+          "value": "1.125rem",
+          "label": "18px"
+        }
+      ],
+      "default": "1rem"
+    },
+    {
+      "type": "select",
+      "id": "type_font_primary_link",
+      "label": "t:settings.font",
+      "options": [
+        {
+          "value": "body",
+          "label": "t:options.body"
+        },
+        {
+          "value": "subheading",
+          "label": "t:options.subheading"
+        },
+        {
+          "value": "heading",
+          "label": "t:options.heading"
+        },
+        {
+          "value": "accent",
+          "label": "t:options.accent"
+        }
+      ],
+      "default": "heading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Header Menu"
+    }
+  ]
+}
+{% endschema %}

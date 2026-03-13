@@ -1,0 +1,83 @@
+{
+    "sections": {
+        "section": {
+            "type": "main-blog-post",
+            "blocks": {
+                "blog-post-title": {
+                    "type": "text",
+                    "name": "Title",
+                    "settings": {
+                        "text": "<h1>The Esoteric Aesthetic: Decoding the Archetypes in Our Latest Collection</h1>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "h2",
+                        "font": "var(--font-primary--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                    }
+                },
+                "blog-post-image": {
+                    "type": "image",
+                    "name": "Featured image",
+                    "settings": {
+                        "image_ratio": "landscape",
+                        "width": "fill",
+                        "custom_width": 100,
+                        "width_mobile": "fill",
+                        "custom_width_mobile": 100,
+                        "height": "fit",
+                        "border": "none",
+                        "border_width": 1,
+                        "border_opacity": 100,
+                        "border_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                    }
+                },
+                "blog-post-content": {
+                    "type": "text",
+                    "name": "Article Content",
+                    "settings": {
+                        "text": "<p>Streetwear has always been a canvas for culture, but true art goes deeper than just a logo. At State of Resonance, we view our garments as a medium for esoteric storytelling. The imagery we use isn't chosen just because it looks striking; it is chosen because it carries centuries of weight, meaning, and archetypal power.</p><h2>The Power of Archetypes and Symbolism</h2><p>Throughout history, complex truths about the human condition—our struggles, our resilience, and our search for meaning—have been encoded in dense visual language. You can see this in the rich, multilayered symbolism of traditions like the Thoth tarot, where every color, geometric line, and figure represents a specific psychological or cosmic state.</p><p>Archetypes—the Magician, the Fool, the Hermit—are universal mirrors. They reflect our own journeys of starting over, seeking inner wisdom, and mastering our realities.</p><p><br></p><h2>Translating the Esoteric into the Everyday</h2><p>We draw heavy inspiration from these intricate systems of symbolism. Designing a piece for State of Resonance is like composing a poem or painting a canvas—every thread and ink stroke has an intention. We take the profound, often hidden knowledge of the esoteric world and translate it into premium, everyday streetwear.</p><p>When you wear these pieces, you are carrying a piece of that archetypal story with you. It’s an invitation to those who know, and a mystery to those who don’t. It is, quite literally, wearable art.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "paragraph",
+                        "font": "var(--font-primary--family)",
+                        "padding-block-start": 40,
+                        "padding-block-end": 40
+                    }
+                }
+            },
+            "block_order": [
+                "blog-post-title",
+                "blog-post-image",
+                "blog-post-content"
+            ],
+            "settings": {
+                "content_direction": "column",
+                "gap": 32,
+                "color_scheme": "",
+                "padding-block-start": 40,
+                "padding-block-end": 80
+            }
+        }
+    },
+    "order": [
+        "section"
+    ]
+}

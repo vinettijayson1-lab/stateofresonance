@@ -1,0 +1,185 @@
+{% comment %} 
+  CRO - Tiered Discount Progress Bar 
+  Tier 1: Etheric Transit (Free Shipping) ($150)
+  Tier 2: First Initiation (10% Off) ($200)
+  Tier 3: Sacred Artifact (Free Gift) ($300)
+{% endcomment %}
+
+{% liquid
+  assign tier_1_threshold = 15000
+  assign tier_2_threshold = 20000
+  assign tier_3_threshold = 30000
+
+  assign cart_total = cart.total_price
+
+  if cart_total >= tier_3_threshold
+    assign percentage = 100
+    assign message = 'You have unlocked a <strong>Sacred Artifact & First Initiation!</strong>'
+    assign current_tier = 3
+  elsif cart_total >= tier_2_threshold
+    assign amount_left = tier_3_threshold | minus: cart_total
+    assign amount_left_money = amount_left | money
+    assign percentage = cart_total | times: 1.0 | divided_by: tier_3_threshold | times: 100
+    assign message = 'Only <strong>' | append: amount_left_money | append: '</strong> away from a <strong>Sacred Artifact</strong>.'
+    assign current_tier = 2
+  elsif cart_total >= tier_1_threshold
+    assign amount_left = tier_2_threshold | minus: cart_total
+    assign amount_left_money = amount_left | money
+    assign percentage = cart_total | times: 1.0 | divided_by: tier_3_threshold | times: 100
+    assign message = 'Only <strong>' | append: amount_left_money | append: '</strong> away from your <strong>First Initiation (10% Off)</strong>.'
+    assign current_tier = 1
+  else
+    assign amount_left = tier_1_threshold | minus: cart_total
+    assign amount_left_money = amount_left | money
+    assign percentage = cart_total | times: 1.0 | divided_by: tier_3_threshold | times: 100
+    if percentage > 100
+      assign percentage = 100
+    endif
+    assign message = 'Only <strong>' | append: amount_left_money | append: '</strong> away from <strong>Etheric Transit (Free Shipping)</strong>.'
+    assign current_tier = 0
+  endif
+%}
+
+<div class="cro-tiered-bar spacing-style" style="margin-bottom: 20px;">
+  <div class="cro-tiered-bar__message">{{ message }}</div>
+  
+  <div class="cro-tiered-bar__container">
+    <div class="cro-tiered-bar__fill" style="width: {{ percentage }}%;"></div>
+    
+    <div class="cro-tiered-bar__milestone cro-tiered-bar__milestone--1 {% if current_tier >= 1 %}is-unlocked{% endif %}">
+      <div class="cro-tiered-bar__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+      </div>
+    </div>
+    
+    <div class="cro-tiered-bar__milestone cro-tiered-bar__milestone--2 {% if current_tier >= 2 %}is-unlocked{% endif %}">
+      <div class="cro-tiered-bar__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+      </div>
+    </div>
+    
+    <div class="cro-tiered-bar__milestone cro-tiered-bar__milestone--3 {% if current_tier >= 3 %}is-unlocked{% endif %}">
+      <div class="cro-tiered-bar__icon cro-pulse-gift">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cro-tiered-bar__labels">
+    <span class="cro-tiered-bar__label-item {% if current_tier >= 1 %}is-active-label{% endif %}">Etheric Transit</span>
+    <span class="cro-tiered-bar__label-item {% if current_tier >= 2 %}is-active-label{% endif %}">Initiation</span>
+    <span class="cro-tiered-bar__label-item {% if current_tier >= 3 %}is-active-label{% endif %}">Artifact</span>
+  </div>
+</div>
+
+<style>
+  .cro-tiered-bar {
+    width: 100%;
+    padding: 1.5rem 1.5rem 0.5rem;
+    background: rgb(var(--color-foreground-rgb) / 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--style-border-radius-cards, 12px);
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+  
+  .cro-tiered-bar__message {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+  
+  .cro-tiered-bar__container {
+    position: relative;
+    height: 10px;
+    background: rgb(var(--color-foreground-rgb) / 0.1);
+    border-radius: 10px;
+    margin: 0 10px;
+  }
+  
+  .cro-tiered-bar__fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #D4AF37, #F8F5F2); /* Using premium gold gradient */
+    border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .cro-tiered-bar__milestone {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    background: var(--color-background);
+    border: 3px solid rgb(var(--color-foreground-rgb) / 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: all 0.3s ease;
+  }
+  
+  .cro-tiered-bar__milestone--1 { left: 40%; } /* $80 / $200 = 40% */
+  .cro-tiered-bar__milestone--2 { left: 75%; } /* $150 / $200 = 75% */
+  .cro-tiered-bar__milestone--3 { left: 100%; } /* $200 = 100% */
+  
+  .cro-tiered-bar__icon {
+    width: 14px;
+    height: 14px;
+    color: rgb(var(--color-foreground-rgb) / 0.4);
+    transition: all 0.3s ease;
+  }
+  
+  .cro-tiered-bar__milestone.is-unlocked {
+    border-color: #D4AF37;
+    background: #D4AF37;
+  }
+  
+  .cro-tiered-bar__milestone.is-unlocked .cro-tiered-bar__icon {
+    color: var(--color-background);
+  }
+  
+  .cro-tiered-bar__labels {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding: 0 10px;
+    font-size: 0.8rem;
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+    font-weight: 600;
+  }
+  
+  .cro-tiered-bar__label-item {
+    position: absolute;
+    transform: translateX(-50%);
+    transition: color 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .cro-tiered-bar__label-item:nth-child(1) { left: 40%; }
+  .cro-tiered-bar__label-item:nth-child(2) { left: 75%; }
+  .cro-tiered-bar__label-item:nth-child(3) { left: 100%; }
+  
+  .cro-tiered-bar__label-item.is-active-label {
+    color: #D4AF37;
+    font-weight: 700;
+  }
+  
+  .cro-pulse-gift {
+    animation: cro-pulse-gift 2s infinite;
+  }
+  
+  @keyframes cro-pulse-gift {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+</style>

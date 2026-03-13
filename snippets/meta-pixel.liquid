@@ -1,0 +1,73 @@
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  
+  {% if customer %}
+    fbq('init', '1218840833794945', {
+      em: '{{ customer.email | strip | downcase }}', // Meta handles hashing if not already hashed
+      fn: '{{ customer.first_name | strip | downcase }}',
+      ln: '{{ customer.last_name | strip | downcase }}',
+      ph: '{{ customer.phone | strip }}'
+    });
+  {% else %}
+    fbq('init', '1218840833794945');
+  {% endif %}
+  
+  fbq('track', 'PageView');
+
+  {% if template.name == 'product' %}
+    fbq('track', 'ViewContent', {
+      content_ids: ['{{ product.id }}'],
+      content_name: '{{ product.title | escape }}',
+      content_type: 'product',
+      value: {{ product.price | money_without_currency | remove: ',' }},
+      currency: '{{ shop.currency }}'
+    });
+  {% endif %}
+
+  {% if template.name == 'collection' %}
+    fbq('track', 'ViewCategory', {
+      content_name: '{{ collection.title | escape }}',
+      content_type: 'product_group'
+    });
+  {% endif %}
+
+  {% if template.name == 'search' %}
+    fbq('track', 'Search', {
+      search_string: '{{ search.terms | escape }}'
+    });
+  {% endif %}
+
+  // Listen for Shopify theme "cart:update" event to track AddToCart
+  document.addEventListener('cart:update', function(event) {
+    var detail = event.detail;
+    if (detail && detail.data && detail.data.source === 'product-form-component' && !detail.data.didError) {
+      fbq('track', 'AddToCart', {
+        content_ids: [detail.data.variantId || detail.data.productId],
+        content_type: 'product',
+        value: detail.resource ? (detail.resource.total_price / 100) : 0,
+        currency: '{{ shop.currency }}'
+      });
+    }
+  });
+
+  // Track InitiateCheckout when clicking the checkout button in cart
+  document.addEventListener('click', function(event) {
+    var checkoutButton = event.target.closest('[name="checkout"], .cart__checkout-button');
+    if (checkoutButton) {
+      fbq('track', 'InitiateCheckout');
+    }
+  });
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=1218840833794945&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->

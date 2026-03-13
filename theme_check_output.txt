@@ -1,0 +1,323 @@
+💡 Version 3.91.1 available! Run `npm install -g @shopify/cli@latest`
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\blocks\_blog-post-image.liquid                                     │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'style_value' used.                                          │
+│                                                                              │
+│  16  style: style_value                                                      │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\blocks\buy-buttons.liquid                                          │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnusedAssign                                                     │
+│  The variable 'delivery_min' is assigned but not used                        │
+│                                                                              │
+│  245  {% assign delivery_min = "now" | date: "%s" | plus: 86400 | times:     │
+│  random_days_min %}                                                          │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnusedAssign                                                     │
+│  The variable 'delivery_max' is assigned but not used                        │
+│                                                                              │
+│  246  {% assign delivery_max = "now" | date: "%s" | plus: 86400 | times:     │
+│  random_days_max %}                                                          │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\layout\password.liquid                                             │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Use one of the asset_url filters to serve assets for better performance.    │
+│                                                                              │
+│  21  href="#MainContent"                                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity worspace\layout\theme.liquid   │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Use one of the asset_url filters to serve assets for better performance.    │
+│                                                                              │
+│  22  href="#MainContent"                                                     │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  125  <script                                                                │
+│  src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"      │
+│  defer></script>                                                             │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\sections\esoteric-entrance.liquid                                  │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Use one of the asset_url filters to serve assets for better performance.    │
+│                                                                              │
+│  45  <source src="{{ section.settings.audio_url }}">                         │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\sections\header.liquid                                             │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  184  block_id: block.id                                                     │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  257  block_id: block.id                                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\snippets\blog-comment-form.liquid                                  │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'comment' used.                                              │
+│                                                                              │
+│  52  if blog.moderated? and comment.status == 'unapproved'                   │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\snippets\cart-cross-sell.liquid                                    │
+│                                                                              │
+│                                                                              │
+│  [warning]: HardcodedRoutes                                                  │
+│  Use routes object {{ routes.cart_add_url }} instead of hardcoding           │
+│  /cart/add                                                                   │
+│                                                                              │
+│  29  <form method="post" action="/cart/add" class="cart-cross-sell__form">   │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\snippets\cart-summary.liquid                                       │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'section' used.                                              │
+│                                                                              │
+│  142  data-section-id="{{ section.id }}"                                     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\snippets\divider.liquid                                            │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  24  {{- block.shopify_attributes -}}                                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\snippets\email-marketing-framework.liquid                          │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  2  <script type="text/javascript" async src="https://static.klaviyo.com/on  │
+│  site/js/klaviyo.js?company_id=PUBLIC_API_KEY"></script>                     │
+│                                                                              │
+│                                                                              │
+│  [warning]: DeprecatedFilter                                                 │
+│  Deprecated filter 'img_url', consider using 'image_url'.                    │
+│                                                                              │
+│  15  ImageURL: "https:{{ product.featured_image.src | img_url: 'master'      │
+│  }}",                                                                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\snippets\frequently-bought-together.liquid                         │
+│                                                                              │
+│                                                                              │
+│  [warning]: HardcodedRoutes                                                  │
+│  Use routes object {{ routes.cart_add_url }} instead of hardcoding           │
+│  /cart/add                                                                   │
+│                                                                              │
+│  39  <form method="post" action="/cart/add" class="cro-fbt-form"             │
+│  id="cro-fbt-form">                                                          │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\snippets\jumbo-text.liquid                                         │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  12  assign block_settings = block_settings | default: block.settings        │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  61  {{ block.shopify_attributes }}                                          │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\snippets\localization-form.liquid                                  │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'back' used.                                                 │
+│                                                                              │
+│  51  return_to: back,                                                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\snippets\product-media-gallery-content.liquid                      │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  137  render 'util-product-media-sizes-attr', block: block, section:         │
+│  section, settings: settings, is_first_image: true, is_single_column: true,  │
+│   needs_both_sizes: true                                                     │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'section' used.                                              │
+│                                                                              │
+│  137  render 'util-product-media-sizes-attr', block: block, section:         │
+│  section, settings: settings, is_first_image: true, is_single_column: true,  │
+│   needs_both_sizes: true                                                     │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  144  render 'util-product-media-sizes-attr', block: block, section:         │
+│  section, settings: settings, is_first_image: false, is_single_column:       │
+│  is_single_column, needs_both_sizes: needs_both_sizes                        │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'section' used.                                              │
+│                                                                              │
+│  144  render 'util-product-media-sizes-attr', block: block, section:         │
+│  section, settings: settings, is_first_image: false, is_single_column:       │
+│  is_single_column, needs_both_sizes: needs_both_sizes                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\snippets\quantity-selector.liquid                                  │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'block' used.                                                │
+│                                                                              │
+│  40  {{- block.shopify_attributes -}}                                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\snippets\variant-main-picker.liquid                                │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'section' used.                                              │
+│                                                                              │
+│  12  assign button_background_brightness =                                   │
+│  section.settings.color_scheme.settings.foreground | color_brightness        │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'section' used.                                              │
+│                                                                              │
+│  50  assign fieldset_id = section.id | append: '-' | append:                 │
+│  product_resource.id | append: '-' | append: product_option.name |           │
+│  handleize                                                                   │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'section' used.                                              │
+│                                                                              │
+│  22  data-section-id="{{ section.id }}"                                      │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  :\Users\jayvi\OneDrive\Documents\antigravity                                │
+│  worspace\snippets\video.liquid                                              │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnusedDocParam                                                   │
+│  The parameter 'section_id' is defined but not used in this file.            │
+│                                                                              │
+│  18  @param {string} section_id - The section ID                             │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  Theme Check Summary.                                                        │
+│                                                                              │
+│  324 files inspected with 28 total offenses found across 18 files.           │
+│  28 warnings.                                                                │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+

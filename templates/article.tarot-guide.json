@@ -1,0 +1,21 @@
+{
+    "sections": {
+        "main": {
+            "type": "main-blog-post",
+            "settings": {
+                "color_scheme": "scheme-1"
+            }
+        },
+        "article-content": {
+            "type": "custom-liquid",
+            "settings": {
+                "color_scheme": "scheme-1",
+                "custom_liquid": "<h2>How to Choose Your First Tarot Deck: A Guide to Esoteric Symbolism</h2><p>Stepping into the world of divination can be overwhelming, especially when looking to <strong>buy tarot decks in Canada</strong>. With thousands of options available—ranging from the iconic Rider-Waite-Smith to independent artisan decks with unique esoteric symbolism—it's easy to freeze up when deciding which cards belong on your altar.</p><p>At State of Resonance, Canada’s largest esoteric shop, we curate hundreds of beginner-friendly and advanced decks. We’re here to help you navigate the imagery, the intention, and the frequency of your first deck.</p><h3>1. Look for Recognizable Symbolism</h3><p>If you are a true beginner, we highly recommend starting with a deck based on the Rider-Waite-Smith (RWS) system. The vast majority of tarot literature, guidebooks, and online resources are based on the imagery created by Pamela Colman Smith in 1909.</p><p>The intricate details in these cards—the colors, the directions characters are facing, the planetary symbols—are all intentionally designed to trigger your intuition. A modern deck that strays too far into abstract art might be beautiful, but it can be difficult to read if the traditional esoteric symbolism is missing.</p><h3>2. Assess the 'Frequency' of the Deck</h3><p>When you are shopping online for esoteric tools, pay close attention to the colors and themes of the artwork. Does it feel heavy? Light? Shadowy? Ethereal?</p><p>Every deck carries a specific resonance. If you are doing shadow work and deep psychological healing, a darker, moon-based deck might be appropriate. If you are looking for daily clarity and manifestation, a brighter, solar-focused deck might serve you better. Don't just buy what looks cool—buy what resonates with your current state of being.</p><h3>3. The 'Gift' Myth</h3><p>There is an old myth in spiritual circles that you should never buy your own tarot deck, and that your first deck must be gifted to you. <strong>This is absolutely false.</strong></p><p>As an esoteric practitioner, your tools are an extension of your own will and intention. Waiting for someone to stumble upon the perfect esoteric item for you gives away your power. Claim your practice. If a deck calls to you, buy it.</p><br><a href=\"/collections/all\" class=\"button button--primary\">Explore Our Curated Tarot Collection</a><br><br>"
+            }
+        }
+    },
+    "order": [
+        "main",
+        "article-content"
+    ]
+}

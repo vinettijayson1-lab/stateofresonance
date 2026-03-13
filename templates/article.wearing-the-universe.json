@@ -1,0 +1,83 @@
+{
+    "sections": {
+        "section": {
+            "type": "main-blog-post",
+            "blocks": {
+                "blog-post-title": {
+                    "type": "text",
+                    "name": "Title",
+                    "settings": {
+                        "text": "<h1>Wearing the Universe: The Power of Sacred Geometry in Modern Streetwear</h1>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "h2",
+                        "font": "var(--font-primary--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                    }
+                },
+                "blog-post-image": {
+                    "type": "image",
+                    "name": "Featured image",
+                    "settings": {
+                        "image_ratio": "landscape",
+                        "width": "fill",
+                        "custom_width": 100,
+                        "width_mobile": "fill",
+                        "custom_width_mobile": 100,
+                        "height": "fit",
+                        "border": "none",
+                        "border_width": 1,
+                        "border_opacity": 100,
+                        "border_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                    }
+                },
+                "blog-post-content": {
+                    "type": "text",
+                    "name": "Article Content",
+                    "settings": {
+                        "text": "<p>Look closely at the natural world, and you won’t find chaos—you will find an underlying, mathematical perfection. From the spirals of a galaxy to the cellular division of a human being, the universe speaks in a language of shapes and proportions. This is sacred geometry. But this ancient visual language isn't meant to be locked away in dusty esoteric texts. It is meant to be lived in.</p><h2>The Anatomy of a Symbol: Metatron’s Cube and the Flower of Life</h2><p>Sacred geometry represents the architectural blueprints of reality. Take the Flower of Life, a pattern of overlapping circles that has been found on temple walls from Egypt to Japan. It symbolizes creation and the interconnectedness of all things. When we understand that every action and every person is linked, the way we carry ourselves changes.</p><p>Then there is Metatron’s Cube, a complex, high-vibrational symbol containing every shape that exists in the universe (the Platonic solids). It acts as a visual focal point for meditation, known to clear away lower frequencies and protect the energy of the observer.</p><p><br></p><h2>Why We Wear the Universe</h2><p>At State of Resonance, we don't just print graphics; we engineer wearable intention. When you put on a garment embedded with sacred geometry, you are anchoring those ancient, harmonizing frequencies into your daily life. It serves as a physical reminder amidst the noise of the modern world to stay grounded, stay aware, and maintain your center. It is a quiet rebellion against the superficial—a way to wear your philosophy on your sleeve.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "paragraph",
+                        "font": "var(--font-primary--family)",
+                        "padding-block-start": 40,
+                        "padding-block-end": 40
+                    }
+                }
+            },
+            "block_order": [
+                "blog-post-title",
+                "blog-post-image",
+                "blog-post-content"
+            ],
+            "settings": {
+                "content_direction": "column",
+                "gap": 32,
+                "color_scheme": "",
+                "padding-block-start": 40,
+                "padding-block-end": 80
+            }
+        }
+    },
+    "order": [
+        "section"
+    ]
+}

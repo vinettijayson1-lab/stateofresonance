@@ -1,0 +1,83 @@
+{
+    "sections": {
+        "section": {
+            "type": "main-blog-post",
+            "blocks": {
+                "blog-post-title": {
+                    "type": "text",
+                    "name": "Title",
+                    "settings": {
+                        "text": "<h1>Tuning Your Frequency: How Solfeggio Frequencies Impact Your Daily Mindset</h1>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "h2",
+                        "font": "var(--font-primary--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                    }
+                },
+                "blog-post-image": {
+                    "type": "image",
+                    "name": "Featured image",
+                    "settings": {
+                        "image_ratio": "landscape",
+                        "width": "fill",
+                        "custom_width": 100,
+                        "width_mobile": "fill",
+                        "custom_width_mobile": 100,
+                        "height": "fit",
+                        "border": "none",
+                        "border_width": 1,
+                        "border_opacity": 100,
+                        "border_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                    }
+                },
+                "blog-post-content": {
+                    "type": "text",
+                    "name": "Article Content",
+                    "settings": {
+                        "text": "<p>Nikola Tesla famously said, \"If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration.\" We are constantly bombarded by frequencies—the hum of the city, the glare of screens, the stress of the daily grind. Finding your own signal through that static requires intentional tuning. This is where Solfeggio frequencies come in.</p><h2>The Science of the 528Hz and 432Hz Frequencies</h2><p>Solfeggio frequencies are specific tones of sound that align with the rhythms and tones that form the basis of the universe.</p><p><strong>432Hz:</strong> Often called the heartbeat of the Earth, listening to music tuned to this frequency promotes a profound sense of peace and grounds the nervous system.</p><p><strong>528Hz:</strong> Known as the \"Miracle Tone,\" 528Hz is associated with DNA repair, deep healing, and bringing transformation into your life. It is the exact frequency of resilience.</p><h2>Meditation and the Art of Resilience</h2><p>Building a life of purpose takes resilience. It requires sitting with your own thoughts, confronting the shadows, and consciously choosing to operate at a higher vibration. Incorporating 528Hz into your daily meditation or writing practice helps clear out the mental static. It’s about building a fortress of calm in your mind so that when you step out the door, you are unshakeable.</p><p><br></p><h2>The Uniform of a High-Frequency Life</h2><p>Your environment dictates your energy, and the clothing you wear is the closest environment you have. State of Resonance is built on the idea that your physical garments should match your mental frequency. Heavyweight, premium fabrics that ground you, combined with an aesthetic that speaks to higher consciousness. Tune your mind, and dress for the frequency you want to embody.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "paragraph",
+                        "font": "var(--font-primary--family)",
+                        "padding-block-start": 40,
+                        "padding-block-end": 40
+                    }
+                }
+            },
+            "block_order": [
+                "blog-post-title",
+                "blog-post-image",
+                "blog-post-content"
+            ],
+            "settings": {
+                "content_direction": "column",
+                "gap": 32,
+                "color_scheme": "",
+                "padding-block-start": 40,
+                "padding-block-end": 80
+            }
+        }
+    },
+    "order": [
+        "section"
+    ]
+}

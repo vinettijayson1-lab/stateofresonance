@@ -1,0 +1,151 @@
+{%- if template == 'index' and false -%}
+  {{ 'esoteric-entrance.css' | asset_url | stylesheet_tag }}
+  
+  <style>
+    /* Critical CSS for the locked state */
+    body.esoteric-locked {
+      overflow: hidden !important;
+      height: 100vh;
+    }
+  </style>
+
+  <div id="EsotericEntrance" class="esoteric-entrance-overlay">
+    <div class="esoteric-entrance-background">
+      {%- if section.settings.background_image != blank -%}
+        <img src="{{ section.settings.background_image | image_url: width: 2000 }}" width="2000" height="1000" alt="Esoteric Background" loading="eager" class="esoteric-bg-image">
+      {%- else -%}
+        <div class="esoteric-noise"></div>
+      {%- endif -%}
+      <div class="esoteric-gradient"></div>
+    </div>
+
+    <div class="esoteric-entrance-content">
+      <div class="esoteric-sacred-geometry">
+        <!-- Minimal geometric SVG -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="esoteric-sigil">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+          <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M50 5 L95 76 L5 76 Z" fill="none" stroke="currentColor" stroke-width="0.75" />
+          <path d="M50 95 L5 24 L95 24 Z" fill="none" stroke="currentColor" stroke-width="0.75" />
+          <circle cx="50" cy="50" r="3" fill="currentColor"/>
+        </svg>
+      </div>
+      
+      <h1 class="esoteric-entrance-title">{{ section.settings.heading }}</h1>
+      <p class="esoteric-entrance-subtitle">{{ section.settings.subheading }}</p>
+      
+      <button id="EsotericEnterButton" class="esoteric-enter-button">
+        <span class="button-text">{{ section.settings.button_text }}</span>
+        <span class="button-glow"></span>
+      </button>
+    </div>
+
+    <audio id="EsotericAudio" loop>
+      {%- if section.settings.audio_url != blank -%}
+        <source src="{{ section.settings.audio_url }}">
+      {%- endif -%}
+    </audio>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const entranceOverlay = document.getElementById('EsotericEntrance');
+      const enterButton = document.getElementById('EsotericEnterButton');
+      const audioElement = document.getElementById('EsotericAudio');
+      const hasAudioUrl = {% if section.settings.audio_url != blank %}true{% else %}false{% endif %};
+      
+      function enterResonance() {
+        // 1. Play Audio (User must upload their Gregorian chant MP3 in Shopify Theme Editor)
+        if (hasAudioUrl) {
+          console.log("Audio URL found, attempting to play...");
+          audioElement.volume = 1; // Start at full volume instead of fading in
+          audioElement.play().then(() => {
+            console.log("Audio playing successfully.");
+          }).catch(e => {
+            console.error("Audio play failed. This might be due to a browser policy or an invalid URL format.", e);
+          });
+        } else {
+          console.log("No audio URL found in section settings.");
+        }
+
+        // 2. Add transition class to trigger CSS fade out
+        entranceOverlay.classList.add('is-dissolving');
+        
+        // 3. Button effect
+        enterButton.classList.add('is-clicked');
+
+        if (window.lenis) {
+          window.lenis.start();
+        }
+
+        // 4. Clean up after transition completes (approx 2.5s)
+        setTimeout(() => {
+          entranceOverlay.style.display = 'none';
+          document.body.classList.remove('esoteric-locked');
+          // Add a class indicating we are inside the site now, for other animations if needed
+          document.body.classList.add('esoteric-resonance-active');
+        }, 2500);
+      }
+
+      if (enterButton) {
+        enterButton.addEventListener('click', enterResonance);
+      }
+
+      // Stop scrolling immediately until button is clicked
+      if (document.body.classList.contains('esoteric-locked')) {
+        const stopScroll = setInterval(() => {
+          if (window.lenis) {
+            window.lenis.stop();
+            clearInterval(stopScroll);
+          }
+        }, 50);
+        // Clear interval after 2s if lenis never loads
+        setTimeout(() => clearInterval(stopScroll), 2000);
+      }
+    });
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Esoteric Entrance",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "STATE OF RESONANCE"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Tune into the frequency. Silence the noise."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Label",
+      "default": "ENTER THE RESONANCE"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image (Optional)",
+      "info": "Overrides the default digital noise texture."
+    },
+    {
+      "type": "text",
+      "id": "audio_url",
+      "label": "Gregorian Chant Audio URL",
+      "info": "Upload your Gregorian Chant MP3 to Shopify Files and paste the URL here. This will loop in the background upon entering."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Esoteric Entrance",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

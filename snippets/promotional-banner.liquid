@@ -1,0 +1,115 @@
+<!-- CRO - FLASH SALE BANNER -->
+<div class="cro-promo-banner" id="cro-promo-banner" style="display: none;">
+  <div class="cro-promo-banner__content page-width">
+    <div class="cro-promo-banner__text">
+      <span class="cro-promo-banner__badge">👁️ TIMELESS ALIGNMENT</span>
+      <strong>THE STARS HAVE ALIGNED.</strong> CLAIM <strong>25% OFF</strong> YOUR ENTIRE ORDER. USE CODE: <strong style="color: #ffeb3b; text-shadow: 0 0 10px rgba(255,235,59,0.5);">RESONANCE24</strong>
+      <span id="cro-countdown" style="margin-left: 15px; font-family: monospace; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 3px; border: 1px solid rgba(255,255,255,0.2);">23:59:59</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cro-promo-banner {
+    background-color: var(--color-primary, #000000);
+    color: var(--color-background, #ffffff);
+    padding: 8px 0;
+    font-size: 13px;
+    z-index: 1001;
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .cro-promo-banner__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px 30px;
+    text-align: center;
+  }
+  
+  .cro-promo-banner__badge {
+    background-color: #d93025; /* Urgent Red */
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 8px;
+    letter-spacing: 0.5px;
+    animation: cro-flash-blink 2s infinite;
+  }
+  
+  @keyframes cro-flash-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+  
+  @media (max-width: 749px) {
+    .cro-promo-banner__content {
+      flex-direction: row;
+      justify-content: center;
+      gap: 5px 10px;
+      padding: 0 10px;
+    }
+    .cro-promo-banner {
+      padding: 6px 0;
+      font-size: 11px;
+    }
+    .cro-promo-banner__badge {
+      display: none; /* Hide badge on mobile to save space */
+    }
+    #cro-countdown {
+      margin-left: 5px !important;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const banner = document.getElementById('cro-promo-banner');
+    const countdownEl = document.getElementById('cro-countdown');
+    
+    if (banner) {
+      banner.style.display = 'block';
+      
+      // Countdown Logic - 24 hours from "now" (simulated for today)
+      let duration = 24 * 60 * 60; // 24 hours in seconds
+      
+      // Use localStorage to keep countdown consistent for the user today
+      const now = Math.floor(Date.now() / 1000);
+      let targetTime = localStorage.getItem('cro_flash_sale_target');
+      
+      if (!targetTime || now > targetTime) {
+        targetTime = now + duration;
+        localStorage.setItem('cro_flash_sale_target', targetTime);
+      }
+      
+      function updateCountdown() {
+        const currentTime = Math.floor(Date.now() / 1000);
+        let remaining = targetTime - currentTime;
+        
+        if (remaining <= 0) {
+          remaining = 0;
+          banner.style.borderBottom = '2px solid #d93025';
+        }
+        
+        const h = Math.floor(remaining / 3600);
+        const m = Math.floor((remaining % 3600) / 60);
+        const s = remaining % 60;
+        
+        if (countdownEl) {
+          countdownEl.textContent = 
+            (h < 10 ? '0' + h : h) + ':' + 
+            (m < 10 ? '0' + m : m) + ':' + 
+            (s < 10 ? '0' + s : s);
+        }
+      }
+      
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+  });
+</script>

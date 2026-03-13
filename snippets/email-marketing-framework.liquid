@@ -1,0 +1,57 @@
+<!-- CRO - Klaviyo Site Tracking Snippet -->
+<script type="text/javascript" async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=PUBLIC_API_KEY"></script>
+
+<script>
+  !function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
+</script>
+
+{% if template contains 'product' %}
+<!-- Viewed Product Tracking -->
+<script type="text/javascript">
+  var item = {
+    Name: {{ product.title | json }},
+    ProductID: {{ product.id | json }},
+    Categories: {{ product.collections | map: 'title' | json }},
+    ImageURL: "https:{{ product.featured_image.src | img_url: 'master' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor | json }},
+    Price: {{ product.price | money_without_currency | json }},
+    CompareAtPrice: {{ product.compare_at_price_max | money_without_currency | json }}
+  };
+  window.klaviyo.push(['track', 'Viewed Product', item]);
+</script>
+
+<!-- Added to Cart Tracking (Bound to our buttons and FBT bundles) -->
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var addToCartBtns = document.querySelectorAll('button[name="add"], #cro-fbt-add-btn');
+    for (var i = 0; i < addToCartBtns.length; i++) {
+      addToCartBtns[i].addEventListener('click', function() {
+        window.klaviyo.push(['track', 'Added to Cart', item]);
+      });
+    }
+  });
+</script>
+{% endif %}
+
+{% comment %}
+=========================================
+EMAIL FLOW BLUEPRINTS & COPY OUTLINES
+(To be constructed in marketing ESP)
+=========================================
+
+FLOW 1: Welcome Series (Trigger: Subscribes to Newsletter Popup)
+- Email 1 (Send Immediately): "Welcome to the Family! Here is your 10% Off"
+  Details: High fidelity lifestyle image, explicit discount code "WELCOME10", and the brand mission.
+- Email 2 (Send After 2 Days): "Why we do what we do (and how it benefits you)"
+  Details: Founder story, unique value propositions, quality breakdowns. "Us vs. Them" comparison chart.
+- Email 3 (Send After 5 Days): "Bestsellers + Final chance to use your 10% off"
+  Details: Carousel of top 3 products. Social proof snippets (5-star reviews). Sense of urgency.
+
+FLOW 2: Abandoned Cart (Trigger: Added to Cart but did not place order in 2 hrs)
+- Email 1 (Send After 2 Hours): "Did you leave something behind?"
+  Details: Dynamic cart block image. Gentle reminder that carts expire. Direct checkout link.
+- Email 2 (Send After 24 Hours): "Your cart is about to expire (Here's 5% Off)"
+  Details: Offer a time-sensitive, auto-applying 5% off code. Aggressive FOMO messaging. Dynamic cart block.
+=========================================
+{% endcomment %}

@@ -1,0 +1,207 @@
+{%- style -%}
+  .overwhelmed-guide {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    padding: var(--padding-4xl) 0;
+  }
+  
+  .overwhelmed-guide__header {
+    text-align: center;
+    max-width: var(--page-width-normal);
+    margin: 0 auto var(--margin-4xl);
+    padding: 0 var(--page-margin);
+  }
+
+  .overwhelmed-guide__title {
+    font-family: var(--font-heading--family);
+    font-size: var(--font-size--4xl);
+    color: var(--color-primary); /* Gold */
+    margin-bottom: var(--margin-md);
+    letter-spacing: 0.05em;
+  }
+
+  .overwhelmed-guide__content {
+    font-family: var(--font-body--family);
+    font-size: var(--font-size--lg);
+    line-height: 1.6;
+    color: var(--color-foreground);
+  }
+
+  .guide-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-2xl);
+    max-width: var(--page-width-wide);
+    margin: 0 auto;
+    padding: 0 var(--page-margin);
+  }
+
+  @media screen and (min-width: 768px) {
+    .guide-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .guide-card {
+    background: rgb(var(--color-foreground-rgb) / 0.03);
+    border: 1px solid var(--color-border);
+    padding: var(--padding-2xl);
+    border-radius: var(--style-border-radius-cards, 12px);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .guide-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1); /* Subtle gold glow */
+    border-color: var(--color-primary);
+  }
+
+  .guide-card__icon {
+    font-size: 3rem;
+    margin-bottom: var(--margin-lg);
+  }
+
+  .guide-card__title {
+    font-family: var(--font-heading--family);
+    font-size: var(--font-size--2xl);
+    color: var(--color-primary);
+    margin-bottom: var(--margin-md);
+  }
+
+  .guide-card__text {
+    font-family: var(--font-body--family);
+    font-size: var(--font-size--md);
+    color: var(--color-foreground);
+    margin-bottom: var(--margin-xl);
+  }
+
+  .guide-card__btn {
+    display: inline-block;
+    padding: var(--padding-sm) var(--padding-xl);
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+
+  .guide-card__btn:hover {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+  }
+{%- endstyle -%}
+
+<section class="overwhelmed-guide section section--page-width">
+  <div class="overwhelmed-guide__header">
+    <h1 class="overwhelmed-guide__title">{{ section.settings.title }}</h1>
+    <div class="overwhelmed-guide__content">
+      {{ section.settings.content }}
+    </div>
+  </div>
+
+  <div class="guide-grid">
+    {%- for block in section.blocks -%}
+      <div class="guide-card">
+        <div class="guide-card__icon">{{ block.settings.icon }}</div>
+        <h3 class="guide-card__title">{{ block.settings.title }}</h3>
+        <p class="guide-card__text">{{ block.settings.text }}</p>
+        {%- if block.settings.button_link != blank -%}
+          <a href="{{ block.settings.button_link }}" class="guide-card__btn">{{ block.settings.button_text }}</a>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Overwhelmed Guide",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Not sure where to start in a 5,000-item shop? We got you."
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Description",
+      "default": "<p>We know 5,000 esoteric tools is a lot to browse. Select your path below to explore our curated collections tailored for every stage of your journey.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "guide_tier",
+      "name": "Guide Tier",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji Icon",
+          "default": "🌱"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tier Title",
+          "default": "The Starter Guide"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Tier Description",
+          "default": "Essential tools, beginner tarot decks, and foundational crystals to ignite your practice."
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Begin Here"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Overwhelmed Guide",
+      "blocks": [
+        {
+          "type": "guide_tier",
+          "settings": {
+            "icon": "🌱",
+            "title": "The Starter Guide",
+            "text": "Essential tools, beginner tarot decks, and foundational crystals to ignite your practice."
+          }
+        },
+        {
+          "type": "guide_tier",
+          "settings": {
+            "icon": "🔮",
+            "title": "Advanced Tools",
+            "text": "Rare manuscripts, alchemical elixirs, and powerful earth relics for the seasoned practitioner."
+          }
+        },
+        {
+          "type": "guide_tier",
+          "settings": {
+            "icon": "✨",
+            "title": "Sacred Spaces",
+            "text": "Authentic singing bowls, sacred smoke, and premium decor to elevate your sanctuary."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
