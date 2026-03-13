@@ -56,8 +56,13 @@ const renderSanctuaryCollections = () => {
 
     grid.innerHTML = collections.map(col => `
         <div class="product-card glass fade-in-scroll" style="cursor: pointer;" onclick="window.location.href='/collection.html?collection=${col.handle}'">
-            <div class="product-image-container">
-                <img src="${col.image}" alt="${col.name}" class="product-image" loading="lazy" />
+            <div class="product-image-container skeleton">
+                <img src="${col.image}" 
+                     alt="${col.name}" 
+                     class="product-image" 
+                     loading="lazy" 
+                     onload="this.parentElement.classList.remove('skeleton')"
+                     onerror="this.src='/assets/placeholder.png'; this.parentElement.classList.remove('skeleton')" />
                 <div class="collection-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
                     <span style="color: white; border: 1px solid white; padding: 10px 20px; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;">Enter Collection</span>
                 </div>
@@ -65,7 +70,7 @@ const renderSanctuaryCollections = () => {
             <div class="product-info">
                 <span class="product-category">Sanctuary</span>
                 <h3 class="product-title">${col.name}</h3>
-                <p style="color: #888; font-size: 0.8rem; letter-spacing: 0.1em; margin-top: 10px;">${col.description}</p>
+                <p style="color: var(--color-foreground-muted); font-size: 0.8rem; letter-spacing: 0.1em; margin-top: 10px;">${col.description}</p>
             </div>
         </div>
     `).join('');
