@@ -19,46 +19,52 @@ document.addEventListener('mousemove', (e) => {
 
 const collections = [
     {
-        name: 'Candles',
-        image: '/assets/candles_collection.png',
-        handle: 'candles',
-        description: 'Illuminations & Intentional Wax'
-    },
-    {
-        name: 'Amulets',
-        image: '/assets/amulets_collection.png',
-        handle: 'amulets',
-        description: 'Sacred Adornments & Protection'
-    },
-    {
-        name: 'Sacred Smoke',
-        image: '/assets/sacred_smoke_collection.png',
-        handle: 'incense',
-        description: 'Incense, Herbs & Resins'
-    },
-    {
-        name: 'Manuscripts',
-        image: '/assets/manuscripts_collection.png',
-        handle: 'manuscripts',
-        description: 'Ancient Texts & Guided Vessels'
-    },
-    {
-        name: 'Alchemy',
-        image: '/assets/alchemy_collection.png',
-        handle: 'alchemy',
-        description: 'Vibrational Elixirs & Ritual Oils'
-    },
-    {
         name: 'Earth Relics',
         image: '/assets/earth_relics_collection.png',
         handle: 'earth-relics',
         description: 'Crystals, Minerals & Tumbled Stones'
     },
     {
+        name: 'Sacred Adornments',
+        image: '/assets/amulets_collection.png',
+        handle: 'sacred-adornments',
+        description: 'Metaphysical Jewelry & Protective Talismans'
+    },
+    {
+        name: 'Alchemical Botanicals',
+        image: '/assets/alchemical_botanicals_collection.png',
+        handle: 'alchemical-botanicals',
+        description: 'Sacred Herbs, Resins & Botanical Offerings'
+    },
+    {
+        name: 'Alchemical Elixirs',
+        image: '/assets/alchemy_collection.png',
+        handle: 'alchemical-elixirs',
+        description: 'Vibrational Oils & Ritual Essences'
+    },
+    {
+        name: 'Sacred Smoke',
+        image: '/assets/sacred_smoke_collection.png',
+        handle: 'sacred-smoke',
+        description: 'Premium Incense & Smudging Tools'
+    },
+    {
+        name: 'Illuminations',
+        image: '/assets/candles_collection.png',
+        handle: 'illuminations',
+        description: 'Intentional Candles & Sacred Wax'
+    },
+    {
         name: 'Ritual Tools',
         image: '/assets/ritual_tools_collection.png',
         handle: 'ritual-tools',
         description: 'Masterpieces of Transition & Forged Intent'
+    },
+    {
+        name: 'Esoteric Manuscripts',
+        image: '/assets/manuscripts_collection.png',
+        handle: 'esoteric-manuscripts',
+        description: 'Ancient Texts, Journals & Guided Vessels'
     },
     {
         name: 'Divination Tools',
@@ -70,7 +76,7 @@ const collections = [
         name: 'Shrine Artifacts',
         image: '/assets/shrine_artifacts_collection.png',
         handle: 'shrine-artifacts',
-        description: 'Statues, Altars & Sacred Spaces'
+        description: 'Statues, Altars & Sacred Space enhancements'
     }
 ];
 
