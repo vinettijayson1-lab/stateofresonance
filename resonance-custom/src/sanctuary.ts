@@ -77,6 +77,12 @@ const collections = [
         image: '/assets/shrine_artifacts_collection.png',
         handle: 'shrine-artifacts',
         description: 'Statues, Altars & Sacred Space enhancements'
+    },
+    {
+        name: 'Esoteric Attire',
+        image: '/assets/esoteric_attire_collection.png',
+        handle: 'esoteric-attire',
+        description: 'Vibrational Raiment & Alchemical Threads'
     }
 ];
 

@@ -58,6 +58,7 @@ const renderCollection = () => {
         if (target === 'ritual-tools') return p.collections.some(c => c.includes('Ritual Tools') || c.includes('Wicca') || c.includes('Pagan'));
         if (target === 'divination-tools') return p.collections.some(c => c.includes('Divination') || c.includes('Tarot') || c.includes('Oracle') || c.includes('Pendulum'));
         if (target === 'shrine-artifacts') return p.collections.some(c => c.includes('Shrine Artifacts') || c.includes('Statue') || c.includes('Figure') || c.includes('Altar'));
+        if (target === 'esoteric-attire' || target === 'attire') return p.category === 'Apparel' || p.collections.some(c => c.includes('Printful') || c.includes('Attire') || c.includes('Raiment'));
         
         return p.collections.some(c => c.toLowerCase() === target);
     });
