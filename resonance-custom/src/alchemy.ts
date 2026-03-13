@@ -24,7 +24,7 @@ const renderAlchemyFeed = () => {
     if (!grid) return;
 
     grid.innerHTML = products
-        .filter(p => p.id === 'a001' || p.id === 'a002')
+        .filter(p => p.category === 'Alchemy' || (p.collections && p.collections.includes('Alchemical Elixirs')))
         .map(p => renderProductCard(p)).join('');
 
     // Animate entries

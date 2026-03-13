@@ -9,6 +9,8 @@ export interface Product {
   handle: string;
   collections?: string[];
   variantId?: string;
+  available?: boolean;
+  status?: 'active' | 'archived' | 'draft';
 }
 
 export const products: Product[] = [
@@ -48,7 +50,7 @@ export const products: Product[] = [
     title: 'The Sigil Hoodie (Garment Dyed)',
     price: '$108.00',
     category: 'Esoteric Protection',
-    image: '/assets/attire_sigil_hoodie_black_v2.png',
+    image: 'https://files.cdn.printful.com/products/420/mockup_1707512102_420208515.png',
     description: 'Premium garment-dyed hoodie with the sigil of resonance.',
     type: 'clothing',
     handle: 'the-sigil-hoodie-garment-dyed'
@@ -58,7 +60,7 @@ export const products: Product[] = [
     title: 'The Sigil Hoodie',
     price: '$108.00',
     category: 'Esoteric Protection',
-    image: '/assets/attire_sigil_hoodie_black_v2.png',
+    image: 'https://files.cdn.printful.com/products/420/mockup_1707512102_420208515.png',
     description: 'Engineered for comfort and transcendence.',
     type: 'clothing',
     handle: 'the-sigil-hoodie'
@@ -676,11 +678,19 @@ export const products: Product[] = [
 ];
 
 export function renderProductCard(product: Product): string {
-  const targetUrl = `/product.html?id=${product.id}`;
+  // If product is explicitly marked as unavailable, we hide it.
+  if (product.available === false) {
+    return '';
+  }
+
+  const storeBaseUrl = 'https://stateofresonance.ca';
+  // Use Shopify store URL if handle exists, otherwise fall back to local product page
+  const targetUrl = product.handle ? `${storeBaseUrl}/products/${product.handle}` : `/product.html?id=${product.id}`;
+  const isExternal = targetUrl.startsWith('http');
   
   return `
     <article class="product-card glass fade-in-scroll" data-id="${product.id}">
-      <a href="${targetUrl}" class="card-link" aria-label="View details for ${product.title}" style="text-decoration: none; color: inherit; display: block; position: absolute; inset: 0; z-index: 1;"></a>
+      <a href="${targetUrl}" ${isExternal ? 'target="_blank"' : 'rel="noopener"'} class="card-link" aria-label="View details for ${product.title}" style="text-decoration: none; color: inherit; display: block; position: absolute; inset: 0; z-index: 1;"></a>
       <div class="product-image-container skeleton">
         <img src="${product.image}" 
              alt="${product.title}" 
@@ -745,9 +755,9 @@ export function initCheckoutLinks() {
       
       gsap.from(feedback, { y: 100, opacity: 0, duration: 0.5, ease: "power3.out" });
 
-      let checkoutUrl = `https://checkout.stateofresonance.ca/products/${handle}`;
+      let checkoutUrl = `https://stateofresonance.ca/products/${handle}`;
       if (variantId) {
-          checkoutUrl = `https://checkout.stateofresonance.ca/cart/${variantId}:${qty}`;
+          checkoutUrl = `https://stateofresonance.ca/cart/${variantId}:${qty}`;
           feedback.innerHTML = `ADDING ${qty} ARTIFACT(S) TO CART...`;
           trackEvent('AddToCart', {
             content_name: el.dataset.product,

@@ -182,7 +182,7 @@ def main():
                 "shopify",               # Variant Inventory Tracker
                 units,                   # Variant Inventory Qty
                 "deny",                  # Variant Inventory Policy
-                "azuregreen",            # Variant Fulfillment Service
+                "azuregreen",            # Variant Fulfillment Service (LINK TO AZUREGREEN)
                 f"{retail_price_cad:.2f}",# Variant Price
                 "",                      # Variant Compare At Price
                 "TRUE",                  # Variant Requires Shipping

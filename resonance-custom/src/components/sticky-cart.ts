@@ -14,7 +14,7 @@ export function initStickyCart() {
   document.body.appendChild(cartBtn);
 
   cartBtn.addEventListener('click', () => {
-    window.open('https://checkout.stateofresonance.ca/cart', '_blank');
+    window.open('https://stateofresonance.ca/cart', '_blank');
   });
 
   // Simple scroll behavior: show/hide

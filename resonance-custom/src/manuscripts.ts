@@ -23,7 +23,7 @@ const renderManuscriptsFeed = () => {
     if (!grid) return;
 
     grid.innerHTML = products
-        .filter(p => p.id === 'm001' || p.id === 'm002')
+        .filter(p => p.category === 'Manuscripts' || (p.collections && p.collections.includes('Esoteric Manuscripts')))
         .map(p => renderProductCard(p)).join('');
 
     ScrollTrigger.refresh();
