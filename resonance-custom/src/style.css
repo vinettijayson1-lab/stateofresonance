@@ -66,15 +66,111 @@ section {
   position: relative;
 }
 
-/* Hero Section */
-.hero {
+/* The Void Choice Interface */
+.void-container {
   height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0;
+  background: var(--color-obsidian);
   position: relative;
   overflow: hidden;
 }
+
+.divider {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  bottom: 10%;
+  width: 1px;
+  background: var(--color-gold-muted);
+  opacity: 0.3;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.choice-panel {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  overflow: hidden;
+  transition: flex 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.choice-panel:hover {
+  flex: 1.5;
+}
+
+.choice-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(1) brightness(0.4);
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s ease;
+  z-index: 1;
+}
+
+.choice-panel:hover .choice-bg {
+  transform: scale(1.1);
+  filter: grayscale(0) brightness(0.7);
+}
+
+.choice-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 40px;
+  background: rgba(18, 22, 30, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  transition: var(--transition-smooth);
+}
+
+.choice-panel:hover .choice-content {
+  background: rgba(18, 22, 30, 0.7);
+  border-color: var(--color-gold-muted);
+  box-shadow: 0 0 40px rgba(197, 160, 89, 0.1);
+}
+
+.choice-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: #fff;
+  letter-spacing: 0.2em;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+.choice-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.5em;
+  color: var(--color-gold-muted);
+  text-transform: uppercase;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .void-container {
+    flex-direction: column;
+  }
+  .divider {
+    display: none;
+  }
+  .choice-panel:hover {
+    flex: 2;
+  }
+}
+
+/* Legacy Hero Section (Deprecated) */
+/*
+.hero {
+  ...
+}
+*/
 
 .hero-video {
   position: absolute;
