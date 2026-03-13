@@ -14,9 +14,11 @@ export interface Product {
 }
 
 import { catalogProducts } from './catalog_products';
+import { printfulProducts } from './printful_products';
 
 export const products: Product[] = [
   ...catalogProducts,
+  ...printfulProducts,
   // --- ATTIRE (Authentic Photoshoot Style) ---
   {
     id: 'pt-001',
@@ -147,6 +149,417 @@ export const products: Product[] = [
     description: 'Sport Grey variant of the protective sigil hoodie.',
     type: 'clothing',
     handle: 'the-sigil-hoodie'
+  },
+  // --- PRINTFUL SYNCED PRODUCTS ---
+  {
+    id: 'pf-001',
+    title: 'Urban garment-dyed hoodie',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001gd-i-urban-hoodie-garment-dyed-pigment-burro-front-69b464e819830_medium.jpg?v=1773430018',
+    description: 'Premium garment-dyed hoodie for urban resonance.',
+    type: 'clothing',
+    handle: 'urban-garment-dyed-hoodie'
+  },
+  {
+    id: 'pf-002',
+    title: 'Urban hoodie (Black)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-front-69b464e7d2bf1_medium.jpg?v=1773430008',
+    description: 'Classic black hoodie engineered for daily alignment.',
+    type: 'clothing',
+    handle: 'urban-hoodie'
+  },
+  {
+    id: 'pf-003',
+    title: 'Urban hoodie (Minimal)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-front-69b464e781e5a_medium.jpg?v=1773429998',
+    description: 'Minimalist edition of our core vibrational wear.',
+    type: 'clothing',
+    handle: 'urban-hoodie-1'
+  },
+  {
+    id: 'pf-004',
+    title: 'Urban garment-dyed hoodie (Burro)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001gd-i-urban-hoodie-garment-dyed-pigment-burro-front-69b4646966c01_medium.jpg?v=1773429948',
+    description: 'Earth-toned garment-dyed hoodie with premium finish.',
+    type: 'clothing',
+    handle: 'urban-garment-dyed-hoodie-1'
+  },
+  {
+    id: 'pf-005',
+    title: 'Urban hoodie (Essential)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-front-69b46466a6980_medium.jpg?v=1773429929',
+    description: 'Essential black hoodie for the conscious observer.',
+    type: 'clothing',
+    handle: 'urban-hoodie-2'
+  },
+  {
+    id: 'pf-006',
+    title: 'Urban hoodie (Classic)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-front-69b46466b2cae_medium.jpg?v=1773429918',
+    description: 'Timeless silhouette for frequency protection.',
+    type: 'clothing',
+    handle: 'urban-hoodie-3'
+  },
+  {
+    id: 'pf-007',
+    title: 'Unisex heavyweight t-shirt (Bay)',
+    price: '$60.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/unisex-garment-dyed-heavyweight-t-shirt-bay-front-69b46465703eb_medium.jpg?v=1773429907',
+    description: 'Heavyweight t-shirt in Bay, designed for durability.',
+    type: 'clothing',
+    handle: 'unisex-garment-dyed-heavyweight-t-shirt'
+  },
+  {
+    id: 'pf-008',
+    title: 'Urban garment-dyed hoodie (Pigment Burro)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001gd-i-urban-hoodie-garment-dyed-pigment-burro-front-69b46465b5324_medium.jpg?v=1773429891',
+    description: 'Unique pigment-dyed texture for individual alignment.',
+    type: 'clothing',
+    handle: 'urban-garment-dyed-hoodie-2'
+  },
+  {
+    id: 'pf-009',
+    title: 'Urban garment-dyed hoodie (Eclipse)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001gd-i-urban-hoodie-garment-dyed-pigment-burro-front-69b464655f5f0_medium.jpg?v=1773429880',
+    description: 'Deep eclipse tones in our signature garment-dyed hoodie.',
+    type: 'clothing',
+    handle: 'urban-garment-dyed-hoodie-3'
+  },
+  {
+    id: 'pf-010',
+    title: 'Men’s box tee (Obsidian)',
+    price: '$60.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/mens-box-tee-black-front-69b462fbb510b_medium.jpg?v=1773429747',
+    description: 'Obsidian black box tee with a relaxed fit.',
+    type: 'clothing',
+    handle: 'mens-box-tee'
+  },
+  {
+    id: 'pf-011',
+    title: 'Urban hoodie (Stealth)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-front-69b462faaa9d0_medium.jpg?v=1773429711',
+    description: 'Stealth black hoodie for low-frequency environments.',
+    type: 'clothing',
+    handle: 'urban-hoodie-4'
+  },
+  {
+    id: 'pf-012',
+    title: 'Urban hoodie (Void)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-front-69b462fa997ab_medium.jpg?v=1773429681',
+    description: 'Void black edition of the urban resonance hoodie.',
+    type: 'clothing',
+    handle: 'urban-hoodie-5'
+  },
+  {
+    id: 'pf-013',
+    title: 'Urban hoodie (Shadow)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-front-69b462fa4dd0c_medium.jpg?v=1773429663',
+    description: 'Shadow black texture for subtle vibrational presence.',
+    type: 'clothing',
+    handle: 'urban-hoodie-6'
+  },
+  {
+    id: 'pf-014',
+    title: 'Urban hoodie (Phantom)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-front-69b462fa3512f_medium.jpg?v=1773429649',
+    description: 'Phantom black finish for the modern alchemist.',
+    type: 'clothing',
+    handle: 'urban-hoodie-7'
+  },
+  {
+    id: 'pf-015',
+    title: 'Men’s box tee (Shadow Black)',
+    price: '$60.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/mens-box-tee-black-front-69b462f65682a_medium.jpg?v=1773429633',
+    description: 'Shadow black box tee for daily resonance.',
+    type: 'clothing',
+    handle: 'mens-box-tee-1'
+  },
+  {
+    id: 'pf-016',
+    title: 'Urban garment-dyed hoodie (Sovereign)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001gd-i-urban-hoodie-garment-dyed-pigment-burro-front-69b462f80014c_medium.jpg?v=1773429617',
+    description: 'Sovereign design meets urban protection.',
+    type: 'clothing',
+    handle: 'urban-garment-dyed-hoodie-4'
+  },
+  {
+    id: 'pf-017',
+    title: 'Men’s box hoodie (Heritage Black)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/mens-box-hoodie-i-cotton-heritage-m2635-black-front-69b462f6e170c_medium.jpg?v=1773429588',
+    description: 'Heritage black box hoodie for heavy-duty resonance.',
+    type: 'clothing',
+    handle: 'mens-box-hoodie'
+  },
+  {
+    id: 'pf-018',
+    title: 'Men’s box hoodie (Classic Void)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/mens-box-hoodie-i-cotton-heritage-m2635-black-front-69b462f6b3e26_medium.jpg?v=1773429563',
+    description: 'Classic void black box hoodie for supreme comfort.',
+    type: 'clothing',
+    handle: 'mens-box-hoodie-1'
+  },
+  {
+    id: 'pf-019',
+    title: 'Men’s premium heavyweight tee (Agave)',
+    price: '$60.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/mens-premium-heavyweight-tee-agave-front-69b462f3c7651_medium.jpg?v=1773429510',
+    description: 'Premium heavyweight tee in Agave, tuned to natural frequencies.',
+    type: 'clothing',
+    handle: 'mens-premium-heavyweight-tee'
+  },
+  {
+    id: 'pf-020',
+    title: 'Unisex heavyweight t-shirt (Coastal Bay)',
+    price: '$60.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/unisex-garment-dyed-heavyweight-t-shirt-bay-front-69b462f25029f_medium.jpg?v=1773429498',
+    description: 'Coastal Bay heavyweight tee for fluid energy.',
+    type: 'clothing',
+    handle: 'unisex-garment-dyed-heavyweight-t-shirt-1'
+  },
+  {
+    id: 'pf-021',
+    title: 'Urban hoodie (Nocturnal)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-front-69b461e021cd5_medium.jpg?v=1773429247',
+    description: 'Nocturnal black finish for the late-night seeker.',
+    type: 'clothing',
+    handle: 'urban-hoodie-nocturnal'
+  },
+  {
+    id: 'pf-022',
+    title: 'Urban hoodie (Obsidian Reverse)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-back-69b439de63e65_medium.jpg?v=1773418996',
+    description: 'Obsidian reverse print for multi-directional resonance.',
+    type: 'clothing',
+    handle: 'urban-hoodie-obsidian-reverse'
+  },
+  {
+    id: 'pf-023',
+    title: 'Unisex heavyweight t-shirt (Deep Black)',
+    price: '$60.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/unisex-garment-dyed-heavyweight-t-shirt-black-front-69b4384d8dae3_medium.jpg?v=1773418601',
+    description: 'Deep black heavyweight tee for core protection.',
+    type: 'clothing',
+    handle: 'unisex-garment-dyed-heavyweight-t-shirt-deep-black'
+  },
+  {
+    id: 'pf-024',
+    title: 'Urban garment-dyed hoodie (Zenith Burro)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001gd-i-urban-hoodie-garment-dyed-pigment-burro-back-69b438eaf4226_medium.jpg?v=1773418741',
+    description: 'Zenith alignment meets earthy burro tones.',
+    type: 'clothing',
+    handle: 'urban-garment-dyed-hoodie-zenith'
+  },
+  {
+    id: 'pf-025',
+    title: 'Urban sweatshirt (Purity White)',
+    price: '$96.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16004-i-urban-crewneck-sweatshirt-white-front-69b42e490bb9f_medium.jpg?v=1773416029',
+    description: 'Purity white sweatshirt for high-frequency clarity.',
+    type: 'clothing',
+    handle: 'urban-sweatshirt'
+  },
+  {
+    id: 'pf-026',
+    title: 'Urban hoodie (Ethereal White)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-white-front-69b42d90b036c_medium.jpg?v=1773415843',
+    description: 'Ethereal white hoodie for spiritual ascension.',
+    type: 'clothing',
+    handle: 'urban-hoodie-white'
+  },
+  {
+    id: 'pf-027',
+    title: 'Urban hoodie (Archetype Black)',
+    price: '$108.00',
+    category: 'Attire',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-front-69b40922b5d04_medium.jpg?v=1773406518',
+    description: 'The archetypal black hoodie for the State of Resonance.',
+    type: 'clothing',
+    handle: 'urban-hoodie-archetype'
+  },
+  {
+    id: 'pf-028',
+    title: 'Vibrational Frequency V-Neck (Solid Black)',
+    price: '$60.00',
+    category: 'Resonance Layer',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/womens-relaxed-v-neck-t-shirt-solid-black-blend-front-69a0a8a271e46_medium.jpg?v=1772136626',
+    description: 'Relaxed v-neck designed for vibrational feedback.',
+    type: 'clothing',
+    handle: 'vibrational-frequency-v-neck'
+  },
+  {
+    id: 'pf-029',
+    title: 'The Seed of Life" Hoodie (Cropped)',
+    price: '$108.00',
+    category: 'Sacred Geometry',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/womens-cropped-hoodie-black-front-69a089085e194_medium.jpg?v=1772128541',
+    description: 'Cropped edition of the Seed of Life hoodie. Her Resonance Collection.',
+    type: 'clothing',
+    handle: 'the-seed-of-life-hoodie-cropped'
+  },
+  {
+    id: 'pf-030',
+    title: 'The Sigil Hoodie (Midnight Navy)',
+    price: '$108.00',
+    category: 'Esoteric Protection',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001gd-i-urban-hoodie-garment-dyed-pigment-midnight-navy-front-6995f879510c4_medium.jpg?v=1771436191',
+    description: 'Midnight navy variant of the garment-dyed protective sigil hoodie.',
+    type: 'clothing',
+    handle: 'the-sigil-hoodie-midnight-navy'
+  },
+  {
+    id: 'pf-031',
+    title: 'The Sigil Hoodie (Void Edition)',
+    price: '$108.00',
+    category: 'Esoteric Protection',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-front-6995f7965dfad_medium.jpg?v=1771435943',
+    description: 'Void black edition of the core protective sigil hoodie.',
+    type: 'clothing',
+    handle: 'the-sigil-hoodie-void'
+  },
+  {
+    id: 'pf-032',
+    title: 'The Sigil Hoodie (Carbon Grey)',
+    price: '$108.00',
+    category: 'Esoteric Protection',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/mens-box-hoodie-i-cotton-heritage-m2635-carbon-grey-front-6995f2a8b1dea_medium.jpg?v=1771434692',
+    description: 'Carbon grey box hoodie with the sigil of resonance.',
+    type: 'clothing',
+    handle: 'the-sigil-hoodie-carbon-grey'
+  },
+  {
+    id: 'pf-033',
+    title: 'The 963Hz Ascension Tee (Obsidian)',
+    price: '$60.00',
+    category: 'Solfeggio Layer',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/mens-box-tee-black-front-69949098aefe0_medium.jpg?v=1771344052',
+    description: 'Obsidian black ascension tee, tuned to 963Hz.',
+    type: 'clothing',
+    handle: 'the-963hz-ascension-tee'
+  },
+  {
+    id: 'pf-034',
+    title: 'The Sigil of Resonance Tee (Faded Black)',
+    price: '$60.00',
+    category: 'Resonance Layer',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/oversized-faded-t-shirt-faded-black-front-69948d93f0562_medium.jpg?v=1771343277',
+    description: 'Oversized faded black tee with the mark of alignment.',
+    type: 'clothing',
+    handle: 'the-sigil-of-resonance-tee-faded'
+  },
+  {
+    id: 'pf-035',
+    title: 'The Trinity Hoodie (Burro Alignment)',
+    price: '$108.00',
+    category: 'Sacred Geometry',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001gd-i-urban-hoodie-garment-dyed-pigment-burro-back-69934c739b2a0_medium.jpg?v=1771261052',
+    description: 'Triad of power in earth-toned burro alignment.',
+    type: 'clothing',
+    handle: 'the-trinity-hoodie-burro'
+  },
+  {
+    id: 'pf-036',
+    title: 'The Frequency of Nature | 432Hz (Reverse)',
+    price: '$108.00',
+    category: 'Natural Alignment',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001-i-urban-hoodie-black-back-699370d1afdf3_medium.jpg?v=1771270362',
+    description: 'Reverse print of the 432Hz natural alignment hoodie.',
+    type: 'clothing',
+    handle: 'the-frequency-of-nature-432hz-reverse'
+  },
+  {
+    id: 'pf-037',
+    title: 'The 963 Solfeggio Pullover (Midnight)',
+    price: '$108.00',
+    category: 'Solfeggio Layer',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001gd-i-urban-hoodie-garment-dyed-pigment-midnight-navy-front-69927b1be228f_medium.jpg?v=1771207465',
+    description: 'Divine frequency pullover in midnight navy.',
+    type: 'clothing',
+    handle: 'the-963-solfeggio-pullover-midnight'
+  },
+  {
+    id: 'pf-038',
+    title: 'Echo Urbain" – Edition 108 (Navy)',
+    price: '$108.00',
+    category: 'Urban Esoterica',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/lane-seven-ls16001gd-i-urban-hoodie-garment-dyed-pigment-midnight-navy-front-698e3cd6d300f_medium.jpg?v=1771004873',
+    description: 'Urban echoes in protective midnight navy.',
+    type: 'clothing',
+    handle: 'echo-urbain-edition-108-navy'
+  },
+  {
+    id: 'pf-039',
+    title: 'The Signature Resonance Tee (Pepper)',
+    price: '$60.00',
+    category: 'Resonance Layer',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/unisex-garment-dyed-heavyweight-t-shirt-pepper-front-698e278ab513b_medium.jpg?v=1771003947',
+    description: 'Pepper black signature tee for authentic presence.',
+    type: 'clothing',
+    handle: 'the-signature-resonance-tee-pepper'
+  },
+  {
+    id: 'pf-040',
+    title: 'The Frequency Tee (Pepper)',
+    price: '$60.00',
+    category: 'Vibrational Layer',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/unisex-garment-dyed-heavyweight-t-shirt-pepper-front-698e26c2d7628_medium.jpg?v=1771003931',
+    description: 'Listen to the frequency in pepper black comfort.',
+    type: 'clothing',
+    handle: 'the-frequency-tee-pepper'
+  },
+  {
+    id: 'pf-041',
+    title: 'Eco Tote Bag',
+    price: '$35.00',
+    category: 'Accessories',
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/eco-tote-bag-black-front-69b462fb07be6_medium.jpg?v=1772136626',
+    description: 'Environmentally conscious tote for carrying your esoteric artifacts.',
+    type: 'clothing',
+    handle: 'eco-tote-bag'
   },
 
   // --- THE SANCTUARY (Ritual Tools & Divination) ---
