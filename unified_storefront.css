@@ -1,0 +1,157 @@
+/* 
+  UNIFIED RESONANCE STOREFRONT CSS
+  Version: 2.0 (High Alignment)
+  
+  Purpose: Transform the Shopify theme to match the Next.js "Esoteric Luxury" aesthetic.
+  Target: Obsidian backgrounds, Sapphire/Amethyst depth, Cinzel & Inter typography.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
+:root {
+  --gold: #D4AF37;
+  --obsidian: #05070a;
+  --sapphire-deep: #060e1a;
+  --amethyst-deep: #12061a;
+  --white: #FFFFFF;
+  --black: #000000;
+  --muted: #a1a1aa;
+  --glass-bg: rgba(5, 7, 10, 0.7);
+  --glass-border: rgba(212, 175, 55, 0.1);
+}
+
+/* Global Reset & Background */
+body, html, #MainContent, .gradient, .page-width {
+  background-color: var(--black) !important;
+  color: var(--white) !important;
+  font-family: 'Inter', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .product-title {
+  font-family: 'Cinzel', serif !important;
+  font-weight: 400 !important;
+  color: #ffffff !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+}
+
+/* Hide Shopify Noise & Default Bars */
+.announcement-bar, 
+.header-wrapper > .shopify-section:first-child,
+.product-sticky-bar,
+#shopify-chat-container,
+.footer__payment-icons,
+.header__search,
+.header__icon--account {
+  display: none !important;
+}
+
+/* Custom Anniversary/Announcement Banner (Jewel Toned) */
+header::before {
+  content: "THE STARS HAVE ALIGNED. TRANSFORMATION COMMENCING.";
+  display: block;
+  width: 100%;
+  padding: 8px 0;
+  background: linear-gradient(90deg, var(--amethyst-deep), var(--sapphire-deep));
+  color: var(--gold);
+  text-align: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  font-weight: 600;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* Header & Logo Alignment */
+.header {
+  background: var(--black) !important;
+  padding: 2rem 0 !important;
+}
+
+.header__heading-link {
+  text-decoration: none !important;
+}
+
+.header__heading-logo {
+  display: none !important;
+}
+
+/* Textual Logo replacement */
+.header__heading-link::after {
+  content: "RESONANCE";
+  font-family: 'Cinzel', serif;
+  color: var(--white);
+  font-size: 1.8rem;
+  letter-spacing: 0.3em;
+  font-weight: 400;
+  transition: color 0.5s ease;
+}
+
+.header__heading-link:hover::after {
+  color: var(--gold);
+}
+
+/* Navigation Links */
+.header__menu-item {
+  font-family: 'Inter', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.2em !important;
+  font-size: 0.75rem !important;
+  color: rgba(255,255,255,0.6) !important;
+  transition: all 0.3s ease;
+}
+
+.header__menu-item:hover {
+  color: var(--gold) !important;
+}
+
+/* Product Info */
+.price, .price-item {
+  color: var(--gold) !important;
+  font-family: 'Inter', sans-serif !important;
+  letter-spacing: 0.2rem;
+  font-weight: 300;
+}
+
+/* Buttons (Esoteric Branding) */
+.button--primary, .product-form__submit, .shopify-payment-button__button {
+  background-color: transparent !important;
+  color: var(--gold) !important;
+  border: 1px solid var(--gold) !important;
+  font-family: 'Inter', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3em !important;
+  font-size: 0.7rem !important;
+  font-weight: 400 !important;
+  border-radius: 0 !important;
+  padding: 1.5rem !important;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.button--primary:hover, .product-form__submit:hover {
+  background-color: var(--gold) !important;
+  color: var(--black) !important;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+/* Footer Alignment */
+.footer {
+  background-color: var(--black) !important;
+  border-top: 1px solid var(--glass-border) !important;
+  padding-top: 5rem !important;
+}
+
+.footer__copyright {
+  color: var(--muted) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  font-size: 0.55rem;
+}
+
+/* Glass Details for Cards */
+.card, .product-media-container {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  backdrop-filter: blur(10px);
+}
