@@ -1,6 +1,8 @@
 import CollectionCard from "@/components/CollectionCard";
 import { prisma } from "@/lib/db";
 
+export const dynamic = 'force-dynamic';
+
 export default async function SanctuaryPage() {
   const toolCollections = await prisma.collection.findMany({
     where: { 

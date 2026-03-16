@@ -2,6 +2,8 @@ import { prisma } from "@/lib/db";
 import ProductCard from "@/components/ProductCard";
 import { notFound } from "next/navigation";
 
+export const dynamic = 'force-dynamic';
+
 export default async function CollectionPage({ params }: { params: Promise<{ handle: string }> }) {
   const { handle } = await params;
   const collection = await prisma.collection.findUnique({

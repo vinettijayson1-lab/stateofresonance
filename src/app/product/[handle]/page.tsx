@@ -5,6 +5,8 @@ import AcquireButton from "@/components/AcquireButton";
 import { isAzureGreen, calculateCADPrice } from "@/components/ProductCard";
 import Image from "next/image";
 
+export const dynamic = 'force-dynamic';
+
 export default async function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
   const { handle } = await params;
   
