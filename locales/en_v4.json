@@ -1,0 +1,191 @@
+{
+  "nav": {
+    "sanctuary": "Shop",
+    "attire": "Hoodies & Tees",
+    "contact": "Contact",
+    "inner_circle": "Inner Circle",
+    "frequency_quiz": "Style Quiz",
+    "reservoir": "Bag",
+    "currency": "Currency",
+    "language": "Language"
+  },
+  "hero": {
+    "her_collection": "☽ HER COLLECTION",
+    "her_resonance": "HER\nRESONANCE",
+    "ghost_bones_subtitle": "☠ GHOST & BONES",
+    "ghost_bones_title": "THE GHOST\nAND BONES",
+    "manifest_reality": "BEST SELLERS",
+    "artifact_reservoir": "TOP\nPIECES"
+  },
+  "common": {
+    "loading": "Loading products...",
+    "shop_collection": "Shop {collection} →",
+    "enter_sanctuary": "Browse all products →"
+  },
+  "oracle": {
+    "ask": "Ask the Oracle",
+    "subtitle": "\"Speak your frequency into the void. The Oracle translates the Source for you. The dimension is open.\"",
+    "button": "ASK THE ORACLE",
+    "trigger": "Oracle",
+    "empty_state": "\"Speak your frequency. The Source is listening.\"",
+    "placeholder": "TRANSMIT YOUR QUERY...",
+    "suggestions": {
+      "resonance": "What is my resonance?",
+      "align": "How do I align my space?",
+      "artifact": "Which piece calls to me?"
+    }
+  },
+  "product": {
+    "acquire": "Add to Bag",
+    "freq": "FREQ",
+    "sync": "SYNC",
+    "live": "LIVE: {n} VIEWING",
+    "locked": "LOCKED",
+    "scarcity": "LIMITED / {n} LEFT"
+  },
+  "PRODUCT": {
+    "FREQ": "FREQ",
+    "SYNC": "SYNC",
+    "LIVE": "LIVE: {n} VIEWING",
+    "LOCKED": "LOCKED",
+    "SCARCITY": "LIMITED / {n} LEFT"
+  },
+  "products": {
+    "freq": "FREQ",
+    "sync": "SYNC",
+    "live": "LIVE: {n} VIEWING",
+    "inner_circle": "INNER CIRCLE",
+    "locked": "LOCKED",
+    "scarcity": "LIMITED / {n} LEFT",
+    "trending": "TRENDING",
+    "new": "NEW",
+    "variants": "{n} Options",
+    "omni-963": {
+      "title": "THE OMNISCIENCE ARTIFACT",
+      "type": "Limited Edition",
+      "description": "The ultimate statement piece. Collector-grade, limited run."
+    }
+  },
+  "cart": {
+    "subtotal": "Subtotal",
+    "manifest_reality": "Your Bag",
+    "title": "YOUR\nBAG",
+    "empty": "Your cart is empty.",
+    "resonance_level": "{n} item(s) in your cart",
+    "alignment_calibrated": "Items reserved — complete checkout to secure your order.",
+    "shipping": {
+      "threshold": "You're {amount} away from free shipping",
+      "unlocked": "🎉 Free shipping unlocked"
+    },
+    "alignment_reward": "Loyalty discount ({n}%)",
+    "frequency_distribution": "— Order Summary —",
+    "frequency_total": "Total",
+    "region_alignment": "Tax Region",
+    "tax_included": "Taxes included for international orders",
+    "estimated_tax": "Estimated Tax ({rate}%)",
+    "secure_checkout": "SECURE CHECKOUT",
+    "aligned_by_resonance": "SHOPIFY SECURED",
+    "encrypted_payments": "ENCRYPTED PAYMENTS",
+    "initiate_alignment": "Proceed to Secure Checkout",
+    "release": "Remove",
+    "complete_ritual": "You may also like",
+    "add": "Add to Bag"
+  },
+  "checkout": {
+    "initiation_sequence": "— ORDER SUMMARY —",
+    "crossing_title": "Checkout",
+    "artifact_summary": "YOUR ITEMS",
+    "empty_threshold": "Your cart is empty.",
+    "final_calibration": "ORDER REVIEW",
+    "cross_threshold": "COMPLETE ORDER"
+  },
+  "social_proof": {
+    "seeker": "A customer",
+    "sync_action": "placed an order",
+    "purchase_action": "just purchased",
+    "high_frequency": "POPULAR RIGHT NOW",
+    "just_now": "Just now"
+  },
+  "omniscience": {
+    "step1_title": "Designed with intention",
+    "step1_body": "Every piece in the State of Resonance archive is built around symbolic codes and visual language that rewards closer attention.",
+    "step2_title": "Limited production",
+    "step2_body": "Small-batch releases designed for rarity. Once a run is complete, it may not return.",
+    "step3_title": "Built to be kept",
+    "step3_body": "Premium materials, collector-grade presentation — apparel designed to be worn as a lasting personal uniform.",
+    "action_button": "ADD TO BAG",
+    "audio_toggle": "LISTEN",
+    "back_to_sanctuary": "← Back to Shop"
+  },
+  "membership": {
+    "tier_label": "Loyalty Level",
+    "ascension_hud": "Member Progress",
+    "next_tier": "Next Level: {tier}",
+    "resonance_points": "{n} Points",
+    "member_price": "Member Price",
+    "exclusive_access": "Members Only",
+    "locked_artifact": "Members Only",
+    "unlocked_artifact": "Available for your level"
+  },
+  "inner_circle": {
+    "id_label": "INNER CIRCLE ACCESS",
+    "title": "Early access. Private releases. Collector exclusives.",
+    "text": "Inner Circle members receive access to private releases, early drop windows, and collector-only pieces. Enter your email to request access.",
+    "email_placeholder": "EMAIL ADDRESS",
+    "phone_placeholder": "PHONE NUMBER (OPTIONAL)",
+    "sms_consent": "SUBSCRIBE TO SMS UPDATES",
+    "request_btn": "REQUEST ACCESS",
+    "transmitting": "SENDING...",
+    "or_enter_key": "OR ENTER ACCESS CODE",
+    "access_code_placeholder": "ACCESS CODE",
+    "unlock_btn": "UNLOCK",
+    "welcome": "Welcome to the Inner Circle",
+    "intro": "You have access to our private releases and collector-only pieces. Items below are Inner Circle exclusives.",
+    "exclusive_title": "Exclusive Pieces",
+    "loading": "Loading...",
+    "protocols_title": "Care & Wear",
+    "protocol_1_title": "First Wash",
+    "protocol_1_text": "Turn inside out and wash cold to preserve print quality.",
+    "protocol_2_title": "Sizing",
+    "protocol_2_text": "Our pieces are cut oversized for a relaxed silhouette. Size down if you prefer a closer fit."
+  },
+  "calibration": {
+    "eyebrow": "FIND YOUR FIT",
+    "title": "WHAT'S YOUR STYLE?",
+    "body": "Take our style quiz to find the pieces that match your aesthetic. Get personalized recommendations in under 2 minutes.",
+    "button": "TAKE THE QUIZ"
+  },
+  "sanctuary": {
+    "eyebrow": "JOIN THE COMMUNITY",
+    "title": "STAY IN THE LOOP",
+    "body": "Get early access to new drops, behind-the-scenes content, and exclusive offers. Join the State of Resonance community.",
+    "instagram": "INSTAGRAM",
+    "tiktok": "TIKTOK"
+  },
+  "collections": {
+    "ghost_bones": {
+      "eyebrow": "LIMITED DROPS · PREMIUM MATERIALS",
+      "title": "GHOST & BONES",
+      "meta": "HEAVYWEIGHT COTTON — OVERSIZED FIT — LIMITED QUANTITIES",
+      "subtitle": "SIGNATURE COLLECTION"
+    },
+    "esoteric": {
+      "eyebrow": "SYMBOLIC OBJECTS · COLLECTOR EDITIONS",
+      "title": "The Archive",
+      "meta": "SELECTED PIECES FOR THE AESTHETICALLY LITERATE"
+    },
+    "alchemy": {
+      "title": "DAILY RITUAL",
+      "subtitle": "PRACTICE & CARE"
+    }
+  },
+  "product.freq": "FREQ",
+  "product.sync": "SYNC",
+  "product.live": "LIVE: {n} VIEWING",
+  "product.locked": "LOCKED",
+  "product.scarcity": "LIMITED / {n} LEFT",
+  "product.inner_circle": "INNER CIRCLE",
+  "product.trending": "TRENDING",
+  "product.new": "NEW",
+  "product.variants": "{n} Options"
+}

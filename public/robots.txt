@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Disallow private/admin paths
+Disallow: /alchemist
+Disallow: /lock
+Disallow: /gate
+Disallow: /locked
+Disallow: /inner-circle
+Disallow: /success
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://stateofresonance.ca/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

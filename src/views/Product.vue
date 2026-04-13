@@ -1,0 +1,1372 @@
+<script setup lang="ts">
+import { ref, onMounted, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { cart } from '../store/cart'
+import { useResonanceStore } from '../store/resonance'
+import { klaviyoService } from '../services/klaviyo'
+import gsap from 'gsap'
+import ProductCard from '../components/ProductCard.vue'
+import StickyBuyBar from '../components/StickyBuyBar.vue'
+import TrustBadges from '../components/TrustBadges.vue'
+import SocialShare from '../components/SocialShare.vue'
+import FrequencyPlayer from '../components/FrequencyPlayer.vue'
+import { currencyStore } from '../store/currency'
+import { Sparkles, Zap, Shield, HelpCircle } from 'lucide-vue-next'
+
+interface Variant {
+  id: string
+  title: string
+  price: string
+  available: boolean
+  options: string[]
+  image?: { src: string }
+}
+
+interface Product {
+  id: string
+  title: string
+  price: string
+  category: string
+  image: string
+  handle: string
+  type: string
+  description: string
+  variantId: string | null
+  available: boolean
+  variants: Variant[]
+  images: string[]
+  modelImage?: string | null
+  options: { name: string, position: number, values: string[] }[]
+  metadata?: any
+  inventory_quantity?: number
+  collections?: { handle: string }[]
+}
+
+const route = useRoute()
+const router = useRouter()
+const product = ref<Product | null>(null)
+const loading = ref(true)
+const acquiring = ref(false)
+const isUnlocked = ref(localStorage.getItem('sor_inner_circle') === 'true')
+const accessCode = ref('')
+const accessEmail = ref('')
+const accessError = ref('')
+const subLoading = ref(false)
+const subSuccess = ref(false)
+
+const unlockAccess = () => {
+  const code = accessCode.value.toUpperCase().replace(/\s/g, '')
+  if (code === 'RESONANCE963' || code === 'MASTER_963') {
+    isUnlocked.value = true
+    localStorage.setItem('sor_inner_circle', 'true')
+    // Meta Pixel: Lead event for member unlock
+    if ((window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'Inner Circle Unlock' })
+  } else {
+    accessError.value = 'FREQUENCY MISMATCH'
+  }
+}
+
+const requestAccess = async () => {
+  if (!accessEmail.value.includes('@')) {
+    accessError.value = 'INVALID SIGNAL'
+    return
+  }
+  
+  subLoading.value = true
+  accessError.value = ''
+  
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: accessEmail.value,
+        source: 'Product Access Request'
+      })
+    })
+    
+    if (res.ok) {
+      subSuccess.value = true
+    } else {
+      throw new Error('Signal lost')
+    }
+  } catch (err) {
+    accessError.value = 'SYNCHRONIZATION ERROR'
+  } finally {
+    subLoading.value = false
+  }
+}
+
+// Gallery State
+const currentImage = ref('')
+const showModel = ref(false)
+
+const setMainImage = (img: string) => {
+  currentImage.value = img
+  showModel.value = false
+}
+
+const toggleModelView = () => {
+  if (!product.value?.modelImage) return
+  showModel.value = !showModel.value
+  
+  // Transition effect
+  gsap.fromTo('.main-img-wrapper img', 
+    { opacity: 0.4, scale: 0.98 },
+    { opacity: 1, scale: 1, duration: 0.8, ease: 'expo.out' }
+  )
+}
+
+// Variant Selection State
+const selectedOptions = ref<Record<string, string>>({})
+const quantity = ref(1)
+
+const addToCartWithQty = () => {
+  if (!product.value) return
+  const item = { ...product.value }
+  const variant = selectedVariant.value
+  
+  if (variant) {
+    item.variantId = variant.id
+    item.image = variant.image?.src || item.image
+    item.price = variant.price
+  }
+  
+  // Use member discount price if unlocked
+  if (memberPrice.value) {
+    item.price = memberPrice.value
+  }
+  
+  cart.add(item, quantity.value)
+  
+}
+
+const selectedVariant = computed(() => {
+  if (!product.value || !product.value.variants) return null
+  return product.value.variants.find(v => {
+    if (!v.options) return false;
+    return v.options.every((opt, idx) => {
+      const optName = product.value?.options[idx]?.name
+      return optName && selectedOptions.value[optName] === opt
+    })
+  }) || product.value.variants[0]
+})
+
+const isAvailable = computed(() => {
+  if (!product.value) return false
+  if (selectedVariant.value) return selectedVariant.value.available !== false
+  return product.value.available !== false
+})
+
+const isOptionAvailable = (optName: string, val: string) => {
+  if (!product.value || !product.value.variants) return true;
+  const optIdx = product.value.options.findIndex((o: any) => o.name === optName);
+  if (optIdx === -1) return true;
+  
+  // True if ANY variant with this option value is available
+  return product.value.variants.some((v: any) => v.options[optIdx] === val && v.available !== false);
+}
+
+// Derive a frequency from price
+const getFrequency = (price: string) => {
+  const val = parseFloat(price.replace(/[^0-9.]/g, ''))
+  if (val >= 90) return '963 Hz — Divine Consciousness'
+  if (val >= 50) return '528 Hz — Transformation & Miracles'
+  if (val >= 35) return '432 Hz — Earth Alignment'
+  return '396 Hz — Liberation Sequence'
+}
+
+const memberPrice = computed(() => {
+  const basePrice = parseFloat((selectedVariant.value?.price || product.value?.price || '0').replace(/[^0-9.]/g, ''))
+  if (resonance.memberDiscount > 0 && isUnlocked.value) {
+    const discountedValue = basePrice * (1 - resonance.memberDiscount)
+    return currencyStore.formatPrice(discountedValue)
+  }
+  return null
+})
+
+const liveViewers = computed(() => {
+  if (!product.value) return 0
+  return 5 + (product.value.id.charCodeAt(product.value.id.length - 1) % 15)
+})
+
+const freqDescription = computed(() => {
+  if (!product.value) return null
+  const val = parseFloat(product.value.price.replace(/[^0-9.]/g, ''))
+  if (val >= 90) return {
+    hz: '963 Hz',
+    title: 'THE FREQUENCY OF GODS',
+    body: 'As the Solfeggio Higher Octave, 963Hz enables a direct experience with the Divine. It awakens the crown chakra, returning any system to its natural state of Unity and Oneness. This artifact is calibrated to provide a bridge to enlightenment.'
+  }
+  if (val >= 50) return {
+    hz: '528 Hz',
+    title: 'THE LOVE FREQUENCY',
+    body: 'The "Miracle Tone" resonates with the center of your being. It is documented to facilitate DNA repair, increase vital life energy, and bring about transformation. This artifact serves as a conduit for miracles and emotional restoration.'
+  }
+  return null
+})
+
+const remainingStock = computed(() => {
+  if (!product.value) return 0
+  if (product.value.inventory_quantity !== undefined) return product.value.inventory_quantity
+  // Deterministic but "low" (4-14) based on ID
+  const val = 4 + (product.value.id.charCodeAt(product.value.id.length - 1) % 11)
+  return val
+})
+
+const resonance = useResonanceStore()
+
+const oracleAssessment = computed(() => {
+  if (!product.value || !resonance.tier) return null
+  
+  const title = product.value.title.toLowerCase()
+  const tier = resonance.tier
+  
+  const assessments: Record<string, string> = {
+    '396_HZ': `Seeker of the first gate, your field is in early calibration. The ${product.value.title} will serve as a stabilizing foundation for your ascension.`,
+    '417_HZ': `Your vision is clearing. The frequency of this artifact will amplify your perception and reveal the unseen patterns within your current cycle.`,
+    '528_HZ': `Resonance is building. The ${product.value.title} aligns with the transformational frequencies of your current field.`,
+    '639_HZ': `A profound connection is established. This artifact serves your expansion into the unified geometric lattice.`,
+    '741_HZ': `Adept, you have mastered the basic resonance. The ${product.value.title} is a precision instrument designed to refine your specific manifestation intent.`,
+    '852_HZ': `Your third eye is awakened. This object acts as a conduit for pure vibrational insight, piercing the veil of the material illusion.`,
+    '963_HZ': `Your synchronization is absolute. This artifact does not change you; it manifests your existing sovereign will into the physical dimension.`,
+    'RESONANCE_ACHIEVED': `You have become the Singularity. The ${product.value.title} bends to your absolute reality.`
+  }
+  
+  return assessments[tier] || assessments['396_HZ']
+})
+
+const isClothing = computed(() => {
+  if (!product.value) return false
+  const title = product.value.title.toLowerCase()
+  const cat = (product.value.category || '').toLowerCase()
+  const type = (product.value.type || '').toLowerCase()
+  
+  const clothingTerms = ['hoodie', 'tee', 'shirt', 'crewneck', 'sweatshirt', 'attire', 'apparel', 'layer', 'garment']
+  const specificCollections = ['the ghost and bones', 'urban esoterica', 'natural alignment']
+  
+  return clothingTerms.some(term => title.includes(term) || cat.includes(term) || type.includes(term)) || 
+         specificCollections.some(col => cat.includes(col))
+})
+
+// Build the Shopify checkout URL
+const shopifyUrl = computed(() => {
+  if (!product.value) return '#'
+  const vid = selectedVariant.value?.id || product.value.variantId
+  if (vid) {
+    return `https://checkout.stateofresonance.ca/cart/${vid}:1`
+  }
+  return `https://state-of-resonance.myshopify.com/products/${product.value.handle}`
+})
+
+const addToCart = () => {
+  if (!product.value) return
+  const item = { ...product.value, price: selectedVariant.value?.price || product.value.price, variantId: selectedVariant.value?.id || product.value.variantId }
+  cart.add(item)
+  // Tracking is now unified in cart.ts
+}
+
+const consultOracle = () => {
+  if (!product.value) return
+  // Custom event to be picked up by TheOracle.vue
+  window.dispatchEvent(new CustomEvent('summon-oracle', {
+    detail: {
+      query: `Tell me about the resonance of the ${product.value.title}. How does it align with my current field?`
+    }
+  }))
+}
+
+const relatedProducts = ref<Product[]>([])
+
+onMounted(async () => {
+  try {
+    const handle = Array.isArray(route.params.handle) ? route.params.handle[0] : route.params.handle
+    const res = await fetch(`/api/products?handle=${handle}`)
+    
+    if (!res.ok) {
+        throw new Error(`API returned status ${res.status}`)
+    }
+
+    const contentType = res.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")) {
+        console.error("API returned non-JSON response:", contentType);
+        // This is a sign of Vite/Vercel fallback to HTML
+        throw new Error("Invalid API response (received HTML/JS instead of JSON)");
+    }
+
+    const data = await res.json()
+    product.value = data
+    
+    // Tier Ad redirection (HIDDEN TO ALLOW COLD TRAFFIC CHECKOUT)
+    const minReq = product.value?.metadata?.minResonanceScore || 0
+    // if (minReq > resonance.resonancePoints) {
+    //   router.push(`/locked?artifact=${encodeURIComponent(product.value?.title || '')}`)
+    //   return
+    // }
+    
+    // --- KLAVIYO TRACKING (Orion) ---
+    if (product.value) {
+      klaviyoService.trackViewedProduct({
+        "Name": product.value.title,
+        "ProductID": product.value.id,
+        "Categories": [product.value.category],
+        "ImageURL": product.value.image,
+        "URL": window.location.href,
+        "Brand": "State of Resonance",
+        "Price": product.value.price.replace(/[^0-9.]/g, ''),
+        "Metadata": {
+          "VariantID": product.value.variantId,
+          "Type": product.value.type
+        }
+      });
+      
+      // Meta Pixel Tracking
+      if ((window as any).fbq) {
+        const pId = product.value.id;
+        const rawId = typeof pId === 'string' && pId.includes('gid://') ? (pId.split('/').pop() || pId) : pId;
+        const pPrice = parseFloat(product.value.price.replace(/[^0-9.]/g, ''));
+        const eventId = 'view_' + Math.random().toString(36).substring(2, 16);
+        
+        (window as any).fbq('track', 'ViewContent', {
+          content_name: product.value.title,
+          content_ids: [rawId],
+          content_type: 'product',
+          value: pPrice * (currencyStore.rates[currencyStore.active] || 1),
+          currency: currencyStore.active
+        }, { eventID: eventId });
+        
+        // Meta Server-Side CAPI
+        try {
+          fetch('/api/marketing/capi', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              eventName: 'ViewContent',
+              eventId: eventId,
+              eventSourceUrl: window.location.href,
+              user: { email: localStorage.getItem('sor_seeker_email') || undefined },
+              customData: {
+                currency: currencyStore.active,
+                value: pPrice * (currencyStore.rates[currencyStore.active] || 1),
+                contents: [{
+                  id: rawId,
+                  name: product.value.title,
+                  quantity: 1,
+                  price: pPrice * (currencyStore.rates[currencyStore.active] || 1)
+                }]
+              }
+            })
+          })
+        } catch (e) {
+          console.warn('CAPI ViewContent Intercept Failed')
+        }
+      }
+    }
+    
+    if (product.value) {
+      currentImage.value = product.value.image
+      
+      // Initialize default options
+      if (product.value.options) {
+        product.value.options.forEach(opt => {
+          selectedOptions.value[opt.name] = opt.values[0]
+        })
+      }
+
+      // Fetch Related Products
+      try {
+        const relRes = await fetch(`/api/products?category=${product.value.category}&limit=5`)
+        const relData = await relRes.json()
+        relatedProducts.value = relData.filter((p: Product) => p.handle !== handle).slice(0, 4)
+      } catch (err) {
+        console.error('Failed to fetch related products:', err)
+      }
+
+      // --- ENHANCED SEO & TRUST SOLIDIFICATION ---
+      const pageTitle = `${product.value.title} | State of Resonance`
+      const pageDesc = (product.value.description || '').replace(/<[^>]*>/g, '').substring(0, 160) || `${product.value.title} — Esoteric luxury artifact.`
+      
+      document.title = pageTitle
+      
+      // Update Meta Tags
+      const updateMeta = (selector: string, attr: string, val: string) => {
+        const el = document.querySelector(selector)
+        if (el) el.setAttribute(attr, val)
+      }
+
+      updateMeta('meta[name="description"]', 'content', pageDesc)
+      updateMeta('meta[property="og:title"]', 'content', pageTitle)
+      updateMeta('meta[property="og:description"]', 'content', pageDesc)
+      if (product.value.image) updateMeta('meta[property="og:image"]', 'content', product.value.image)
+      updateMeta('meta[property="og:url"]', 'content', window.location.href)
+
+      // Inject Product structured data (Schema.org)
+      const price = product.value.price.replace(/[^0-9.]/g, '')
+      const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: product.value.title,
+        image: product.value.images || [product.value.image],
+        description: (product.value.description || '').replace(/<[^>]*>/g, ''),
+        brand: { '@type': 'Brand', name: 'State of Resonance' },
+        category: product.value.category,
+        sku: product.value.id,
+        mpn: product.value.variantId || product.value.id,
+        gtin13: null, // If available in future
+        offers: {
+          '@type': 'Offer',
+          url: window.location.href,
+          priceCurrency: 'CAD',
+          price: price,
+          priceValidUntil: '2026-12-31',
+          itemCondition: 'https://schema.org/NewCondition',
+          availability: product.value.available !== false ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+          seller: { '@type': 'Organization', name: 'State of Resonance' },
+          hasMerchantReturnPolicy: {
+            '@type': 'MerchantReturnPolicy',
+            applicableCountry: 'CA',
+            returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnPeriod',
+            merchantReturnDays: 30,
+            returnMethod: 'https://schema.org/ReturnByMail',
+            returnFees: 'https://schema.org/FreeReturn'
+          },
+          shippingDetails: {
+            '@type': 'OfferShippingDetails',
+            shippingRate: {
+              '@type': 'MonetaryAmount',
+              value: 0,
+              currency: 'CAD'
+            },
+            deliveryTime: {
+              '@type': 'ShippingDeliveryTime',
+              handlingTime: {
+                '@type': 'QuantitativeValue',
+                minValue: 1,
+                maxValue: 3,
+                unitCode: 'd'
+              },
+              transitTime: {
+                '@type': 'ShippingDeliveryTime',
+                minValue: 5,
+                maxValue: 10,
+                unitCode: 'd'
+              }
+            }
+          }
+        }
+      }
+      
+      let schemaEl = document.getElementById('ld-product')
+      if (schemaEl) {
+        schemaEl.textContent = JSON.stringify(schema)
+      } else {
+        const s = document.createElement('script')
+        s.type = 'application/ld+json'
+        s.id = 'ld-product'
+        s.textContent = JSON.stringify(schema)
+        document.head.appendChild(s)
+      }
+    }
+  } catch (e) {
+    console.error('Failed to fetch product:', e)
+  } finally {
+    loading.value = false
+  }
+})
+
+const onImgError = (e: any) => {
+  e.target.src = '/assets/placeholder.png'
+}
+</script>
+
+<template>
+  <div class="product-detail container" :class="{ 'divine-resonance': product?.metadata?.isMembersOnly }" style="padding: 15vh 0;">
+    <div v-if="loading" class="loading-state">
+      <p>Loading product...</p>
+    </div>
+
+    <!-- Inner Circle Lock -->
+    <div v-else-if="product?.metadata?.isMembersOnly && !isUnlocked" class="inner-circle-lock glass">
+      <div class="lock-inner">
+        <span class="popup-eyebrow">✦ RESTRICTED FREQUENCY ✦</span>
+        <h1 class="hero-title" style="margin-bottom: 2rem;">Inner Circle Only</h1>
+        <p class="lock-text" style="opacity: 0.6; margin-bottom: 3rem;">
+          Access strictly prohibited. Provide the initiation frequency to synchronize your field and view this artifact.
+        </p>
+
+        <!-- Direct Access Phase Only -->
+        <div class="lock-form" style="display: flex; gap: 1rem; max-width: 450px; margin: 0 auto;">
+          <input 
+            type="password" 
+            v-model="accessCode" 
+            placeholder="ENTER FREQUENCY KEY..." 
+            class="glass-input"
+            @keyup.enter="unlockAccess"
+            style="flex: 1; text-align: center; letter-spacing: 0.3em; font-size: 0.7rem; padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; outline: none;"
+          />
+          <button @click="unlockAccess" class="btn-gold" style="padding: 1rem 1.5rem; letter-spacing: 0.2em;">UNLOCK</button>
+        </div>
+        <p v-if="accessError" class="error-msg" style="color: #ff3e3e; font-size: 0.6rem; margin-top: 1.5rem; letter-spacing: 0.2em;">{{ accessError }}</p>
+      </div>
+    </div>
+
+    <div v-else-if="product" class="product-split">
+      <div class="product-gallery">
+        <div class="main-img-wrapper glass">
+          <transition name="fade-fast" mode="out-in">
+            <img :key="showModel ? 'model' : 'flat'" :src="showModel ? product.modelImage : currentImage" :alt="`963Hz Esoteric Artifact: ${product.title} | State of Resonance Ritual Tool`" @error="onImgError" />
+          </transition>
+          <div class="calibration-overlay">
+            <div class="scanning-line"></div>
+          </div>
+          
+          <!-- Model View Toggle -->
+          <button 
+            v-if="product.modelImage" 
+            @click="toggleModelView" 
+            class="model-toggle-btn interactive"
+            :class="{ 'is-active': showModel }"
+          >
+            <span class="toggle-track"></span>
+            <span class="toggle-label">{{ showModel ? 'VIEW FLAT-LAY' : 'VIEW ON MODEL' }}</span>
+          </button>
+        </div>
+        <!-- Thumbnails -->
+        <div v-if="product.images && product.images.length > 1" class="thumbnail-grid">
+          <div 
+            v-for="(img, idx) in product.images" 
+            :key="idx"
+            class="thumb-item glass"
+            :class="{ active: currentImage === img }"
+            @click="setMainImage(img)"
+          >
+            <img :src="img" alt="Product view" @error="onImgError" />
+          </div>
+        </div>
+        
+        <!-- Relocated Cards: Frequency Specifications & Meaning panels -->
+        <div class="freq-specs" style="margin-top: 3rem;">
+          <p class="freq-specs-title">— Field Calibration Data —</p>
+          <div class="freq-row">
+            <span class="freq-label">RESONANCE FREQ.</span>
+            <span class="freq-value gold-text">{{ getFrequency(product.price) }}</span>
+          </div>
+          
+          <!-- Integrated Frequency Player for sensory calibration -->
+          <div class="product-frequency-control glass" style="margin: 1.5rem 0; padding: 1.5rem; border: 1px solid rgba(212, 175, 55, 0.2);">
+            <p class="meta-vibe gold-text" style="font-size: 0.55rem; margin-bottom: 1rem; text-align: center;">VIBRATIONAL CALIBRATION</p>
+            <FrequencyPlayer />
+            <p style="font-size: 0.5rem; opacity: 0.5; margin-top: 1rem; text-align: center; letter-spacing: 0.1em;">Activate the signal to synchronize the artifact with your current field.</p>
+          </div>
+
+          <div class="freq-row">
+            <span class="freq-label">WAVELENGTH</span>
+            <span class="freq-value">λ = c / f &nbsp;·&nbsp; Verified </span>
+          </div>
+          <div class="freq-row">
+            <span class="freq-label">ARTIFACT CLASS</span>
+            <span class="freq-value">{{ product.category }}</span>
+          </div>
+          <div class="freq-row">
+            <span class="freq-label">CALIBRATION STATUS</span>
+            <span class="freq-value" :style="{ color: isAvailable ? '#4ade80' : '#f87171' }">
+              {{ isAvailable ? 'LOCKED & SYNCED' : 'RETURNED TO SOURCE' }}
+            </span>
+          </div>
+          <div class="freq-row" style="border-top: 1px solid rgba(212, 175, 55, 0.2); margin-top: 0.5rem; padding-top: 1rem;">
+            <span class="freq-label">VERIFIED ARTIFACT</span>
+            <span class="freq-value gold-text" style="font-weight: bold; font-size: 0.6rem;">[ GENUINE RESONANCE UNIT ]</span>
+          </div>
+          <div class="freq-row">
+            <span class="freq-label">LAST MANIFESTED</span>
+            <span class="freq-value" style="font-size: 0.6rem; opacity: 0.6;">{{ new Date().toLocaleDateString() }} @ 963Hz</span>
+          </div>
+        </div>
+        
+        <div v-if="freqDescription" class="freq-meaning-panel glass" style="margin-bottom: 2rem;">
+          <p class="freq-meaning-hz">{{ freqDescription.hz }}</p>
+          <h4 class="freq-meaning-title gold-text">{{ freqDescription.title }}</h4>
+          <p class="freq-meaning-body">{{ freqDescription.body }}</p>
+        </div>
+
+        <!-- Oracle's Assessment -->
+        <div v-if="oracleAssessment" class="oracle-assessment-panel glass glow-gold" style="margin-top: 2rem;">
+          <div class="oracle-header">
+            <Sparkles :size="14" class="gold-text" />
+            <span class="oracle-label">ORACLE'S ASSESSMENT</span>
+          </div>
+          <p class="oracle-tier-marker">STATUS: {{ resonance.tier }} ALIGNMENT</p>
+          <p class="oracle-note">{{ oracleAssessment }}</p>
+          <div class="alignment-bar">
+            <div class="alignment-fill" :style="{ width: '85%' }"></div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="product-detail-info">
+        <p class="product-meta">{{ product.category }} / {{ product.type }}</p>
+        <h1 class="hero-title" style="font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.1; text-align: left; margin-bottom: 2rem;">{{ product.title }}</h1>
+        <div class="price-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; gap: 1rem; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+            <div style="display: flex; flex-direction: column;">
+              <p class="product-price" :class="{ 'gold-text': memberPrice }" style="font-size: 1.5rem; margin: 0;">
+                {{ memberPrice || selectedVariant?.price || product?.price }}
+              </p>
+              <span v-if="memberPrice" class="original-price" style="text-decoration: line-through; opacity: 0.4; font-size: 0.8rem;">
+                {{ selectedVariant?.price || product?.price }} [BASE]
+              </span>
+            </div>
+            <p class="meta-vibe" style="font-size: 0.55rem; margin-top: 0.25rem; opacity: 0.5;">
+              Taxes Included for International Seeker / Calculated at Checkout for Canada
+            </p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+            <div v-if="memberPrice" class="member-badge" style="background: var(--color-gold); color: #000; padding: 0.2rem 0.6rem; font-size: 0.5rem; letter-spacing: 0.2em; font-weight: bold;">
+              INNER CIRCLE PRICE
+            </div>
+          </div>
+          <div class="live-seekers glass" style="padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; border: 1px solid rgba(74, 222, 128, 0.2);">
+            <span class="fomo-dot" style="width: 6px; height: 6px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 8px #4ade80;"></span>
+            <span class="meta-vibe" style="font-size: 0.55rem; color: #4ade80; opacity: 1;">{{ liveViewers }} Seekers Synchronizing</span>
+          </div>
+        </div>
+
+        <!-- Limited Edition Badge -->
+        <div v-if="isClothing || product.inventory_quantity" class="limited-edition-badge">
+          <span class="ltd-flame">🏺</span>
+          <div class="ltd-text">
+            <span class="ltd-title">LIMITED PRODUCTION RUN</span>
+            <span class="ltd-sub">Produced in limited quantities. Once this release sells out, it may not return.</span>
+          </div>
+        </div>
+        
+        <p class="brand-motto-subtle" style="font-size: 0.55rem; letter-spacing: 0.3em; color: var(--color-gold-muted); margin-top: 2rem; margin-bottom: 2rem; text-transform: uppercase; opacity: 0.6; text-align: center;">
+          Wear your frequency. Let your vibes Resonate. State of Resonance.
+        </p>
+
+        <!-- Variant Selectors -->
+        <div v-if="product.options && product.options.length > 0" class="variant-selectors" style="margin-bottom: 2rem;">
+          <div v-for="opt in product.options" :key="opt.name" class="option-group">
+            <div class="option-label-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <p class="option-label">{{ opt.name }}</p>
+              <a v-if="opt.name === 'Size'" href="/contact" class="size-guide-link" style="font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-muted); text-decoration: underline; opacity: 0.7;">Size Guide ↗</a>
+            </div>
+            <div class="option-values">
+              <button 
+                v-for="val in opt.values" 
+                :key="val"
+                class="option-chip"
+                :class="{ 
+                  active: selectedOptions[opt.name] === val,
+                  'out-of-stock-chip': !isOptionAvailable(opt.name, val)
+                }"
+                @click="selectedOptions[opt.name] = val"
+              >
+                {{ val }}
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Primary Actions: Add to Bag FIRST, Buy Now SECOND -->
+        <div class="product-actions-luxury" style="margin-bottom: 2rem;">
+          <div v-if="isAvailable" class="commerce-primary-row" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <div class="qty-selector glass" style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 1rem; border: 1px solid var(--color-gold-muted); min-width: 120px; font-size: 1.2rem; background: rgba(0,0,0,0.4);">
+              <button @click="quantity > 1 ? quantity-- : null" class="qty-btn" style="background: none; border: none; color: #fff; cursor: pointer; padding: 0.5rem; opacity: 0.7; font-size: 1.2rem;">−</button>
+              <span class="qty-val" style="font-family: var(--font-heading); min-width: 20px; text-align: center;">{{ quantity }}</span>
+              <button @click="quantity++" class="qty-btn" style="background: none; border: none; color: #fff; cursor: pointer; padding: 0.5rem; opacity: 0.7; font-size: 1.2rem;">+</button>
+            </div>
+            <!-- PRIMARY: Add to Bag -->
+            <button @click="addToCartWithQty" class="btn-premium add-btn" style="flex: 1; padding: 1.25rem; font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase;">ADD TO BAG</button>
+          </div>
+          
+          <!-- SECONDARY: Buy Now -->
+          <a v-if="isAvailable" :href="shopifyUrl" class="btn-acquire animate-glint full-width-buy" style="display: block; text-align: center; margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: #fff; text-decoration: none; letter-spacing: 0.2em; font-size: 0.8rem; text-transform: uppercase;" @click="addToCartWithQty">
+            BUY NOW
+          </a>
+
+          <!-- Trust nudges near CTA -->
+          <div class="pdp-trust-strip" style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.25rem; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);">
+            <span class="pdp-trust-item">🚚 Free shipping $110+</span>
+            <span class="pdp-trust-item">↩️ 30-day returns</span>
+            <span class="pdp-trust-item">🔒 Shopify Secured</span>
+          </div>
+
+          <!-- Oracle Trigger (Tertiary Action) -->
+          <div class="oracle-secondary-actions">
+            <button @click="consultOracle" class="btn-oracle-trigger interactive glass glow-hover">
+              <Sparkles :size="14" class="gold-text" />
+              Ask the Oracle
+            </button>
+          </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <TrustBadges />
+
+        <div v-if="!isAvailable" class="unavailable-note" style="margin-bottom: 3rem; text-align: left; padding: 1.5rem; background: rgba(255,255,255,0.03); border-left: 2px solid var(--color-gold-muted);">
+          <span style="display: block; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.5rem;">Currently out of stock</span>
+          This item has sold out for this release. <router-link to="/inner-circle" class="gold-text" style="text-decoration: underline;">Join Inner Circle for drop notifications.</router-link>
+        </div>
+
+        <!-- Connection Hook for High Frequency Items -->
+        <div v-if="getFrequency(product.price).includes('963')" class="connection-hook glass section-top" style="margin-bottom: 3rem; padding: 2rem; border: 1px solid rgba(212, 175, 55, 0.3); background: rgba(212, 175, 55, 0.05);">
+          <p class="meta-vibe gold-text" style="font-size: 0.6rem; margin-bottom: 1rem;">✦ DIRECT CONNECTION ✦</p>
+          <p style="font-size: 1.1rem; line-height: 1.6; color: #fff; font-style: italic; font-weight: 500;">
+            "This isn't just a garment; it's a reminder of your original state."
+          </p>
+          <p style="font-size: 0.75rem; opacity: 0.6; margin-top: 1rem; line-height: 1.6;">
+            Calibrated at the crown chakra activator frequency (963Hz), this artifact serves as a physical anchor for your connection to the All.
+          </p>
+        </div>
+
+        <div class="product-description">
+          <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Product Details</p>
+          <div v-html="product.description || ''"></div>
+        </div>
+
+        <!-- MATERIAL & LOGISTICAL TRUST SIGNALS -->
+        <div class="trust-signals" style="margin-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem;">
+          <div v-if="isClothing" style="margin-bottom: 1.5rem;">
+            <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Material & Fit</p>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.8rem; opacity: 0.8; line-height: 1.6;">
+              <li>✦ 100% Heavyweight Cotton (400 GSM)</li>
+              <li>✦ Oversized boxy silhouette (Pre-shrunk)</li>
+              <li>✦ Double-needle stitched seams</li>
+              <li>✦ Ethically sourced and manufactured</li>
+            </ul>
+          </div>
+          
+          <div>
+            <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Shipping & Returns</p>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.8rem; opacity: 0.8; line-height: 1.6;">
+              <li>✦ Ships from Canada within 1–3 business days</li>
+              <li>✦ Free shipping on orders over $110 CAD</li>
+              <li>✦ 30-day returns — no questions asked</li>
+              <li>✦ Secure checkout powered by Shopify</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- SOCIAL PROOF / FROM THE LABORATORY -->
+        <div v-if="product.collections?.some((c: any) => c.handle === 'vault')" class="social-proof-panel glass" style="margin-top: 3rem; padding: 1.5rem; border: 1px solid rgba(212, 175, 55, 0.2);">
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div class="proof-icon" style="width: 40px; height: 40px; border-radius: 50%; background: var(--color-gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+            </div>
+            <div class="proof-text">
+              <h4 style="font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.1rem;" class="gold-text">Proof of Manifestation</h4>
+              <p style="font-size: 0.7rem; opacity: 0.7; line-height: 1.4;">The Alchemist is actively rendering this series. Witness the live physical documentation.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1rem;">
+            <a href="https://www.tiktok.com/@stateofresonanace/video/7622395219643845906?lang=en" target="_blank" rel="noopener noreferrer" class="btn-outline interact-glow" style="flex: 1; padding: 0.5rem; font-size: 0.65rem; text-align: center; border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg> TikTok
+            </a>
+            <a href="https://www.instagram.com/reel/DWhpDeNEVn7/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="btn-outline interact-glow" style="flex: 1; padding: 0.5rem; font-size: 0.65rem; text-align: center; border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> Instagram
+            </a>
+          </div>
+        </div>
+
+        <SocialShare :title="product.title" :image="product.image" style="margin-top: 2rem;" />
+        
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div v-if="relatedProducts.length > 0" class="related-section" style="margin-top: 15vh;">
+      <div class="section-header" style="text-align: center; margin-bottom: 6rem;">
+        <span class="popup-eyebrow" style="margin-bottom: 1rem;">✦ COMPLETE YOUR LOOK ✦</span>
+        <h2 class="hero-title" style="font-size: 2.5rem;">You May Also Like</h2>
+        <p style="opacity: 0.5; letter-spacing: 0.1em; font-size: 0.8rem; margin-top: 1rem;">More from the archive.</p>
+      </div>
+      <div class="product-grid">
+        <ProductCard v-for="rel in relatedProducts" :key="rel.id" :product="rel" />
+      </div>
+    </div>
+
+    <div v-else class="empty-state" style="min-height:60vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2rem; opacity:0.5;">
+      <p style="font-size:0.75rem; letter-spacing:0.3em; text-transform:uppercase;">Product not found.</p>
+      <router-link to="/sanctuary" class="btn-premium">Back to Shop</router-link>
+    </div>
+    
+    <StickyBuyBar 
+      v-if="product" 
+      :product="product" 
+      :selectedVariant="selectedVariant" 
+      :shopifyUrl="shopifyUrl" 
+    />
+  </div>
+</template>
+
+<style scoped>
+.product-split {
+  display: grid;
+  grid-template-columns: minmax(300px, 40%) 1fr;
+  gap: 5vw;
+  align-items: start;
+}
+
+.main-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  max-height: 75vh;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(212, 175, 55, 0.05);
+}
+
+.thumbnail-grid {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.thumb-item {
+  width: 85px;
+  height: 85px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.02);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  overflow: hidden;
+}
+
+.thumb-item.active {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.thumb-item:hover:not(.active) {
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+.thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.main-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: transparent;
+}
+
+.calibration-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.scanning-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-gold);
+  box-shadow: 0 0 15px var(--color-gold);
+  animation: scan-line 4s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes scan-line {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+.model-toggle-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.4s var(--ease-out-expo);
+  z-index: 10;
+}
+
+.model-toggle-btn:hover {
+  background: var(--color-gold);
+  color: #000;
+  border-color: var(--color-gold);
+}
+
+.model-toggle-btn.is-active {
+  background: var(--color-gold);
+  color: #000;
+}
+
+.fade-fast-enter-active,
+.fade-fast-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.fade-fast-enter-from,
+.fade-fast-leave-to {
+  opacity: 0;
+}
+
+.product-description {
+  opacity: 0.7;
+  max-width: 40ch;
+}
+
+/* Frequency Specs */
+.freq-specs {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(212, 175, 55, 0.02);
+}
+.freq-specs-title {
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.freq-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.freq-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+.freq-value {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-align: right;
+  max-width: 55%;
+}
+
+/* Frequency Meaning Panel */
+.freq-meaning-panel {
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  background: rgba(212, 175, 55, 0.03);
+}
+
+.freq-meaning-hz {
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: var(--color-gold-muted);
+  margin-bottom: 0.5rem;
+  opacity: 0.6;
+}
+
+.freq-meaning-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.freq-meaning-body {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  opacity: 0.7;
+  color: #fff;
+}
+
+/* Oracle Assessment */
+.oracle-assessment-panel {
+  padding: 2.5rem;
+  border: 1px solid var(--color-gold-muted);
+  background: rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.oracle-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.oracle-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: var(--color-gold-muted);
+}
+
+.oracle-tier-marker {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+
+.oracle-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.alignment-bar {
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+  width: 100%;
+}
+
+.alignment-fill {
+  height: 100%;
+  background: var(--color-gold);
+  box-shadow: 0 0 10px var(--color-gold);
+  animation: pulse-width 3s ease-in-out infinite;
+}
+
+@keyframes pulse-width {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.product-actions-luxury {
+  margin-top: 0;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.commerce-primary-row {
+  display: flex;
+  gap: 1rem;
+  height: 3.5rem;
+}
+
+.qty-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+  width: 120px;
+  padding: 0 1rem;
+  height: 100%;
+}
+
+.qty-btn {
+  background: none;
+  border: none;
+  color: var(--color-gold-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.qty-btn:hover {
+  color: #fff;
+}
+
+.qty-val {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.add-btn {
+  flex: 1;
+  height: 100%;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+}
+
+.full-width-buy {
+  width: 100%;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+}
+
+.oracle-secondary-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1rem;
+}
+
+.btn-oracle-trigger {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: transparent;
+}
+
+.variant-selectors {
+  margin-bottom: 2.5rem;
+}
+
+.option-group {
+  margin-bottom: 1.5rem;
+}
+
+.option-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-muted);
+  margin-bottom: 0.75rem;
+}
+
+.option-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.option-chip {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option-chip:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.option-chip.active {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: #000;
+  font-weight: 600;
+}
+
+.option-chip.out-of-stock-chip {
+  opacity: 0.3;
+  text-decoration: line-through;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 968px) {
+  .product-split {
+    grid-template-columns: 1fr;
+  }
+  .product-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.acquiring {
+  opacity: 0.7;
+  animation: pulse-gold 0.8s ease infinite;
+  cursor: wait;
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
+}
+
+.unavailable-note {
+  margin-top: 1.25rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.pdp-trust-item {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.05em;
+}
+
+.limited-edition-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--color-gold-muted);
+  background: rgba(212, 175, 55, 0.03);
+  margin-bottom: 2rem;
+  border-left: 3px solid var(--color-gold);
+}
+
+.ltd-flame {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 5px var(--color-gold));
+}
+
+.ltd-text {
+  flex: 1;
+}
+
+.ltd-title {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-gold);
+  margin-bottom: 0.4rem;
+}
+
+.ltd-sub {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  line-height: 1.4;
+}
+
+.ltd-stock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--color-gold-muted);
+  background: rgba(0,0,0,0.3);
+  min-width: 80px;
+}
+
+.stock-num {
+  font-size: 1.2rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+
+.stock-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  margin-top: 0.2rem;
+  opacity: 0.7;
+}
+
+/* Inner Circle Styling */
+.inner-circle-lock {
+  max-width: 600px;
+  margin: 5vh auto;
+  padding: 5rem 3rem;
+  text-align: center;
+  border: 1px solid var(--color-gold-muted);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.05);
+}
+
+.lock-text {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+.lock-form {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.glass-input {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 1rem;
+  color: #fff;
+  font-family: var(--font-heading);
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+}
+
+.lock-hint {
+  display: block;
+  margin-top: 2.5rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--color-gold-muted);
+  text-decoration: none;
+}
+
+.divine-resonance {
+  --color-gold: #d4af37;
+  --color-gold-muted: rgba(212, 175, 55, 0.5);
+}
+
+.divine-resonance .main-img-wrapper {
+  border: 1px solid var(--color-gold);
+  box-shadow: 0 0 50px rgba(212, 175, 55, 0.1);
+}
+.btn-oracle-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-oracle-trigger:hover {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.ritual-link-hint {
+  display: block;
+  text-align: center;
+  font-size: 0.55rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  color: var(--color-gold-muted);
+  text-decoration: none;
+  opacity: 0.6;
+  margin-top: 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.ritual-link-hint:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+</style>

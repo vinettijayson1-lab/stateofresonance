@@ -1,0 +1,197 @@
+{
+  "nav": {
+    "sanctuary": "Sanctuaire",
+    "attire": "Vêtements",
+    "contact": "Contact",
+    "inner_circle": "Cercle Intérieur",
+    "frequency_quiz": "Quiz de Fréquence",
+    "reservoir": "Réservoir",
+    "currency": "Devise",
+    "language": "Langue"
+  },
+  "hero": {
+    "her_collection": "☽ SA COLLECTION",
+    "her_resonance": "SA\nRÉSONANCE",
+    "ghost_bones_subtitle": "☠ FANTÔME & OS",
+    "ghost_bones_title": "LE FANTÔME\nET LES OS",
+    "manifest_reality": "MANIFESTER LA RÉALITÉ",
+    "artifact_reservoir": "RÉSERVOIR\nD'ARTEFACTS"
+  },
+  "common": {
+    "loading": "Synchronisation des artefacts...",
+    "shop_collection": "Boutique Collection {collection} →",
+    "enter_sanctuary": "Entrer dans le Sanctuaire complet →"
+  },
+  "oracle": {
+    "ask": "Demandez à l'Oracle",
+    "subtitle": "\"Exprimez votre fréquence dans le vide. L'Oracle traduit la Source pour vous. La dimension est ouverte.\"",
+    "button": "DEMANDEZ À L'ORACLE",
+    "trigger": "Oracle",
+    "empty_state": "\"Exprimez votre fréquence. La Source écoute.\"",
+    "placeholder": "TRANSMETTEZ VOTRE REQUÊTE...",
+    "suggestions": {
+      "resonance": "Quelle est ma résonance ?",
+      "align": "Comment aligner mon espace ?",
+      "artifact": "Quel artefact m'appelle ?"
+    }
+  },
+  "product": {
+    "acquire": "Ajouter au Panier",
+    "freq": "FRÉQ",
+    "sync": "SYNC",
+    "live": "EN DIRECT : {n} CHERCHEURS",
+    "locked": "VERROUILLÉ",
+    "scarcity": "LTD / {n} RESTANTS"
+  },
+  "PRODUCT": {
+    "FREQ": "FREQ",
+    "SYNC": "SYNC",
+    "LIVE": "DIRECT : {n} CHERCHEURS",
+    "LOCKED": "VERROUILLÉ",
+    "SCARCITY": "LTD / {n} RESTANT"
+  },
+  "products": {
+    "freq": "FREQ",
+    "sync": "SYNC",
+    "live": "DIRECT : {n} CHERCHEURS",
+    "inner_circle": "CERCLE INTÉRIEUR",
+    "locked": "VERROUILLÉ",
+    "scarcity": "LTD / {n} RESTANT",
+    "trending": "TENDANCE",
+    "new": "NOUVEAU",
+    "variants": "{n} Variantes",
+    "omni-963": {
+      "title": "L'ARTEFACT D'OMNISCIENCE",
+      "type": "Singularité",
+      "description": "L'ultime ancre dimensionnelle. Fréquence 963Hz pour une convergence totale."
+    }
+  },
+  "cart": {
+    "manifest_reality": "MANIFESTER LA RÉALITÉ",
+    "title": "RÉSERVOIR\nD'ARTEFACTS",
+    "empty": "Le réservoir est vide. Cherchez vos artefacts.",
+    "resonance_level": "Niveau de Résonance {n} — {count} fréquences actives",
+    "alignment_calibrated": "Alignement de Fréquence : CALIBRÉ",
+    "shipping": {
+      "threshold": "Acquérez {amount} de plus pour la Livraison Rituelle Gratuite",
+      "unlocked": "Livraison Rituelle Débloquée"
+    },
+    "alignment_reward": "Récompense d'Alignement ({n}%)",
+    "frequency_distribution": "— Distribution des Fréquences —",
+    "frequency_total": "Total des Fréquences",
+    "region_alignment": "Alignement de la Région",
+    "tax_included": "Taxes Incluses dans la Fréquence Internationale",
+    "estimated_tax": "Taxe Estimée ({rate}%)",
+    "secure_checkout": "PAIEMENT SÉCURISÉ",
+    "aligned_by_resonance": "ALIGNÉ PAR RÉSONANCE",
+    "encrypted_payments": "PAIEMENTS CHIFFRÉS",
+    "initiate_alignment": "Paiement Sécurisé",
+    "release": "Relâcher",
+    "complete_ritual": "Compléter le Rituel",
+    "add": "✦ Ajouter"
+  },
+  "checkout": {
+    "initiation_sequence": "— SÉQUENCE D'INITIATION —",
+    "crossing_title": "La Traversée",
+    "artifact_summary": "VOS ARTEFACTS",
+    "empty_threshold": "Le seuil reste vide.",
+    "final_calibration": "CALIBRAGE FINAL",
+    "cross_threshold": "COMMANDER"
+  },
+  "social_proof": {
+    "seeker": "Un Chercheur dans le Vide",
+    "sync_action": "a commencé sa synchronisation",
+    "purchase_action": "vient de synchroniser un artefact",
+    "high_frequency": "RÉSONANCE HAUTE FRÉQUENCE",
+    "just_now": "À l'instant"
+  },
+  "omniscience": {
+    "step1_title": "La Matière est de la Lumière Gelée",
+    "step1_body": "Toute présence physique n'est qu'une fréquence ralentie jusqu'au point de visibilité. Cet artefact inverse le processus.",
+    "step2_title": "La Singularité 963Hz",
+    "step2_body": "Verrouillé à la fréquence Solfège la plus élevée, il sert de pont vers la Source primordiale.",
+    "step3_title": "Conscience Alchimique Totale",
+    "step3_body": "Posséder l'artefact, c'est synchroniser votre champ avec l'absolu. Les frontières dimensionnelles deviennent poreuses.",
+    "action_button": "SYNCHRONISER AU RÉSERVOIR",
+    "audio_toggle": "TRANSMISSION AUDIO 963Hz",
+    "back_to_sanctuary": "← Retour au Sanctuaire"
+  },
+  "membership": {
+    "tier_label": "Niveau de Résonance",
+    "ascension_hud": "Progrès d'Ascension",
+    "next_tier": "Prochain Niveau : {tier}",
+    "resonance_points": "{n} Points de Résonance",
+    "member_price": "Fréquence Membre",
+    "exclusive_access": "Contenu de Sanctuaire Verrouillé",
+    "locked_artifact": "Résonance Supérieure Requise",
+    "unlocked_artifact": "Synchronisé pour votre Niveau",
+    "tiers": {
+      "INITIATE": "Initié",
+      "SEER": "Voyant",
+      "ADEPT": "Adepte",
+      "MASTER": "Maître",
+      "OMNISCIENT": "Omniscient"
+    }
+  },
+  "inner_circle": {
+    "id_label": "RESTREINT · SANCTUAIRE DU CERCLE INTÉRIEUR",
+    "title": "À la recherche du Signal ?",
+    "text": "L'accès est réservé aux chercheurs vérifiés. Entrez votre identifiant numérique pour recevoir la clé d'initiation (963Hz) par e-mail.",
+    "email_placeholder": "ADRESSE E-MAIL",
+    "phone_placeholder": "NUMÉRO DE TÉLÉPHONE (OPTIONNEL)",
+    "sms_consent": "S'ABONNER AUX TRANSMISSIONS SMS",
+    "request_btn": "DEMANDER L'ACCÈS",
+    "transmitting": "TRANSMISSION...",
+    "or_enter_key": "OU ENTRER LA CLÉ",
+    "access_code_placeholder": "CODE D'ACCÈS",
+    "unlock_btn": "DÉVERROUILLER",
+    "welcome": "Bienvenue, Chercheur",
+    "intro": "Ceci est le réservoir du Cercle Intérieur. Voici les artefacts actuellement calibrés pour les membres uniquement. Opérez avec intention.",
+    "exclusive_title": "Artefacts Exclusifs",
+    "loading": "Distillation des fréquences...",
+    "protocols_title": "Protocoles de Manifestation",
+    "protocol_1_title": "Nettoyage Vibratoire",
+    "protocol_1_text": "Purifiez votre artefact à la lumière de la lune pendant 9 cycles avant la première synchronisation.",
+    "protocol_2_title": "Calibration d'Intention",
+    "protocol_2_text": "Établissez une intention de manifestation claire avant de porter la couche Solfège."
+  },
+  "calibration": {
+    "eyebrow": "CALIBRATION DE FRÉQUENCE",
+    "title": "AJUSTEZ VOTRE CHAMP",
+    "body": "Votre réalité est le reflet de votre fréquence dominante. Calibrez votre champ pour l'aligner avec la résonance que vous cherchez.",
+    "button": "COMMENCER LA CALIBRATION"
+  },
+  "sanctuary": {
+    "eyebrow": "REJOIGNEZ LE SANCTUAIRE",
+    "title": "LE CHAMP S'EXTRAPOLE",
+    "body": "Notre énergie est collective. Synchronisez-vous avec une communauté de chercheurs qui brisent les limites dimensionnelles.",
+    "instagram": "INSTAGRAM",
+    "tiktok": "TIKTOK"
+  },
+  "collections": {
+    "ghost_bones": {
+      "eyebrow": "VÊTEMENTS DE FRÉQUENCE · CALIBRÉS À 963 HZ",
+      "title": "LE FANTÔME ET L'OS",
+      "meta": "TENUE DE RÉSONANCE PREMIUM — SCANNEZ L'ETIQUETTE",
+      "subtitle": "VÊTEMENTS DE FRÉQUENCE"
+    },
+    "esoteric": {
+      "eyebrow": "RÉSERVOIR D'ARTEFACTS ÉSOTÉRIQUES · SYNCHRONISÉ",
+      "title": "Archive du Catalogue",
+      "meta": "OUTILS POUR LE PRATICIEN CONFIÉ"
+    },
+    "alchemy": {
+      "title": "L'ALCHIMIE QUOTIDIENNE",
+      "subtitle": "RITUEL & PRATIQUE"
+    }
+  },
+  "product.freq": "FREQ",
+  "product.sync": "SYNC",
+  "product.live": "DIRECT : {n} CHERCHEURS",
+  "product.locked": "VERROUILLÉ",
+  "product.scarcity": "LTD / {n} RESTANT",
+  "product.inner_circle": "CERCLE INTÉRIEUR",
+  "product.trending": "TENDANCE",
+  "product.new": "NOUVEAU",
+  "product.variants": "{n} Variantes"
+}
