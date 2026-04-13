@@ -272,6 +272,18 @@ onMounted(() => {
   padding: 5rem 3rem;
   text-align: center;
   border: 1px solid var(--color-gold-muted);
+  overflow: hidden;
+}
+
+/* Constrain the hero-title inside the gate box */
+.members-gate .hero-title {
+  font-size: clamp(1.8rem, 5vw, 3rem) !important;
+  line-height: 1.15;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
 }
 
 .gate-id {
