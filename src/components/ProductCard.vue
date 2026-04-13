@@ -113,7 +113,7 @@ onMounted(() => {
 <template>
   <router-link ref="cardRef" :to="'/product/' + product.handle" class="product-card glass">
     <div class="product-img-wrapper">
-      <img :src="product.image" :alt="`963Hz Esoteric Artifact: ${product.title} | State of Resonance Ritual Tool`" class="product-img" loading="lazy" @error="onImgError" />
+      <img :src="product.image" :alt="`${product.title} — Esoteric Streetwear | State of Resonance Canada`" class="product-img" loading="lazy" @error="onImgError" />
       
   <!-- Calibration Overlay (Laboratory UI) -->
       <div class="calibration-overlay">
@@ -131,8 +131,8 @@ onMounted(() => {
       <!-- Product Badges -->
       <div class="product-badges">
         <span v-if="product.metadata?.isMembersOnly" class="badge members-only">{{ $t('product.inner_circle') }}</span>
+        <span class="badge scarcity">LIMITED DROP</span>
         <span v-if="product.id.charCodeAt(product.id.length - 1) % 7 === 0" class="badge trending">{{ $t('product.trending') }}</span>
-        <span v-else-if="product.id.charCodeAt(product.id.length - 1) % 5 === 0" class="badge new">{{ $t('product.new') }}</span>
       </div>
     </div>
     <div class="product-info">

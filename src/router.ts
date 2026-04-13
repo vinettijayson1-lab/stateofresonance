@@ -202,30 +202,27 @@ const defaultMeta: Record<string, any> = {
 
 const seoMap: Record<string, any> = {
   en: {
-    'Home': defaultMeta.en,
-    'Sanctuary': {
-      title: 'Esoteric Shop Canada | Ritual Tools, Crystal Grids & Sacred Artifacts | State of Resonance',
-      description: 'Shop esoteric ritual tools, crystal grids, sacred geometry decor, and shrine artifacts. Canada\'s top occult boutique for high-vibrational home sanctuaries. Free shipping over $100 CAD.'
+    'Home': {
+      title: 'State of Resonance | Esoteric Occult Streetwear Canada',
+      description: "Canada's #1 esoteric streetwear brand. Premium sacred geometry hoodies, occult graphic tees, and limited-drop apparel. Frequency-calibrated clothing — wear your vibration. Free shipping over $100 CAD.",
+      robots: 'index, follow'
+    },
+    'BestSellers': {
+      title: 'Best Selling Occult Streetwear | State of Resonance',
+      description: 'Shop our most-loved esoteric streetwear pieces. Sacred geometry hoodies, occult graphic tees and limited-edition drops by State of Resonance. Free shipping over $100 CAD.',
+      robots: 'index, follow'
     },
     'Attire': {
-      title: 'Occult Streetwear Canada | Esoteric Hoodies & Spiritual T-Shirts | State of Resonance',
+      title: 'Occult Streetwear Canada | Sacred Geometry Hoodies \u0026 Esoteric Tees | State of Resonance',
       description: 'Luxury occult streetwear made in Canada. Sacred geometry hoodies, esoteric graphic tees, and frequency-calibrated apparel. Limited drops — 50 pieces per run. Free shipping on orders over $100.'
     },
-    'Manuscripts': {
-      title: 'Esoteric Books Canada | Occult Manuscripts & Spiritual Texts | State of Resonance',
-      description: 'Rare esoteric books, occult manuscripts, grimoires, and spiritual texts. Shop sacred wisdom from Canada\'s premier esoteric sanctuary.'
-    },
-    'Alchemy': {
-      title: 'Herbal Apothecary Canada | Ritual Herbs, Sacred Smoke & Botanical Elixirs | State of Resonance',
-      description: 'Shop ritual herbs, sacred smoke bundles, botanical elixirs, and alchemical plant medicine. Ethically sourced, frequency-matched for your practice. Free shipping over $100 CAD.'
-    },
     'Transmissions': {
-      title: 'Solfeggio Frequencies, Occult Lore & Esoteric Wisdom | State of Resonance Blog',
+      title: 'Solfeggio Frequencies, Occult Lore \u0026 Esoteric Wisdom | State of Resonance Blog',
       description: 'Explore Solfeggio frequency science, sacred geometry, alchemical traditions, and esoteric philosophy. The Void Transmissions — knowledge for the modern seeker.'
     },
     'Collection': {
-      title: 'Curated Esoteric Collections Canada | State of Resonance',
-      description: 'Browse exclusive curated esoteric collections — sacred attire, ritual tools, and alchemical artifacts calibrated for dimensional ascendance.'
+      title: 'Esoteric Streetwear Collections | State of Resonance',
+      description: 'Browse exclusive limited-run clothing collections — sacred geometry hoodies, occult graphic tees, and frequency-calibrated apparel by State of Resonance.'
     },
     'Product': {
       title: 'Artifact Synchronizing... | State of Resonance',
@@ -236,8 +233,8 @@ const seoMap: Record<string, any> = {
       description: 'Experience the "Seers" collection. High-contrast visceral streetwear photography and esoteric modeling from the Void. Explore the next evolution of resonance.'
     },
     'Quiz': {
-      title: 'Find Your Frequency | State of Resonance',
-      description: 'Take the Frequency Quiz to discover which artifact aligns with your current vibrational state.',
+      title: 'Find Your Frequency | Esoteric Style Quiz | State of Resonance',
+      description: 'Take the Frequency Quiz to discover which State of Resonance garment aligns with your current vibrational state.',
       robots: 'noindex, nofollow'
     },
     'Checkout': {
@@ -255,23 +252,23 @@ const seoMap: Record<string, any> = {
       robots: 'noindex, nofollow'
     },
     'Success': {
-      title: 'Manifestation Confirmed | State of Resonance',
-      description: 'Your artifact has been synchronized. Welcome to the Inner Circle.',
+      title: 'Order Confirmed | State of Resonance',
+      description: 'Your artifact has been synchronized. Thank you for your order.',
       robots: 'noindex, nofollow'
     },
     'LockedGate': {
       title: 'Signal Restricted | State of Resonance',
-      description: 'The requested artifact requires an advanced resonance tier. Authenticate to proceed.',
+      description: 'The requested artifact requires an advanced resonance tier.',
       robots: 'noindex, nofollow'
     },
     'InnerCircle': {
-      title: 'Inner Circle Reservoir | State of Resonance',
-      description: 'Restricted access for the authenticated seekers. Exclusive artifacts and high-frequency protocols.',
+      title: 'Inner Circle | Members-Only Drops | State of Resonance',
+      description: 'Restricted access for authenticated seekers. Exclusive limited-run drops and high-frequency protocols.',
       robots: 'noindex, nofollow'
     },
     'Contact': {
-      title: 'Contact the Sanctuary | State of Resonance',
-      description: 'The official digital gateway to State of Resonance. Access ritual tools, the Frequency Quiz, and our latest alchemical transmissions.',
+      title: 'Contact State of Resonance | Customer Support \u0026 Orders',
+      description: 'Reach the State of Resonance team for order support, sizing questions, and wholesale inquiries. Canada\'s premier esoteric streetwear label.',
       robots: 'index, follow'
     },
     'Alchemist': {
@@ -279,8 +276,8 @@ const seoMap: Record<string, any> = {
       robots: 'noindex, nofollow'
     },
     'Omniscience': {
-      title: 'The Omniscience Artifact | The Final Frequency | State of Resonance',
-      description: 'Experience the ultimate convergence of matter and spirit. The frequency-locked singularity designed for total dimensional awareness.',
+      title: 'The Omniscience | The Final Frequency | State of Resonance',
+      description: 'Experience the ultimate convergence of matter and spirit. The frequency-locked singularity — the most powerful garment in the collection.',
       image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/omniscience_placeholder.png?v=1771234571'
     },
     'InfluencerShipping': {
@@ -289,8 +286,8 @@ const seoMap: Record<string, any> = {
       robots: 'noindex, nofollow'
     },
     'About': {
-      title: 'A Word From Our Creator | State of Resonance',
-      description: 'Discover the esoteric journey and philosophy driving State of Resonance. We form physical anchors for your spiritual field.',
+      title: 'Our Story | State of Resonance — Esoteric Streetwear Canada',
+      description: 'Discover the esoteric philosophy driving State of Resonance. Sacred geometry meets luxury streetwear. Made for seekers who dress with intention.',
       robots: 'index, follow'
     },
     'Poetry': {
