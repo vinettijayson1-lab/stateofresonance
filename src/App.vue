@@ -414,13 +414,11 @@ const auraStyle = computed(() => {
     </div>
 
     <CartSidebar />
-    <ClientOnly>
-      <ResonatorToast />
-      <ExitIntentGate />
-      <TheOracle />
-      <div class="toast-container"></div>
-      <div id="teleport-target"></div>
-    </ClientOnly>
+    <ResonatorToast />
+    <ExitIntentGate />
+    <TheOracle />
+    <div class="toast-container"></div>
+    <div id="teleport-target"></div>
     
     <!-- WhatsApp Resonance Button -->
     <a href="https://wa.me/16470000000" class="whatsapp-btn glow-gold" target="_blank" title="Seeker Support">

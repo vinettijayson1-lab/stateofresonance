@@ -535,3 +535,109 @@ div[id^="klaviyo-forms-"] .kl-teaser-container,
   animation: oracle-pulse-idle 4s infinite cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ============================================================
+   MOBILE / iOS / ANDROID COMPATIBILITY LAYER
+   ============================================================ */
+
+/* iOS Safe Area Support (notch / home indicator) */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* iOS 100vh fix: use dvh with 100vh as fallback */
+.void-choice {
+  height: 100dvh;
+}
+
+/* -webkit-backdrop-filter: iOS Safari absolutely requires this prefix */
+.glass,
+[class*="modal"],
+[class*="toast"],
+[class*="gate"],
+[class*="sidebar"],
+[class*="drawer"] {
+  -webkit-backdrop-filter: blur(var(--glass-blur, 12px));
+}
+
+/* Remove iOS tap blue flash */
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* iOS momentum scroll on overflow containers */
+[class*="sidebar"],
+[class*="drawer"],
+[class*="messages"] {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Prevent horizontal overflow (common cause of white right gap) */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Font rendering on iOS/Android */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* iOS input auto-zoom prevention (triggers when font-size < 16px) */
+input, textarea, select {
+  font-size: 16px !important;
+}
+
+/* === MOBILE LAYOUT FIXES === */
+@media (max-width: 768px) {
+  /* Stack floating buttons so they don't overlap */
+  .whatsapp-btn {
+    bottom: calc(6rem + env(safe-area-inset-bottom, 0px)) !important;
+    right: 1.2rem !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  /* Sticky buy bar: clear iOS home bar */
+  .sticky-buy-bar {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Hero text: scale down for mobile */
+  .hero-wordmark {
+    font-size: clamp(2.5rem, 12vw, 5rem) !important;
+  }
+
+  /* Trust strip: horizontal scroll on mobile */
+  .freq-strip {
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    padding: 1rem 4vw !important;
+    flex-wrap: nowrap !important;
+    scrollbar-width: none;
+  }
+  .freq-strip::-webkit-scrollbar { display: none; }
+
+  /* Safe container padding on small screens */
+  .container {
+    padding: 0 4vw !important;
+  }
+}
+
+/* Extra small (320px - old iPhone SE) */
+@media (max-width: 375px) {
+  .hero-wordmark {
+    font-size: clamp(2rem, 13vw, 3rem) !important;
+  }
+  .btn-premium, .btn-gold {
+    padding: 0.85rem 1.5rem !important;
+    font-size: 0.65rem !important;
+    letter-spacing: 0.1em !important;
+  }
+}
+
+/* ============================================================
+   END MOBILE COMPATIBILITY LAYER
+   ============================================================ */
