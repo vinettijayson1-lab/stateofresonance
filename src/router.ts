@@ -44,6 +44,10 @@ const router = createRouter({
       component: () => import('./views/TransmissionDetail.vue')
     },
     {
+      path: '/collections/the-ghost-and-bones',
+      redirect: '/best-sellers'
+    },
+    {
       path: '/collections/:handle',
       name: 'Collection',
       component: () => import('./views/Collection.vue')

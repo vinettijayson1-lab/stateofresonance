@@ -538,14 +538,16 @@ const handleSmsSync = async () => {
       </div>
     </section>
 
-    <!-- Ghost & Bones Top Picks -->
+    <!-- The State Collection -->
     <section class="products-section container section-top">
       <div class="section-header">
-        <div class="section-eyebrow">GHOST &amp; BONES · LIMITED DROPS · PREMIUM MATERIALS</div>
-        <h2 class="hero-title" style="font-size: 2.5rem; text-align: left;">GHOST &amp; BONES</h2>
+        <div class="section-eyebrow">THE STATE COLLECTION · LIMITED DROPS · PREMIUM MATERIALS</div>
+        <h2 class="hero-title" style="font-size: 2.5rem; text-align: left;">THE STATE COLLECTION</h2>
         <p class="product-meta">HEAVYWEIGHT COTTON — OVERSIZED FIT — LIMITED QUANTITIES</p>
       </div>
-      <div v-if="loading" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;font-size:0.75rem;letter-spacing:0.2em;">SYNCHRONIZING WITH SHOPIFY...</div>
+      <div v-if="loading" class="skeleton-grid section-top">
+        <div v-for="n in 4" :key="n" class="skeleton-card"></div>
+      </div>
       <div v-else-if="attireProducts.length === 0" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;">
         <p style="font-size:0.75rem;letter-spacing:0.2em;margin-bottom:1.5rem;">COLLECTION INITIALIZING...</p>
         <router-link to="/best-sellers" class="btn-gold">VIEW ALL CLOTHING →</router-link>
@@ -554,7 +556,7 @@ const handleSmsSync = async () => {
         <ProductCard v-for="product in attireProducts" :key="product.id" :product="product" />
       </div>
       <div style="text-align: center; margin-top: 4rem;">
-        <router-link to="/collections/the-ghost-and-bones" class="btn-gold">SHOP GHOST &amp; BONES →</router-link>
+        <router-link to="/best-sellers" class="btn-gold">SHOP THE COLLECTION →</router-link>
       </div>
     </section>
 
@@ -565,7 +567,9 @@ const handleSmsSync = async () => {
         <h2 class="hero-title" style="font-size: 2.5rem; text-align: left;">ALL ARTIFACTS</h2>
         <p class="product-meta">ESOTERIC APPAREL — FREQUENCY-CALIBRATED — LIMITED PRODUCTION</p>
       </div>
-      <div v-if="loading" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;font-size:0.75rem;letter-spacing:0.2em;">SYNCHRONIZING...</div>
+      <div v-if="loading" class="skeleton-grid section-top">
+        <div v-for="n in 4" :key="n" class="skeleton-card"></div>
+      </div>
       <div v-else-if="esotericProducts.length === 0" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;">
         <p style="font-size:0.75rem;letter-spacing:0.2em;margin-bottom:1.5rem;">ARTIFACTS LOADING...</p>
         <router-link to="/best-sellers" class="btn-gold">SHOP ALL CLOTHING →</router-link>
@@ -707,6 +711,39 @@ const handleSmsSync = async () => {
   align-items: center;
   justify-content: center;
   background: #050507;
+}
+
+/* === SKELETON LOADERS === */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .skeleton-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .skeleton-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+}
+
+.skeleton-card {
+  aspect-ratio: 3/4;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.03) 25%,
+    rgba(212,175,55,0.06) 50%,
+    rgba(255,255,255,0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.8s infinite;
+  border: 1px solid rgba(212,175,55,0.08);
+  border-radius: 2px;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 .sacred-geometry {

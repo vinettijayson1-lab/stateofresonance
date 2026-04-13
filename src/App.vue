@@ -296,7 +296,7 @@ const auraStyle = computed(() => {
         </div>
 
         <!-- PRIMARY SHOPPING NAV -->
-        <router-link to="/sanctuary" class="nav-link" @click="mobileMenuOpen = false">
+        <router-link to="/best-sellers" class="nav-link" @click="mobileMenuOpen = false">
           <span class="label-primary">SHOP</span>
           <span class="label-hover">ALL PRODUCTS</span>
         </router-link>
@@ -304,10 +304,7 @@ const auraStyle = computed(() => {
           <span class="label-primary">BEST SELLERS</span>
           <span class="label-hover">TOP 10</span>
         </router-link>
-        <router-link to="/collections/the-ghost-and-bones" class="nav-link" @click="mobileMenuOpen = false">
-          <span class="label-primary">GHOST & BONES</span>
-          <span class="label-hover">COLLECTION</span>
-        </router-link>
+        
         <router-link to="/attire" class="nav-link" @click="mobileMenuOpen = false">
           <span class="label-primary">HOODIES & TEES</span>
           <span class="label-hover">APPAREL</span>

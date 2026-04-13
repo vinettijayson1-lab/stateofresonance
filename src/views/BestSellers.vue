@@ -213,8 +213,8 @@ const goToProduct = (handle: string) => {
         <p class="bs-cta-eyebrow">Looking for more?</p>
         <h3 class="bs-cta-title">Explore the full archive</h3>
         <div class="bs-cta-buttons">
-          <router-link to="/collections/the-ghost-and-bones" class="btn-gold">Shop Ghost & Bones</router-link>
-          <router-link to="/collections/the-ghost-and-bones" class="btn-outline">Browse Ghost &amp; Bones</router-link>
+          <router-link to="/attire" class="btn-gold">SHOP NEW ARRIVALS</router-link>
+          <router-link to="/quiz" class="btn-outline">Find Your Frequency</router-link>
         </div>
       </div>
     </section>
