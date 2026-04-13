@@ -17,8 +17,7 @@ const router = createRouter({
     },
     {
       path: '/sanctuary',
-      name: 'Sanctuary',
-      component: () => import('./views/Category.vue')
+      redirect: '/best-sellers'
     },
     {
       path: '/attire',

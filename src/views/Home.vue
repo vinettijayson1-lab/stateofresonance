@@ -128,8 +128,8 @@ const handleSmsSync = async () => {
         <h1 class="hero-wordmark">STATE OF<br/><span style="color:var(--color-gold);">RESONANCE</span></h1>
         <p class="hero-tagline">Wear your frequency. Let your vibes resonate.</p>
         <div class="hero-cta-group">
-          <router-link to="/sanctuary" class="btn-premium animate-glint" id="hero-shop-btn">
-            Enter The Sanctuary
+          <router-link to="/best-sellers" class="btn-premium animate-glint" id="hero-shop-btn">
+            Shop The Collection
           </router-link>
           <router-link to="/quiz" class="btn-ghost" id="hero-quiz-btn">
             Find Your Frequency
@@ -548,7 +548,7 @@ const handleSmsSync = async () => {
       <div v-if="loading" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;font-size:0.75rem;letter-spacing:0.2em;">SYNCHRONIZING WITH SHOPIFY...</div>
       <div v-else-if="attireProducts.length === 0" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;">
         <p style="font-size:0.75rem;letter-spacing:0.2em;margin-bottom:1.5rem;">COLLECTION INITIALIZING...</p>
-        <router-link to="/sanctuary" class="btn-gold">VIEW ALL ARTIFACTS →</router-link>
+        <router-link to="/best-sellers" class="btn-gold">VIEW ALL CLOTHING →</router-link>
       </div>
       <div v-else class="product-grid section-top">
         <ProductCard v-for="product in attireProducts" :key="product.id" :product="product" />
@@ -568,13 +568,13 @@ const handleSmsSync = async () => {
       <div v-if="loading" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;font-size:0.75rem;letter-spacing:0.2em;">SYNCHRONIZING...</div>
       <div v-else-if="esotericProducts.length === 0" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;">
         <p style="font-size:0.75rem;letter-spacing:0.2em;margin-bottom:1.5rem;">ARTIFACTS LOADING...</p>
-        <router-link to="/sanctuary" class="btn-gold">ENTER SANCTUARY →</router-link>
+        <router-link to="/best-sellers" class="btn-gold">SHOP ALL CLOTHING →</router-link>
       </div>
       <div v-else class="product-grid section-top">
         <ProductCard v-for="product in esotericProducts" :key="product.id" :product="product" />
       </div>
       <div style="text-align: center; margin-top: 4rem;">
-        <router-link to="/sanctuary" class="btn-gold">ENTER THE FULL SANCTUARY →</router-link>
+        <router-link to="/best-sellers" class="btn-gold">SHOP THE FULL COLLECTION →</router-link>
       </div>
     </section>
 

@@ -214,7 +214,7 @@ const goToProduct = (handle: string) => {
         <h3 class="bs-cta-title">Explore the full archive</h3>
         <div class="bs-cta-buttons">
           <router-link to="/collections/the-ghost-and-bones" class="btn-gold">Shop Ghost & Bones</router-link>
-          <router-link to="/sanctuary" class="btn-outline">Browse All</router-link>
+          <router-link to="/collections/the-ghost-and-bones" class="btn-outline">Browse Ghost &amp; Bones</router-link>
         </div>
       </div>
     </section>

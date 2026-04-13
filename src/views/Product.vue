@@ -788,7 +788,7 @@ const onImgError = (e: any) => {
 
     <div v-else class="empty-state" style="min-height:60vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2rem; opacity:0.5;">
       <p style="font-size:0.75rem; letter-spacing:0.3em; text-transform:uppercase;">Product not found.</p>
-      <router-link to="/sanctuary" class="btn-premium">Back to Shop</router-link>
+      <router-link to="/best-sellers" class="btn-premium">Back to Shop</router-link>
     </div>
     
     <StickyBuyBar 
