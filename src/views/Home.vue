@@ -502,7 +502,7 @@ const handleSmsSync = async () => {
                   class="btn-gold sync-btn"
                   :disabled="subscribeStatus === 'loading'"
                 >
-                  {{ subscribeStatus === 'loading' ? 'CALIBRATING...' : 'JOIN THE SANCTUARY' }}
+                  {{ subscribeStatus === 'loading' ? 'JOINING...' : 'JOIN THE SANCTUARY' }}
                 </button>
               </div>
               <p class="sms-disclosure">

@@ -161,22 +161,60 @@ onMounted(() => {
         <span class="gate-id">{{ $t('inner_circle.id_label') }}</span>
         <h1 class="hero-title">{{ $t('inner_circle.title') }}</h1>
         <p class="gate-text">
-          Access strictly prohibited. Provide the initiation frequency to synchronize your field.
+          This space is reserved for those who have been granted access. Enter your frequency key below, or request early access with your email.
         </p>
 
-        <!-- Direct Access Phase Only -->
+        <!-- Code form -->
         <div class="lock-form" style="margin-top: 2rem;">
           <input 
             type="password" 
             v-model="accessCode" 
-            placeholder="ENTER FREQUENCY KEY..." 
+            placeholder="ENTER ACCESS KEY..." 
             class="members-input"
             @keyup.enter="unlockAccess"
             style="text-align: center; letter-spacing: 0.3em; font-size: 0.7rem;"
           />
           <button @click="unlockAccess" class="btn-gold">{{ $t('inner_circle.unlock_btn') }}</button>
         </div>
-        <p v-if="accessError" class="error-msg">{{ accessError }}</p>
+        <p v-if="accessError && !accessEmail" class="error-msg">Incorrect access code.</p>
+
+        <!-- Divider -->
+        <div class="divider" style="margin: 2.5rem 0;">OR</div>
+
+        <!-- Email request access -->
+        <div v-if="!subSuccess">
+          <p style="font-size: 0.75rem; opacity: 0.5; margin-bottom: 1.5rem; line-height: 1.6;">
+            Don't have a code yet? Submit your email to request access and be notified when new drops unlock.
+          </p>
+          <div class="lock-form" style="flex-direction: column; gap: 0.75rem; margin: 0 auto; max-width: 420px;">
+            <input
+              type="email"
+              v-model="accessEmail"
+              placeholder="YOUR EMAIL ADDRESS"
+              class="members-input"
+              @keyup.enter="requestAccess"
+              style="letter-spacing: 0.1em;"
+            />
+            <button
+              @click="requestAccess"
+              class="btn-gold"
+              :disabled="subLoading"
+              style="width: 100%; padding: 1rem;"
+            >
+              {{ subLoading ? 'SENDING...' : 'REQUEST INNER CIRCLE ACCESS' }}
+            </button>
+          </div>
+          <p v-if="accessError && accessEmail" class="error-msg">Please enter a valid email address.</p>
+        </div>
+
+        <!-- Success state -->
+        <div v-else style="text-align: center; padding: 2rem 0;">
+          <p style="font-size: 0.6rem; letter-spacing: 0.3em; color: #4ade80; margin-bottom: 1rem; text-transform: uppercase;">✓ Request Received</p>
+          <p style="font-size: 0.85rem; opacity: 0.6; line-height: 1.7; max-width: 360px; margin: 0 auto;">
+            You're on the list. We'll send you an access key when the next drop opens up. Until then, explore the shop.
+          </p>
+          <router-link to="/best-sellers" class="btn-gold" style="display: inline-block; margin-top: 2rem;">SHOP THE COLLECTION</router-link>
+        </div>
       </div>
     </div>
 

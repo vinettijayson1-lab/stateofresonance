@@ -2,74 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- Core Pages -->
+  <!-- Core Commerce Pages -->
   <url>
     <loc>https://stateofresonance.ca/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://stateofresonance.ca/sanctuary</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://stateofresonance.ca/best-sellers</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://stateofresonance.ca/best-sellers</loc>
-    <lastmod>2026-04-13</lastmod>
+    <loc>https://stateofresonance.ca/attire</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
 
   <!-- Collections -->
   <url>
     <loc>https://stateofresonance.ca/collections/the-ghost-and-bones</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://stateofresonance.ca/collections/her-resonance</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://stateofresonance.ca/attire</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Support / Trust Pages — high search intent -->
+  <url>
+    <loc>https://stateofresonance.ca/shipping</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://stateofresonance.ca/size-guide</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://stateofresonance.ca/contact</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
   <!-- Brand / Lore Pages -->
   <url>
     <loc>https://stateofresonance.ca/about</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.72</priority>
   </url>
   <url>
     <loc>https://stateofresonance.ca/transmissions</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://stateofresonance.ca/quiz</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://stateofresonance.ca/lookbook</loc>
-    <lastmod>2026-04-13</lastmod>
+    <loc>https://stateofresonance.ca/quiz</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://stateofresonance.ca/contact</loc>
-    <lastmod>2026-04-13</lastmod>
+    <loc>https://stateofresonance.ca/lookbook</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -77,13 +85,13 @@
   <!-- Legal -->
   <url>
     <loc>https://stateofresonance.ca/privacy</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://stateofresonance.ca/terms</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

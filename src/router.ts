@@ -142,6 +142,16 @@ const router = createRouter({
       component: () => import('./views/Terms.vue')
     },
     {
+      path: '/shipping',
+      name: 'Shipping',
+      component: () => import('./views/Shipping.vue')
+    },
+    {
+      path: '/size-guide',
+      name: 'SizeGuide',
+      component: () => import('./views/SizeGuide.vue')
+    },
+    {
       path: '/shipping-request',
       redirect: '/influencer-shipping'
     },
@@ -297,6 +307,16 @@ const seoMap: Record<string, any> = {
     'Poetry': {
       title: 'The Transmissions | Poetry by Jayson Vinetti',
       description: 'Poetry, songwriting, and visceral human exploration by the creator of State of Resonance.',
+      robots: 'index, follow'
+    },
+    'Shipping': {
+      title: 'Shipping & Returns | State of Resonance',
+      description: 'Free shipping on orders over $110 CAD. Ships from Canada within 1–3 business days. 30-day no-questions-asked returns.',
+      robots: 'index, follow'
+    },
+    'SizeGuide': {
+      title: 'Size Guide | State of Resonance Hoodies & Tees',
+      description: 'Find your perfect fit. Size guide for State of Resonance hoodies, crewnecks, and graphic tees. All pieces are cut oversized — see measurements in inches and cm.',
       robots: 'index, follow'
     }
   },

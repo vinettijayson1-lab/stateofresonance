@@ -67,22 +67,22 @@ const captureIntent = async () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
         email: email.value, 
-        source: 'Exit Intent Seer V2',
+        source: 'Exit Intent — Inner Circle',
         properties: {
-          tier: '396_HZ'
+          tier: 'inner_circle_prospect'
         }
       })
     })
     
     if (res.ok) {
-      if ((window as any).fbq) (window as any).fbq('track', 'Lead', { content_category: 'Seer Funnel' })
-      klaviyoService.identify(email.value, { vibrational_tier: '396_HZ', source: 'Exit Intent Seer V2' })
+      if ((window as any).fbq) (window as any).fbq('track', 'Lead', { content_category: 'Inner Circle Exit Intent' })
+      klaviyoService.identify(email.value, { inner_circle_prospect: true, source: 'Exit Intent — Inner Circle' })
       success.value = true
     } else {
       throw new Error('Signal lost')
     }
   } catch (err) {
-    error.value = 'SYNCHRONIZATION ERROR - FIELD UNSTABLE'
+    error.value = 'CONNECTION ERROR — PLEASE TRY AGAIN'
   } finally {
     loading.value = false
   }
@@ -112,39 +112,41 @@ onUnmounted(() => {
         </div>
 
         <div v-if="!success" class="ritual-capture">
-          <span class="hud-alert glow-gold">✦ THE SEER’S FINAL OMEN ✦</span>
+          <span class="hud-alert glow-gold">EARLY ACCESS — LIMITED DROPS</span>
           <h2 class="hero-title" style="font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.1; margin-bottom: 1.5rem;">
-            Do Not Weaken<br/><span class="gold-text">The Frequency</span>
+            Be First to the<br/><span class="gold-text">Next Drop</span>
           </h2>
           
           <p class="exit-desc">
-            The bridge is dissolving. Your baseline resonance is currently insufficient for full realization, yet the Seer offers a <span class="gold-text" style="font-weight: bold;">15% Alignment Grant</span> to anchor your first manifestation.
+            We release in limited quantities. When a run ends, it rarely comes back. Enter your email to get first access to new drops before they go public.
           </p>
           
           <div class="email-capture">
             <input 
               type="email" 
               v-model="email" 
-              placeholder="ENTER SIGNAL (EMAIL)" 
+              placeholder="YOUR EMAIL ADDRESS" 
               class="members-input"
               @keyup.enter="captureIntent"
             />
             <button @click="captureIntent" class="btn-gold interactive animate-glint" :disabled="loading" style="width: 100%; margin-top: 1rem; height: 60px;">
-              {{ loading ? 'CALIBRATING...' : 'SECURE MY ALIGNMENT' }}
+              {{ loading ? 'ONE MOMENT...' : 'GET EARLY ACCESS' }}
             </button>
           </div>
-          <p v-if="error" class="error-text">{{ error }}</p>
-          <a @click.prevent="closeGate" class="sever-link interactive">ABANDON SIGNAL AND SEVER CONNECTION</a>
+          <p v-if="error" class="error-text">Please enter a valid email address.</p>
+          <a @click.prevent="closeGate" class="sever-link interactive">I'll discover it on my own</a>
         </div>
 
         <div v-else class="ritual-capture success-state" style="text-align: center;">
-          <span class="hud-alert glow-gold" style="color: #4ade80; border-color: #4ade80;">CONNECTION ESTABLISHED</span>
-          <p class="meta-vibe" style="margin-bottom: 0.5rem; opacity: 0.5;">YOUR ALIGNMENT GRANT KEY:</p>
-          <h2 class="hero-title discount-code" style="margin-bottom: 2rem; font-size: 3rem;">ALIGN963</h2>
+          <span class="hud-alert glow-gold" style="color: #4ade80; border-color: #4ade80;">✓ YOU'RE IN</span>
+          <p class="meta-vibe" style="margin-bottom: 1rem; opacity: 0.5; letter-spacing: 0.3em;">INNER CIRCLE — EARLY ACCESS</p>
+          <h2 class="hero-title" style="margin-bottom: 1.5rem; font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.1;">
+            You'll hear about<br/><span class="gold-text">new drops first.</span>
+          </h2>
           <p class="exit-desc" style="margin-bottom: 3rem;">
-            The frequency has been stabilized. Enter <span class="gold-text">ALIGN963</span> at checkout to manifest your 15% discount.
+            Check your inbox. We’ll notify you before pieces go live to the public. Limited runs — once they’re gone, they don’t come back.
           </p>
-          <button @click="closeGate" class="btn-gold" style="width: 100%;">RETURN TO THE RESONANCE</button>
+          <button @click="closeGate" class="btn-gold" style="width: 100%;">SHOP THE COLLECTION →</button>
           
           <p class="motto-signoff" style="font-size: 0.5rem; letter-spacing: 0.4em; color: var(--color-gold-muted); margin-top: 2rem; text-transform: uppercase; opacity: 0.5;">
             Wear your frequency. Let your vibes Resonate. State of Resonance.

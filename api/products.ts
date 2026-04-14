@@ -180,7 +180,7 @@ export default async function handler(req: any, res: any) {
        return res.status(404).json({ error: 'Artifact not found. Please sync from Shopify.' });
     }
 
-    return res.status(200).json(mapped.slice(0, Math.max(limit, mapped.length)));
+    return res.status(200).json(mapped.slice(0, Math.min(limit, mapped.length)));
 
   } catch (error: any) {
     console.error('Storefront V2 Proxy Error:', error.message);

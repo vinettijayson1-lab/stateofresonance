@@ -274,15 +274,6 @@ watch(() => cart.isOpen, (val) => {
       </div>
 
       <footer v-if="cart.items.length > 0" class="cart-footer sticky-footer">
-        <div class="resonance-breakdown">
-          <p class="breakdown-title">{{ $t('cart.frequency_distribution') }}</p>
-          <div class="freq-list">
-            <div v-for="item in cart.items" :key="item.id" class="freq-item">
-              <span>{{ item.title }}</span>
-              <span class="gold-text">{{ getFrequency(item.price) }}</span>
-            </div>
-          </div>
-        </div>
 
         <div class="billing-details">
           <div class="total-row">
@@ -342,6 +333,7 @@ watch(() => cart.isOpen, (val) => {
           </div>
         </div>
 
+        <p style="font-size: 0.55rem; letter-spacing: 0.1em; text-align: center; color: rgba(255,255,255,0.3); margin-bottom: 1rem;">Have a discount code? Enter it at checkout →</p>
         <a :href="cart.checkoutUrl" class="btn-premium checkout-btn" @click="trackCheckout">{{ $t('cart.initiate_alignment') }}</a>
       </footer>
     </div><!-- End reservoir-content-side -->
@@ -597,7 +589,7 @@ watch(() => cart.isOpen, (val) => {
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  opacity: 0.3;
+  opacity: 0.6;
   cursor: pointer;
 }
 

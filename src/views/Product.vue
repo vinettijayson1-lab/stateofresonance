@@ -11,6 +11,7 @@ import TrustBadges from '../components/TrustBadges.vue'
 import SocialShare from '../components/SocialShare.vue'
 import FrequencyPlayer from '../components/FrequencyPlayer.vue'
 import { currencyStore } from '../store/currency'
+import ProductReviews from '../components/ProductReviews.vue'
 import { Sparkles, Zap, Shield, HelpCircle } from 'lucide-vue-next'
 
 interface Variant {
@@ -187,7 +188,8 @@ const memberPrice = computed(() => {
 
 const liveViewers = computed(() => {
   if (!product.value) return 0
-  return 5 + (product.value.id.charCodeAt(product.value.id.length - 1) % 15)
+  // Randomized per session — prevents perceptibly static number on repeat views
+  return Math.floor(Math.random() * 12) + 4
 })
 
 const freqDescription = computed(() => {
@@ -400,72 +402,84 @@ onMounted(async () => {
       if (product.value.image) updateMeta('meta[property="og:image"]', 'content', product.value.image)
       updateMeta('meta[property="og:url"]', 'content', window.location.href)
 
-      // Inject Product structured data (Schema.org)
+      // Inject Product structured data (Schema.org) + aggregateRating from Judge.me
       const price = product.value.price.replace(/[^0-9.]/g, '')
-      const schema = {
-        '@context': 'https://schema.org',
-        '@type': 'Product',
-        name: product.value.title,
-        image: product.value.images || [product.value.image],
-        description: (product.value.description || '').replace(/<[^>]*>/g, ''),
-        brand: { '@type': 'Brand', name: 'State of Resonance' },
-        category: product.value.category,
-        sku: product.value.id,
-        mpn: product.value.variantId || product.value.id,
-        gtin13: null, // If available in future
-        offers: {
-          '@type': 'Offer',
-          url: window.location.href,
-          priceCurrency: 'CAD',
-          price: price,
-          priceValidUntil: '2026-12-31',
-          itemCondition: 'https://schema.org/NewCondition',
-          availability: product.value.available !== false ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-          seller: { '@type': 'Organization', name: 'State of Resonance' },
-          hasMerchantReturnPolicy: {
-            '@type': 'MerchantReturnPolicy',
-            applicableCountry: 'CA',
-            returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnPeriod',
-            merchantReturnDays: 30,
-            returnMethod: 'https://schema.org/ReturnByMail',
-            returnFees: 'https://schema.org/FreeReturn'
-          },
-          shippingDetails: {
-            '@type': 'OfferShippingDetails',
-            shippingRate: {
-              '@type': 'MonetaryAmount',
-              value: 0,
-              currency: 'CAD'
+
+      const injectSchema = (ratingValue?: number, reviewCount?: number) => {
+        const schemaBase: Record<string, any> = {
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: product.value!.title,
+          image: product.value!.images || [product.value!.image],
+          description: (product.value!.description || '').replace(/<[^>]*>/g, ''),
+          brand: { '@type': 'Brand', name: 'State of Resonance' },
+          category: product.value!.category,
+          sku: product.value!.id,
+          mpn: product.value!.variantId || product.value!.id,
+          offers: {
+            '@type': 'Offer',
+            url: window.location.href,
+            priceCurrency: 'CAD',
+            price: price,
+            priceValidUntil: '2026-12-31',
+            itemCondition: 'https://schema.org/NewCondition',
+            availability: product.value!.available !== false ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+            seller: { '@type': 'Organization', name: 'State of Resonance' },
+            hasMerchantReturnPolicy: {
+              '@type': 'MerchantReturnPolicy',
+              applicableCountry: 'CA',
+              returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnPeriod',
+              merchantReturnDays: 30,
+              returnMethod: 'https://schema.org/ReturnByMail',
+              returnFees: 'https://schema.org/FreeReturn'
             },
-            deliveryTime: {
-              '@type': 'ShippingDeliveryTime',
-              handlingTime: {
-                '@type': 'QuantitativeValue',
-                minValue: 1,
-                maxValue: 3,
-                unitCode: 'd'
-              },
-              transitTime: {
+            shippingDetails: {
+              '@type': 'OfferShippingDetails',
+              shippingRate: { '@type': 'MonetaryAmount', value: 0, currency: 'CAD' },
+              deliveryTime: {
                 '@type': 'ShippingDeliveryTime',
-                minValue: 5,
-                maxValue: 10,
-                unitCode: 'd'
+                handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 3, unitCode: 'd' },
+                transitTime: { '@type': 'ShippingDeliveryTime', minValue: 5, maxValue: 10, unitCode: 'd' }
               }
             }
           }
         }
+
+        // Inject aggregateRating only when we have real data from Judge.me
+        if (ratingValue && reviewCount && reviewCount > 0) {
+          schemaBase.aggregateRating = {
+            '@type': 'AggregateRating',
+            ratingValue: ratingValue.toFixed(1),
+            reviewCount: reviewCount,
+            bestRating: 5,
+            worstRating: 1
+          }
+        }
+
+        let schemaEl = document.getElementById('ld-product')
+        if (schemaEl) {
+          schemaEl.textContent = JSON.stringify(schemaBase)
+        } else {
+          const s = document.createElement('script')
+          s.type = 'application/ld+json'
+          s.id = 'ld-product'
+          s.textContent = JSON.stringify(schemaBase)
+          document.head.appendChild(s)
+        }
       }
-      
-      let schemaEl = document.getElementById('ld-product')
-      if (schemaEl) {
-        schemaEl.textContent = JSON.stringify(schema)
-      } else {
-        const s = document.createElement('script')
-        s.type = 'application/ld+json'
-        s.id = 'ld-product'
-        s.textContent = JSON.stringify(schema)
-        document.head.appendChild(s)
-      }
+
+      // Inject schema immediately (no rating yet)
+      injectSchema()
+
+      // Then fetch real Judge.me rating & re-inject with aggregateRating
+      fetch(`/api/reviews?handle=${product.value.handle}&per_page=1&page=1`)
+        .then(r => r.ok ? r.json() : null)
+        .then(data => {
+          if (data?.avg_rating && data?.total_reviews) {
+            injectSchema(parseFloat(data.avg_rating), data.total_reviews)
+          }
+        })
+        .catch(() => { /* schema already injected without rating */ })
     }
   } catch (e) {
     console.error('Failed to fetch product:', e)
@@ -552,12 +566,7 @@ const onImgError = (e: any) => {
             <span class="freq-value gold-text">{{ getFrequency(product.price) }}</span>
           </div>
           
-          <!-- Integrated Frequency Player for sensory calibration -->
-          <div class="product-frequency-control glass" style="margin: 1.5rem 0; padding: 1.5rem; border: 1px solid rgba(212, 175, 55, 0.2);">
-            <p class="meta-vibe gold-text" style="font-size: 0.55rem; margin-bottom: 1rem; text-align: center;">VIBRATIONAL CALIBRATION</p>
-            <FrequencyPlayer />
-            <p style="font-size: 0.5rem; opacity: 0.5; margin-top: 1rem; text-align: center; letter-spacing: 0.1em;">Activate the signal to synchronize the artifact with your current field.</p>
-          </div>
+
 
           <div class="freq-row">
             <span class="freq-label">WAVELENGTH</span>
@@ -649,7 +658,7 @@ const onImgError = (e: any) => {
           <div v-for="opt in product.options" :key="opt.name" class="option-group">
             <div class="option-label-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
               <p class="option-label">{{ opt.name }}</p>
-              <a v-if="opt.name === 'Size'" href="/contact" class="size-guide-link" style="font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-muted); text-decoration: underline; opacity: 0.7;">Size Guide ↗</a>
+              <a v-if="opt.name === 'Size'" href="/size-guide" class="size-guide-link" style="font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold-muted); text-decoration: underline; opacity: 0.7;">Size Guide ↗</a>
             </div>
             <div class="option-values">
               <button 
@@ -770,8 +779,19 @@ const onImgError = (e: any) => {
         </div>
 
         <SocialShare :title="product.title" :image="product.image" style="margin-top: 2rem;" />
-        
+
+        <!-- Frequency Player — ambient lore element, placed below all CTAs and trust signals -->
+        <div class="product-frequency-control glass" style="margin-top: 3rem; padding: 1.5rem; border: 1px solid rgba(212, 175, 55, 0.12);">
+          <p class="meta-vibe gold-text" style="font-size: 0.55rem; margin-bottom: 1rem; text-align: center; opacity: 0.7;">— VIBRATIONAL CALIBRATION —</p>
+          <FrequencyPlayer />
+          <p style="font-size: 0.5rem; opacity: 0.4; margin-top: 1rem; text-align: center; letter-spacing: 0.1em;">Activate the signal to synchronize the artifact with your current field.</p>
+        </div>
       </div>
+    </div>
+
+    <!-- Customer Reviews (Judge.me) -->
+    <div v-if="product" class="container" style="padding-top: 8vh; padding-bottom: 4vh;">
+      <ProductReviews :handle="product.handle" :key="product.handle" />
     </div>
 
     <!-- Related Products -->

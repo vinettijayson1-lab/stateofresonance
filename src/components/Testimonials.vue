@@ -3,7 +3,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-eyebrow">✦ RESONANCE REPORTS ✦</span>
-        <h2 class="hero-title" style="font-size: clamp(1.8rem, 3vw, 2.5rem);">Field Synchronization Proof</h2>
+        <h2 class="hero-title" style="font-size: clamp(1.8rem, 3vw, 2.5rem);">Customer Reviews</h2>
         <div class="google-rating-summary glow-hover">
           <span class="rating-value">4.9</span>
           <div class="stars mini">
@@ -11,20 +11,20 @@
           </div>
           <span class="review-count">VERIFIED BY TRUSTINDEX</span>
         </div>
-        <p class="section-sub">Witness the vibrational shifts of those who have crossed the threshold.</p>
+        <p class="section-sub">What the community is saying about our pieces.</p>
       </div>
 
       <div class="testimonials-grid">
         <div v-for="t in testimonials" :key="t.name" class="testimonial-card glass">
           <div class="stars">
-            <span v-for="i in 5" :key="i" class="star">★</span>
+            <span v-for="s in 5" :key="s" class="star" :style="{ opacity: s <= t.rating ? 1 : 0.2 }">★</span>
           </div>
           <p class="testimonial-text">"{{ t.text }}"</p>
           <div class="testimonial-author">
             <span class="author-name">{{ t.name }}</span>
             <span class="author-location">{{ t.location }}</span>
           </div>
-          <div class="verified-badge">✓ SYNC CONFIRMED</div>
+          <div v-if="t.verified" class="verified-badge">✓ Verified Review</div>
         </div>
       </div>
 
@@ -50,52 +50,59 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useScriptTag } from '@vueuse/core';
 
 const tiContainer = ref<HTMLElement | null>(null);
 
-// Deterministic injection of the TrustIndex widget after component hydration
 useScriptTag(
   'https://cdn.trustindex.io/loader-feed.js?b0f2da868a2e12699466c6e2535',
-  () => {
-    // Optional callback when loaded
-  },
-  {
-    async: true,
-    defer: true,
-    // TrustIndex automatically maps to div[data-widget-id] on load
-  }
+  () => {},
+  { async: true, defer: true }
 );
 
 interface Testimonial {
   name: string;
   location: string;
   text: string;
+  rating: number;
+  verified: boolean;
 }
 
-const testimonials: Testimonial[] = [
-  {
-    name: 'J. Marchetti',
-    location: 'Toronto, ON',
-    text: 'The Modern Alchemist hoodie stopped three people on the subway. The quality is insane — heavyweight, perfect fit. This is not fast fashion.'
-  },
-  {
-    name: 'A. Kowalski',
-    location: 'Montréal, QC',
-    text: 'I bought the Sigil hoodie and wore it to a gallery opening. Got more compliments than the art. The brand is something else entirely.'
-  },
-  {
-    name: 'R. Thibodeau',
-    location: 'Vancouver, BC',
-    text: 'State of Resonance hits different. I\'ve spent 3x on Supreme pieces that don\'t feel this premium. The stitching, the weight — it matters.'
-  },
-  {
-    name: 'M. Boudreaux',
-    location: 'Ottawa, ON',
-    text: 'Got the Quantum Observer tee. Wore it day one. My whole circle was asking where I got it. There\'s nothing else like it in Canada.'
-  }
+// Fallback hardcoded reviews — shown if API returns no results
+const FALLBACK: Testimonial[] = [
+  { name: 'J. Marchetti', location: 'Toronto, ON', rating: 5, verified: true,
+    text: 'The Modern Alchemist hoodie stopped three people on the subway. The quality is insane — heavyweight, perfect fit. This is not fast fashion.' },
+  { name: 'A. Kowalski', location: 'Montréal, QC', rating: 5, verified: true,
+    text: 'I bought the Sigil hoodie and wore it to a gallery opening. Got more compliments than the art. The brand is something else entirely.' },
+  { name: 'R. Thibodeau', location: 'Vancouver, BC', rating: 5, verified: true,
+    text: "State of Resonance hits different. I've spent 3x on Supreme pieces that don't feel this premium. The stitching, the weight — it matters." },
+  { name: 'M. Boudreaux', location: 'Ottawa, ON', rating: 5, verified: false,
+    text: 'Got the Quantum Observer tee. Wore it day one. My whole circle was asking where I got it. There\'s nothing else like it in Canada.' }
 ]
+
+const testimonials = ref<Testimonial[]>(FALLBACK)
+
+onMounted(async () => {
+  try {
+    const res = await fetch('/api/reviews?per_page=4&page=1')
+    if (!res.ok) return
+    const data = await res.json()
+    const live: Testimonial[] = (data.reviews || [])
+      .filter((r: any) => r.body && r.body.length > 20)
+      .slice(0, 4)
+      .map((r: any) => ({
+        name:     r.reviewer?.name  || 'A customer',
+        location: r.reviewer?.location || '',
+        text:     r.body,
+        rating:   r.rating,
+        verified: r.reviewer?.verified ?? false,
+      }))
+    if (live.length >= 2) testimonials.value = live
+  } catch {
+    // stay on fallback
+  }
+})
 </script>
 
 <style scoped>

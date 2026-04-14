@@ -204,7 +204,7 @@ const goToProduct = (handle: string) => {
         <p class="bs-cta-eyebrow">Looking for more?</p>
         <h3 class="bs-cta-title">Explore the full archive</h3>
         <div class="bs-cta-buttons">
-          <router-link to="/attire" class="btn-gold">SHOP NEW ARRIVALS</router-link>
+          <router-link to="/best-sellers" class="btn-gold">SHOP ALL CLOTHING</router-link>
           <router-link to="/quiz" class="btn-outline">Find Your Frequency</router-link>
         </div>
       </div>
