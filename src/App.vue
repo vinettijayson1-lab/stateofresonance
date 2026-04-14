@@ -288,7 +288,7 @@ const auraStyle = computed(() => {
 
       <div class="nav-links" :class="{ 'mobile-open': mobileMenuOpen }">
         <!-- Close Button (Mobile) -->
-        <button v-if="mobileMenuOpen" @click="mobileMenuOpen = false" class="mobile-close-btn gold-text">✕</button>
+        <button v-if="mobileMenuOpen" @click="mobileMenuOpen = false" class="mobile-close-btn gold-text" aria-label="Close navigation menu">✕</button>
 
         <div v-if="mobileMenuOpen" class="mobile-drawer-header">
            <span class="meta-vibe gold-text">STATE OF RESONANCE</span>

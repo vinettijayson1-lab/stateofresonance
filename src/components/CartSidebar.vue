@@ -199,7 +199,7 @@ watch(() => cart.isOpen, (val) => {
                 <span v-html="$t('cart.title').replace('\n', '<br/>')"></span>
               </h2>
             </div>
-            <button @click="closeCart" class="close-btn">✕</button>
+            <button @click="closeCart" class="close-btn" aria-label="Close cart">✕</button>
           </header>
 
           <p v-if="cart.items.length > 0" class="meta-vibe" style="margin-top:0.25rem; opacity:0.5; display: block;">
@@ -246,9 +246,9 @@ watch(() => cart.isOpen, (val) => {
             <p class="cart-item-price">{{ item.price }}</p>
             <div class="item-actions">
               <div class="quantity-controls">
-                <button @click="cart.updateQuantity(item.id, -1, item.variantId)">-</button>
+                <button @click="cart.updateQuantity(item.id, -1, item.variantId)" aria-label="Decrease quantity">-</button>
                 <span>{{ item.quantity }}</span>
-                <button @click="cart.updateQuantity(item.id, 1, item.variantId)">+</button>
+                <button @click="cart.updateQuantity(item.id, 1, item.variantId)" aria-label="Increase quantity">+</button>
               </div>
               <button @click="cart.remove(item.id, item.variantId)" class="remove-btn">{{ $t('cart.release') }}</button>
             </div>
@@ -461,11 +461,16 @@ watch(() => cart.isOpen, (val) => {
 .close-btn {
   background: none;
   border: none;
-  color: #fff; /* Force white to resolve blue chromatic aberration */
+  color: #fff;
   font-size: 2rem;
   cursor: pointer;
   transition: transform 0.3s ease, color 0.3s ease;
   z-index: 100;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .close-btn:hover {
