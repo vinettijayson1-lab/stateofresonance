@@ -480,6 +480,27 @@ onMounted(async () => {
           }
         })
         .catch(() => { /* schema already injected without rating */ })
+
+      // Inject BreadcrumbList schema — gives Google "State of Resonance > Shop > [Name]" in SERPs
+      const breadcrumb = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'State of Resonance', item: 'https://stateofresonance.ca' },
+          { '@type': 'ListItem', position: 2, name: 'Shop', item: 'https://stateofresonance.ca/best-sellers' },
+          { '@type': 'ListItem', position: 3, name: product.value.title, item: window.location.href }
+        ]
+      }
+      let bcEl = document.getElementById('ld-breadcrumb')
+      if (bcEl) {
+        bcEl.textContent = JSON.stringify(breadcrumb)
+      } else {
+        const bc = document.createElement('script')
+        bc.type = 'application/ld+json'
+        bc.id = 'ld-breadcrumb'
+        bc.textContent = JSON.stringify(breadcrumb)
+        document.head.appendChild(bc)
+      }
     }
   } catch (e) {
     console.error('Failed to fetch product:', e)

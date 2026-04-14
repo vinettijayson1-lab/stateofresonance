@@ -2,17 +2,33 @@ import axios from 'axios';
 
 // Retain visual formatters (no logic overrides, just aesthetic mapping)
 const getLuxImage = (handle: string, originalImage: string): string => {
+  // Luxury esoteric occult background overrides (all 25 products)
   const overrides: Record<string, string> = {
-    'gumol50-50gms-moldavite-untumbled': '/assets/luxury/moldavite_50g.png',
-    'gumol25-25-3gms-moldavite-untumbled': '/assets/luxury/moldavite_25g.png',
-    'gcc3-57-7-citrine-cathedral': '/assets/luxury/citrine_57.png',
-    'gcc4-69-4-citrine-cathedral': '/assets/luxury/citrine_69.png',
-    'gfphaqp3-3-flat-of-phantom-quartz-points-polished': '/assets/luxury/phantom_quartz.png',
-    'gca5-31-3-amethyst-cathedral': '/assets/luxury/amethyst_31.png',
-    'gca1-30-5-amethyst-cathedral': '/assets/luxury/amethyst_30.png',
-    'the-omniscience-artifact': '/assets/luxury/omniscience.png',
-    'fc200-200mm-clear-gazing-ball': '/assets/luxury/gazing_ball.png',
-    'sb197-24-baphomet': '/assets/luxury/baphomet.png'
+    'the-hermetic-scales-pullover': '/images/upgraded/the-hermetic-scales-pullover.jpg',
+    'the-hand-of-mysteries-pullover': '/images/upgraded/the-hand-of-mysteries-pullover.jpg',
+    'the-awakened-hand-pullover-1': '/images/upgraded/the-awakened-hand-pullover-1.jpg',
+    'urban-hoodie-9': '/images/upgraded/urban-hoodie-9.jpg',
+    'oversized-faded-t-shirt-1': '/images/upgraded/oversized-faded-t-shirt-1.jpg',
+    'unisex-garment-dyed-heavyweight-t-shirt-3': '/images/upgraded/unisex-garment-dyed-heavyweight-t-shirt-3.jpg',
+    'unisex-garment-dyed-heavyweight-t-shirt-2': '/images/upgraded/unisex-garment-dyed-heavyweight-t-shirt-2.jpg',
+    'urban-hoodie-8': '/images/upgraded/urban-hoodie-8.jpg',
+    'urban-hoodie-7': '/images/upgraded/urban-hoodie-7.jpg',
+    'urban-hoodie-6': '/images/upgraded/urban-hoodie-6.jpg',
+    'unisex-garment-dyed-heavyweight-t-shirt': '/images/upgraded/unisex-garment-dyed-heavyweight-t-shirt.jpg',
+    'urban-garment-dyed-hoodie-1': '/images/upgraded/urban-garment-dyed-hoodie-1.jpg',
+    'crop-hoodie': '/images/upgraded/crop-hoodie.jpg',
+    'women-s-relaxed-v-neck-t-shirt': '/images/upgraded/women-s-relaxed-v-neck-t-shirt.jpg',
+    'unisex-premium-sweatshirt': '/images/upgraded/unisex-premium-sweatshirt.jpg',
+    'unisex-premium-mid-weight-hoodie-1': '/images/upgraded/unisex-premium-mid-weight-hoodie-1.jpg',
+    'unisex-oversized-hoodie': '/images/upgraded/unisex-oversized-hoodie.jpg',
+    'urban-hoodie-1': '/images/upgraded/urban-hoodie-1.jpg',
+    'og-crewnwck': '/images/upgraded/og-crewnwck.jpg',
+    'men-s-box-hoodie': '/images/upgraded/men-s-box-hoodie.jpg',
+    'her-resonance-hoodie': '/images/upgraded/her-resonance-hoodie.jpg',
+    'celestial-alignment': '/images/upgraded/celestial-alignment.jpg',
+    'oversized-faded-t-shirt': '/images/upgraded/oversized-faded-t-shirt.jpg',
+    'resonace': '/images/upgraded/resonace.jpg',
+    'sacred-heart': '/images/upgraded/sacred-heart.jpg',
   };
   return overrides[handle] || originalImage;
 };

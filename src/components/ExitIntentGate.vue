@@ -12,12 +12,35 @@ const loading = ref(false)
 const success = ref(false)
 const router = useRouter()
 
+// Desktop: trigger when cursor exits top of viewport
 const handleMouseLeave = (e: MouseEvent) => {
-  // Trigger when cursor leaves the top of the viewport
   if (e.clientY <= 5 && !hasFired.value && !isVisible.value) {
     if (localStorage.getItem('sor_exit_triggered')) return
     triggerGate()
   }
+}
+
+// Mobile: trigger when user has scrolled 60%+ then quickly scrolls back up
+let lastScrollY = 0
+let maxScrollReached = 0
+const handleMobileScroll = () => {
+  const scrollY = window.scrollY
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight
+  const scrollPct = docHeight > 0 ? scrollY / docHeight : 0
+
+  if (scrollPct > maxScrollReached) maxScrollReached = scrollPct
+
+  // Fire if: mobile, scrolled past 60%, now scrolling up fast, not triggered yet
+  const isMobile = window.innerWidth < 768
+  const scrollingUp = scrollY < lastScrollY - 80
+  const engagedEnough = maxScrollReached > 0.6
+
+  if (isMobile && scrollingUp && engagedEnough && !hasFired.value && !isVisible.value) {
+    if (localStorage.getItem('sor_exit_triggered')) return
+    triggerGate()
+  }
+
+  lastScrollY = scrollY
 }
 
 const triggerGate = () => {
@@ -54,7 +77,7 @@ const closeGate = () => {
 
 const captureIntent = async () => {
   if (!email.value.includes('@')) {
-    error.value = 'FREQUENCY MISMATCH: INVALID SIGNAL'
+    error.value = 'Please enter a valid email address.'
     return
   }
   
@@ -82,7 +105,7 @@ const captureIntent = async () => {
       throw new Error('Signal lost')
     }
   } catch (err) {
-    error.value = 'CONNECTION ERROR — PLEASE TRY AGAIN'
+    error.value = 'Something went wrong — please try again.'
   } finally {
     loading.value = false
   }
@@ -91,11 +114,13 @@ const captureIntent = async () => {
 onMounted(() => {
   if (!localStorage.getItem('sor_exit_triggered')) {
     document.addEventListener('mouseleave', handleMouseLeave)
+    window.addEventListener('scroll', handleMobileScroll, { passive: true })
   }
 })
 
 onUnmounted(() => {
   document.removeEventListener('mouseleave', handleMouseLeave)
+  window.removeEventListener('scroll', handleMobileScroll)
 })
 </script>
 

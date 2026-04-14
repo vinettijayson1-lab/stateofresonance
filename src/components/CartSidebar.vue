@@ -333,7 +333,7 @@ watch(() => cart.isOpen, (val) => {
           </div>
         </div>
 
-        <p style="font-size: 0.55rem; letter-spacing: 0.1em; text-align: center; color: rgba(255,255,255,0.3); margin-bottom: 1rem;">Have a discount code? Enter it at checkout →</p>
+
         <a :href="cart.checkoutUrl" class="btn-premium checkout-btn" @click="trackCheckout">{{ $t('cart.initiate_alignment') }}</a>
       </footer>
     </div><!-- End reservoir-content-side -->

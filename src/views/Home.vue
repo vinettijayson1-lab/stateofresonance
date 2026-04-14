@@ -530,8 +530,8 @@ const handleSmsSync = async () => {
                 <span class="meta-value">963 HERTZ</span>
               </div>
               <div class="visual-meta" style="top: auto; bottom: 2rem;">
-                <span class="meta-label">ACTIVE SEEKERS</span>
-                <span class="meta-value">12.4K SYNCHRONIZED</span>
+                <span class="meta-label">EST. SAINT-JEAN-SUR-RICHELIEU</span>
+                <span class="meta-value">CANADA</span>
               </div>
             </div>
           </div>
