@@ -25,27 +25,19 @@ export default defineConfig({
         // Manual chunk splitting — separates vendor libs from app code
         // Each chunk loads in parallel and is independently cacheable
         manualChunks(id) {
-          // Vue core + router — always needed, cache long-term
-          if (id.includes('node_modules/vue') || id.includes('node_modules/@vue') || id.includes('node_modules/vue-router')) {
+          // Vue core — tiny, always needed, cache forever
+          if (id.includes('node_modules/vue') || id.includes('node_modules/@vue') || id.includes('node_modules/vue-router') || id.includes('node_modules/vue-i18n')) {
             return 'vue-core'
           }
-          // GSAP animation library — needed on most pages
+          // GSAP — 113KB, shared across nearly all pages
           if (id.includes('node_modules/gsap')) {
             return 'gsap'
           }
-          // Three.js — only needed for Omniscience page, isolate it
-          if (id.includes('node_modules/three') || id.includes('node_modules/@react-three')) {
+          // Three.js — 532KB, ONLY loaded on Omniscience route
+          if (id.includes('node_modules/three')) {
             return 'three'
           }
-          // i18n + translation payloads
-          if (id.includes('node_modules/vue-i18n') || id.includes('/locales/')) {
-            return 'i18n'
-          }
-          // Lucide icons — tree-shaken but still sizeable
-          if (id.includes('node_modules/lucide')) {
-            return 'icons'
-          }
-          // All other node_modules grouped as vendor
+          // All other node_modules → single vendor chunk
           if (id.includes('node_modules')) {
             return 'vendor'
           }

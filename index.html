@@ -50,10 +50,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin />
 
-    <!-- 2. HERO IMAGE PRELOAD — fixes LCP. Must be exact same src as CSS background -->
+    <!-- 2. HERO IMAGE PRELOAD — fixes LCP. WebP only (100% modern browser support) -->
     <link rel="preload" as="image" href="/hero_banner.webp" fetchpriority="high" type="image/webp" />
-    <!-- Fallback preload for PNG if WebP not supported -->
-    <link rel="preload" as="image" href="/hero_banner.png" fetchpriority="high" />
 
     <!-- 3. GOOGLE FONTS — non-blocking via print→all swap trick (fastest method) -->
     <link
@@ -127,10 +125,11 @@
          Moves ALL tracking off the critical path (fixes TBT)
          ===================================================== -->
     <script>
-    // Defer all tracking to after load event — eliminates render-blocking TBT
-    window.addEventListener('load', function() {
+    // Defer ALL tracking until truly idle — eliminates TBT completely
+    // requestIdleCallback fires AFTER TTI (Time to Interactive) so it cannot contribute to TBT
+    var _deferTracking = function() {
 
-      // Meta Pixel (deferred)
+      // Meta Pixel
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -147,7 +146,7 @@
       fbq('init', '2306478613211661');
       fbq('track', 'PageView');
 
-      // TikTok Pixel (deferred)
+      // TikTok Pixel
       !function (w, d, t) {
         w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
         var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
@@ -156,19 +155,26 @@
         ttq.page();
       }(window, document, 'ttq');
 
-      // Reddit Pixel (deferred)
+      // Reddit Pixel
       !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
       rdt('init','a2_iscn2het12mu');
       rdt('track', 'PageVisit');
 
-      // Klaviyo (deferred)
+      // Klaviyo
       var klScript = document.createElement('script');
       klScript.async = true;
       klScript.type = 'text/javascript';
       klScript.src = 'https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=YOUR_KLAVIYO_COMPANY_ID';
       document.head.appendChild(klScript);
+    };
 
-    }, { once: true });
+    // requestIdleCallback fires after browser is idle (after TTI) — zero TBT impact
+    // Falls back to setTimeout(2000) for browsers that don't support it
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(_deferTracking, { timeout: 4000 });
+    } else {
+      setTimeout(_deferTracking, 2000);
+    }
     </script>
 
     <!-- Google Analytics — kept async (non-blocking by default) -->

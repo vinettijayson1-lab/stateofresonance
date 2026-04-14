@@ -102,8 +102,8 @@ const handleSmsSync = async () => {
     <!-- Removed visually hidden H1 in favor of visible Manifesto H1 -->
     <!-- Hero / Void Choice Interface -->
     <section class="void-choice">
-      <!-- Cinematic Hero Background — WebP with PNG fallback -->
-      <div class="hero-bg" style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(5,5,7,0.8) 60%, #050507 100%), image-set(url('/hero_banner.webp') type('image/webp'), url('/hero_banner.png') type('image/png')) center/cover no-repeat; z-index:0;"></div>
+      <!-- Cinematic Hero Background — WebP (97%+ browser support, preloaded in <head>) -->
+      <div class="hero-bg" style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(5,5,7,0.8) 60%, #050507 100%), url('/hero_banner.webp') center/cover no-repeat; z-index:0;"></div>
 
       <!-- Sacred Geometry SVG Port -->
       <svg class="sacred-geometry" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" fill="none">
