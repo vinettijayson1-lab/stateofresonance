@@ -102,8 +102,20 @@ const handleSmsSync = async () => {
     <!-- Removed visually hidden H1 in favor of visible Manifesto H1 -->
     <!-- Hero / Void Choice Interface -->
     <section class="void-choice">
-      <!-- Cinematic Hero Background — WebP (97%+ browser support, preloaded in <head>) -->
-      <div class="hero-bg" style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(5,5,7,0.8) 60%, #050507 100%), url('/hero_banner.webp') center/cover no-repeat; z-index:0;"></div>
+      <!-- Hero Background Image: real <img> for proper LCP + preload linking -->
+      <img
+        src="/hero_banner.webp"
+        alt=""
+        class="hero-bg-img"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        width="1920"
+        height="1080"
+        aria-hidden="true"
+      />
+      <!-- Gradient overlay (separate element keeps gradient on the image) -->
+      <div class="hero-bg-overlay"></div>
 
       <!-- Sacred Geometry SVG Port -->
       <svg class="sacred-geometry" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -596,6 +608,24 @@ const handleSmsSync = async () => {
 </template>
 
 <style scoped>
+/* === HERO IMAGE (LCP-optimized <img> element) === */
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 0;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(5,5,7,0.82) 60%, #050507 100%);
+  z-index: 1;
+}
+
 /* === HOMEPAGE TRUST STRIP === */
 .homepage-trust-strip {
   background: rgba(212, 175, 55, 0.04);
