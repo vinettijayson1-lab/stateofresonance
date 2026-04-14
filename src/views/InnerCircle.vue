@@ -86,20 +86,25 @@ const lockPortal = () => {
 
 const requestAccess = async () => {
   if (!accessEmail.value.includes('@')) {
-    accessError.value = 'INVALID SIGNAL'
+    accessError.value = 'Please enter a valid email address.'
     return
   }
+
+  subLoading.value = true
+  accessError.value = ''
   
   const resonance = useResonanceStore()
   
   try {
-    // --- KLAVIYO IDENTIFY (Orion) ---
+    // 1. Identify in Klaviyo client-side
     klaviyoService.identify(accessEmail.value, {
+      inner_circle_prospect: true,
       'vibrational_tier': resonance.tier,
       'detected_frequency': resonance.detectedFrequency
     });
 
-    const res = await fetch('/api/subscribe', {
+    // 2. Subscribe to Inner Circle list
+    const subRes = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -107,19 +112,29 @@ const requestAccess = async () => {
         phone: accessPhone.value,
         sms_consent: smsConsent.value,
         source: 'Inner Circle Request',
-        vibrational_tier: resonance.tier,
-        detected_frequency: resonance.detectedFrequency
+        properties: {
+          inner_circle_prospect: true,
+          tier: 'inner_circle_prospect',
+          vibrational_tier: resonance.tier
+        }
       })
     })
     
-    if (res.ok) {
-      subSuccess.value = true
-      localStorage.setItem('sor_seer_email', accessEmail.value)
-    } else {
-      throw new Error('Signal lost')
-    }
+    if (!subRes.ok) throw new Error('Subscribe failed')
+
+    // 3. Fire welcome flow — sends the access code email
+    await fetch('/api/inner-circle-welcome', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: accessEmail.value })
+    }).catch(() => { /* non-fatal — subscribe succeeded */ })
+
+    localStorage.setItem('sor_seer_email', accessEmail.value)
+    subSuccess.value = true
+    
+    if ((window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'Inner Circle Request' })
   } catch (err) {
-    accessError.value = 'SYNCHRONIZATION ERROR'
+    accessError.value = 'Something went wrong — please try again.'
   } finally {
     subLoading.value = false
   }
@@ -209,11 +224,14 @@ onMounted(() => {
 
         <!-- Success state -->
         <div v-else style="text-align: center; padding: 2rem 0;">
-          <p style="font-size: 0.6rem; letter-spacing: 0.3em; color: #4ade80; margin-bottom: 1rem; text-transform: uppercase;">✓ Request Received</p>
-          <p style="font-size: 0.85rem; opacity: 0.6; line-height: 1.7; max-width: 360px; margin: 0 auto;">
-            You're on the list. We'll send you an access key when the next drop opens up. Until then, explore the shop.
+          <p style="font-size: 0.6rem; letter-spacing: 0.3em; color: #4ade80; margin-bottom: 1.5rem; text-transform: uppercase;">✓ Access Code Sent</p>
+          <p style="font-size: 0.95rem; line-height: 1.8; max-width: 380px; margin: 0 auto; opacity: 0.85;">
+            Check your inbox at <strong>{{ accessEmail }}</strong>
           </p>
-          <router-link to="/best-sellers" class="btn-gold" style="display: inline-block; margin-top: 2rem;">SHOP THE COLLECTION</router-link>
+          <p style="font-size: 0.75rem; opacity: 0.5; margin-top: 1rem; max-width: 360px; margin-left: auto; margin-right: auto; line-height: 1.7;">
+            Your Inner Circle access code is on its way. Enter it above to unlock exclusive drops and member-only pieces.
+          </p>
+          <router-link to="/best-sellers" class="btn-gold" style="display: inline-block; margin-top: 2.5rem;">SHOP THE COLLECTION WHILE YOU WAIT</router-link>
         </div>
       </div>
     </div>

@@ -1,26 +1,43 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 // Klaviyo API v3 integration
-// USAGE: https://developers.klaviyo.com/en/reference/create_client_subscription
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
   const { email, phone, source, properties, sms_consent } = req.body
   if (!email || !email.includes('@')) return res.status(400).json({ error: 'Invalid email' })
 
-  const apiKey = process.env.KLAVIYO_PRIVATE_API_KEY
-  const listId = process.env.KLAVIYO_LIST_ID
+  // Use KLAVIYO_API_KEY (the env var set in Vercel)
+  const apiKey = process.env.KLAVIYO_API_KEY || process.env.KLAVIYO_PRIVATE_API_KEY
 
-  // Graceful degradation for local development/mocking
-  if (!apiKey || !listId) {
-    console.log('[Subscribe Mock] Email captured:', email, '| Phone:', phone, '| Source:', source || 'General')
+  // Route Inner Circle signups to their own list if configured, else fall back to main
+  const isInnerCircle = source?.toLowerCase().includes('inner circle') || properties?.tier === 'inner_circle_prospect'
+  const listId = (isInnerCircle && process.env.KLAVIYO_INNER_CIRCLE_LIST_ID)
+    ? process.env.KLAVIYO_INNER_CIRCLE_LIST_ID
+    : process.env.KLAVIYO_LIST_ID
+
+  // Graceful degradation
+  if (!apiKey) {
+    console.log('[Subscribe Mock] Email captured:', email, '| Source:', source || 'General')
     return res.status(200).json({ success: true, mode: 'mock' })
   }
 
+  if (!listId) {
+    console.warn('[Subscribe] No KLAVIYO_LIST_ID set — profile will be created but not added to a list')
+  }
+
   try {
+    // Merge in source-specific custom properties
+    const mergedProps: any = { ...(properties || {}) }
+    if (isInnerCircle) {
+      mergedProps.inner_circle_prospect = true
+      mergedProps.inner_circle_request_source = source || 'Inner Circle Gate'
+      mergedProps.inner_circle_request_date = new Date().toISOString()
+    }
+
     const profileAttributes: any = {
       email: email,
-      properties: properties || {}
+      properties: mergedProps
     }
 
     if (phone) {
@@ -69,21 +86,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
               ]
             }
           },
-          relationships: {
-            list: {
-              data: {
-                type: 'list',
-                id: listId
+          ...(listId ? {
+            relationships: {
+              list: {
+                data: { type: 'list', id: listId }
               }
             }
-          }
+          } : {})
         }
       })
     })
 
     if (!response.ok) {
-      const err = await response.json()
-      console.error('[Subscribe] Klaviyo V3 error:', JSON.stringify(err))
+      const err = await response.text()
+      console.error('[Subscribe] Klaviyo error:', err)
+      // 409 = profile already subscribed — treat as success
+      if (response.status === 409) return res.status(200).json({ success: true, note: 'already_subscribed' })
       return res.status(500).json({ error: 'Synchronization failed' })
     }
 
