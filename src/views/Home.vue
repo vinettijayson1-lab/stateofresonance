@@ -102,19 +102,8 @@ const handleSmsSync = async () => {
     <!-- Removed visually hidden H1 in favor of visible Manifesto H1 -->
     <!-- Hero / Void Choice Interface -->
     <section class="void-choice">
-      <!-- Hero Background Image: real <img> for proper LCP + preload linking -->
-      <img
-        src="/hero_banner.webp"
-        alt=""
-        class="hero-bg-img"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-        width="1920"
-        height="1080"
-        aria-hidden="true"
-      />
-      <!-- Gradient overlay (separate element keeps gradient on the image) -->
+      <!-- Cinematic Hero Background — WebP, preloaded in <head> -->
+      <div class="hero-bg"></div>
       <div class="hero-bg-overlay"></div>
 
       <!-- Sacred Geometry SVG Port -->
@@ -608,14 +597,11 @@ const handleSmsSync = async () => {
 </template>
 
 <style scoped>
-/* === HERO IMAGE (LCP-optimized <img> element) === */
-.hero-bg-img {
+/* === HERO IMAGE (CSS background — WebP served, preloaded in <head>) === */
+.hero-bg {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  background: url('/hero_banner.webp') center top / cover no-repeat;
   z-index: 0;
 }
 
