@@ -486,7 +486,7 @@ const auraStyle = computed(() => {
         </div>
         <p class="footer-sup">FREQUENCY LABORATORY · STATEOFRESONANCE.CA</p>
         <div class="footer-trust-links">
-          <a href="https://www.trustindex.io/reviews/stateofresonance.ca" target="_blank" class="footer-trust-link gold-text">✦ 5.0 GOOGLE REVIEWS</a>
+          <a href="https://judge.me/reviews/stateofresonance.ca" target="_blank" rel="noopener" class="footer-trust-link gold-text" aria-label="Read our verified reviews on Judge.me">✦ 5.0 JUDGE.ME REVIEWS</a>
           <span class="footer-divider">|</span>
           <router-link to="/best-sellers" class="footer-trust-link">BEST SELLERS</router-link>
           <span class="footer-divider">|</span>

@@ -9,7 +9,7 @@
           <div class="stars mini">
             <span v-for="i in 5" :key="i" class="star">★</span>
           </div>
-          <span class="review-count">VERIFIED BY TRUSTINDEX</span>
+          <span class="review-count">VERIFIED BY JUDGE.ME</span>
         </div>
         <p class="section-sub">What the community is saying about our pieces.</p>
       </div>
@@ -28,21 +28,9 @@
         </div>
       </div>
 
-      <!-- Trustindex Sacred Recognition -->
-      <div class="sacred-recognition-container glass">
-        <div class="recognition-header">
-          <span class="meta-vibe">ALCHEMICAL VERIFICATION</span>
-          <h3 class="recognition-title">The Trust Index</h3>
-        </div>
-        <div ref="tiContainer" id="trustindex-widget" class="ti-widget" data-layout-id="" data-widget-id="b0f2da868a2e12699466c6e2535"></div>
-        <div class="recognition-footer">
-          <span class="meta-vibe">TRUSTINDEX SYNCHRONIZED</span>
-        </div>
-      </div>
-
       <div class="write-review-container">
-        <a href="https://trustindex.io/reviews/stateofresonance.ca" target="_blank" class="btn-review glass glow-hover">
-          TRUSTINDEX VERIFIED
+        <a href="https://judge.me/reviews/stateofresonance.ca" target="_blank" rel="noopener" class="btn-review glass glow-hover" aria-label="Read verified reviews on Judge.me">
+          ✦ JUDGE.ME VERIFIED REVIEWS
         </a>
       </div>
     </div>
@@ -51,15 +39,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { useScriptTag } from '@vueuse/core';
-
-const tiContainer = ref<HTMLElement | null>(null);
-
-useScriptTag(
-  'https://cdn.trustindex.io/loader-feed.js?b0f2da868a2e12699466c6e2535',
-  () => {},
-  { async: true, defer: true }
-);
 
 interface Testimonial {
   name: string;
@@ -122,7 +101,7 @@ onMounted(async () => {
   letter-spacing: 0.4em;
   color: var(--color-gold-muted);
   margin-bottom: 1.5rem;
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 .section-sub {
@@ -222,7 +201,7 @@ onMounted(async () => {
 .review-count {
   font-size: 0.65rem;
   color: var(--color-gold-muted);
-  opacity: 0.6;
+  opacity: 0.85;
 }
 
 .write-review-container {
@@ -241,69 +220,12 @@ onMounted(async () => {
   text-transform: uppercase;
   transition: all 0.3s;
   border-radius: 4px;
+  text-decoration: none;
 }
 
 .btn-review:hover {
   background: rgba(255, 255, 255, 0.06);
   border-color: var(--color-gold);
   transform: translateY(-2px);
-}
-
-.google-logo-btn {
-  width: 16px;
-  height: 16px;
-}
-
-/* Sacred Recognition Styling */
-.sacred-recognition-container {
-  margin: 6rem auto;
-  max-width: 1000px;
-  padding: 4rem;
-  border: 1px solid rgba(212, 175, 55, 0.15);
-  background: rgba(212, 175, 55, 0.02);
-  position: relative;
-  text-align: center;
-}
-
-.sacred-recognition-container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1px dashed rgba(212, 175, 55, 0.1);
-  margin: 10px;
-  pointer-events: none;
-}
-
-.recognition-header {
-  margin-bottom: 3rem;
-}
-
-.recognition-title {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  letter-spacing: 0.1em;
-  color: #fff;
-}
-
-.recognition-footer {
-  margin-top: 3rem;
-  opacity: 0.5;
-}
-
-#trustindex-widget {
-  min-height: 150px;
-  filter: grayscale(1) invert(1) brightness(1.5); /* Force it to match dark/gold theme */
-  transition: all 0.5s ease;
-}
-
-#trustindex-widget:hover {
-  filter: grayscale(0.5) invert(1) brightness(1.2);
-}
-
-@media (max-width: 768px) {
-  .sacred-recognition-container {
-    padding: 2rem 1.5rem;
-    margin: 4rem 1rem;
-  }
 }
 </style>

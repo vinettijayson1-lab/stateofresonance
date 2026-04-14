@@ -6,8 +6,6 @@
         <p class="product-meta" style="opacity: 0.4; letter-spacing: 0.3em;">@STATEOFRESONANCE</p>
       </div>
       
-      <!-- TrustIndex Widget -->
-      <div class="ti-widget" data-widget-id="23e85926815b0989143629301fc"></div>
 
       <!-- Fallback / Static Feed -->
       <div class="insta-grid section-top">
