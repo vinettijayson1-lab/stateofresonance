@@ -1066,7 +1066,7 @@ const handleSmsSync = async () => {
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--color-gold-muted);
-  opacity: 0.6;
+  opacity: 0.85;
   margin-bottom: 1.25rem;
 }
 

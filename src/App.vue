@@ -396,15 +396,15 @@ const auraStyle = computed(() => {
           </div>
         </button>
 
-        <button @click="cart.isOpen = true; mobileMenuOpen = false" class="nav-link reservoir-btn" style="background: none; border: none; cursor: pointer;">
+        <button @click="cart.isOpen = true; mobileMenuOpen = false" class="nav-link reservoir-btn" style="background: none; border: none; cursor: pointer;" aria-label="Open shopping cart">
           <span class="desktop-only text-label">
             <span class="label-primary">{{ $t('nav.reservoir') }}</span>
             <span class="label-hover">VIEW CART</span>
           </span>
-          <svg class="mobile-only cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg class="mobile-only cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <path d="M16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11M5 9H19L20 21H4L5 9Z" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <span class="reservoir-count" v-if="cart.items.length > 0">{{ cart.items.length }}</span>
+          <span class="reservoir-count" v-if="cart.items.length > 0" aria-label="{{ cart.items.length }} items in cart">{{ cart.items.length }}</span>
         </button>
       </div>
     </nav>
@@ -476,11 +476,11 @@ const auraStyle = computed(() => {
           <div class="footer-social-resonance">
             <span class="meta-vibe gold-text" style="display: block; margin-bottom: 1rem; margin-top: 2rem;">CONNECT WITH RESONANCE</span>
             <div class="social-icons-grid">
-              <a href="https://instagram.com/resonancestateof" target="_blank" class="social-icon-link"><Instagram :size="18" /></a>
-              <a href="https://facebook.com/stateofresonance" target="_blank" class="social-icon-link"><Facebook :size="18" /></a>
-              <a href="https://twitter.com/stateofresonance" target="_blank" class="social-icon-link"><Twitter :size="18" /></a>
-              <a href="https://tiktok.com/@stateofresonance" target="_blank" class="social-icon-link"><Music2 :size="18" /></a>
-              <a href="https://pinterest.com/stateofresonance" target="_blank" class="social-icon-link"><Compass :size="18" /></a>
+              <a href="https://instagram.com/resonancestateof" target="_blank" class="social-icon-link" aria-label="State of Resonance on Instagram"><Instagram :size="18" /></a>
+              <a href="https://facebook.com/stateofresonance" target="_blank" class="social-icon-link" aria-label="State of Resonance on Facebook"><Facebook :size="18" /></a>
+              <a href="https://twitter.com/stateofresonance" target="_blank" class="social-icon-link" aria-label="State of Resonance on X (Twitter)"><Twitter :size="18" /></a>
+              <a href="https://tiktok.com/@stateofresonance" target="_blank" class="social-icon-link" aria-label="State of Resonance on TikTok"><Music2 :size="18" /></a>
+              <a href="https://pinterest.com/stateofresonance" target="_blank" class="social-icon-link" aria-label="State of Resonance on Pinterest"><Compass :size="18" /></a>
             </div>
           </div>
         </div>

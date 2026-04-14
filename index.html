@@ -125,11 +125,10 @@
          Moves ALL tracking off the critical path (fixes TBT)
          ===================================================== -->
     <script>
-    // Defer ALL tracking until truly idle — eliminates TBT completely
-    // requestIdleCallback fires AFTER TTI (Time to Interactive) so it cannot contribute to TBT
-    var _deferTracking = function() {
+    // TIER 1: Core pixels — fire on idle (after TTI, no TBT impact)
+    var _fireCoreTracking = function() {
 
-      // Meta Pixel
+      // Meta Pixel — single fbevents.js load, primary pixel only
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -138,13 +137,18 @@
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '929763562840150');
-      fbq('init', '1218840833794945');
-      fbq('init', '1649687422896377');
-      fbq('init', '1229674872615162');
-      fbq('init', '4457781524456415');
-      fbq('init', '2306478613211661');
+      fbq('init', '929763562840150');  // Primary pixel
       fbq('track', 'PageView');
+      // Secondary pixels — queued after primary loads (avoids parallel config fetches)
+      setTimeout(function() {
+        if (window.fbq) {
+          fbq('init', '1218840833794945');
+          fbq('init', '1649687422896377');
+          fbq('init', '1229674872615162');
+          fbq('init', '4457781524456415');
+          fbq('init', '2306478613211661');
+        }
+      }, 3000);
 
       // TikTok Pixel
       !function (w, d, t) {
@@ -155,12 +159,7 @@
         ttq.page();
       }(window, document, 'ttq');
 
-      // Reddit Pixel
-      !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
-      rdt('init','a2_iscn2het12mu');
-      rdt('track', 'PageVisit');
-
-      // Google Analytics (deferred with everything else)
+      // Google Analytics
       var gaScript = document.createElement('script');
       gaScript.async = true;
       gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-926N7SF093';
@@ -170,16 +169,34 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-926N7SF093');
-        gtag('event', 'page_view');
       };
     };
 
-    // requestIdleCallback fires after browser is idle (after TTI) — zero TBT impact
-    // Falls back to setTimeout(2000) for browsers that don't support it
+    // TIER 2: Reddit pixel — deferred until AFTER first user interaction
+    // Reddit pixel caused 4,470ms scripting time in Lighthouse — keep it completely off critical path
+    var _redditLoaded = false;
+    var _fireReddit = function() {
+      if (_redditLoaded) return;
+      _redditLoaded = true;
+      !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+      rdt('init','a2_iscn2het12mu');
+      rdt('track', 'PageVisit');
+    };
+    // Fire Reddit on first scroll, click, or touch — whichever comes first
+    ['scroll','click','touchstart','keydown'].forEach(function(ev) {
+      window.addEventListener(ev, function h() {
+        _fireReddit();
+        window.removeEventListener(ev, h);
+      }, { once: true, passive: true });
+    });
+    // Fallback: fire Reddit after 8s if user never interacts
+    setTimeout(_fireReddit, 8000);
+
+    // Fire core tracking on idle
     if ('requestIdleCallback' in window) {
-      requestIdleCallback(_deferTracking, { timeout: 4000 });
+      requestIdleCallback(_fireCoreTracking, { timeout: 4000 });
     } else {
-      setTimeout(_deferTracking, 2000);
+      setTimeout(_fireCoreTracking, 2000);
     }
     </script>
 
