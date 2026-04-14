@@ -181,6 +181,52 @@ const handleSmsSync = async () => {
       </div>
     </div>
 
+    <!-- ===== PRODUCTS: RIGHT UNDER THE HERO ===== -->
+    <!-- The State Collection -->
+    <section class="products-section container section-top">
+      <div class="section-header">
+        <div class="section-eyebrow">THE STATE COLLECTION · LIMITED DROPS · PREMIUM MATERIALS</div>
+        <h2 class="hero-title" style="font-size: 2.5rem; text-align: left;">THE STATE COLLECTION</h2>
+        <p class="product-meta">HEAVYWEIGHT COTTON — OVERSIZED FIT — LIMITED QUANTITIES</p>
+      </div>
+      <div v-if="loading" class="skeleton-grid section-top">
+        <div v-for="n in 8" :key="n" class="skeleton-card"></div>
+      </div>
+      <div v-else-if="attireProducts.length === 0" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;">
+        <p style="font-size:0.75rem;letter-spacing:0.2em;margin-bottom:1.5rem;">COLLECTION INITIALIZING...</p>
+        <router-link to="/best-sellers" class="btn-gold">VIEW ALL CLOTHING →</router-link>
+      </div>
+      <div v-else class="product-grid section-top">
+        <ProductCard v-for="product in attireProducts" :key="product.id" :product="product" />
+      </div>
+      <div style="text-align: center; margin-top: 4rem;">
+        <router-link to="/best-sellers" class="btn-gold">SHOP THE COLLECTION →</router-link>
+      </div>
+    </section>
+
+    <!-- All Apparel / Artifacts -->
+    <section class="products-section container section-top">
+      <div class="section-header">
+        <div class="section-eyebrow">THE FREQUENCY ARCHIVE · WEARABLE ARTIFACTS</div>
+        <h2 class="hero-title" style="font-size: 2.5rem; text-align: left;">ALL ARTIFACTS</h2>
+        <p class="product-meta">ESOTERIC APPAREL — FREQUENCY-CALIBRATED — LIMITED PRODUCTION</p>
+      </div>
+      <div v-if="loading" class="skeleton-grid section-top">
+        <div v-for="n in 8" :key="n" class="skeleton-card"></div>
+      </div>
+      <div v-else-if="esotericProducts.length === 0" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;">
+        <p style="font-size:0.75rem;letter-spacing:0.2em;margin-bottom:1.5rem;">ARTIFACTS LOADING...</p>
+        <router-link to="/best-sellers" class="btn-gold">SHOP ALL CLOTHING →</router-link>
+      </div>
+      <div v-else class="product-grid section-top">
+        <ProductCard v-for="product in esotericProducts" :key="product.id" :product="product" />
+      </div>
+      <div style="text-align: center; margin-top: 4rem;">
+        <router-link to="/best-sellers" class="btn-gold">SHOP THE FULL COLLECTION →</router-link>
+      </div>
+    </section>
+    <!-- ===== END PRODUCTS ===== -->
+
     <VaultDropTeaser />
 
     <section class="bio-brand-identity" style="position: relative; z-index: 20; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 8vh 5vw; background: linear-gradient(180deg, var(--color-emerald-deep) 0%, rgba(10,10,12,1) 100%); box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.05); border-top: 1px solid rgba(212, 175, 55, 0.2); border-bottom: 2px solid rgba(212, 175, 55, 0.1);">
@@ -538,49 +584,6 @@ const handleSmsSync = async () => {
       </div>
     </section>
 
-    <!-- The State Collection -->
-    <section class="products-section container section-top">
-      <div class="section-header">
-        <div class="section-eyebrow">THE STATE COLLECTION · LIMITED DROPS · PREMIUM MATERIALS</div>
-        <h2 class="hero-title" style="font-size: 2.5rem; text-align: left;">THE STATE COLLECTION</h2>
-        <p class="product-meta">HEAVYWEIGHT COTTON — OVERSIZED FIT — LIMITED QUANTITIES</p>
-      </div>
-      <div v-if="loading" class="skeleton-grid section-top">
-        <div v-for="n in 4" :key="n" class="skeleton-card"></div>
-      </div>
-      <div v-else-if="attireProducts.length === 0" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;">
-        <p style="font-size:0.75rem;letter-spacing:0.2em;margin-bottom:1.5rem;">COLLECTION INITIALIZING...</p>
-        <router-link to="/best-sellers" class="btn-gold">VIEW ALL CLOTHING →</router-link>
-      </div>
-      <div v-else class="product-grid section-top">
-        <ProductCard v-for="product in attireProducts" :key="product.id" :product="product" />
-      </div>
-      <div style="text-align: center; margin-top: 4rem;">
-        <router-link to="/best-sellers" class="btn-gold">SHOP THE COLLECTION →</router-link>
-      </div>
-    </section>
-
-    <!-- All Apparel / Artifacts -->
-    <section class="products-section container section-top">
-      <div class="section-header">
-        <div class="section-eyebrow">THE FREQUENCY ARCHIVE · WEARABLE ARTIFACTS</div>
-        <h2 class="hero-title" style="font-size: 2.5rem; text-align: left;">ALL ARTIFACTS</h2>
-        <p class="product-meta">ESOTERIC APPAREL — FREQUENCY-CALIBRATED — LIMITED PRODUCTION</p>
-      </div>
-      <div v-if="loading" class="skeleton-grid section-top">
-        <div v-for="n in 4" :key="n" class="skeleton-card"></div>
-      </div>
-      <div v-else-if="esotericProducts.length === 0" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;">
-        <p style="font-size:0.75rem;letter-spacing:0.2em;margin-bottom:1.5rem;">ARTIFACTS LOADING...</p>
-        <router-link to="/best-sellers" class="btn-gold">SHOP ALL CLOTHING →</router-link>
-      </div>
-      <div v-else class="product-grid section-top">
-        <ProductCard v-for="product in esotericProducts" :key="product.id" :product="product" />
-      </div>
-      <div style="text-align: center; margin-top: 4rem;">
-        <router-link to="/best-sellers" class="btn-gold">SHOP THE FULL COLLECTION →</router-link>
-      </div>
-    </section>
 
     <SocialProof />
 

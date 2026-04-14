@@ -24,19 +24,6 @@ const products = ref<Product[]>([])
 const loading = ref(true)
 const addingId = ref<string | null>(null)
 
-const BESTSELLER_HANDLES = [
-  'resonance-hoodie-963',
-  'ghost-bones-tee',
-  'signal-crewneck',
-  'void-hoodie',
-  'frequency-tee-528',
-  'archon-hoodie',
-  'static-tee',
-  'singularity-crewneck',
-  'initiate-tee',
-  'resonance-tee-432',
-]
-
 const RANK_LABELS: Record<number, string> = {
   1: 'Best Seller',
   2: 'Top Rated',
@@ -45,24 +32,28 @@ const RANK_LABELS: Record<number, string> = {
 
 onMounted(async () => {
   try {
-    // Fetch all attire products, take top 10
-    const res = await fetch('/api/products?collection=the-ghost-and-bones&limit=20')
+    // Fetch all attire products
+    const res = await fetch('/api/products?limit=40')
     if (!res.ok) throw new Error('Fetch failed')
-    const data = await res.json()
-    // Prefer known handles order, fallback to API order
-    const ordered: Product[] = []
-    for (const handle of BESTSELLER_HANDLES) {
-      const match = data.find((p: Product) => p.handle === handle)
-      if (match) ordered.push(match)
-    }
-    // Fill remaining up to 10 from API
-    for (const p of data) {
-      if (ordered.length >= 10) break
-      if (!ordered.find(o => o.id === p.id)) ordered.push(p)
-    }
+    const data: Product[] = await res.json()
+
+    // Identify hoodies/pullovers/crewnecks by title keywords
+    const hoodieKeywords = ['hoodie', 'pullover', 'crewneck', 'sweatshirt']
+    const isHoodie = (p: Product) =>
+      hoodieKeywords.some(kw => (p.title || '').toLowerCase().includes(kw))
+
+    const hoodies = data.filter(isHoodie)
+    const others  = data.filter(p => !isHoodie(p))
+
+    // Build ranked list: 5 hoodies first, then 5 other products
+    const ordered: Product[] = [
+      ...hoodies.slice(0, 5),
+      ...others.slice(0, 5)
+    ]
+
     products.value = ordered.slice(0, 10)
   } catch (e) {
-    // fallback: fetch attire broadly
+    // Fallback: fetch broadly
     try {
       const res = await fetch('/api/products?limit=10')
       if (res.ok) products.value = await res.json()
