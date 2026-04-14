@@ -66,9 +66,13 @@ export const cart: CartStore = reactive({
       // Generate Event ID for Deduplication
       const eventId = 'add_' + Math.random().toString(36).substring(2, 16)
       
-      // Extract raw catalog ID from gid:// using base product ID (not variant!)
+      // Meta catalogs index by VARIANT ID — use variantId first for catalog matching
+      const vid = product.variantId || product.id;
+      const rawId = typeof vid === 'string' && vid.includes('gid://') ? (vid.split('/').pop() || vid) : vid;
+      
+      // Also extract base product ID (for CAPI only)
       const baseId = product.id;
-      const rawId = typeof baseId === 'string' && baseId.includes('gid://') ? (baseId.split('/').pop() || baseId) : baseId;
+      const rawBaseId = typeof baseId === 'string' && baseId.includes('gid://') ? (baseId.split('/').pop() || baseId) : baseId;
       
       // Meta Pixel
       if ((window as any).fbq) {

@@ -24,7 +24,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/></svg>
       <div class="badge-copy">
         <span class="badge-title">FREE SHIPPING</span>
-        <span class="badge-sub">Orders over $100 CAD</span>
+        <span class="badge-sub">Orders over $110 CAD</span>
       </div>
     </div>
 

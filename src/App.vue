@@ -8,7 +8,7 @@ import AnnouncementBar from './components/AnnouncementBar.vue'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import CurrencySwitcher from './components/CurrencySwitcher.vue'
 import CartSidebar from './components/CartSidebar.vue'
-import ResonatorToast from './components/ResonatorToast.vue'
+
 import TheOracle from './components/TheOracle.vue'
 import ExitIntentGate from './components/ExitIntentGate.vue'
 import { cart } from './store/cart'
@@ -312,7 +312,7 @@ const auraStyle = computed(() => {
 
         <!-- WORLD / LORE -->
         <router-link to="/about" class="nav-link" @click="mobileMenuOpen = false">
-          <span class="label-primary">THE WORLD</span>
+          <span class="label-primary">THE WORD</span>
           <span class="label-hover">ABOUT</span>
         </router-link>
 
@@ -411,7 +411,7 @@ const auraStyle = computed(() => {
     </div>
 
     <CartSidebar />
-    <ResonatorToast />
+
     <ExitIntentGate />
     <TheOracle />
     <div class="toast-container"></div>

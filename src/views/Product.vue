@@ -324,15 +324,18 @@ onMounted(async () => {
       
       // Meta Pixel Tracking
       if ((window as any).fbq) {
-        const pId = product.value.id;
-        const rawId = typeof pId === 'string' && pId.includes('gid://') ? (pId.split('/').pop() || pId) : pId;
+        // Meta catalogs index by VARIANT ID — use variant as content_ids for catalog matching
+        const firstVariantId = product.value.variants?.[0]?.id || product.value.variantId || product.value.id
+        const rawVariantId = typeof firstVariantId === 'string' && firstVariantId.includes('gid://')
+          ? (firstVariantId.split('/').pop() || firstVariantId)
+          : firstVariantId
         const pPrice = parseFloat(product.value.price.replace(/[^0-9.]/g, ''));
         const eventId = 'view_' + Math.random().toString(36).substring(2, 16);
         
         (window as any).fbq('track', 'ViewContent', {
           content_name: product.value.title,
-          content_ids: [rawId],
-          content_type: 'product',
+          content_ids: [rawVariantId],
+          content_type: 'product_group',
           value: pPrice * (currencyStore.rates[currencyStore.active] || 1),
           currency: currencyStore.active
         }, { eventID: eventId });
@@ -351,7 +354,7 @@ onMounted(async () => {
                 currency: currencyStore.active,
                 value: pPrice * (currencyStore.rates[currencyStore.active] || 1),
                 contents: [{
-                  id: rawId,
+                  id: rawVariantId,
                   name: product.value.title,
                   quantity: 1,
                   price: pPrice * (currencyStore.rates[currencyStore.active] || 1)
@@ -619,19 +622,7 @@ const onImgError = (e: any) => {
           <p class="freq-meaning-body">{{ freqDescription.body }}</p>
         </div>
 
-        <!-- Oracle's Assessment -->
-        <div v-if="oracleAssessment" class="oracle-assessment-panel glass glow-gold" style="margin-top: 2rem;">
-          <div class="oracle-header">
-            <Sparkles :size="14" class="gold-text" />
-            <span class="oracle-label">ORACLE'S ASSESSMENT</span>
-          </div>
-          <p class="oracle-tier-marker">STATUS: {{ resonance.tier }} ALIGNMENT</p>
-          <p class="oracle-note">{{ oracleAssessment }}</p>
-          <div class="alignment-bar">
-            <div class="alignment-fill" :style="{ width: '85%' }"></div>
-          </div>
-        </div>
-        
+
       </div>
       <div class="product-detail-info">
         <p class="product-meta">{{ product.category }} / {{ product.type }}</p>
@@ -722,13 +713,6 @@ const onImgError = (e: any) => {
             <span class="pdp-trust-item">🔒 Shopify Secured</span>
           </div>
 
-          <!-- Oracle Trigger (Tertiary Action) -->
-          <div class="oracle-secondary-actions">
-            <button @click="consultOracle" class="btn-oracle-trigger interactive glass glow-hover">
-              <Sparkles :size="14" class="gold-text" />
-              Ask the Oracle
-            </button>
-          </div>
         </div>
 
         <!-- Trust Badges -->

@@ -77,7 +77,7 @@ const trackCheckout = () => {
     return id.includes('gid://') ? (id.split('/').pop() || id) : id;
   }
 
-  // Meta Pixel
+  // Meta Pixel — use variant IDs as content_ids for catalog matching
   if ((window as any).fbq) {
     (window as any).fbq('track', 'InitiateCheckout', {
       value: priceVal * (currencyStore.rates[currency] || 1),

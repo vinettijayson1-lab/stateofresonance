@@ -218,17 +218,17 @@ const seoMap: Record<string, any> = {
   en: {
     'Home': {
       title: 'State of Resonance | Esoteric Occult Streetwear Canada',
-      description: "Canada's #1 esoteric streetwear brand. Premium sacred geometry hoodies, occult graphic tees, and limited-drop apparel. Frequency-calibrated clothing — wear your vibration. Free shipping over $100 CAD.",
+      description: "Canada's #1 esoteric streetwear brand. Premium sacred geometry hoodies, occult graphic tees, and limited-drop apparel. Frequency-calibrated clothing — wear your vibration. Free shipping over $110 CAD.",
       robots: 'index, follow'
     },
     'BestSellers': {
       title: 'Best Selling Occult Streetwear | State of Resonance',
-      description: 'Shop our most-loved esoteric streetwear pieces. Sacred geometry hoodies, occult graphic tees and limited-edition drops by State of Resonance. Free shipping over $100 CAD.',
+      description: 'Shop our most-loved esoteric streetwear pieces. Sacred geometry hoodies, occult graphic tees and limited-edition drops by State of Resonance. Free shipping over $110 CAD.',
       robots: 'index, follow'
     },
     'Attire': {
       title: 'Occult Streetwear Canada | Sacred Geometry Hoodies \u0026 Esoteric Tees | State of Resonance',
-      description: 'Luxury occult streetwear made in Canada. Sacred geometry hoodies, esoteric graphic tees, and frequency-calibrated apparel. Limited drops — 50 pieces per run. Free shipping on orders over $100.'
+      description: 'Luxury occult streetwear made in Canada. Sacred geometry hoodies, esoteric graphic tees, and frequency-calibrated apparel. Limited drops — 50 pieces per run. Free shipping on orders over $110.'
     },
     'Transmissions': {
       title: 'Solfeggio Frequencies, Occult Lore \u0026 Esoteric Wisdom | State of Resonance Blog',

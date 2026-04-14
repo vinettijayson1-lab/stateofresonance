@@ -74,9 +74,6 @@ onMounted(async () => {
   }
 })
 
-const summonOracle = () => {
-  window.dispatchEvent(new CustomEvent('summon-oracle'))
-}
 
 const seekerEmail = ref('')
 const seekerPhone = ref('')
@@ -425,26 +422,6 @@ const handleSmsSync = async () => {
 
     <Testimonials />
 
-    <!-- The Oracle Card -->
-    <section class="oracle-card-section container" style="margin-top: 5vh; margin-bottom: 5vh;">
-      <div class="oracle-card glass" style="border: 1px solid rgba(212, 175, 55, 0.4); background: rgba(212,175,55,0.05); text-align: center; padding: 4rem 2rem; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, rgba(212,175,55,0) 70%); pointer-events: none; animation: pulse 4s infinite alternate;"></div>
-        <div style="margin-bottom: 2rem;">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto; opacity: 0.8;">
-            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path>
-          </svg>
-        </div>
-        <h2 style="font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3rem); letter-spacing: 0.15em; color: white; margin-bottom: 1rem; text-transform: uppercase;">
-          {{ $t('oracle.ask').split(' ')[0] }} <span style="color: var(--color-gold);">{{ $t('oracle.ask').split(' ').slice(1).join(' ') }}</span>
-        </h2>
-        <p style="font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.6); font-style: italic; max-width: 600px; margin: 0 auto 3rem auto;">
-          {{ $t('oracle.subtitle') }}
-        </p>
-        <button @click="summonOracle" class="btn-gold" style="padding: 1rem 3rem; font-size: 0.9rem; letter-spacing: 0.3em; display: inline-block; background: none; cursor: pointer;">
-          {{ $t('oracle.button') }}
-        </button>
-      </div>
-    </section>
 
     <!-- START HERE: Quiz CTA -->
     <section class="frequency-calibration-cta">
@@ -542,7 +519,7 @@ const handleSmsSync = async () => {
     <!-- Manifesto Section -->
     <section class="manifesto">
       <div class="container manifesto-content">
-        <p class="manifesto-eyebrow">— The World of Resonance —</p>
+        <p class="manifesto-eyebrow">— The Word of Resonance —</p>
         <h2 class="manifesto-title">State of Resonance: Esoteric Luxury Streetwear</h2>
         <p class="manifesto-text">
           This is not a trend label. This is a design world built around symbolic codes, esoteric motifs, and the belief that what you wear carries weight beyond fabric.

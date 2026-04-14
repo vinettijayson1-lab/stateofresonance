@@ -47,7 +47,7 @@ const faqs = [
   },
   {
     q: 'Do you ship to Canada?',
-    a: 'Yes. State of Resonance ships across Canada. Orders over $100 CAD qualify for free shipping. Standard delivery is 3–7 business days. All orders are tracked from the laboratory to your threshold.'
+    a: 'Yes. State of Resonance ships across Canada. Orders over $110 CAD qualify for free shipping. Standard delivery is 3–7 business days. All orders are tracked from the laboratory to your threshold.'
   },
   {
     q: 'What is your return policy?',
