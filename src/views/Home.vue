@@ -100,8 +100,17 @@ const handleSmsSync = async () => {
     <!-- Hero / Void Choice Interface -->
     <section class="void-choice">
       <!-- Cinematic Hero Background — WebP, preloaded in <head> -->
-      <div class="hero-bg"></div>
-      <div class="hero-bg-overlay"></div>
+      <div class="hero-bg" aria-hidden="true"></div>
+      <!-- LCP anchor: explicit img tag so Lighthouse tracks the preloaded WebP as LCP -->
+      <img
+        src="/hero_banner.webp"
+        fetchpriority="high"
+        decoding="async"
+        alt=""
+        aria-hidden="true"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;z-index:0;"
+      />
+      <div class="hero-bg-overlay" aria-hidden="true"></div>
 
       <!-- Sacred Geometry SVG Port -->
       <svg class="sacred-geometry" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" fill="none">

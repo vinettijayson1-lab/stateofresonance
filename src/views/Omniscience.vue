@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { nextTick, ref, onMounted, onUnmounted } from 'vue';
+import { nextTick, ref, onMounted, onUnmounted, defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import { cart } from '../store/cart';
 import { useI18n } from 'vue-i18n';
 import { currencyStore } from '../store/currency';
 import { useResonanceStore } from '../store/resonance';
-import { ArrowLeft, Volume2, Sparkles } from 'lucide-vue-next';
+import { ArrowLeft, Volume2 } from 'lucide-vue-next';
 import SocialShare from '../components/SocialShare.vue';
-import Omniscience3D from '../components/Omniscience3D.vue';
+// Lazy-load Three.js — 532KB only loads if user visits this route
+const Omniscience3D = defineAsyncComponent(() => import('../components/Omniscience3D.vue'));
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 

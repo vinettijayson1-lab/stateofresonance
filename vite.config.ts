@@ -18,8 +18,19 @@ export default defineConfig({
     assetsInlineLimit: 4096,
     // Enable CSS code splitting (loads only the CSS needed per route)
     cssCodeSplit: true,
-    // Minify with esbuild (fastest, nearly as good as terser)
-    minify: 'esbuild',
+    // Minify with terser — better dead-code elimination than esbuild
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,   // Strip all console.log/warn/error in prod
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.warn', 'console.error'],
+        passes: 2             // Two passes for max compression
+      },
+      format: {
+        comments: false       // Strip all comments
+      }
+    },
     rollupOptions: {
       output: {
         // Manual chunk splitting — separates vendor libs from app code
