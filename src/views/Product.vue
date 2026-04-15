@@ -807,8 +807,11 @@ const onImgError = (e: any) => {
   aspect-ratio: 4/5;
   max-height: 75vh;
   overflow: hidden;
+  background-color: var(--color-obsidian);
+  background-image: url('/images/occult-card-bg.png');
+  background-size: cover;
+  background-position: center;
   margin-bottom: 1rem;
-  background: rgba(0,0,0,0.2);
   border-radius: 4px;
   border: 1px solid rgba(212, 175, 55, 0.2);
   box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(212, 175, 55, 0.05);

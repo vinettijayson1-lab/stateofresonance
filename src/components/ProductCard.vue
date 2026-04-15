@@ -205,7 +205,10 @@ onMounted(() => {
   display: block;
   aspect-ratio: 3/4;
   overflow: hidden;
-  background: var(--color-obsidian);
+  background-color: var(--color-obsidian);
+  background-image: url('/images/occult-card-bg.png');
+  background-size: cover;
+  background-position: center;
   border: 1px solid rgba(212, 175, 55, 0.15);
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
