@@ -297,6 +297,8 @@ onMounted(() => {
 
 .product-info {
   padding: 1.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .product-meta {

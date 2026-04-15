@@ -175,6 +175,14 @@ h1, h2, h3, h4 {
   padding: 10vh 0;
 }
 
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+  }
+}
+
 .product-card {
   position: relative;
   background: var(--color-onyx);
@@ -182,6 +190,7 @@ h1, h2, h3, h4 {
   overflow: hidden;
   transition: var(--transition-premium);
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  max-width: 100%;
 }
 
 @media (hover: hover) and (pointer: fine) {
