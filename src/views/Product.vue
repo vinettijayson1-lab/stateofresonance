@@ -808,7 +808,7 @@ const onImgError = (e: any) => {
   aspect-ratio: 4/5;
   max-height: 75vh;
   overflow: hidden;
-  background-color: transparent;
+  background-color: #000000;
   backdrop-filter: blur(8px);
   margin-bottom: 1rem;
   border-radius: 4px;

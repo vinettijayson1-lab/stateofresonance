@@ -190,9 +190,8 @@ h1, h2, h3, h4 {
 
 .product-card {
   position: relative;
-  background: transparent;
+  background: var(--color-onyx);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(12px);
   overflow: hidden;
   transition: var(--transition-premium);
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
@@ -210,7 +209,8 @@ h1, h2, h3, h4 {
 .product-img-wrapper {
   aspect-ratio: 3/4;
   overflow: hidden;
-  background-color: transparent;
+  background-color: #000000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
 }
 
