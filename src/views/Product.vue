@@ -808,7 +808,8 @@ const onImgError = (e: any) => {
   aspect-ratio: 4/5;
   max-height: 75vh;
   overflow: hidden;
-  background-color: #000;
+  background-color: transparent;
+  backdrop-filter: blur(8px);
   margin-bottom: 1rem;
   border-radius: 4px;
   border: 1px solid rgba(212, 175, 55, 0.2);
@@ -857,6 +858,8 @@ const onImgError = (e: any) => {
   height: 100%;
   object-fit: contain;
   background-color: transparent;
+  mix-blend-mode: screen;
+  filter: contrast(1.1) brightness(0.9);
 }
 
 .calibration-overlay {
