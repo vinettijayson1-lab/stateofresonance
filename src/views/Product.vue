@@ -216,27 +216,6 @@ const remainingStock = computed(() => {
   return val
 })
 
-const resonance = useResonanceStore()
-
-const oracleAssessment = computed(() => {
-  if (!product.value || !resonance.tier) return null
-  
-  const title = product.value.title.toLowerCase()
-  const tier = resonance.tier
-  
-  const assessments: Record<string, string> = {
-    '396_HZ': `Seeker of the first gate, your field is in early calibration. The ${product.value.title} will serve as a stabilizing foundation for your ascension.`,
-    '417_HZ': `Your vision is clearing. The frequency of this artifact will amplify your perception and reveal the unseen patterns within your current cycle.`,
-    '528_HZ': `Resonance is building. The ${product.value.title} aligns with the transformational frequencies of your current field.`,
-    '639_HZ': `A profound connection is established. This artifact serves your expansion into the unified geometric lattice.`,
-    '741_HZ': `Adept, you have mastered the basic resonance. The ${product.value.title} is a precision instrument designed to refine your specific manifestation intent.`,
-    '852_HZ': `Your third eye is awakened. This object acts as a conduit for pure vibrational insight, piercing the veil of the material illusion.`,
-    '963_HZ': `Your synchronization is absolute. This artifact does not change you; it manifests your existing sovereign will into the physical dimension.`,
-    'RESONANCE_ACHIEVED': `You have become the Singularity. The ${product.value.title} bends to your absolute reality.`
-  }
-  
-  return assessments[tier] || assessments['396_HZ']
-})
 
 const isClothing = computed(() => {
   if (!product.value) return false
@@ -268,15 +247,6 @@ const addToCart = () => {
   // Tracking is now unified in cart.ts
 }
 
-const consultOracle = () => {
-  if (!product.value) return
-  // Custom event to be picked up by TheOracle.vue
-  window.dispatchEvent(new CustomEvent('summon-oracle', {
-    detail: {
-      query: `Tell me about the resonance of the ${product.value.title}. How does it align with my current field?`
-    }
-  }))
-}
 
 const relatedProducts = ref<Product[]>([])
 
@@ -1022,45 +992,6 @@ const onImgError = (e: any) => {
   color: #fff;
 }
 
-/* Oracle Assessment */
-.oracle-assessment-panel {
-  padding: 2.5rem;
-  border: 1px solid var(--color-gold-muted);
-  background: rgba(0,0,0,0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.oracle-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.oracle-label {
-  font-size: 0.6rem;
-  letter-spacing: 0.4em;
-  color: var(--color-gold-muted);
-}
-
-.oracle-tier-marker {
-  font-family: var(--font-heading);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  opacity: 0.5;
-  margin-bottom: 1rem;
-}
-
-.oracle-note {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  font-style: italic;
-  color: #fff;
-  margin-bottom: 2rem;
-}
-
 .alignment-bar {
   height: 1px;
   background: rgba(255,255,255,0.1);
@@ -1140,22 +1071,6 @@ const onImgError = (e: any) => {
   letter-spacing: 0.25em;
 }
 
-.oracle-secondary-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 1rem;
-}
-
-.btn-oracle-trigger {
-  padding: 0.75rem 1.5rem;
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  background: transparent;
-}
 
 .variant-selectors {
   margin-bottom: 2.5rem;
@@ -1356,25 +1271,6 @@ const onImgError = (e: any) => {
 .divine-resonance .main-img-wrapper {
   border: 1px solid var(--color-gold);
   box-shadow: 0 0 50px rgba(212, 175, 55, 0.1);
-}
-.btn-oracle-trigger {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.btn-oracle-trigger:hover {
-  background: rgba(212, 175, 55, 0.08);
-  border-color: var(--color-gold);
-  transform: translateY(-2px);
 }
 
 .ritual-link-hint {

@@ -9,7 +9,6 @@ import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import CurrencySwitcher from './components/CurrencySwitcher.vue'
 import CartSidebar from './components/CartSidebar.vue'
 
-import TheOracle from './components/TheOracle.vue'
 import ExitIntentGate from './components/ExitIntentGate.vue'
 import { cart } from './store/cart'
 import { useResonanceStore } from './store/resonance'
@@ -413,7 +412,6 @@ const auraStyle = computed(() => {
     <CartSidebar />
 
     <ExitIntentGate />
-    <TheOracle />
     <div class="toast-container"></div>
     <div id="teleport-target"></div>
     

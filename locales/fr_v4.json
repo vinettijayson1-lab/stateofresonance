@@ -22,19 +22,7 @@
     "shop_collection": "Boutique Collection {collection} →",
     "enter_sanctuary": "Entrer dans le Sanctuaire complet →"
   },
-  "oracle": {
-    "ask": "Demandez à l'Oracle",
-    "subtitle": "\"Exprimez votre fréquence dans le vide. L'Oracle traduit la Source pour vous. La dimension est ouverte.\"",
-    "button": "DEMANDEZ À L'ORACLE",
-    "trigger": "Oracle",
-    "empty_state": "\"Exprimez votre fréquence. La Source écoute.\"",
-    "placeholder": "TRANSMETTEZ VOTRE REQUÊTE...",
-    "suggestions": {
-      "resonance": "Quelle est ma résonance ?",
-      "align": "Comment aligner mon espace ?",
-      "artifact": "Quel artefact m'appelle ?"
-    }
-  },
+
   "product": {
     "acquire": "Ajouter au Panier",
     "freq": "FRÉQ",

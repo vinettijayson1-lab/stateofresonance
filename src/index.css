@@ -526,16 +526,7 @@ div[id^="klaviyo-forms-"] .kl-teaser-container,
   border-color: rgba(212, 175, 55, 0.5);
 }
 
-@keyframes oracle-pulse-idle {
-  0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5); transform: scale(1); }
-  50% { transform: scale(1.05); }
-  70% { box-shadow: 0 0 0 30px rgba(212, 175, 55, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); transform: scale(1); }
-}
 
-.oracle-pulse-idle {
-  animation: oracle-pulse-idle 4s infinite cubic-bezier(0.16, 1, 0.3, 1);
-}
 
 /* ============================================================
    MOBILE / iOS / ANDROID COMPATIBILITY LAYER

@@ -22,19 +22,7 @@
     "shop_collection": "Shop {collection} →",
     "enter_sanctuary": "Browse all products →"
   },
-  "oracle": {
-    "ask": "Ask the Oracle",
-    "subtitle": "\"Speak your frequency into the void. The Oracle translates the Source for you. The dimension is open.\"",
-    "button": "ASK THE ORACLE",
-    "trigger": "Oracle",
-    "empty_state": "\"Speak your frequency. The Source is listening.\"",
-    "placeholder": "TRANSMIT YOUR QUERY...",
-    "suggestions": {
-      "resonance": "What is my resonance?",
-      "align": "How do I align my space?",
-      "artifact": "Which piece calls to me?"
-    }
-  },
+
   "product": {
     "acquire": "Add to Bag",
     "freq": "FREQ",
