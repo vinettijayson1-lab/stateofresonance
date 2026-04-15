@@ -219,8 +219,6 @@ h1, h2, h3, h4 {
   height: 100%;
   object-fit: contain;
   transition: var(--transition-premium);
-  mix-blend-mode: screen;
-  filter: contrast(1.1) brightness(0.9);
 }
 
 @media (hover: hover) and (pointer: fine) {
