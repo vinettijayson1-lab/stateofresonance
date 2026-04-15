@@ -723,7 +723,7 @@ const onImgError = (e: any) => {
           <div>
             <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Shipping & Returns</p>
             <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.8rem; opacity: 0.8; line-height: 1.6;">
-              <li>✦ Ships from Canada within 1–3 business days</li>
+              <li>✦ Ships from Canada, US, and EU</li>
               <li>✦ Free shipping on orders over $110 CAD</li>
               <li>✦ 30-day returns — no questions asked</li>
               <li>✦ Secure checkout powered by Shopify</li>
