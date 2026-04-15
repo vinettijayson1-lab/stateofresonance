@@ -195,7 +195,10 @@ h1, h2, h3, h4 {
 .product-img-wrapper {
   aspect-ratio: 3/4;
   overflow: hidden;
-  background: var(--color-obsidian);
+  background-color: var(--color-obsidian);
+  background-image: url('/images/occult-card-bg.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .product-img {
