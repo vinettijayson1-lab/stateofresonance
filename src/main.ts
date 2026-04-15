@@ -11,7 +11,29 @@ import { currencyStore } from './store/currency'
 // Register GSAP Plugins (Synchronicity Lockdown)
 gsap.registerPlugin(ScrollTrigger)
 
+import * as Sentry from '@sentry/vue'
+
 const app = createApp(App)
+
+// Initialize Sentry Analytics Guard
+Sentry.init({
+  app,
+  // TODO: Replace this placeholder with your actual DSN from Sentry.io
+  dsn: "https://examplePublicKey@o0.ingest.sentry.io/0",
+  integrations: [
+    Sentry.browserTracingIntegration(),
+    Sentry.replayIntegration({
+      maskAllText: false,
+      blockAllMedia: false,
+    }),
+  ],
+  // Performance Monitoring
+  tracesSampleRate: 1.0, 
+  // Session Replay
+  replaysSessionSampleRate: 0.1, 
+  replaysOnErrorSampleRate: 1.0, 
+});
+
 app.use(createPinia())
 app.use(router)
 app.use(i18n)

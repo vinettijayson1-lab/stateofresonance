@@ -56,6 +56,11 @@ a {
 body {
   overflow-x: hidden;
   line-height: 1.6;
+  background-color: var(--color-onyx);
+  background-image: url('/images/occult-card-bg.png');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
 
 h1, h2, h3, h4 {
@@ -204,10 +209,8 @@ h1, h2, h3, h4 {
 .product-img-wrapper {
   aspect-ratio: 3/4;
   overflow: hidden;
-  background-color: var(--color-obsidian);
-  background-image: url('/images/occult-card-bg.png');
-  background-size: cover;
-  background-position: center;
+  background-color: #000;
+  position: relative;
 }
 
 .product-img {

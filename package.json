@@ -12,6 +12,7 @@
     "@ai-sdk/openai": "0.0.34",
     "@ai-sdk/vue": "0.0.41",
     "@libsql/client": "^0.17.2",
+    "@sentry/vue": "^10.48.0",
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/vite": "^4.2.2",
     "@types/crypto-js": "^4.2.2",
