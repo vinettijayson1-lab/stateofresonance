@@ -18,8 +18,7 @@ const app = createApp(App)
 // Initialize Sentry Analytics Guard
 Sentry.init({
   app,
-  // TODO: Replace this placeholder with your actual DSN from Sentry.io
-  dsn: "https://examplePublicKey@o0.ingest.sentry.io/0",
+  dsn: "https://463e372e93b4df24a0ed40bc5c84f981@o4511226580959232.ingest.us.sentry.io/4511226583580672",
   integrations: [
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration({
