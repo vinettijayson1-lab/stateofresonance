@@ -7,7 +7,7 @@ import { klaviyoService } from '../services/klaviyo'
 import gsap from 'gsap'
 import ProductCard from '../components/ProductCard.vue'
 import StickyBuyBar from '../components/StickyBuyBar.vue'
-import TrustBadges from '../components/TrustBadges.vue'
+
 import SocialShare from '../components/SocialShare.vue'
 import FrequencyPlayer from '../components/FrequencyPlayer.vue'
 import { currencyStore } from '../store/currency'
@@ -685,8 +685,6 @@ const onImgError = (e: any) => {
 
         </div>
 
-        <!-- Trust Badges -->
-        <TrustBadges />
 
         <div v-if="!isAvailable" class="unavailable-note" style="margin-bottom: 3rem; text-align: left; padding: 1.5rem; background: rgba(255,255,255,0.03); border-left: 2px solid var(--color-gold-muted);">
           <span style="display: block; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.5rem;">Currently out of stock</span>

@@ -7,9 +7,6 @@ import App from './App.vue'
 import router from './router'
 import i18n from './i18n'
 import { currencyStore } from './store/currency'
-import { inject } from '@vercel/analytics'
-
-inject()
 
 // Register GSAP Plugins (Synchronicity Lockdown)
 gsap.registerPlugin(ScrollTrigger)
