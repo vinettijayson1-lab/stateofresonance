@@ -31,32 +31,12 @@ export default defineConfig({
         comments: false       // Strip all comments
       }
     },
+    // Consistent hashed filenames for long-term caching
     rollupOptions: {
       output: {
-        // Manual chunk splitting — separates vendor libs from app code
-        // Each chunk loads in parallel and is independently cacheable
-        manualChunks(id) {
-          // Vue core — tiny, always needed, cache forever
-          if (id.includes('node_modules/vue') || id.includes('node_modules/@vue') || id.includes('node_modules/vue-router') || id.includes('node_modules/vue-i18n')) {
-            return 'vue-core'
-          }
-          // GSAP — 113KB, shared across nearly all pages
-          if (id.includes('node_modules/gsap')) {
-            return 'gsap'
-          }
-          // Three.js — 532KB, ONLY loaded on Omniscience route
-          if (id.includes('node_modules/three')) {
-            return 'three'
-          }
-          // All other node_modules → single vendor chunk
-          if (id.includes('node_modules')) {
-            return 'vendor'
-          }
-        },
-        // Consistent hashed filenames for long-term caching
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
       }
     }
   },

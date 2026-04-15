@@ -1090,7 +1090,7 @@ const onImgError = (e: any) => {
 .commerce-primary-row {
   display: flex;
   gap: 1rem;
-  height: 3.5rem;
+  min-height: 3.5rem;
 }
 
 .qty-selector {
