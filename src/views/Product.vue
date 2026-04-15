@@ -859,7 +859,6 @@ const onImgError = (e: any) => {
   height: 100%;
   object-fit: contain;
   background-color: transparent;
-  mix-blend-mode: lighten;
 }
 
 .calibration-overlay {

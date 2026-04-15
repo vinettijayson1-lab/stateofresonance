@@ -206,7 +206,6 @@ h1, h2, h3, h4 {
   height: 100%;
   object-fit: contain;
   transition: var(--transition-premium);
-  mix-blend-mode: lighten;
 }
 
 @media (hover: hover) and (pointer: fine) {
