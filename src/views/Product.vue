@@ -45,6 +45,7 @@ interface Product {
 
 const route = useRoute()
 const router = useRouter()
+const resonance = useResonanceStore()
 const product = ref<Product | null>(null)
 const loading = ref(true)
 const acquiring = ref(false)
