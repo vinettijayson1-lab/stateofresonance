@@ -170,7 +170,7 @@ h1, h2, h3, h4 {
 /* Luxury Grid */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: 2rem;
   padding: 10vh 0;
 }
@@ -184,10 +184,12 @@ h1, h2, h3, h4 {
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
-.product-card:hover {
-  border-color: var(--color-gold-muted);
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212, 175, 55, 0.1);
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover {
+    border-color: var(--color-gold-muted);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212, 175, 55, 0.1);
+  }
 }
 
 .product-img-wrapper {
@@ -203,8 +205,10 @@ h1, h2, h3, h4 {
   transition: var(--transition-premium);
 }
 
-.product-card:hover .product-img {
-  transform: scale(1.05);
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover .product-img {
+    transform: scale(1.05);
+  }
 }
 
 .product-info {
@@ -243,11 +247,17 @@ h1, h2, h3, h4 {
   text-decoration: none;
   transition: var(--transition-fast);
   cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.btn-gold:hover {
-  border-color: var(--color-gold);
-  color: var(--color-gold);
+@media (hover: hover) and (pointer: fine) {
+  .btn-gold:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
 }
 
 .btn-premium {
@@ -263,6 +273,10 @@ h1, h2, h3, h4 {
   text-decoration: none;
   transition: var(--transition-fast);
   cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* === KLAVIYO STEALTH MODE (TOTAL BRAND CONTROL) === */
@@ -277,10 +291,12 @@ div[id^="klaviyo-forms-"] .kl-teaser-container,
   pointer-events: none !important;
 }
 
-.btn-premium:hover {
-  background: transparent;
-  color: var(--color-gold);
-  box-shadow: 0 0 30px hsla(var(--h-gold), var(--s-gold), var(--l-gold), 0.2);
+@media (hover: hover) and (pointer: fine) {
+  .btn-premium:hover {
+    background: transparent;
+    color: var(--color-gold);
+    box-shadow: 0 0 30px hsla(var(--h-gold), var(--s-gold), var(--l-gold), 0.2);
+  }
 }
 
 /* Premium Acquire Button (Synchronized Glint) */
@@ -302,6 +318,7 @@ div[id^="klaviyo-forms-"] .kl-teaser-container,
   overflow: hidden;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  min-height: 48px; /* High visibility on mobile */
 }
 
 .btn-acquire::before {
@@ -321,11 +338,13 @@ div[id^="klaviyo-forms-"] .kl-teaser-container,
   transition: 0.5s;
 }
 
-.btn-acquire:hover {
-  background: #000;
-  color: var(--color-gold);
-  box-shadow: 0 15px 45px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.1);
-  transform: translateY(-4px);
+@media (hover: hover) and (pointer: fine) {
+  .btn-acquire:hover {
+    background: #000;
+    color: var(--color-gold);
+    box-shadow: 0 15px 45px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.1);
+    transform: translateY(-4px);
+  }
 }
 
 .btn-acquire:hover::before {
