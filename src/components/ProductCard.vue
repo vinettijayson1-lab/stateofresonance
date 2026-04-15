@@ -174,7 +174,6 @@ onMounted(() => {
         <span class="review-count">({{ reviewCount }})</span>
       </div>
       <div class="product-footer">
-        <p class="product-price">{{ product.price }}</p>
         <span v-if="product.variants && product.variants.length > 1" class="variant-count">
           {{ $t('product.variants', { n: product.variants.length }) }}
         </span>
