@@ -295,10 +295,10 @@ const auraStyle = computed(() => {
             SHOP
           </router-link>
           <div class="nav-dropdown glass">
-            <router-link to="/category/hoodies" class="dropdown-link" @click="mobileMenuOpen = false">Hoodies</router-link>
-            <router-link to="/category/tees" class="dropdown-link" @click="mobileMenuOpen = false">Tees</router-link>
-            <router-link to="/category/crewnecks" class="dropdown-link" @click="mobileMenuOpen = false">Crewnecks</router-link>
-            <router-link to="/category/accessories" class="dropdown-link" @click="mobileMenuOpen = false">Accessories</router-link>
+            <router-link to="/collections/hoodies" class="dropdown-link" @click="mobileMenuOpen = false">Hoodies</router-link>
+            <router-link to="/collections/tees" class="dropdown-link" @click="mobileMenuOpen = false">Tees</router-link>
+            <router-link to="/collections/crewnecks" class="dropdown-link" @click="mobileMenuOpen = false">Crewnecks</router-link>
+            <router-link to="/collections/accessories" class="dropdown-link" @click="mobileMenuOpen = false">Accessories</router-link>
           </div>
         </div>
 

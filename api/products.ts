@@ -180,6 +180,14 @@ export default async function handler(req: any, res: any) {
            mapped = mapped.filter((p: any) => p.category === 'Ghost' || p.category === 'Attire' || p.category === 'Apparel' || p.title.toLowerCase().includes('ghost'));
        } else if (col.includes('her') || col.includes('resonance')) {
            mapped = mapped.filter((p: any) => p.category === 'Attire' || p.category === 'Apparel');
+       } else if (col === 'hoodies') {
+           mapped = mapped.filter((p: any) => p.type === 'Hoodie' || p.title.toLowerCase().includes('hoodie'));
+       } else if (col === 'tees') {
+           mapped = mapped.filter((p: any) => p.type === 'T-Shirt' || p.title.toLowerCase().includes('shirt') || p.title.toLowerCase().includes('tee'));
+       } else if (col === 'crewnecks') {
+           mapped = mapped.filter((p: any) => p.type === 'Crewneck' || p.title.toLowerCase().includes('crewneck') || p.title.toLowerCase().includes('sweatshirt'));
+       } else if (col === 'accessories') {
+           mapped = mapped.filter((p: any) => !['Hoodie', 'T-Shirt', 'Crewneck', 'Apparel', 'Attire'].includes(p.type) && !['Attire', 'Apparel', 'Ghost'].includes(p.category));
        } else {
            // Unknown collection — return all apparel as fallback
            mapped = mapped.filter((p: any) => ['Attire', 'Apparel', 'Ghost'].includes(p.category));

@@ -20,8 +20,12 @@ const router = createRouter({
       redirect: '/best-sellers'
     },
     {
-      path: '/community',
-      redirect: '/about'
+      path: '/sanctuary',
+      redirect: '/best-sellers'
+    },
+    {
+      path: '/shop',
+      redirect: '/best-sellers'
     },
     {
       path: '/attire',

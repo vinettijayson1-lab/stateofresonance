@@ -77,6 +77,30 @@ const COLLECTION_META = computed<Record<string, { title: string; subtitle: strin
     categories: ['Apparel', 'The GHOST and BONES'],
     image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/womens-relaxed-v-neck-t-shirt-solid-black-blend-front-69a0a8a271e46.jpg?v=1772136626'
   },
+  hoodies: {
+    title: 'Hoodies',
+    subtitle: 'Premium Heavyweight Pullovers',
+    categories: ['Attire', 'Apparel'],
+    image: '/images/upgraded/urban-hoodie-9.webp'
+  },
+  tees: {
+    title: 'Graphic Tees',
+    subtitle: 'Oversized Garment-Dyed Shirts',
+    categories: ['Attire', 'Apparel'],
+    image: '/images/upgraded/unisex-garment-dyed-heavyweight-t-shirt-3.webp'
+  },
+  crewnecks: {
+    title: 'Crewnecks',
+    subtitle: 'Structured Heavyweight Sweaters',
+    categories: ['Attire', 'Apparel'],
+    image: '/images/upgraded/og-crewnwck.webp'
+  },
+  accessories: {
+    title: 'Accessories',
+    subtitle: 'Symbolic Adornments & Artifacts',
+    categories: ['Sacred Adornments', 'Mystic Curiosities', 'Earth Relics'],
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+  },
   attire: {
     title: 'Attire',
     subtitle: 'The Attire Shop',
