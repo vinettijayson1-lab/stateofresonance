@@ -63,6 +63,18 @@ body {
   background-position: center;
 }
 
+/* Global Content Clearance for Fixed Navigation */
+main {
+  padding-top: clamp(80px, 12vh, 120px);
+}
+
+.home-view .void-choice,
+.bestsellers-page .bs-hero,
+.category-header,
+.transmissions-view.hero-full {
+  margin-top: -clamp(80px, 12vh, 120px);
+}
+
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: 400;
