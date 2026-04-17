@@ -644,11 +644,12 @@ const onImgError = (e: any) => {
           </a>
 
           <!-- Trust nudges near CTA -->
-          <div class="pdp-trust-strip" style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.25rem; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);">
-            <span class="pdp-trust-item">🍁 Designed in Canada</span>
-            <span class="pdp-trust-item">🚚 Free shipping $110+</span>
-            <span class="pdp-trust-item">↩️ 30-day returns</span>
-            <span class="pdp-trust-item">🔒 Secured</span>
+          <div class="pdp-trust-strip" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.25rem; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); font-size: 0.75rem;">
+            <span class="pdp-trust-item">⭐ 5.0 Google Verified</span>
+            <span class="pdp-trust-item">🚚 Free Shipping $110+</span>
+            <span class="pdp-trust-item">↩️ 30-Day Returns</span>
+            <span class="pdp-trust-item">🔒 Secure Checkout</span>
+            <span class="pdp-trust-item">🇨🇦 Ships from Canada</span>
           </div>
 
         </div>
@@ -664,28 +665,31 @@ const onImgError = (e: any) => {
 
         <!-- WHY THIS PIECE IS SPECIAL -->
         <div v-if="isClothing" class="why-special-block">
-          <p class="why-special-eyebrow">✦ WHY THIS PIECE IS SPECIAL</p>
-          <div class="why-special-grid">
-            <div class="why-card">
-              <div class="why-icon">⚖️</div>
-              <div>
-                <strong>450gsm Heavyweight Fleece</strong>
-                <p>Nearly double the weight of typical streetwear. Drapes with authority, holds shape through hundreds of washes.</p>
-              </div>
+          <p class="why-special-eyebrow">✦ WHY OUR PIECES FEEL DIFFERENT</p>
+          <div class="why-special-grid" style="grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+            <div class="why-card" style="display: flex; gap: 0.5rem; align-items: center; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+              <div class="why-icon" style="font-size: 1.2rem; margin: 0;">⚖️</div>
+              <strong style="font-size: 0.8rem;">450gsm heavyweight cotton</strong>
             </div>
-            <div class="why-card">
-              <div class="why-icon">🧵</div>
-              <div>
-                <strong>Double-Needle Construction</strong>
-                <p>Every seam reinforced for longevity. Designed to be worn for years, not seasons.</p>
-              </div>
+            <div class="why-card" style="display: flex; gap: 0.5rem; align-items: center; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+              <div class="why-icon" style="font-size: 1.2rem; margin: 0;">🎨</div>
+              <strong style="font-size: 0.8rem;">Oversized, structured fit</strong>
             </div>
-            <div class="why-card">
-              <div class="why-icon">📦</div>
-              <div>
-                <strong>Limited Production Run</strong>
-                <p>Produced in small batches of 50–150 pieces. When this run ends, it may not return.</p>
-              </div>
+            <div class="why-card" style="display: flex; gap: 0.5rem; align-items: center; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+              <div class="why-icon" style="font-size: 1.2rem; margin: 0;">🧵</div>
+              <strong style="font-size: 0.8rem;">Double-stitched construction</strong>
+            </div>
+            <div class="why-card" style="display: flex; gap: 0.5rem; align-items: center; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+              <div class="why-icon" style="font-size: 1.2rem; margin: 0;">🍁</div>
+              <strong style="font-size: 0.8rem;">Designed in Canada</strong>
+            </div>
+            <div class="why-card" style="display: flex; gap: 0.5rem; align-items: center; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+              <div class="why-icon" style="font-size: 1.2rem; margin: 0;">📦</div>
+              <strong style="font-size: 0.8rem;">Limited runs</strong>
+            </div>
+            <div class="why-card" style="display: flex; gap: 0.5rem; align-items: center; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+              <div class="why-icon" style="font-size: 1.2rem; margin: 0;">✦</div>
+              <strong style="font-size: 0.8rem;">Symbolic designs with purpose</strong>
             </div>
           </div>
         </div>
@@ -695,9 +699,15 @@ const onImgError = (e: any) => {
           <div v-html="product.description || ''"></div>
         </div>
 
+        <!-- SYMBOL MEANINGS -->
         <div v-if="isClothing" class="symbol-meaning-block" style="margin-top: 2rem; padding: 1.5rem; background: rgba(212,175,55,0.02); border-left: 2px solid var(--color-gold-muted);">
-          <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.5rem; text-transform: uppercase;">✦ Symbol Meaning</p>
-          <p style="font-size: 0.9rem; line-height: 1.6; opacity: 0.85;">This garment carries a specific esoteric vibration. All symbols printed on this piece hold intent—a reminder of your active synchronization. Decode its full significance in our <router-link to="/about" class="gold-text" style="text-decoration: underline;">Symbols Lexicon</router-link>.</p>
+          <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 1rem; text-transform: uppercase;">✦ Symbol Meaning</p>
+          <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.8; opacity: 0.9;">
+            <li><strong>⬡ Metatron’s Cube:</strong> clarity, structure, alignment</li>
+            <li><strong>❀ Flower of Life:</strong> expansion, unity, creation</li>
+            <li><strong>963Hz (symbolic):</strong> intuition, higher perspective</li>
+            <li><strong>ॐ OM:</strong> grounding, breath, stillness</li>
+          </ul>
         </div>
 
         <!-- MATERIAL & LOGISTICAL TRUST SIGNALS -->
@@ -745,10 +755,30 @@ const onImgError = (e: any) => {
         </div>
 
         <SocialShare :title="product.title" :image="product.image" style="margin-top: 2rem;" />
-
-
       </div>
     </div>
+
+    <!-- LIFESTYLE PHOTOGRAPHY GALLERY FOR PDP -->
+    <section v-if="isClothing" class="lifestyle-gallery" style="padding: 8vh 0; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4rem;">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <p class="section-eyebrow-text">THE LOOKBOOK</p>
+        <h2 class="hero-title" style="font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; text-transform: uppercase;">Where Intention Meets Aesthetic</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+        <div class="lifestyle-img-wrap" style="aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+          <img src="/images/lifestyle_urban.png" alt="Editorial Streetwear Lifestyle" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
+        </div>
+        <div class="lifestyle-img-wrap" style="aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+          <img src="/images/lifestyle_model_fit.png" alt="Model wearing Boxy Crewneck" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
+        </div>
+        <div class="lifestyle-img-wrap" style="aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+          <img src="/images/lifestyle_stitching.png" alt="Heavyweight Material Drop Macro" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
+        </div>
+      </div>
+      <component :is="'style'">
+        .lifestyle-img-wrap:hover .lifestyle-zoom { transform: scale(1.05); }
+      </component>
+    </section>
 
     <!-- Customer Reviews (Judge.me) -->
     <div v-if="product" class="container" style="padding-top: 8vh; padding-bottom: 4vh;">
