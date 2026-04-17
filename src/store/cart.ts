@@ -126,9 +126,11 @@ export const cart: CartStore = reactive({
         });
       }
 
-      // GA4
-      if ((window as any).gtag) {
-        (window as any).gtag('event', 'add_to_cart', {
+      // GA4 DataLayer E-commerce Tracking
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'add_to_cart',
+        ecommerce: {
           currency: currencyStore.active,
           value: priceVal * (currencyStore.rates[currencyStore.active] || 1),
           items: [{
@@ -137,8 +139,8 @@ export const cart: CartStore = reactive({
             price: priceVal * (currencyStore.rates[currencyStore.active] || 1),
             quantity: 1
           }]
-        });
-      }
+        }
+      });
 
       // Klaviyo
       klaviyoService.trackAddedToCart({
