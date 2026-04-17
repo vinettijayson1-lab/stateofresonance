@@ -30,6 +30,8 @@
 import { Instagram } from 'lucide-vue-next'
 
 const images = [
+  '/images/trust/trust-1.jpg',
+  '/images/trust/trust-2.jpg',
   '/assets/ritual_candles_photoshoot_trio.png',
   '/assets/lavender_oil_photoshoot.png',
   '/assets/obsidian_scrying_mirror_ritual.png',
