@@ -265,12 +265,7 @@ const auraStyle = computed(() => {
     <div class="global-aura" :style="auraStyle"></div>
     
     <div class="collapsible-header-wrapper" :class="{ 'is-expanded': headerExpanded }">
-      <div 
-        class="collapsible-sector" 
-        :class="{ 'sector-collapsed': !headerExpanded || !barVisible }"
-      >
-        <AnnouncementBar v-if="barVisible" />
-      </div>
+
       <nav class="nav-bar glass" :class="{ 'nav-hidden': !navVisible, 'mobile-nav-active': mobileMenuOpen }">
       <div class="mobile-toggle" @click="toggleMobileMenu">
         <span class="bar"></span>
