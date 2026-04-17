@@ -181,7 +181,7 @@ onUnmounted(() => {
 
 <style scoped>
 .omniscience-ritual {
-  min-height: 100vh;
+  min-height: 100dvh;
   background: #050505;
   color: #fff;
   position: relative;
@@ -252,7 +252,7 @@ onUnmounted(() => {
 }
 
 .ritual-hero {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;

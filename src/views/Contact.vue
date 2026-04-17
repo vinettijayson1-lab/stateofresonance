@@ -138,7 +138,7 @@ onMounted(() => {
 
 <style scoped>
 .contact-view {
-  min-height: 100vh;
+  min-height: 100dvh;
   background: var(--color-obsidian);
   color: var(--color-foreground);
   padding: 4rem 1.5rem 6rem;

@@ -42,7 +42,7 @@ const unlock = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
   background-color: #030303;
   color: #fff;

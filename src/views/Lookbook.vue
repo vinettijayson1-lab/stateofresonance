@@ -87,7 +87,7 @@ onMounted(() => {
 
 <style scoped>
 .lookbook-view {
-  min-height: 100vh;
+  min-height: 100dvh;
   background: var(--color-bg);
   padding-top: 15vh;
   padding-bottom: 10vh;

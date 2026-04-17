@@ -109,7 +109,7 @@ onMounted(() => {
   position: relative;
   background: #000;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .pulse-overlay {

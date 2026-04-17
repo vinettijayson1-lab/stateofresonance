@@ -558,7 +558,7 @@ const handleSmsSync = async () => {
 }
 
 .void-choice {
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   display: flex;
   position: relative;

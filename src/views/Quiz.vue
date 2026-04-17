@@ -12,7 +12,7 @@ import FrequencyQuiz from '../components/FrequencyQuiz.vue'
 
 <style scoped>
 .quiz-view {
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: 120px 0 80px;
   background: var(--color-obsidian);
   position: relative;

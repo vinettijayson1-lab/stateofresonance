@@ -94,7 +94,7 @@ onMounted(async () => {
 
 <style scoped>
 .resonance-view {
-  min-height: 100vh;
+  min-height: 100dvh;
   background: #000;
   color: #fff;
   padding: 15vh 0;

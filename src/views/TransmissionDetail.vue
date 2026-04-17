@@ -142,7 +142,7 @@ onMounted(fetchArticle)
 
 <style scoped>
 .transmission-detail-view {
-  min-height: 100vh;
+  min-height: 100dvh;
   background: #050507;
   padding-bottom: 20vh;
   position: relative;
@@ -150,7 +150,7 @@ onMounted(fetchArticle)
 
 /* Loading State */
 .loading-overlay {
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -94,7 +94,7 @@ const startCalibration = () => {
 .sync-event-page {
   background: var(--color-obsidian);
   color: white;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .event-hero {

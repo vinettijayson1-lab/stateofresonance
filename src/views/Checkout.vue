@@ -105,7 +105,7 @@ onMounted(() => {
 <style scoped>
 .checkout-view {
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
   background: #000000;
 }

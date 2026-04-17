@@ -71,7 +71,7 @@ const calibrationLogs = [
 </script>
 
 <template>
-  <div class="transmissions-view container" style="padding: 15vh 0; min-height: 100vh; position: relative;">
+  <div class="transmissions-view container" style="padding: 15vh 0; min-height: 100dvh; position: relative;">
     <div class="hero-bg"></div>
 
     <header class="tx-header glass glow-edge" style="margin: 0 auto 8vh auto; max-width: 800px; padding: 4rem 2rem; border-radius: 12px; z-index: 10; position: relative;">

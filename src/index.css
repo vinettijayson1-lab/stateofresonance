@@ -585,7 +585,7 @@ div[id^="klaviyo-forms-"] .kl-teaser-container,
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* iOS 100vh fix: use dvh with 100vh as fallback */
+/* iOS 100dvh fix: use dvh with 100dvh as fallback */
 .void-choice {
   height: 100dvh;
 }

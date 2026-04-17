@@ -171,7 +171,7 @@ const submitSync = async () => {
 
 <style scoped>
 .influencer-shipping-view {
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: 15vh 0;
   position: relative;
   overflow: hidden;

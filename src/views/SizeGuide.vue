@@ -169,7 +169,7 @@ onMounted(() => {
 
 <style scoped>
 .size-guide-page {
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .fit-note {

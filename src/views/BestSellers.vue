@@ -215,7 +215,7 @@ const goToProduct = (handle: string) => {
 <style scoped>
 /* ===== HERO ===== */
 .bestsellers-page {
-  min-height: 100vh;
+  min-height: 100dvh;
   padding-top: 80px;
 }
 

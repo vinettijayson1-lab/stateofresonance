@@ -142,7 +142,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="category-view container" style="min-height: 100vh;">
+  <div class="category-view container" style="min-height: 100dvh;">
     <header class="category-header" style="padding: 15vh 0 5vh;">
       <div v-if="activeGroup" class="breadcrumb">
         <router-link to="/shop" class="nav-link" style="text-decoration: none; color: inherit; cursor:pointer;">{{ String(route.name) }}</router-link>

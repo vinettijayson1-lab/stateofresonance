@@ -125,7 +125,7 @@ onMounted(() => {
 
 <style scoped>
 .shipping-page {
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .policy-section {

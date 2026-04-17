@@ -136,7 +136,7 @@ onMounted(() => {
 
 <style scoped>
 .poetry-view {
-  min-height: 100vh;
+  min-height: 100dvh;
   background-color: var(--color-bg);
   padding-bottom: 10vh;
   background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
