@@ -13,7 +13,7 @@ const ExitIntentGate = defineAsyncComponent(() => import('./components/ExitInten
 import { cart } from './store/cart'
 import { useResonanceStore } from './store/resonance'
 import { klaviyoService } from './services/klaviyo'
-import FrequencyPlayer from './components/FrequencyPlayer.vue'
+
 import {
   Instagram,
   Facebook,
@@ -327,7 +327,6 @@ const auraStyle = computed(() => {
         >
            <div class="calibration-section">
              <span class="util-label">RESONANCE</span>
-             <FrequencyPlayer />
            </div>
            
            <div class="calibration-row">
@@ -364,7 +363,7 @@ const auraStyle = computed(() => {
           </svg>
         </router-link>
 
-        <FrequencyPlayer />
+
 
         <div class="desktop-only header-tools-sector">
           <div class="flex items-center gap-8">

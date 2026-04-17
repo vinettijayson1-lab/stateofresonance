@@ -9,7 +9,6 @@ import ProductCard from '../components/ProductCard.vue'
 import StickyBuyBar from '../components/StickyBuyBar.vue'
 
 import SocialShare from '../components/SocialShare.vue'
-import FrequencyPlayer from '../components/FrequencyPlayer.vue'
 import { currencyStore } from '../store/currency'
 import ProductReviews from '../components/ProductReviews.vue'
 import { Sparkles, Zap, Shield, HelpCircle } from 'lucide-vue-next'
