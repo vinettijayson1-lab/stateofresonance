@@ -192,12 +192,9 @@ onMounted(() => {
 .product-img-wrapper {
   position: relative;
   display: block;
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/5;
   overflow: hidden;
-  background-color: var(--color-obsidian);
-  background-image: url('/images/occult-card-bg.png');
-  background-size: cover;
-  background-position: center;
+  background-color: #050507;
   border: 1px solid rgba(212, 175, 55, 0.15);
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
@@ -212,8 +209,8 @@ onMounted(() => {
 .product-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center center;
+  object-fit: cover;
+  object-position: center top;
   transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.5s ease;
   filter: brightness(0.9);
 }
