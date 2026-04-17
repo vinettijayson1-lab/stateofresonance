@@ -195,7 +195,7 @@ onMounted(() => {
   aspect-ratio: 3/4;
   overflow: hidden;
   background-color: var(--color-obsidian);
-  background-image: url('/images/luxury-occult-bg.png');
+  background-image: url('/images/occult-card-bg.png');
   background-size: cover;
   background-position: center;
   border: 1px solid rgba(212, 175, 55, 0.15);
@@ -214,15 +214,14 @@ onMounted(() => {
   height: 100%;
   object-fit: contain;
   object-position: center center;
-  mix-blend-mode: screen;
   transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.5s ease;
-  filter: brightness(1.0) contrast(1.1);
+  filter: brightness(0.9);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .product-card:hover .product-img {
     transform: scale(1.08);
-    filter: brightness(1.2) contrast(1.2);
+    filter: brightness(1.1);
   }
 }
 
