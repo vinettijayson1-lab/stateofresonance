@@ -192,9 +192,12 @@ onMounted(() => {
 .product-img-wrapper {
   position: relative;
   display: block;
-  aspect-ratio: 4/5;
+  aspect-ratio: 3/4;
   overflow: hidden;
-  background-color: #050507;
+  background-color: var(--color-obsidian);
+  background-image: url('/images/luxury-occult-bg.png');
+  background-size: cover;
+  background-position: center;
   border: 1px solid rgba(212, 175, 55, 0.15);
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
@@ -209,8 +212,8 @@ onMounted(() => {
 .product-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
+  object-position: center center;
   transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.5s ease;
   filter: brightness(0.9);
 }
