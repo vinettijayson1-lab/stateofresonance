@@ -105,7 +105,7 @@ const handleSmsSync = async () => {
 
 
       <!-- Hero Content — Centered, Full Impact -->
-      <div class="hero-center" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;width:90%;max-width:820px;">
+      <div class="hero-center" style="position:absolute;top:58%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;width:90%;max-width:820px;">
         <h1 class="hero-wordmark">Wear the Symbols<br/><span style="color:var(--color-gold);">That Shape You</span></h1>
         <p class="hero-tagline">Premium, heavyweight streetwear inspired by ancient geometry, spiritual archetypes, and the path of inner alignment.</p>
         <div class="hero-cta-group">
