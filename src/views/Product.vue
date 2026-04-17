@@ -120,10 +120,25 @@ const toggleModelView = () => {
 
 // Variant Selection State
 const selectedOptions = ref<Record<string, string>>({})
+const userSelected = ref<Set<string>>(new Set()) // Tracks options the user explicitly clicked
+const sizeError = ref(false)
 const quantity = ref(1)
 
 const addToCartWithQty = () => {
   if (!product.value) return
+
+  // Guard: require explicit size selection if product has a Size option
+  const sizeOpt = product.value.options?.find((o: any) => o.name === 'Size')
+  if (sizeOpt && !userSelected.value.has('Size')) {
+    sizeError.value = true
+    // Clear error after 3s
+    setTimeout(() => { sizeError.value = false }, 3000)
+    // Scroll to variant selector
+    document.querySelector('.variant-selectors')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    return
+  }
+
+  sizeError.value = false
   const item = { ...product.value }
   const variant = selectedVariant.value
   
@@ -681,7 +696,7 @@ const onImgError = (e: any) => {
                   active: selectedOptions[opt.name] === val,
                   'out-of-stock-chip': !isOptionAvailable(opt.name, val)
                 }"
-                @click="selectedOptions[opt.name] = val"
+                @click="selectedOptions[opt.name] = val; userSelected.add(opt.name); sizeError = false"
               >
                 {{ val }}
               </button>
@@ -691,6 +706,13 @@ const onImgError = (e: any) => {
         
         <!-- Primary Actions: Add to Bag FIRST, Buy Now SECOND -->
         <div class="product-actions-luxury" style="margin-bottom: 2rem;">
+          <!-- Size selection error nudge -->
+          <div 
+            v-if="sizeError" 
+            style="margin-bottom: 1rem; padding: 0.75rem 1rem; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.4); color: #f87171; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; text-align: center; animation: shake 0.4s ease;"
+          >
+            ✦ SELECT A SIZE TO CONTINUE
+          </div>
           <div v-if="isAvailable" class="commerce-primary-row" style="display: flex; gap: 1rem; flex-wrap: wrap;">
             <div class="qty-selector glass" style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 1rem; border: 1px solid var(--color-gold-muted); min-width: 120px; font-size: 1.2rem; background: rgba(0,0,0,0.4);">
               <button @click="quantity > 1 ? quantity-- : null" class="qty-btn" style="background: none; border: none; color: #fff; cursor: pointer; padding: 0.5rem; opacity: 0.7; font-size: 1.2rem;">−</button>
@@ -1393,5 +1415,13 @@ const onImgError = (e: any) => {
 .ritual-link-hint:hover {
   opacity: 1;
   text-decoration: underline;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
 }
 </style>

@@ -243,6 +243,9 @@ watch(() => cart.isOpen, (val) => {
           </div>
           <div class="cart-item-info">
             <h4 class="cart-item-title">{{ item.title }}</h4>
+            <p v-if="item.variants && item.variantId" class="cart-item-variant">
+              {{ item.variants.find((v: any) => v.id === item.variantId)?.title || '' }}
+            </p>
             <p class="cart-item-price">{{ item.price }}</p>
             <div class="item-actions">
               <div class="quantity-controls">
@@ -562,6 +565,16 @@ watch(() => cart.isOpen, (val) => {
   font-size: 0.75rem;
   opacity: 0.5;
   margin-bottom: 1rem;
+}
+
+.cart-item-variant {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold-muted);
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+  margin-top: 0;
 }
 
 .item-actions {

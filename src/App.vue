@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed, watch, provide } from 'vue'
+import { ref, onMounted, computed, watch, provide, defineAsyncComponent } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { CSSPlugin } from 'gsap/CSSPlugin'
@@ -7,10 +7,10 @@ import Lenis from 'lenis/dist/lenis.mjs'
 import AnnouncementBar from './components/AnnouncementBar.vue'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import CurrencySwitcher from './components/CurrencySwitcher.vue'
-import CartSidebar from './components/CartSidebar.vue'
 
-import TheOracle from './components/TheOracle.vue'
-import ExitIntentGate from './components/ExitIntentGate.vue'
+const CartSidebar = defineAsyncComponent(() => import('./components/CartSidebar.vue'))
+const TheOracle = defineAsyncComponent(() => import('./components/TheOracle.vue'))
+const ExitIntentGate = defineAsyncComponent(() => import('./components/ExitIntentGate.vue'))
 import { cart } from './store/cart'
 import { useResonanceStore } from './store/resonance'
 import { klaviyoService } from './services/klaviyo'
@@ -296,7 +296,7 @@ const auraStyle = computed(() => {
         </div>
 
         <!-- PRIMARY SHOPPING NAV -->
-        <router-link to="/best-sellers" class="nav-link" @click="mobileMenuOpen = false">
+        <router-link to="/sanctuary" class="nav-link" @click="mobileMenuOpen = false">
           <span class="label-primary">SHOP</span>
           <span class="label-hover">ALL PRODUCTS</span>
         </router-link>
