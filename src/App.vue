@@ -9,7 +9,6 @@ import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import CurrencySwitcher from './components/CurrencySwitcher.vue'
 
 const CartSidebar = defineAsyncComponent(() => import('./components/CartSidebar.vue'))
-const TheOracle = defineAsyncComponent(() => import('./components/TheOracle.vue'))
 const ExitIntentGate = defineAsyncComponent(() => import('./components/ExitIntentGate.vue'))
 import { cart } from './store/cart'
 import { useResonanceStore } from './store/resonance'
@@ -312,8 +311,13 @@ const auraStyle = computed(() => {
 
         <!-- WORLD / LORE -->
         <router-link to="/about" class="nav-link" @click="mobileMenuOpen = false">
-          <span class="label-primary">THE WORD</span>
-          <span class="label-hover">ABOUT</span>
+          <span class="label-primary">SYMBOLS</span>
+          <span class="label-hover">DECODE</span>
+        </router-link>
+
+        <router-link to="/community" class="nav-link" @click="mobileMenuOpen = false">
+          <span class="label-primary">COMMUNITY</span>
+          <span class="label-hover">THE CIRCLE</span>
         </router-link>
 
         <!-- SUPPORT -->

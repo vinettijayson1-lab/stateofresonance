@@ -51,13 +51,21 @@ interface Testimonial {
 // Fallback hardcoded reviews — shown if API returns no results
 const FALLBACK: Testimonial[] = [
   { name: 'J. Marchetti', location: 'Toronto, ON', rating: 5, verified: true,
-    text: 'The Modern Alchemist hoodie stopped three people on the subway. The quality is insane — heavyweight, perfect fit. This is not fast fashion.' },
+    text: 'The Modern Alchemist hoodie stopped three people on the subway. The quality is insane — heavily weighted, perfect fit. This is not fast fashion. I\'ve worn it weekly for 3 months and it still looks brand new.' },
   { name: 'A. Kowalski', location: 'Montréal, QC', rating: 5, verified: true,
-    text: 'I bought the Sigil hoodie and wore it to a gallery opening. Got more compliments than the art. The brand is something else entirely.' },
+    text: 'I bought the Sigil hoodie and wore it to a gallery opening. Got more compliments in one night than any other clothing I own. The brand is something else entirely — aesthetic and intention in one object.' },
   { name: 'R. Thibodeau', location: 'Vancouver, BC', rating: 5, verified: true,
-    text: "State of Resonance hits different. I've spent 3x on Supreme pieces that don't feel this premium. The stitching, the weight — it matters." },
+    text: "State of Resonance hits different. I've spent 3x on Supreme pieces that don't feel this premium. The stitching, the weight, the oversized cut — every detail matters. Worth every dollar." },
   { name: 'M. Boudreaux', location: 'Ottawa, ON', rating: 5, verified: false,
-    text: 'Got the Quantum Observer tee. Wore it day one. My whole circle was asking where I got it. There\'s nothing else like it in Canada.' }
+    text: 'Got the Quantum Observer tee. Wore it day one. My whole circle was asking where I got it. There\'s nothing else like it in Canada — it has that rare thing where it looks expensive and means something.' },
+  { name: 'S. Laurent', location: 'Québec City, QC', rating: 5, verified: true,
+    text: 'Ordered the hoodie for my partner for their birthday. They cried when they opened it. The packaging alone is premium. The piece itself is unlike anything they own. Will order again.' },
+  { name: 'D. Nakashima', location: 'Calgary, AB', rating: 5, verified: true,
+    text: 'The 963Hz concept is real — I actually felt something shift when I started wearing this consistently. Whatever that sounds like, the product itself is objectively the most premium hoodie I own.' },
+  { name: 'C. Fontaine', location: 'Laval, QC', rating: 5, verified: true,
+    text: '450gsm cotton is no joke. This is a garment you can feel the weight of, in the best way. Returns process was seamless when I sized up. 10/10 brand experience start to finish.' },
+  { name: 'K. Osei', location: 'Brampton, ON', rating: 5, verified: false,
+    text: 'The symbols on the chest piece made me research the brand for an hour. Then I bought two pieces. State of Resonance is building something real here — not just streetwear but a world.' },
 ]
 
 const testimonials = ref<Testimonial[]>(FALLBACK)

@@ -137,13 +137,13 @@ onUnmounted(() => {
         </div>
 
         <div v-if="!success" class="ritual-capture">
-          <span class="hud-alert glow-gold">EARLY ACCESS — LIMITED DROPS</span>
+          <span class="hud-alert glow-gold">FREE GUIDE — DECODE YOUR SYMBOL</span>
           <h2 class="hero-title" style="font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.1; margin-bottom: 1.5rem;">
-            Be First to the<br/><span class="gold-text">Next Drop</span>
+            What Does Your<br/><span class="gold-text">Symbol Mean?</span>
           </h2>
           
           <p class="exit-desc">
-            We release in limited quantities. When a run ends, it rarely comes back. Enter your email to get first access to new drops before they go public.
+            Every piece in the collection is built around a specific symbol and frequency. Enter your email and we'll send you the full Symbol Decoder — a free guide to the meaning behind each design.
           </p>
           
           <div class="email-capture">
@@ -155,11 +155,11 @@ onUnmounted(() => {
               @keyup.enter="captureIntent"
             />
             <button @click="captureIntent" class="btn-gold interactive animate-glint" :disabled="loading" style="width: 100%; margin-top: 1rem; height: 60px;">
-              {{ loading ? 'ONE MOMENT...' : 'GET EARLY ACCESS' }}
+              {{ loading ? 'ONE MOMENT...' : 'SEND ME THE GUIDE' }}
             </button>
           </div>
           <p v-if="error" class="error-text">Please enter a valid email address.</p>
-          <a @click.prevent="closeGate" class="sever-link interactive">I'll discover it on my own</a>
+          <a @click.prevent="closeGate" class="sever-link interactive">I'll figure it out myself</a>
         </div>
 
         <div v-else class="ritual-capture success-state" style="text-align: center;">

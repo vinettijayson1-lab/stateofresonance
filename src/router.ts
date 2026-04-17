@@ -20,6 +20,10 @@ const router = createRouter({
       redirect: '/best-sellers'
     },
     {
+      path: '/community',
+      redirect: '/about'
+    },
+    {
       path: '/attire',
       name: 'Attire',
       component: () => import('./views/Category.vue')

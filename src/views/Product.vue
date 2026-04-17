@@ -505,6 +505,15 @@ const onImgError = (e: any) => {
 
 <template>
   <div class="product-detail container" :class="{ 'divine-resonance': product?.metadata?.isMembersOnly }" style="padding: 15vh 0;">
+    <!-- Breadcrumb Navigation -->
+    <nav class="pdp-breadcrumb" aria-label="Breadcrumb">
+      <router-link to="/">Home</router-link>
+      <span class="bc-sep">/</span>
+      <router-link to="/best-sellers">Shop</router-link>
+      <span class="bc-sep">/</span>
+      <span>{{ product?.title || 'Product' }}</span>
+    </nav>
+
     <div v-if="loading" class="loading-state">
       <p>Loading product...</p>
     </div>
@@ -725,6 +734,34 @@ const onImgError = (e: any) => {
           </p>
         </div>
 
+        <!-- WHY THIS PIECE IS SPECIAL -->
+        <div v-if="isClothing" class="why-special-block">
+          <p class="why-special-eyebrow">✦ WHY THIS PIECE IS SPECIAL</p>
+          <div class="why-special-grid">
+            <div class="why-card">
+              <div class="why-icon">⚖️</div>
+              <div>
+                <strong>450gsm Heavyweight Fleece</strong>
+                <p>Nearly double the weight of typical streetwear. Drapes with authority, holds shape through hundreds of washes.</p>
+              </div>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">🧵</div>
+              <div>
+                <strong>Double-Needle Construction</strong>
+                <p>Every seam reinforced for longevity. Designed to be worn for years, not seasons.</p>
+              </div>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">📦</div>
+              <div>
+                <strong>Limited Production Run</strong>
+                <p>Produced in small batches of 50–150 pieces. When this run ends, it may not return.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="product-description">
           <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Product Details</p>
           <div v-html="product.description || ''"></div>
@@ -745,7 +782,7 @@ const onImgError = (e: any) => {
           <div>
             <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Shipping & Returns</p>
             <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.8rem; opacity: 0.8; line-height: 1.6;">
-              <li>✦ Ships from Canada, US, and EU</li>
+              <li>✦ Ships from Canada within 1–3 business days</li>
               <li>✦ Free shipping on orders over $110 CAD</li>
               <li>✦ 30-day returns — no questions asked</li>
               <li>✦ Secure checkout powered by Shopify</li>
@@ -1319,5 +1356,76 @@ const onImgError = (e: any) => {
   40% { transform: translateX(6px); }
   60% { transform: translateX(-4px); }
   80% { transform: translateX(4px); }
+}
+
+/* === BREADCRUMB === */
+.pdp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+.pdp-breadcrumb a {
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.pdp-breadcrumb a:hover { color: var(--color-gold); }
+.bc-sep { opacity: 0.3; }
+.pdp-breadcrumb span:last-child { color: rgba(255,255,255,0.7); }
+
+/* === WHY THIS PIECE IS SPECIAL === */
+.why-special-block {
+  margin: 2.5rem 0;
+  padding: 2rem;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(212, 175, 55, 0.03);
+}
+
+.why-special-eyebrow {
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-gold-muted);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.why-special-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.why-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.why-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.why-card strong {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.why-card p {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+  margin: 0;
 }
 </style>

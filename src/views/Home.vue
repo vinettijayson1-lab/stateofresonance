@@ -130,24 +130,24 @@ const handleSmsSync = async () => {
       </svg>
 
       <!-- Hero Content — Centered, Full Impact -->
-      <div class="hero-center" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;width:90%;max-width:800px;">
-        <p class="hero-eyebrow">ESOTERIC LUXURY STREETWEAR · CANADA</p>
-        <h1 class="hero-wordmark">STATE OF<br/><span style="color:var(--color-gold);">RESONANCE</span></h1>
-        <p class="hero-tagline">Wear your frequency. Let your vibes resonate.</p>
+      <div class="hero-center" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;width:90%;max-width:820px;">
+        <p class="hero-eyebrow">LIMITED-EDITION STREETWEAR · CANADA · EST. 2024</p>
+        <h1 class="hero-wordmark">Wear the Symbols<br/><span style="color:var(--color-gold);">That Shape You</span></h1>
+        <p class="hero-tagline">Premium, limited-edition streetwear designed for inner alignment.</p>
         <div class="hero-cta-group">
           <router-link to="/best-sellers" class="btn-premium animate-glint" id="hero-shop-btn">
-            Shop The Collection
+            Shop the Collection
           </router-link>
-          <router-link to="/quiz" class="btn-ghost" id="hero-quiz-btn">
-            Find Your Frequency
+          <router-link to="/about" class="btn-ghost" id="hero-decode-btn">
+            Decode the Symbols
           </router-link>
         </div>
         <div class="hero-trust-mini">
+          <span>✦ 450gsm heavyweight cotton</span>
+          <span>|</span>
           <span>✦ Free shipping $110+</span>
           <span>|</span>
           <span>✦ 30-day returns</span>
-          <span>|</span>
-          <span>✦ Limited drops</span>
         </div>
       </div>
 
@@ -235,6 +235,79 @@ const handleSmsSync = async () => {
     <!-- ===== END PRODUCTS ===== -->
 
     <VaultDropTeaser />
+
+    <!-- WHY OUR PIECES FEEL DIFFERENT -->
+    <section class="craftsmanship-section">
+      <div class="container">
+        <div class="craftsmanship-header">
+          <p class="section-eyebrow-text">THE DIFFERENCE</p>
+          <h2 class="craftsmanship-title">Why Our Pieces<br/>Feel Different</h2>
+          <p class="craftsmanship-sub">We didn't set out to make streetwear. We set out to make objects you keep forever.</p>
+        </div>
+        <div class="craftsmanship-grid">
+          <div class="craft-card">
+            <div class="craft-icon">⚖️</div>
+            <h3>450gsm Heavyweight Cotton</h3>
+            <p>Our fleece is 450 grams per square meter — nearly double the weight of typical streetwear. It drapes with authority and feels substantial from the first wear.</p>
+          </div>
+          <div class="craft-card">
+            <div class="craft-icon">🧵</div>
+            <h3>Double-Needle Construction</h3>
+            <p>Every seam is double-stitched for structural integrity. Where cheap brands save on thread, we reinforce for longevity. These pieces are built to outlast trends.</p>
+          </div>
+          <div class="craft-card">
+            <div class="craft-icon">📦</div>
+            <h3>Limited Production Runs</h3>
+            <p>We produce in small batches of 50–150 pieces. No mass production, ever. When a run ends, it rarely comes back. Scarcity isn't a tactic — it's a commitment to craft.</p>
+          </div>
+          <div class="craft-card">
+            <div class="craft-icon">🎨</div>
+            <h3>Oversized Boxy Silhouette</h3>
+            <p>Pre-shrunk, structured, and cut with an intentional oversized drop. The fit is architectural — designed to look as deliberate on day 100 as it does on day one.</p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 4rem;">
+          <router-link to="/best-sellers" class="btn-gold">SHOP THE COLLECTION →</router-link>
+        </div>
+      </div>
+    </section>
+
+    <!-- SYMBOL MEANINGS -->
+    <section class="symbols-section">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 4rem;">
+          <p class="section-eyebrow-text">THE LANGUAGE</p>
+          <h2 class="symbols-title">What the Symbols Mean</h2>
+          <p class="symbols-sub">Every garment carries a symbol. Here's what they represent — and why it matters.</p>
+        </div>
+        <div class="symbols-grid">
+          <div class="symbol-card glass">
+            <div class="symbol-glyph">✦</div>
+            <h3>The Resonance Sigil</h3>
+            <p>A four-pointed star representing the four states of matter — and the fifth element of consciousness that bridges them. Found on our signature pieces.</p>
+          </div>
+          <div class="symbol-card glass">
+            <div class="symbol-glyph">◯</div>
+            <h3>Sacred Geometry Circles</h3>
+            <p>The circle has no beginning and no end. Our circular motifs reference the Flower of Life — a geometric template underlying all matter and energy.</p>
+          </div>
+          <div class="symbol-card glass">
+            <div class="symbol-glyph">963</div>
+            <h3>The 963 Hz Frequency</h3>
+            <p>The highest Solfeggio frequency. Associated with crown chakra activation and direct connection to universal consciousness. Our signature vibration.</p>
+          </div>
+          <div class="symbol-card glass">
+            <div class="symbol-glyph">⊕</div>
+            <h3>Earth Cross</h3>
+            <p>The cross within the circle — an ancient symbol for the material world grounded in four directions. Wearing it is a reminder: you are rooted and sovereign.</p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+          <router-link to="/about" class="btn-outline">Full Symbol Guide →</router-link>
+        </div>
+      </div>
+    </section>
+
 
     <section class="bio-brand-identity" style="position: relative; z-index: 20; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 8vh 5vw; background: linear-gradient(180deg, var(--color-emerald-deep) 0%, rgba(10,10,12,1) 100%); box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.05); border-top: 1px solid rgba(212, 175, 55, 0.2); border-bottom: 2px solid rgba(212, 175, 55, 0.1);">
       <h1 style="font-family: var(--font-heading); color: white; letter-spacing: 0.2em; font-size: clamp(2rem, 4vw, 3rem); text-transform: uppercase; margin-bottom: 2rem; text-shadow: 0 4px 15px rgba(0,0,0,0.8);">
@@ -431,8 +504,7 @@ const handleSmsSync = async () => {
 
     <Testimonials />
 
-
-    <!-- START HERE: Quiz CTA -->
+    <!-- Social Growth Section: Join the Sanctuary -->
     <section class="frequency-calibration-cta">
       <div class="container">
         <div class="calibration-card glass glow-edge">
@@ -1415,5 +1487,168 @@ const handleSmsSync = async () => {
 .btn-gold-outline:hover {
   background: rgba(212, 175, 55, 0.05);
   border-color: var(--color-gold);
+}
+
+/* ===== CRAFTSMANSHIP SECTION ===== */
+.craftsmanship-section {
+  padding: 10vh 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.08);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.06);
+}
+
+.craftsmanship-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-eyebrow-text {
+  display: block;
+  font-size: 0.55rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--color-gold-muted);
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+
+.craftsmanship-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.craftsmanship-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.5);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.craftsmanship-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.craft-card {
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  transition: border-color 0.4s ease, transform 0.4s ease, background 0.4s ease;
+}
+
+.craft-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-4px);
+  background: rgba(212, 175, 55, 0.03);
+}
+
+.craft-icon {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.craft-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.03em;
+}
+
+.craft-card p {
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.5);
+}
+
+@media (max-width: 1024px) {
+  .craftsmanship-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .craftsmanship-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== SYMBOLS SECTION ===== */
+.symbols-section {
+  padding: 10vh 0;
+  background: rgba(212, 175, 55, 0.015);
+  border-top: 1px solid rgba(212, 175, 55, 0.08);
+}
+
+.symbols-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.symbols-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.5);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.symbols-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.symbol-card {
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+.symbol-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-4px);
+}
+
+.symbol-glyph {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--color-gold);
+  margin-bottom: 1.5rem;
+  display: block;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.symbol-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.symbol-card p {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.5);
+}
+
+@media (max-width: 1024px) {
+  .symbols-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .symbols-grid { grid-template-columns: 1fr; }
 }
 </style>
