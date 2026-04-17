@@ -289,17 +289,9 @@ const auraStyle = computed(() => {
         </div>
 
         <!-- PRIMARY SHOPPING NAV -->
-        <div class="nav-dropdown-container">
-          <router-link to="/shop" class="nav-link" @click="mobileMenuOpen = false" style="font-weight: 500; letter-spacing: 0.1em;">
-            SHOP
-          </router-link>
-          <div class="nav-dropdown glass">
-            <router-link to="/collections/hoodies" class="dropdown-link" @click="mobileMenuOpen = false">Hoodies</router-link>
-            <router-link to="/collections/tees" class="dropdown-link" @click="mobileMenuOpen = false">Tees</router-link>
-            <router-link to="/collections/crewnecks" class="dropdown-link" @click="mobileMenuOpen = false">Crewnecks</router-link>
-            <router-link to="/collections/accessories" class="dropdown-link" @click="mobileMenuOpen = false">Accessories</router-link>
-          </div>
-        </div>
+        <router-link to="/best-sellers" class="nav-link" @click="mobileMenuOpen = false" style="font-weight: 500; letter-spacing: 0.1em;">
+          SHOP
+        </router-link>
 
         <router-link to="/about" class="nav-link" @click="mobileMenuOpen = false" style="font-weight: 500; letter-spacing: 0.1em;">
           SYMBOLS
