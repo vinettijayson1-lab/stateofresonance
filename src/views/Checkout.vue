@@ -3,7 +3,7 @@ import { onMounted } from 'vue'
 import { cart } from '../store/cart'
 import { currencyStore } from '../store/currency'
 import { klaviyoService } from '../services/klaviyo'
-import TrustBadges from '../components/TrustBadges.vue'
+
 
 onMounted(() => {
   // --- KLAVIYO TRACKING (Orion) ---
@@ -95,7 +95,6 @@ onMounted(() => {
 
         <div style="margin-top: 4rem; text-align: center;">
           <a :href="cart.checkoutUrl" class="btn-premium checkout-btn interactive">{{ $t('checkout.cross_threshold') }}</a>
-          <TrustBadges style="margin-top: 2rem; text-align: left;" />
         </div>
         
       </div>

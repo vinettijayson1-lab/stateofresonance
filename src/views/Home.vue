@@ -510,7 +510,7 @@ const handleSmsSync = async () => {
           </div>
           <div class="growth-visual desktop-only glass" style="padding: 3rem; border-color: rgba(212,175,55,0.2); background: radial-gradient(circle at center, rgba(212,175,55,0.05) 0%, transparent 100%);">
             <div class="visual-stack">
-              <div class="visual-card-glow oracle-pulse-idle"></div>
+              <div class="visual-card-glow"></div>
               <div class="visual-meta">
                 <span class="meta-label">SIGNAL SOURCE</span>
                 <span class="meta-value">963 HERTZ</span>

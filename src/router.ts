@@ -412,15 +412,11 @@ const seoMap: Record<string, any> = {
 
 
 
-import { track } from '@vercel/analytics'
 
 router.afterEach((to) => {
   // 1. Detect Current Locale (from localStorage, matching vue-i18n)
   const currentLang = localStorage.getItem('user-locale') || 'en'
   const langMapped = currentLang === 'fr' ? 'fr' : 'en'
-
-  // Track SPA page views in Vercel Analytics on every route change
-  track('pageview', { url: to.fullPath })
 
   // --- GLOBAL PIXEL SPA SYNCHRONIZATION ---
   if (typeof window !== 'undefined') {

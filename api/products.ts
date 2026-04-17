@@ -81,7 +81,7 @@ export default async function handler(req: any, res: any) {
     let hasMore = true;
 
     while (hasMore) {
-      const shopifyUrl = `https://${SHOPIFY_DOMAIN}/products.json?limit=250&page=${page}`;
+      const shopifyUrl = `https://${SHOPIFY_DOMAIN}/products.json?limit=250&page=${page}&t=${Date.now()}`;
       const shopifyRes = await axios.get(shopifyUrl, AXIOS_CONFIG);
       
       if (!shopifyRes || shopifyRes.status !== 200 || !shopifyRes.data?.products) {

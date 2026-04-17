@@ -174,7 +174,6 @@ onMounted(() => {
         <span class="review-count">({{ reviewCount }})</span>
       </div>
       <div class="product-footer">
-        <p class="product-price">{{ product.price }}</p>
         <span v-if="product.variants && product.variants.length > 1" class="variant-count">
           {{ $t('product.variants', { n: product.variants.length }) }}
         </span>
@@ -192,10 +191,12 @@ onMounted(() => {
   transition: var(--transition-premium);
 }
 
-.product-card:hover {
-  border-color: var(--color-gold-muted);
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212, 175, 55, 0.1);
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover {
+    border-color: var(--color-gold-muted);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212, 175, 55, 0.1);
+  }
 }
 
 .product-img-wrapper {
@@ -203,27 +204,35 @@ onMounted(() => {
   display: block;
   aspect-ratio: 3/4;
   overflow: hidden;
-  background: var(--color-obsidian);
+  background-color: var(--color-obsidian);
+  background-image: url('/images/occult-card-bg.png');
+  background-size: cover;
+  background-position: center;
   border: 1px solid rgba(212, 175, 55, 0.15);
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.product-card:hover .product-img-wrapper {
-  border-color: rgba(212, 175, 55, 0.6);
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover .product-img-wrapper {
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+  }
 }
 
 .product-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center center;
   transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.5s ease;
   filter: brightness(0.9);
 }
 
-.product-card:hover .product-img {
-  transform: scale(1.08);
-  filter: brightness(1.1);
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover .product-img {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+  }
 }
 
 /* Calibration Overlay */
@@ -241,8 +250,10 @@ onMounted(() => {
   z-index: 4;
 }
 
-.product-card:hover .calibration-overlay {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover .calibration-overlay {
+    opacity: 1;
+  }
 }
 
 .scanning-line {
@@ -286,6 +297,8 @@ onMounted(() => {
 
 .product-info {
   padding: 1.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .product-meta {

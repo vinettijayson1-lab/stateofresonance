@@ -89,7 +89,7 @@ const isUnlocked = (ritual: any) => {
             <h3 class="protocol-heading">The Protocol</h3>
             <p>{{ ritual.protocol }}</p>
             <div class="protocol-footer">
-              <span class="meta-vibe">Verified by the Oracle</span>
+              <span class="meta-vibe">Verified Resonance</span>
             </div>
           </div>
           <div v-else class="protocol-locked-msg">
