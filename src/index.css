@@ -375,9 +375,11 @@ div[id^="klaviyo-forms-"] .kl-teaser-container,
   }
 }
 
-.btn-acquire:hover::before {
-  left: 150%;
-  transition: 0.7s;
+@media (hover: hover) and (pointer: fine) {
+  .btn-acquire:hover::before {
+    left: 150%;
+    transition: 0.7s;
+  }
 }
 
 /* Auto-glint animation for high-conversion visibility */
@@ -567,10 +569,12 @@ div[id^="klaviyo-forms-"] .kl-teaser-container,
 .glow-hover {
   transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
 }
-.glow-hover:hover {
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.2), 0 0 15px rgba(255, 255, 255, 0.05);
-  transform: translateY(-2px);
-  border-color: rgba(212, 175, 55, 0.5);
+@media (hover: hover) and (pointer: fine) {
+  .glow-hover:hover {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2), 0 0 15px rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+    border-color: rgba(212, 175, 55, 0.5);
+  }
 }
 
 

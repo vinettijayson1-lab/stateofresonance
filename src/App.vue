@@ -617,8 +617,10 @@ const auraStyle = computed(() => {
   transition: transform 0.5s var(--ease-out-expo);
 }
 
-.nav-link:hover span {
-  transform: translateY(-100%);
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover span {
+    transform: translateY(-100%);
+  }
 }
 
 .label-hover {
@@ -652,10 +654,12 @@ const auraStyle = computed(() => {
   z-index: 100;
 }
 
-.nav-dropdown-container:hover .nav-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
+@media (hover: hover) and (pointer: fine) {
+  .nav-dropdown-container:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .dropdown-link {
@@ -668,8 +672,10 @@ const auraStyle = computed(() => {
   transition: color 0.3s;
 }
 
-.dropdown-link:hover {
-  color: var(--color-gold);
+@media (hover: hover) and (pointer: fine) {
+  .dropdown-link:hover {
+    color: var(--color-gold);
+  }
 }
 
 .nav-link--highlight {
@@ -689,8 +695,10 @@ const auraStyle = computed(() => {
   padding-right: 0.15em;
 }
 
-.reservoir-btn:hover .text-label span {
-  transform: translateY(-100%);
+@media (hover: hover) and (pointer: fine) {
+  .reservoir-btn:hover .text-label span {
+    transform: translateY(-100%);
+  }
 }
 
 .nav-logo {
