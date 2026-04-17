@@ -25,6 +25,7 @@ interface Product {
 
 const attireProducts = ref<Product[]>([])
 const esotericProducts = ref<Product[]>([])
+const hoodieProducts = ref<Product[]>([])
 const loading = ref(true)
 
 onMounted(async () => {
@@ -43,14 +44,17 @@ onMounted(async () => {
   try {
     // Use working API filters — ghost-and-bones maps to category 'Ghost'/'Attire'
     // attire maps to category 'Attire'/'Apparel' for the second grid
-    const [attireRes, esotericRes] = await Promise.all([
+    const [attireRes, esotericRes, hoodiesRes] = await Promise.all([
       fetch('/api/products?collection=the-ghost-and-bones&limit=8'),
-      fetch('/api/products?category=Attire&limit=8')
+      fetch('/api/products?category=Attire&limit=8'),
+      fetch('/api/products?collection=hoodies&limit=6')
     ])
     const attireData = await attireRes.json()
     const esotericData = await esotericRes.json()
+    const hoodiesData = await hoodiesRes.json()
     attireProducts.value = Array.isArray(attireData) ? attireData : []
     esotericProducts.value = Array.isArray(esotericData) ? esotericData : []
+    hoodieProducts.value = Array.isArray(hoodiesData) ? hoodiesData : []
     // Fallback: if ghost collection is empty, show all apparel
     if (attireProducts.value.length === 0) {
       const fallbackRes = await fetch('/api/products?category=Apparel&limit=8')
@@ -169,6 +173,22 @@ const handleSmsSync = async () => {
       </div>
       <div style="text-align: center; margin-top: 4rem;">
         <router-link to="/best-sellers" class="btn-gold" style="padding: 1.25rem 3rem;">Explore the Collection</router-link>
+      </div>
+    </section>
+
+    <!-- ===== HOODIES ADD-ON ===== -->
+    <section class="products-section container section-top" v-if="!loading && hoodieProducts.length > 0" style="padding-top: 0;">
+      <div class="section-header">
+        <h2 class="hero-title" style="font-size: 2.5rem; text-align: left;">The Hoodies</h2>
+        <p class="product-meta" style="margin-top: 1rem; opacity: 0.8; font-size: 0.9rem; text-transform: none; letter-spacing: 0.1em;">
+          Premium Heavyweight Pullovers.
+        </p>
+      </div>
+      <div class="product-grid section-top" style="padding-top: 5vh;">
+        <ProductCard v-for="product in hoodieProducts.slice(0, 4)" :key="product.id" :product="product" />
+      </div>
+      <div style="text-align: center; margin-top: 0rem;">
+        <router-link to="/collections/hoodies" class="btn-outline" style="padding: 1.25rem 3rem;">View All Hoodies</router-link>
       </div>
     </section>
 
