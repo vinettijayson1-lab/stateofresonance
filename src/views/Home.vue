@@ -28,17 +28,7 @@ const esotericProducts = ref<Product[]>([])
 const loading = ref(true)
 
 onMounted(async () => {
-  // Hero Animation
-  gsap.to('.sacred-geometry', {
-    rotation: 20,
-    scale: 1.1,
-    scrollTrigger: {
-      trigger: '.void-choice',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1.5
-    }
-  })
+
 
   // Laboratory Manifesto Entrance - DOM paint safety delay
   setTimeout(() => {
@@ -808,17 +798,7 @@ const handleSmsSync = async () => {
   100% { background-position: -200% 0; }
 }
 
-.sacred-geometry {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120vh;
-  height: 120vh;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0.4;
-}
+
 
 /* === NEW CINEMATIC HERO STYLES === */
 .hero-eyebrow {
