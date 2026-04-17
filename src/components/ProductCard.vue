@@ -214,14 +214,15 @@ onMounted(() => {
   height: 100%;
   object-fit: contain;
   object-position: center center;
+  mix-blend-mode: screen;
   transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.5s ease;
-  filter: brightness(0.9);
+  filter: brightness(1.0) contrast(1.1);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .product-card:hover .product-img {
     transform: scale(1.08);
-    filter: brightness(1.1);
+    filter: brightness(1.2) contrast(1.2);
   }
 }
 

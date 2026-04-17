@@ -867,6 +867,8 @@ const onImgError = (e: any) => {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  mix-blend-mode: screen;
+  filter: contrast(1.1);
 }
 
 .main-img-wrapper img {
@@ -874,6 +876,8 @@ const onImgError = (e: any) => {
   height: 100%;
   object-fit: contain;
   background-color: transparent;
+  mix-blend-mode: screen;
+  filter: contrast(1.1);
 }
 
 .construction-overlay {
