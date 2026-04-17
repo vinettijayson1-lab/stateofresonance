@@ -775,9 +775,7 @@ const onImgError = (e: any) => {
           <img src="/images/lifestyle_stitching.png" alt="Heavyweight Material Drop Macro" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
         </div>
       </div>
-      <component :is="'style'">
-        .lifestyle-img-wrap:hover .lifestyle-zoom { transform: scale(1.05); }
-      </component>
+
     </section>
 
     <!-- Customer Reviews (Judge.me) -->
@@ -812,6 +810,8 @@ const onImgError = (e: any) => {
 </template>
 
 <style scoped>
+.lifestyle-img-wrap:hover .lifestyle-zoom { transform: scale(1.05); }
+
 .product-split {
   display: grid;
   grid-template-columns: minmax(300px, 40%) 1fr;

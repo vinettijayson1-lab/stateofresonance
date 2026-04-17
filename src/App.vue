@@ -296,9 +296,8 @@ const auraStyle = computed(() => {
 
         <!-- PRIMARY SHOPPING NAV -->
         <div class="nav-dropdown-container">
-          <router-link to="/shop" class="nav-link" @click="mobileMenuOpen = false">
-            <span class="label-primary">SHOP</span>
-            <span class="label-hover">COLLECTIONS</span>
+          <router-link to="/shop" class="nav-link" @click="mobileMenuOpen = false" style="font-weight: 500; letter-spacing: 0.1em;">
+            SHOP
           </router-link>
           <div class="nav-dropdown glass">
             <router-link to="/category/hoodies" class="dropdown-link" @click="mobileMenuOpen = false">Hoodies</router-link>
@@ -308,19 +307,16 @@ const auraStyle = computed(() => {
           </div>
         </div>
 
-        <router-link to="/about" class="nav-link" @click="mobileMenuOpen = false">
-          <span class="label-primary">SYMBOLS</span>
-          <span class="label-hover">MEANINGS</span>
+        <router-link to="/about" class="nav-link" @click="mobileMenuOpen = false" style="font-weight: 500; letter-spacing: 0.1em;">
+          SYMBOLS
         </router-link>
 
-        <router-link to="/about" class="nav-link" @click="mobileMenuOpen = false">
-          <span class="label-primary">ABOUT</span>
-          <span class="label-hover">BRAND STORY</span>
+        <router-link to="/about" class="nav-link" @click="mobileMenuOpen = false" style="font-weight: 500; letter-spacing: 0.1em;">
+          ABOUT
         </router-link>
 
-        <router-link to="/faq" class="nav-link" @click="mobileMenuOpen = false">
-          <span class="label-primary">FAQ</span>
-          <span class="label-hover">SUPPORT</span>
+        <router-link to="/faq" class="nav-link" @click="mobileMenuOpen = false" style="font-weight: 500; letter-spacing: 0.1em;">
+          FAQ
         </router-link>
 
         <router-link to="/inner-circle" class="nav-link inner-circle-link" @click="mobileMenuOpen = false">

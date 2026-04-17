@@ -133,7 +133,7 @@ onMounted(() => {
   <!-- Premium Overlay (No Pseudoscience) -->
       <div class="construction-overlay">
         <div class="construction-data">
-          <p class="data-label">{{ $t('product.live', { n: `<span class='gold-text'>${liveViewers}</span>` }) }}</p>
+          <p class="data-label" v-html="$t('product.live', { n: `<span class=\'gold-text\'>${liveViewers}</span>` })"></p>
           <p class="data-status" :class="{ 'gold-border': product.metadata?.isMembersOnly }">
             {{ product.metadata?.isMembersOnly ? $t('product.inner_circle') : 'ESOTERIC ARTIFACT' }}
           </p>
