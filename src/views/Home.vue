@@ -106,23 +106,22 @@ const handleSmsSync = async () => {
 
       <!-- Hero Content — Centered, Full Impact -->
       <div class="hero-center" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;width:90%;max-width:820px;">
-        <p class="hero-eyebrow">LIMITED-EDITION STREETWEAR · CANADA · EST. 2024</p>
         <h1 class="hero-wordmark">Wear the Symbols<br/><span style="color:var(--color-gold);">That Shape You</span></h1>
-        <p class="hero-tagline">Premium, limited-edition streetwear designed for inner alignment.</p>
+        <p class="hero-tagline">Premium, heavyweight streetwear inspired by ancient geometry, spiritual archetypes, and the path of inner alignment.</p>
         <div class="hero-cta-group">
           <router-link to="/best-sellers" class="btn-premium animate-glint" id="hero-shop-btn">
-            Shop the Collection
+            Shop Collection
           </router-link>
           <router-link to="/about" class="btn-ghost" id="hero-decode-btn">
             Decode the Symbols
           </router-link>
         </div>
         <div class="hero-trust-mini">
-          <span>✦ 450gsm heavyweight cotton</span>
+          <span>✦ Limited-run drops</span>
           <span>|</span>
-          <span>✦ Free shipping $110+</span>
+          <span>✦ Designed in Canada</span>
           <span>|</span>
-          <span>✦ 30-day returns</span>
+          <span>✦ Crafted with intention</span>
         </div>
       </div>
 
@@ -133,152 +132,116 @@ const handleSmsSync = async () => {
       </div>
     </section>
 
-    <!-- Trust Strip -->
-    <div class="homepage-trust-strip">
-      <div class="trust-strip-inner">
-        <div class="trust-strip-item">
-          <span class="trust-icon">⭐</span>
-          <span>5.0 Google Reviews</span>
-        </div>
-        <div class="trust-strip-divider"></div>
-        <div class="trust-strip-item">
-          <span class="trust-icon">🚚</span>
-          <span>Free shipping $110+</span>
-        </div>
-        <div class="trust-strip-divider"></div>
-        <div class="trust-strip-item">
-          <span class="trust-icon">↩️</span>
-          <span>30-day returns</span>
-        </div>
-        <div class="trust-strip-divider"></div>
-        <div class="trust-strip-item">
-          <span class="trust-icon">🔒</span>
-          <span>Shopify Secured</span>
-        </div>
-        <div class="trust-strip-divider"></div>
-        <div class="trust-strip-item">
-          <span class="trust-icon">📦</span>
-          <span>Ships from Canada</span>
-        </div>
+    <!-- SECTION 2 — THE MEANING -->
+    <section class="the-meaning-section" style="padding: 8vh 5vw; background: var(--color-bg); text-align: center;">
+      <div class="container" style="max-width: 800px; margin: 0 auto;">
+        <h2 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem); color: #fff; margin-bottom: 2rem; line-height: 1.2;">
+          Clothing is a declaration of who you are becoming.
+        </h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 2rem;">
+          Every piece in this collection carries a symbol rooted in timeless spiritual traditions — reminders of clarity, grounding, intuition, and transformation.
+        </p>
+        <p style="font-size: 1.2rem; font-family: var(--font-heading); color: var(--color-gold); letter-spacing: 0.1em; text-transform: uppercase;">
+          Not magic. Not metaphysics. Meaning. Intention. Identity.
+        </p>
       </div>
-    </div>
+    </section>
 
     <!-- ===== PRODUCTS: RIGHT UNDER THE HERO ===== -->
-    <!-- The State Collection -->
+    <!-- ===== PRODUCTS: RIGHT UNDER SECTION 2 ===== -->
+    <!-- The Resonance Series -->
     <section class="products-section container section-top">
       <div class="section-header">
-        <div class="section-eyebrow">THE STATE COLLECTION · LIMITED DROPS · PREMIUM MATERIALS</div>
-        <h2 class="hero-title" style="font-size: 2.5rem; text-align: left;">THE STATE COLLECTION</h2>
-        <p class="product-meta">HEAVYWEIGHT COTTON — OVERSIZED FIT — LIMITED QUANTITIES</p>
+        <h2 class="hero-title" style="font-size: 2.5rem; text-align: left;">The Resonance Series</h2>
+        <p class="product-meta" style="margin-top: 1rem; opacity: 0.8; font-size: 0.9rem; text-transform: none; letter-spacing: 0.1em;">
+          Heavyweight silhouettes. Intentional design. Limited quantities.
+        </p>
       </div>
       <div v-if="loading" class="skeleton-grid section-top">
         <div v-for="n in 8" :key="n" class="skeleton-card"></div>
       </div>
       <div v-else-if="attireProducts.length === 0" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;">
         <p style="font-size:0.75rem;letter-spacing:0.2em;margin-bottom:1.5rem;">COLLECTION INITIALIZING...</p>
-        <router-link to="/best-sellers" class="btn-gold">VIEW ALL CLOTHING →</router-link>
+        <router-link to="/best-sellers" class="btn-gold">Explore the Collection</router-link>
       </div>
       <div v-else class="product-grid section-top">
-        <ProductCard v-for="product in attireProducts" :key="product.id" :product="product" />
+        <ProductCard v-for="product in attireProducts.slice(0, 6)" :key="product.id" :product="product" />
       </div>
       <div style="text-align: center; margin-top: 4rem;">
-        <router-link to="/best-sellers" class="btn-gold">SHOP THE COLLECTION →</router-link>
+        <router-link to="/best-sellers" class="btn-gold" style="padding: 1.25rem 3rem;">Explore the Collection</router-link>
       </div>
     </section>
 
-    <!-- All Apparel / Garments -->
-    <section class="products-section container section-top">
-      <div class="section-header">
-        <div class="section-eyebrow">THE FREQUENCY ARCHIVE · WEARABLE ARTIFACTS</div>
-        <h2 class="hero-title" style="font-size: 2.5rem; text-align: left;">ALL ARTIFACTS</h2>
-        <p class="product-meta">ESOTERIC APPAREL — FREQUENCY-CALIBRATED — LIMITED PRODUCTION</p>
-      </div>
-      <div v-if="loading" class="skeleton-grid section-top">
-        <div v-for="n in 8" :key="n" class="skeleton-card"></div>
-      </div>
-      <div v-else-if="esotericProducts.length === 0" class="loading-state" style="text-align:center;padding:4rem;opacity:0.5;">
-        <p style="font-size:0.75rem;letter-spacing:0.2em;margin-bottom:1.5rem;">ARTIFACTS LOADING...</p>
-        <router-link to="/best-sellers" class="btn-gold">SHOP ALL CLOTHING →</router-link>
-      </div>
-      <div v-else class="product-grid section-top">
-        <ProductCard v-for="product in esotericProducts" :key="product.id" :product="product" />
-      </div>
-      <div style="text-align: center; margin-top: 4rem;">
-        <router-link to="/best-sellers" class="btn-gold">SHOP THE FULL COLLECTION →</router-link>
-      </div>
-    </section>
     <!-- ===== END PRODUCTS ===== -->
 
-    <VaultDropTeaser />
-
-    <!-- WHY OUR PIECES FEEL DIFFERENT -->
+    <!-- SECTION 4: WHY OUR PIECES FEEL DIFFERENT -->
     <section class="craftsmanship-section">
       <div class="container">
         <div class="craftsmanship-header">
           <p class="section-eyebrow-text">THE DIFFERENCE</p>
-          <h2 class="craftsmanship-title">Why Our Pieces<br/>Feel Different</h2>
-          <p class="craftsmanship-sub">We didn't set out to make streetwear. We set out to make objects you keep forever.</p>
+          <h2 class="craftsmanship-title" style="margin-bottom: 0.5rem;">Crafted for Presence.<br/>Built to Last.</h2>
+          <p class="craftsmanship-sub" style="margin-bottom: 3rem;">Your clothing should feel as substantial as the person you’re becoming.</p>
         </div>
-        <div class="craftsmanship-grid">
+        <div class="craftsmanship-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
           <div class="craft-card">
             <div class="craft-icon">⚖️</div>
-            <h3>450gsm Heavyweight Cotton</h3>
-            <p>Our fleece is 450 grams per square meter — nearly double the weight of typical streetwear. It drapes with authority and feels substantial from the first wear.</p>
-          </div>
-          <div class="craft-card">
-            <div class="craft-icon">🧵</div>
-            <h3>Double-Needle Construction</h3>
-            <p>Every seam is double-stitched for structural integrity. Where cheap brands save on thread, we reinforce for longevity. These pieces are built to outlast trends.</p>
-          </div>
-          <div class="craft-card">
-            <div class="craft-icon">📦</div>
-            <h3>Limited Production Runs</h3>
-            <p>We produce in small batches of 50–150 pieces. No mass production, ever. When a run ends, it rarely comes back. Scarcity isn't a tactic — it's a commitment to craft.</p>
+            <h3>450gsm heavyweight cotton</h3>
           </div>
           <div class="craft-card">
             <div class="craft-icon">🎨</div>
-            <h3>Oversized Boxy Silhouette</h3>
-            <p>Pre-shrunk, structured, and cut with an intentional oversized drop. The fit is architectural — designed to look as deliberate on day 100 as it does on day one.</p>
+            <h3>Oversized, structured fit</h3>
           </div>
-        </div>
-        <div style="text-align: center; margin-top: 4rem;">
-          <router-link to="/best-sellers" class="btn-gold">SHOP THE COLLECTION →</router-link>
+          <div class="craft-card">
+            <div class="craft-icon">🧵</div>
+            <h3>Double‑stitched construction</h3>
+          </div>
+          <div class="craft-card">
+            <div class="craft-icon">🍁</div>
+            <h3>Designed in Canada</h3>
+          </div>
+          <div class="craft-card">
+            <div class="craft-icon">📦</div>
+            <h3>Small‑batch production</h3>
+          </div>
+          <div class="craft-card">
+            <div class="craft-icon">✦</div>
+            <h3>Symbolic designs with purpose</h3>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SYMBOL MEANINGS -->
+    <!-- SECTION 5: THE SYMBOLS -->
     <section class="symbols-section">
       <div class="container">
         <div style="text-align: center; margin-bottom: 4rem;">
           <p class="section-eyebrow-text">THE LANGUAGE</p>
-          <h2 class="symbols-title">What the Symbols Mean</h2>
-          <p class="symbols-sub">Every garment carries a symbol. Here's what they represent — and why it matters.</p>
+          <h2 class="symbols-title">Every symbol carries a story.<br/>Every story carries a transformation.</h2>
         </div>
         <div class="symbols-grid">
           <div class="symbol-card glass">
-            <div class="symbol-glyph">✦</div>
-            <h3>The Resonance Sigil</h3>
-            <p>A four-pointed star representing the four states of matter — and the fifth element of consciousness that bridges them. Found on our signature pieces.</p>
+            <div class="symbol-glyph">⬡</div>
+            <h3>Metatron’s Cube</h3>
+            <p>clarity, structure, alignment</p>
           </div>
           <div class="symbol-card glass">
-            <div class="symbol-glyph">◯</div>
-            <h3>Sacred Geometry Circles</h3>
-            <p>The circle has no beginning and no end. Our circular motifs reference the Flower of Life — a geometric template underlying all matter and energy.</p>
+            <div class="symbol-glyph">❀</div>
+            <h3>Flower of Life</h3>
+            <p>expansion, unity, creation</p>
           </div>
           <div class="symbol-card glass">
             <div class="symbol-glyph">963</div>
-            <h3>The 963 Hz Frequency</h3>
-            <p>The highest Solfeggio frequency. Associated with crown chakra activation and direct connection to universal consciousness. Our signature vibration.</p>
+            <h3>963 Hz (symbolic)</h3>
+            <p>intuition, higher perspective</p>
           </div>
           <div class="symbol-card glass">
-            <div class="symbol-glyph">⊕</div>
-            <h3>Earth Cross</h3>
-            <p>The cross within the circle — an ancient symbol for the material world grounded in four directions. Wearing it is a reminder: you are rooted and sovereign.</p>
+            <div class="symbol-glyph">ॐ</div>
+            <h3>OM</h3>
+            <p>grounding, breath, stillness</p>
           </div>
         </div>
         <div style="text-align: center; margin-top: 3rem;">
-          <router-link to="/about" class="btn-outline">Full Symbol Guide →</router-link>
+          <router-link to="/about" class="btn-outline">Decode the Symbols</router-link>
         </div>
       </div>
     </section>
@@ -307,12 +270,12 @@ const handleSmsSync = async () => {
       </div>
     </section>
 
-    <!-- LIFESTYLE PHOTOGRAPHY GALLERY -->
+    <!-- SECTION 6: LIFESTYLE GALLERY -->
     <section class="lifestyle-gallery" style="padding: 8vh 0; background: var(--color-bg);">
       <div class="container">
         <div style="text-align: center; margin-bottom: 4rem;">
           <p class="section-eyebrow-text">THE LOOKBOOK</p>
-          <h2 class="hero-title" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; text-transform: uppercase;">Worn in the Real World</h2>
+          <h2 class="hero-title" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; text-transform: uppercase;">Where Intention Meets Aesthetic</h2>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
           <div class="lifestyle-img-wrap" style="aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
@@ -331,28 +294,44 @@ const handleSmsSync = async () => {
       </div>
     </section>
 
-    <!-- Social Growth Section: Join the Shop -->
+    <!-- SECTION 7: REVIEWS -->
+    <section class="reviews-section container section-top" style="text-align: center; max-width: 900px; margin: 0 auto 8vh auto;">
+      <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 3rem; color: var(--color-gold);">Verified Experiences</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+        <div class="review-card glass" style="padding: 2rem; text-align: left;">
+          <div style="color: var(--color-gold); font-size: 1.2rem; margin-bottom: 1rem;">★★★★★</div>
+          <p style="font-size: 0.95rem; line-height: 1.6; opacity: 0.9; margin-bottom: 1.5rem; font-style: italic;">“The quality is insane. This hoodie feels like armor.”</p>
+          <p style="font-size: 0.75rem; letter-spacing: 0.1em; color: var(--color-gold-muted);">— Verified Customer</p>
+        </div>
+        <div class="review-card glass" style="padding: 2rem; text-align: left;">
+          <div style="color: var(--color-gold); font-size: 1.2rem; margin-bottom: 1rem;">★★★★★</div>
+          <p style="font-size: 0.95rem; line-height: 1.6; opacity: 0.9; margin-bottom: 1.5rem; font-style: italic;">“The symbolism hits deeply. You feel different wearing it.”</p>
+          <p style="font-size: 0.75rem; letter-spacing: 0.1em; color: var(--color-gold-muted);">— Verified Customer</p>
+        </div>
+        <div class="review-card glass" style="padding: 2rem; text-align: left;">
+          <div style="color: var(--color-gold); font-size: 1.2rem; margin-bottom: 1rem;">★★★★★</div>
+          <p style="font-size: 0.95rem; line-height: 1.6; opacity: 0.9; margin-bottom: 1.5rem; font-style: italic;">“Best heavyweight hoodie I’ve ever owned.”</p>
+          <p style="font-size: 0.75rem; letter-spacing: 0.1em; color: var(--color-gold-muted);">— Verified Customer</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: EMAIL CAPTURE -->
     <section class="social-growth-shop section-top">
       <div class="container">
         <div class="growth-grid">
           <div class="growth-text">
-            <div class="section-eyebrow">{{ $t('shop.eyebrow') }}</div>
-            <h2 class="hero-title" style="font-size: clamp(2rem, 5vw, 4rem); text-align: left; line-height: 1.1;" v-html="$t('shop.title').replace('\n', '<br/>')"></h2>
-            <p class="product-meta" style="margin-top: 2rem; opacity: 0.6; font-size: 1rem; line-height: 1.8; max-width: 500px;">
-              {{ $t('shop.body') }}
+            <div class="section-eyebrow">A HIGHER FREQUENCY</div>
+            <h2 class="hero-title" style="font-size: clamp(2rem, 5vw, 4rem); text-align: left; line-height: 1.1;">Decode Your Symbol</h2>
+            <p class="product-meta" style="margin-top: 2rem; opacity: 0.8; font-size: 1rem; line-height: 1.8; max-width: 500px; text-transform: none; letter-spacing: normal;">
+              Get a free guide explaining the meaning behind the symbols in our collection, plus early access to drops.
             </p>
             <div class="sms-sync-field section-top" v-if="subscribeStatus !== 'success'">
               <div class="field-group glass">
                 <input 
                   v-model="seekerEmail" 
                   type="email" 
-                  placeholder="SYNC EMAIL" 
-                  class="sync-input"
-                />
-                <input 
-                  v-model="seekerPhone" 
-                  type="tel" 
-                  placeholder="SYNC PHONE (SMS)" 
+                  placeholder="EMAIL ADDRESS" 
                   class="sync-input"
                 />
                 <button 
@@ -360,36 +339,19 @@ const handleSmsSync = async () => {
                   class="btn-gold sync-btn"
                   :disabled="subscribeStatus === 'loading'"
                 >
-                  {{ subscribeStatus === 'loading' ? 'JOINING...' : 'JOIN THE SANCTUARY' }}
+                  {{ subscribeStatus === 'loading' ? 'UNLOCKING...' : 'Unlock the Guide' }}
                 </button>
               </div>
-              <p class="sms-disclosure">
-                By providing your phone number, you agree to receive recurring automated marketing text messages (e.g. cart reminders) from State of Resonance at the mobile number used when signing up. Consent is not a condition of any purchase. Reply STOP to cancel, HELP for help. Msg & data rates may apply. View our <router-link to="/privacy">Privacy Policy</router-link> and <router-link to="/terms">Terms of Service</router-link>.
-              </p>
             </div>
             <div v-else class="status-message success section-top">
-              <p class="gold-text">FIELD SYNCHRONIZED. WELCOME TO THE SANCTUARY.</p>
-            </div>
-
-            <div class="social-actions section-top" style="display: flex; gap: 2rem; flex-wrap: wrap;">
-              <a href="https://instagram.com/resonancestateof" target="_blank" class="glow-hover btn-gold-outline" style="display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.5rem; font-size: 0.7rem;">
-                <Instagram :size="16" /> {{ $t('shop.instagram') }}
-              </a>
-              <a href="https://tiktok.com/@stateofresonance" target="_blank" class="glow-hover btn-gold-outline" style="display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.5rem; font-size: 0.7rem;">
-                <Music2 :size="16" /> {{ $t('shop.tiktok') }}
-              </a>
+              <p class="gold-text">GUIDE UNLOCKED. CHECK YOUR INBOX.</p>
             </div>
           </div>
           <div class="growth-visual desktop-only glass" style="padding: 3rem; border-color: rgba(212,175,55,0.2); background: radial-gradient(circle at center, rgba(212,175,55,0.05) 0%, transparent 100%);">
             <div class="visual-stack">
               <div class="visual-card-glow"></div>
-              <div class="visual-meta">
-                <span class="meta-label">SIGNAL SOURCE</span>
-                <span class="meta-value">963 HERTZ</span>
-              </div>
-              <div class="visual-meta" style="top: auto; bottom: 2rem;">
-                <span class="meta-label">EST. SAINT-JEAN-SUR-RICHELIEU</span>
-                <span class="meta-value">CANADA</span>
+              <div class="visual-meta" style="top: 50%; bottom: auto; transform: translateY(-50%); font-size: 4rem; text-align: center; width: 100%; color: var(--color-gold);">
+                ✦
               </div>
             </div>
           </div>
@@ -397,59 +359,55 @@ const handleSmsSync = async () => {
       </div>
     </section>
 
-    <!-- Manifesto Section -->
+    <!-- SECTION 9: FOUNDER MESSAGE -->
     <section class="manifesto">
-      <div class="container manifesto-content">
-        <p class="manifesto-eyebrow">— The Word of Resonance —</p>
-        <h2 class="manifesto-title">State of Resonance: Esoteric Luxury Streetwear</h2>
-        <p class="manifesto-text">
-          This is not a trend label. This is a design world built around symbolic codes, esoteric motifs, and the belief that what you wear carries weight beyond fabric.
+      <div class="container manifesto-content" style="max-width: 700px;">
+        <p class="manifesto-eyebrow">— THE ORIGIN —</p>
+        <h2 class="manifesto-title" style="margin-bottom: 2rem;">From Darkness to Alignment</h2>
+        <p class="manifesto-text" style="text-align: center;">
+          State of Resonance was born from a personal journey through addiction, awakening, and rebuilding identity from the inside out.
         </p>
-        <p class="manifesto-text" style="margin-top: 2rem;">
-          Every piece is produced in limited quantities, built from premium materials, and designed to function as a lasting part of your personal uniform — not a disposable fast-fashion moment.
-        </p>
-        <p class="manifesto-text" style="margin-top: 2rem; font-size: 1.1rem; color: var(--color-gold); font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;">
-          Wear your frequency. Let your vibes Resonate. State of Resonance.
+        <p class="manifesto-text" style="margin-top: 2rem; text-align: center;">
+          <strong>Our mission is simple:</strong><br/>
+          Create clothing that reflects the inner transformation of the wearer.
         </p>
         <div style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap;">
-          <router-link to="/best-sellers" class="btn-gold">Shop Best Sellers</router-link>
-          <router-link to="/about" class="btn-outline">Read the Manifesto</router-link>
+          <router-link to="/about" class="btn-outline">Read the Full Story</router-link>
         </div>
       </div>
     </section>
 
-    <!-- The Void Access — Inner Circle CTA -->
-    <section class="void-access-section container" style="margin-top: -5vh; position: relative; z-index: 10;">
-      <div class="va-card glass glow-hover">
-        <div class="va-left">
-          <p class="va-id">RESTRICTED · INNER CIRCLE</p>
-          <h2 class="va-title">The Vault</h2>
-          <p class="va-subtitle">Access is not given. It is recognized.</p>
+    <!-- SECTION 10: TRUST & CLARITY -->
+    <div class="homepage-trust-strip" style="margin-top: 4rem; margin-bottom: 4rem;">
+      <div class="trust-strip-inner">
+        <div class="trust-strip-item">
+          <span class="trust-icon">⭐</span>
+          <span>5.0 Google Verified</span>
         </div>
-        <div class="va-right">
-          <p class="va-body">
-            The Vault is the inner circle of the State of Resonance Laboratory. Members receive priority 
-            access to Vault Drops, 1-of-10 limited runs, and physical-to-digital alignment protocols.
-          </p>
-          <div class="va-badges" style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0;">
-            <span class="va-badge gold-text" style="font-size: 0.6rem; letter-spacing: 0.2em; border: 1px solid var(--color-gold); padding: 0.4rem 0.8rem;">EARLY ACCESS</span>
-            <span class="va-badge gold-text" style="font-size: 0.6rem; letter-spacing: 0.2em; border: 1px solid var(--color-gold); padding: 0.4rem 0.8rem;">PHYSICAL DROPS</span>
-            <span class="va-badge gold-text" style="font-size: 0.6rem; letter-spacing: 0.2em; border: 1px solid var(--color-gold); padding: 0.4rem 0.8rem;">SANCTUARY PRIORITY</span>
-          </div>
-          <router-link to="/inner-circle" class="btn-gold" style="margin-top: 1rem; display: inline-block; text-align:center;">
-            ENTER THE INNER CIRCLE →
-          </router-link>
+        <div class="trust-strip-divider"></div>
+        <div class="trust-strip-item">
+          <span class="trust-icon">🚚</span>
+          <span>Free Shipping $110+</span>
+        </div>
+        <div class="trust-strip-divider"></div>
+        <div class="trust-strip-item">
+          <span class="trust-icon">↩️</span>
+          <span>30-Day Returns</span>
+        </div>
+        <div class="trust-strip-divider"></div>
+        <div class="trust-strip-item">
+          <span class="trust-icon">🔒</span>
+          <span>Secure Checkout</span>
+        </div>
+        <div class="trust-strip-divider"></div>
+        <div class="trust-strip-item">
+          <span class="trust-icon">🇨🇦</span>
+          <span>Ships from Canada</span>
         </div>
       </div>
-    </section>
+    </div>
 
 
-    <SocialProof />
-
-    <InstagramFeed />
-    
-
-    <FaqSection />
 
   </div>
 </template>

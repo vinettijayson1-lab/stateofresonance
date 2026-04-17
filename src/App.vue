@@ -446,24 +446,19 @@ const auraStyle = computed(() => {
               <a href="https://pinterest.com/stateofresonance" target="_blank" class="social-icon-link" aria-label="State of Resonance on Pinterest"><Compass :size="18" /></a>
             </div>
           </div>
-        <p class="footer-sup">FREQUENCY LABORATORY · STATEOFRESONANCE.CA</p>
+        <p class="footer-sup" style="text-transform: none; font-size: 1.1rem; opacity: 0.9;">Symbolic streetwear for the spiritually awakened.</p>
         <div class="footer-trust-links">
-          <a href="https://judge.me/reviews/stateofresonance.ca" target="_blank" rel="noopener" class="footer-trust-link gold-text" aria-label="Read our verified reviews on Judge.me">✦ 5.0 JUDGE.ME REVIEWS</a>
-          <span class="footer-divider">|</span>
-          <router-link to="/best-sellers" class="footer-trust-link">BEST SELLERS</router-link>
-          <span class="footer-divider">|</span>
-          <router-link to="/contact" class="footer-trust-link">SHIPPING & RETURNS</router-link>
-          <span class="footer-divider">|</span>
-          <router-link to="/inner-circle" class="footer-trust-link">INNER CIRCLE</router-link>
-          <span class="footer-divider">|</span>
-          <router-link to="/privacy" class="footer-trust-link">PRIVACY POLICY</router-link>
-          <span class="footer-divider">|</span>
-          <router-link to="/terms" class="footer-trust-link">TERMS OF SERVICE</router-link>
+          <router-link to="/best-sellers" class="footer-trust-link">Shop</router-link>
+          <span class="footer-divider">•</span>
+          <router-link to="/about" class="footer-trust-link">About</router-link>
+          <span class="footer-divider">•</span>
+          <router-link to="/about" class="footer-trust-link">Symbols</router-link>
+          <span class="footer-divider">•</span>
+          <router-link to="/faq" class="footer-trust-link">FAQ</router-link>
+          <span class="footer-divider">•</span>
+          <router-link to="/contact" class="footer-trust-link">Contact</router-link>
         </div>
-        <p class="footer-motto" style="font-size: 0.6rem; letter-spacing: 0.3em; color: var(--color-gold); margin-bottom: 1.5rem; text-transform: uppercase; font-weight: 500;">
-          Wear your frequency. Let your vibes Resonate. State of Resonance.
-        </p>
-        <p class="footer-copy">&copy; 2026 STATE OF RESONANCE. ESOTERIC LUXURY SANCTUARY.</p>
+        <p class="footer-copy" style="margin-top: 2rem;">&copy; State of Resonance — All Rights Reserved</p>
         
         <div class="footer-dialect-control desktop-only" style="margin-top: 3rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; opacity: 0.8;">
           <span style="font-size: 0.55rem; letter-spacing: 0.3em; color: var(--color-gold-muted); text-transform: uppercase;">{{ $t('nav.language') || 'SELECT FREQUENCY' }}</span>
