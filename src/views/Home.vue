@@ -132,17 +132,17 @@ const handleSmsSync = async () => {
       </div>
     </section>
 
-    <!-- SECTION 2 — THE MEANING -->
+    <!-- SECTION 2 — THE GROUNDING -->
     <section class="the-meaning-section" style="padding: 8vh 5vw; background: var(--color-bg); text-align: center;">
       <div class="container" style="max-width: 800px; margin: 0 auto;">
-        <h2 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem); color: #fff; margin-bottom: 2rem; line-height: 1.2;">
-          Clothing is a declaration of who you are becoming.
+        <h2 style="font-family: var(--font-heading); font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: #fff; margin-bottom: 2rem; line-height: 1.3;">
+          Premium heavyweight streetwear inspired by ancient symbols and spiritual archetypes.
         </h2>
-        <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 2rem;">
-          Every piece in this collection carries a symbol rooted in timeless spiritual traditions — reminders of clarity, grounding, intuition, and transformation.
+        <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.75); margin-bottom: 1.5rem;">
+          Every piece is crafted in small batches, designed in Canada, and built with 450gsm materials for a structured, oversized fit.
         </p>
-        <p style="font-size: 1.2rem; font-family: var(--font-heading); color: var(--color-gold); letter-spacing: 0.1em; text-transform: uppercase;">
-          Not magic. Not metaphysics. Meaning. Intention. Identity.
+        <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.75);">
+          Our frequency names are symbolic — reminders of <span style="color: var(--color-gold);">clarity, grounding, intuition, and transformation.</span>
         </p>
       </div>
     </section>
@@ -220,24 +220,24 @@ const handleSmsSync = async () => {
         </div>
         <div class="symbols-grid">
           <div class="symbol-card glass">
-            <div class="symbol-glyph">⬡</div>
-            <h3>Metatron’s Cube</h3>
-            <p>clarity, structure, alignment</p>
-          </div>
-          <div class="symbol-card glass">
-            <div class="symbol-glyph">❀</div>
-            <h3>Flower of Life</h3>
-            <p>expansion, unity, creation</p>
-          </div>
-          <div class="symbol-card glass">
             <div class="symbol-glyph">963</div>
-            <h3>963 Hz (symbolic)</h3>
-            <p>intuition, higher perspective</p>
+            <h3>963 Hz</h3>
+            <p>intuition, clarity</p>
           </div>
           <div class="symbol-card glass">
-            <div class="symbol-glyph">ॐ</div>
-            <h3>OM</h3>
-            <p>grounding, breath, stillness</p>
+            <div class="symbol-glyph">528</div>
+            <h3>528 Hz</h3>
+            <p>transformation</p>
+          </div>
+          <div class="symbol-card glass">
+            <div class="symbol-glyph">432</div>
+            <h3>432 Hz</h3>
+            <p>grounding</p>
+          </div>
+          <div class="symbol-card glass">
+            <div class="symbol-glyph">396</div>
+            <h3>396 Hz</h3>
+            <p>release</p>
           </div>
         </div>
         <div style="text-align: center; margin-top: 3rem;">

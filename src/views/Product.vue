@@ -703,10 +703,10 @@ const onImgError = (e: any) => {
         <div v-if="isClothing" class="symbol-meaning-block" style="margin-top: 2rem; padding: 1.5rem; background: rgba(212,175,55,0.02); border-left: 2px solid var(--color-gold-muted);">
           <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 1rem; text-transform: uppercase;">✦ Symbol Meaning</p>
           <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.8; opacity: 0.9;">
-            <li><strong>⬡ Metatron’s Cube:</strong> clarity, structure, alignment</li>
-            <li><strong>❀ Flower of Life:</strong> expansion, unity, creation</li>
-            <li><strong>963Hz (symbolic):</strong> intuition, higher perspective</li>
-            <li><strong>ॐ OM:</strong> grounding, breath, stillness</li>
+            <li><strong>963 Hz:</strong> intuition, clarity</li>
+            <li><strong>528 Hz:</strong> transformation</li>
+            <li><strong>432 Hz:</strong> grounding</li>
+            <li><strong>396 Hz:</strong> release</li>
           </ul>
         </div>
 
