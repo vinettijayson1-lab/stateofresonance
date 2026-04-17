@@ -10,7 +10,7 @@
       <!-- Fallback / Static Feed -->
       <div class="insta-grid section-top">
         <div v-for="(img, index) in images" :key="index" class="insta-item glass glow-hover">
-          <img :src="img" alt="Sanctuary Artifact" loading="lazy">
+          <img :src="img" alt="Shop Piece" loading="lazy">
           <div class="insta-overlay">
             <Instagram :size="24" />
           </div>

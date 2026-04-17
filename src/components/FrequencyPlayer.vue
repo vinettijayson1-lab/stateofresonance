@@ -97,7 +97,7 @@ const getAssetPath = (type: 'ambient' | 'chant') => {
 }
 
 const isMissingAsset = (type: 'ambient' | 'chant') => {
-  // Only 963Hz assets are confirmed present in the initial sanctuary
+  // Only 963Hz assets are confirmed present in the initial shop
   return selectedFrequency.value !== 963
 }
 

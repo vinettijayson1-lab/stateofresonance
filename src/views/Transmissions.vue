@@ -3,14 +3,14 @@ import BlogFeed from '../components/BlogFeed.vue'
 import { onMounted } from 'vue'
 
 onMounted(() => {
-  document.title = 'Calibration Logs & Transmissions | State of Resonance'
+  document.title = 'Construction Logs & Transmissions | State of Resonance'
   
   // Inject BlogPosting Structured Data
   const schema = {
     "@context": "https://schema.org",
     "@type": "Blog",
     "name": "State of Resonance Transmissions",
-    "description": "Field notes and calibration logs from the Resonance Laboratory.",
+    "description": "Field notes and construction logs from the Resonance Laboratory.",
     "publisher": {
       "@type": "Organization",
       "name": "State of Resonance"
@@ -64,7 +64,7 @@ const calibrationLogs = [
     freqName: 'Liberation Sequence',
     title: 'Protocol 04 — Releasing the Shadow',
     date: 'MMXXIV · CYCLE 12',
-    body: 'The base tone of our design sequence corresponds to raw, unfiltered expression — the field governing survival, safety, and liberation from fear. This protocol is used during the conceptual phase of artifact production to strip away unnecessary embellishments before final tailoring.',
+    body: 'The base tone of our design sequence corresponds to raw, unfiltered expression — the field governing survival, safety, and liberation from fear. This protocol is used during the conceptual phase of piece production to strip away unnecessary embellishments before final tailoring.',
     type: 'SANCTUARY DESIGN LOG'
   }
 ]
@@ -76,12 +76,12 @@ const calibrationLogs = [
 
     <header class="tx-header glass glow-edge" style="margin: 0 auto 8vh auto; max-width: 800px; padding: 4rem 2rem; border-radius: 12px; z-index: 10; position: relative;">
       <p class="tx-eyebrow">— CLASSIFIED FREQUENCY ARCHIVE —</p>
-      <h1 class="hero-title">Calibration Log</h1>
+      <h1 class="hero-title">Construction Log</h1>
       <p class="product-meta">FIELD NOTES FROM THE RESONANCE LABORATORY</p>
     </header>
 
     <!-- Protocol logs -->
-    <div class="calibration-logs relative" style="z-index: 10;">
+    <div class="construction-logs relative" style="z-index: 10;">
       <article v-for="log in calibrationLogs" :key="log.id" class="log-entry">
         <div class="log-side">
           <div class="log-id">{{ log.id }}</div>
@@ -112,7 +112,7 @@ const calibrationLogs = [
       <p class="va-eyebrow">RESTRICTED ACCESS</p>
       <h2 class="va-title">Enter The Void</h2>
       <p class="va-body">
-        The Void is our inner circle. Members receive early notification of Calibration Drops, access to restricted frequency protocols, and priority acquisition rights before any synchronization event goes public.
+        The Void is our inner circle. Members receive early notification of Construction Drops, access to restricted frequency protocols, and priority acquisition rights before any synchronization event goes public.
       </p>
       <a href="https://checkout.stateofresonance.ca/pages/the-way-to-resonance" target="_blank" class="btn-gold" style="margin-top: 2rem; display: inline-block;">
         REQUEST VOID ACCESS →
@@ -137,8 +137,8 @@ const calibrationLogs = [
   margin-bottom: 2rem;
 }
 
-/* Calibration Logs */
-.calibration-logs {
+/* Construction Logs */
+.construction-logs {
   display: flex;
   flex-direction: column;
   gap: 2rem;

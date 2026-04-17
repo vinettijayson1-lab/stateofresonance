@@ -16,15 +16,15 @@ import {
 const links = [
   {
     title: 'THE FREQUENCY QUIZ',
-    subtitle: 'Synchronize your field & find your artifact.',
+    subtitle: 'Synchronize your field & find your piece.',
     url: '/quiz',
     icon: Sparkles,
     highlight: true
   },
   {
     title: 'THE SANCTUARY',
-    subtitle: 'Explore the full artifact reservoir.',
-    url: '/sanctuary',
+    subtitle: 'Explore the full piece collection.',
+    url: '/shop',
     icon: Search
   },
   {
@@ -87,7 +87,7 @@ onMounted(() => {
           <span class="incentive-eyebrow">VOID PROTOCOL ACTIVE</span>
           <h2 class="incentive-title">Follow for Digital Rituals</h2>
           <p class="incentive-text">
-            Join the sanctuary on social for weekly tarot pulls and exclusive 11:11 drop alerts.
+            Join the shop on social for weekly tarot pulls and exclusive 11:11 drop alerts.
           </p>
           <div class="social-quick-links">
             <a href="https://instagram.com/resonancestateof" target="_blank" class="social-pill ig">
@@ -122,11 +122,11 @@ onMounted(() => {
 
       <!-- Footer Info -->
       <footer class="contact-footer">
-        <p class="calibration-id">SIGNAL: 963HZ · STATUS: SYNCHRONIZED</p>
+        <p class="construction-id">SIGNAL: 963HZ · STATUS: SYNCHRONIZED</p>
         <div class="footer-links">
           <router-link to="/">Home</router-link>
           <span>·</span>
-          <router-link to="/sanctuary">Store</router-link>
+          <router-link to="/shop">Store</router-link>
           <span>·</span>
           <router-link to="/transmissions">Manuscripts</router-link>
         </div>
@@ -323,7 +323,7 @@ onMounted(() => {
   opacity: 0.4;
 }
 
-.calibration-id {
+.construction-id {
   font-size: 0.5rem;
   letter-spacing: 0.4em;
   margin-bottom: 2rem;

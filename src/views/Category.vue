@@ -37,7 +37,7 @@ const getGroupCount = (groupName: string) => {
 
 const CATALOGUE_GROUPS: Record<string, string[]> = {
   'Ritual Tools': ['Ritual Tools', 'Ritual Items & Spell Supplies', 'Magical Wands & Besom Brooms', 'Ritual Athames', 'Ritual Kits', 'Cauldrons', 'Chalices', 'Mortar & Pestle'],
-  'Shrine Artifacts': ['Shrine Artifacts', 'Statues', 'Home Decor', 'Mystic Curiosities', 'Stone Crafts & Gemstone Trees'],
+  'Shrine Garments': ['Shrine Garments', 'Statues', 'Home Decor', 'Mystic Curiosities', 'Stone Crafts & Gemstone Trees'],
   'Mystic Curiosities': ['Mystic Curiosities', 'Novelty & Gift Ideas', 'Bumper Stickers', 'Posters'],
   'Divination Tools': ['Divination Tools', 'All Divination', 'Tarot Decks', 'Oracle Decks & Reading Cards', 'Pendulums', 'Scrying', 'Runes & Rune Products'],
   'Sacred Adornments': ['Sacred Adornments', 'All Jewelry', 'All Pendants & Necklaces', 'All Pendants & Charms', 'Rings', 'Bracelets & Anklets', 'Amulets & Talismans', 'Earrings'],
@@ -73,7 +73,7 @@ const getCollectionHandle = (groupName: string) => {
   const handleMap: Record<string, string> = {
     'Ritual Tools': 'ritual-tools',
     'Divination Tools': 'divination-tools',
-    'Shrine Artifacts': 'shrine-artifacts',
+    'Shrine Garments': 'shrine-garments',
     'Sacred Smoke': 'sacred-smoke',
     'Earth Minerals': 'earth-relics',
     'Alchemical Botanicals': 'alchemical-botanicals',
@@ -145,15 +145,15 @@ onMounted(() => {
   <div class="category-view container" style="min-height: 100vh;">
     <header class="category-header" style="padding: 15vh 0 5vh;">
       <div v-if="activeGroup" class="breadcrumb">
-        <router-link to="/sanctuary" class="nav-link" style="text-decoration: none; color: inherit; cursor:pointer;">{{ String(route.name) }}</router-link>
+        <router-link to="/shop" class="nav-link" style="text-decoration: none; color: inherit; cursor:pointer;">{{ String(route.name) }}</router-link>
         <span class="gold-text"> / {{ activeGroup }}</span>
       </div>
       <h1 class="hero-title" style="font-size: 4rem;">{{ activeGroup || String(route.name) }}</h1>
-      <p class="product-meta">The {{ activeGroup || String(route.name) }} Sanctuary</p>
+      <p class="product-meta">The {{ activeGroup || String(route.name) }} Shop</p>
     </header>
 
-    <!-- Catalogue Group Selection (Only if in Sanctuary and no active group) -->
-    <div v-if="route.name === 'Sanctuary' && !activeGroup && !loading" class="catalogue-grid">
+    <!-- Catalogue Group Selection (Only if in Shop and no active group) -->
+    <div v-if="route.name === 'Shop' && !activeGroup && !loading" class="catalogue-grid">
       <template v-for="(cats, groupName) in CATALOGUE_GROUPS" :key="groupName">
         <!-- Special Handling for Attire -->
         <template v-if="groupName === 'Attire'">
@@ -171,7 +171,7 @@ onMounted(() => {
            :to="{ name: 'Collection', params: { handle: getCollectionHandle(String(groupName)) }}"
            class="catalogue-card glass">
           <h3 class="catalogue-name">{{ groupName }}</h3>
-          <p class="catalogue-meta">{{ getGroupCount(String(groupName)) }} Artifacts | Enter Collection</p>
+          <p class="catalogue-meta">{{ getGroupCount(String(groupName)) }} Garments | Enter Collection</p>
         </router-link>
       </template>
     </div>
@@ -181,7 +181,7 @@ onMounted(() => {
     </div>
 
     <!-- Product Grid -->
-    <div v-else-if="activeGroup || route.name !== 'Sanctuary'" class="product-grid">
+    <div v-else-if="activeGroup || route.name !== 'Shop'" class="product-grid">
       <ProductCard v-for="product in products" :key="product.id" :product="product" />
     </div>
 

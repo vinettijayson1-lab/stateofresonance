@@ -147,7 +147,7 @@ const fetchMembersProducts = async () => {
     // Filter for members-only items
     membersProducts.value = data.filter((p: any) => p.metadata?.isMembersOnly === true).sort((a: any, b: any) => (a.metadata?.minResonanceScore || 0) - (b.metadata?.minResonanceScore || 0))
   } catch (err) {
-    console.error('Failed to distill members reservoir:', err)
+    console.error('Failed to distill members collection:', err)
   } finally {
     loading.value = false
   }
@@ -263,9 +263,9 @@ onMounted(() => {
         </p>
       </header>
 
-      <div class="reservoir-grid">
-        <div class="reservoir-section">
-          <h2 class="reservoir-title">{{ $t('inner_circle.exclusive_title') }}</h2>
+      <div class="collection-grid">
+        <div class="collection-section">
+          <h2 class="collection-title">{{ $t('inner_circle.exclusive_title') }}</h2>
           <div v-if="loading" class="loading-state">{{ $t('inner_circle.loading') }}</div>
           <div v-else class="product-grid">
             <div v-for="product in membersProducts" :key="product.id" class="relative group">
@@ -287,7 +287,7 @@ onMounted(() => {
         </div>
 
         <div class="manifestation-protocols glass">
-          <h2 class="reservoir-title">{{ $t('inner_circle.protocols_title') }}</h2>
+          <h2 class="collection-title">{{ $t('inner_circle.protocols_title') }}</h2>
           <div class="protocol-list">
             <div class="protocol-item">
               <span class="protocol-num">01</span>
@@ -444,13 +444,13 @@ onMounted(() => {
   line-height: 1.6;
 }
 
-.reservoir-grid {
+.collection-grid {
   display: grid;
   grid-template-columns: 1fr 350px;
   gap: 4rem;
 }
 
-.reservoir-title {
+.collection-title {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   letter-spacing: 0.1em;
@@ -543,7 +543,7 @@ onMounted(() => {
 }
 
 @media (max-width: 1024px) {
-  .reservoir-grid {
+  .collection-grid {
     grid-template-columns: 1fr;
   }
 }

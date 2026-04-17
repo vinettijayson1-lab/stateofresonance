@@ -22,7 +22,7 @@ const submitManifestation = async () => {
 <template>
   <div class="manifestation-board">
     <div class="board-header">
-      <h2 class="section-title">Wall of Calibration</h2>
+      <h2 class="section-title">Wall of Construction</h2>
       <p class="section-subtitle">A collective chronicle of synchronization results.</p>
     </div>
 

@@ -183,15 +183,15 @@ watch(() => cart.isOpen, (val) => {
     <div class="cart-panel glass">
       <div class="cart-layout-pines">
         <!-- Visual Resonance Side (Desktop) -->
-        <div class="reservoir-visual-side">
-          <img src="/images/reservoir_split.png" alt="Reservoir Vibe" class="vibe-side-img" />
+        <div class="collection-visual-side">
+          <img src="/images/reservoir_split.png" alt="Collection Vibe" class="vibe-side-img" />
           <div class="vibe-side-overlay"></div>
           <div class="collection-float-text">GHOST & BONES</div>
           <div class="singularity-point"></div>
         </div>
 
         <!-- Content Side -->
-        <div class="reservoir-content-side custom-scroll">
+        <div class="collection-content-side custom-scroll">
           <header class="cart-header">
             <div>
               <h2 class="cart-title" style="display: flex; align-items: center; gap: 1rem;">
@@ -234,7 +234,7 @@ watch(() => cart.isOpen, (val) => {
       </div>
 
       <div class="cart-items custom-scroll">
-        <div v-if="cart.items.length === 0" class="empty-reservoir">
+        <div v-if="cart.items.length === 0" class="empty-collection">
           <p>{{ $t('cart.empty') }}</p>
         </div>
         <div v-for="item in cart.items" :key="item.id" class="cart-item">
@@ -339,7 +339,7 @@ watch(() => cart.isOpen, (val) => {
 
         <a :href="cart.checkoutUrl" class="btn-premium checkout-btn" @click="trackCheckout">{{ $t('cart.initiate_alignment') }}</a>
       </footer>
-    </div><!-- End reservoir-content-side -->
+    </div><!-- End collection-content-side -->
   </div><!-- End cart-layout-pines -->
 </div> <!-- End cart-panel -->
 </div> <!-- End cart-system -->
@@ -378,7 +378,7 @@ watch(() => cart.isOpen, (val) => {
   height: 100%;
 }
 
-.reservoir-visual-side {
+.collection-visual-side {
   flex: 1;
   position: relative;
   background: #000;
@@ -388,7 +388,7 @@ watch(() => cart.isOpen, (val) => {
   border-right: 1px solid rgba(255,255,255,0.05);
 }
 
-.reservoir-content-side {
+.collection-content-side {
   width: 100%;
   height: 100%;
   padding: 4rem;
@@ -739,7 +739,7 @@ watch(() => cart.isOpen, (val) => {
   color: var(--color-gold-muted);
 }
 
-.empty-reservoir {
+.empty-collection {
   text-align: center;
   padding: 5vh 0;
   opacity: 0.4;
@@ -810,12 +810,12 @@ watch(() => cart.isOpen, (val) => {
 
 @media (max-width: 880px) {
   .cart-panel { width: 100%; }
-  .reservoir-visual-side { display: none; }
+  .collection-visual-side { display: none; }
   .cart-layout-pines { flex-direction: column; }
 }
 
 @media (max-width: 480px) {
   .cart-title { font-size: 1.8rem; }
-  .reservoir-content-side { padding: 1.5rem 1rem; }
+  .collection-content-side { padding: 1.5rem 1rem; }
 }
 </style>

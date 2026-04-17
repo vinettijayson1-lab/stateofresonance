@@ -4,7 +4,7 @@
       <span class="teaser-eyebrow">SIGNAL DETECTED · NEXT PHASE</span>
       <h3 class="teaser-title">The Void is Expanding.</h3>
       <p class="teaser-body">
-        Artifact acquisition complete. Your resonance has been recorded.
+        Piece acquisition complete. Your resonance has been recorded.
         The next synchronization event (Phase 2: Convergence) will begin in:
       </p>
       

@@ -88,7 +88,7 @@
     <div class="fomo-bar glass">
       <span class="fomo-dot"></span>
       <span class="fomo-text">
-        <strong>147 seekers</strong> have synchronized with an artifact in the last 24 hours
+        <strong>147 seekers</strong> have synchronized with an piece in the last 24 hours
       </span>
     </div>
   </section>

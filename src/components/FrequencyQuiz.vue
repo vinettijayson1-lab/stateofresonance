@@ -156,7 +156,7 @@ const calculateResult = () => {
         import('../store/cart').then(({ cart }) => {
            cart.lastManifestation = {
              name: 'A New ' + tier,
-             action: 'just completed their calibration',
+             action: 'just completed their construction',
              time: 'Just now',
              isPremium: tier === '963_HZ' || tier === '741_HZ'
            }
@@ -181,13 +181,13 @@ const addToCartAndNavigate = () => {
     
     import('../store/cart').then(({ cart }) => {
       cart.add(p)
-      // Open cart immediately for direct calibration
+      // Open cart immediately for direct construction
       cart.isOpen = true
       
       // Update manifestation feed
       cart.lastManifestation = {
         name: 'A New ' + results.value.tier,
-        action: 'just claimed their aligned artifact',
+        action: 'just claimed their aligned piece',
         time: 'Just now',
         isPremium: results.value.tier === '963_HZ' || results.value.tier === '741_HZ'
       }
@@ -297,7 +297,7 @@ const subscribeFromQuiz = async () => {
     <div v-else-if="step === 99" class="results-state">
       <div class="results-header">
         <h2 class="gold-text">Resonance Found</h2>
-        <p class="meta-vibe">Your aligned artifact has been identified</p>
+        <p class="meta-vibe">Your aligned piece has been identified</p>
       </div>
       
       <div class="recommendation-card glass">
@@ -315,7 +315,7 @@ const subscribeFromQuiz = async () => {
           <div class="discount-box">
              <span class="meta-vibe">Exclusive Reward</span>
              <p class="promo-code">INNER_CIRCLE_963</p>
-             <p class="promo-hint">Code: <strong class="gold-text">RESONANCE963</strong> to unlock the Members Reservoir</p>
+             <p class="promo-hint">Code: <strong class="gold-text">RESONANCE963</strong> to unlock the Members Collection</p>
           </div>
           
           <div class="inner-circle-capture glass" style="margin-bottom: 2rem; padding: 1.5rem; border: 1px solid rgba(212,175,55,0.2);">
@@ -354,7 +354,7 @@ const subscribeFromQuiz = async () => {
             <p v-if="copyStatus" class="copy-status">{{ copyStatus }}</p>
           </div>
           
-          <button @click="addToCartAndNavigate" class="btn-premium resonance-pulse" style="width: 100%; text-align: center; margin-bottom: 2rem;">Claim Result & Calibrate Reservoir</button>
+          <button @click="addToCartAndNavigate" class="btn-premium resonance-pulse" style="width: 100%; text-align: center; margin-bottom: 2rem;">Claim Result & Calibrate Collection</button>
           
           <div class="event-cta glass" style="padding: 1.5rem; border: 1px dashed var(--color-gold-muted); margin-bottom: 2rem;">
             <p class="meta-vibe" style="margin-bottom: 0.5rem;">Ongoing Event</p>

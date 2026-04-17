@@ -54,7 +54,7 @@ const submitSync = async () => {
     })
   } catch (e: any) {
     console.error('Sync error:', e)
-    alert(`Calibration failed: ${e.message}. Please retry your transmission.`)
+    alert(`Construction failed: ${e.message}. Please retry your transmission.`)
     submitting.value = false
   }
 }
@@ -75,7 +75,7 @@ const submitSync = async () => {
         <div class="card-header">
           <Zap class="header-icon gold-text" :size="32" />
           <h2 class="title">Sync Your Frequency</h2>
-          <p class="subtitle">Enter your logistics to anchor the artifact in your physical field.</p>
+          <p class="subtitle">Enter your logistics to anchor the piece in your physical field.</p>
         </div>
 
         <form @submit.prevent="submitSync" class="shipping-form">

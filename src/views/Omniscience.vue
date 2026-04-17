@@ -55,23 +55,23 @@ const toggleAudio = () => {
 };
 
 const synchronize = () => {
-  const artifact = {
+  const piece = {
     id: 'omni-963',
-    title: t('products.omni-963.title') || 'The Omniscience Artifact',
-    handle: 'the-omniscience-artifact',
+    title: t('products.omni-963.title') || 'The Omniscience Piece',
+    handle: 'the-omniscience-piece',
     price: '963.00', 
     image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/resonance_piece_a_high_fashion_streetwear_noir_1774960188309.png',
-    category: 'Artifacts',
+    category: 'Garments',
     variantId: 'o963'
   };
-  cart.add(artifact);
+  cart.add(piece);
   resonance.addPoints(500); // Massive resonance gain for acquiring the Singularity
 };
 
 onMounted(async () => {
   await nextTick();
   // Hero Entrance
-  gsap.from('.artifact-title', { opacity: 0, y: 20, duration: 1.5, delay: 0.5 });
+  gsap.from('.piece-title', { opacity: 0, y: 20, duration: 1.5, delay: 0.5 });
   gsap.from('.merkabah-ritual-container', { opacity: 0, scale: 0.8, duration: 2, ease: 'expo.out' });
 
   // Scroll Animations
@@ -117,7 +117,7 @@ onUnmounted(() => {
 
     <!-- Navigation -->
     <nav class="ritual-nav">
-      <router-link to="/sanctuary" class="back-link">
+      <router-link to="/shop" class="back-link">
         <ArrowLeft :size="16" />
         <span>{{ $t('omniscience.back_to_sanctuary') }}</span>
       </router-link>
@@ -129,7 +129,7 @@ onUnmounted(() => {
       <div class="merkabah-ritual-container">
         <Omniscience3D />
       </div>
-      <h1 class="artifact-title gold-text">{{ $t('products.omni-963.title') || 'The Omniscience Artifact' }}</h1>
+      <h1 class="piece-title gold-text">{{ $t('products.omni-963.title') || 'The Omniscience Piece' }}</h1>
       <p class="subtitle">{{ $t('omniscience.step1_title') }}</p>
     </header>
 
@@ -162,7 +162,7 @@ onUnmounted(() => {
 
     <!-- The Call to Source -->
     <footer class="ritual-footer">
-      <div class="artifact-preview glass">
+      <div class="piece-preview glass">
         <div class="footer-meta">
           <span class="meta-vibe">{{ $t('products.omni-963.type') || 'Singularity' }}</span>
           <span class="price-val">{{ currencyStore.formatPrice(96.3) }}</span>
@@ -296,7 +296,7 @@ onUnmounted(() => {
   stroke-dasharray: 4 4;
 }
 
-.artifact-title {
+.piece-title {
   font-size: 3.5rem;
   font-weight: 300;
   letter-spacing: 0.2em;
@@ -406,7 +406,7 @@ onUnmounted(() => {
   z-index: 1;
 }
 
-.artifact-preview {
+.piece-preview {
   padding: 3rem;
   width: 100%;
   max-width: 450px;
@@ -443,7 +443,7 @@ onUnmounted(() => {
 }
 
 @media (max-width: 768px) {
-  .artifact-title { font-size: 2rem; }
+  .piece-title { font-size: 2rem; }
   .merkabah-container { width: 200px; height: 200px; }
   .story-block { margin-bottom: 10rem; }
 }

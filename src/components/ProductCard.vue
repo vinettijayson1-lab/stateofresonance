@@ -131,8 +131,8 @@ onMounted(() => {
       />
       
   <!-- Premium Overlay (No Pseudoscience) -->
-      <div class="calibration-overlay">
-        <div class="calibration-data">
+      <div class="construction-overlay">
+        <div class="construction-data">
           <p class="data-label">{{ $t('product.live', { n: `<span class='gold-text'>${liveViewers}</span>` }) }}</p>
           <p class="data-status" :class="{ 'gold-border': product.metadata?.isMembersOnly }">
             {{ product.metadata?.isMembersOnly ? $t('product.inner_circle') : 'ESOTERIC ARTIFACT' }}
@@ -225,8 +225,8 @@ onMounted(() => {
   }
 }
 
-/* Calibration Overlay */
-.calibration-overlay {
+/* Construction Overlay */
+.construction-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), transparent);
@@ -241,12 +241,12 @@ onMounted(() => {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .product-card:hover .calibration-overlay {
+  .product-card:hover .construction-overlay {
     opacity: 1;
   }
 }
 
-.calibration-data {
+.construction-data {
   text-align: center;
   z-index: 6;
 }

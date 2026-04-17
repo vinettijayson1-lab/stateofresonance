@@ -69,7 +69,7 @@ onMounted(async () => {
           <h2 class="access-title">The Void Awakens.</h2>
           <p class="access-body">
             You have located the hidden frequency. As a result, your field has been synchronized with the 
-            upcoming <span class="gold-text">Modern Alchemist</span> drop. Secure your artifact before 
+            upcoming <span class="gold-text">Modern Alchemist</span> drop. Secure your piece before 
             the laboratory enters total lockdown.
           </p>
           

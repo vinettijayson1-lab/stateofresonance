@@ -264,7 +264,7 @@ onMounted(async () => {
     // Tier Ad redirection (HIDDEN TO ALLOW COLD TRAFFIC CHECKOUT)
     const minReq = product.value?.metadata?.minResonanceScore || 0
     // if (minReq > resonance.resonancePoints) {
-    //   router.push(`/locked?artifact=${encodeURIComponent(product.value?.title || '')}`)
+    //   router.push(`/locked?piece=${encodeURIComponent(product.value?.title || '')}`)
     //   return
     // }
     
@@ -351,7 +351,7 @@ onMounted(async () => {
 
       // --- ENHANCED SEO & TRUST SOLIDIFICATION ---
       const pageTitle = `${product.value.title} | State of Resonance`
-      const pageDesc = (product.value.description || '').replace(/<[^>]*>/g, '').substring(0, 160) || `${product.value.title} — Esoteric luxury artifact.`
+      const pageDesc = (product.value.description || '').replace(/<[^>]*>/g, '').substring(0, 160) || `${product.value.title} — Esoteric luxury piece.`
       
       document.title = pageTitle
       
@@ -500,7 +500,7 @@ const onImgError = (e: any) => {
         <span class="popup-eyebrow">✦ RESTRICTED FREQUENCY ✦</span>
         <h1 class="hero-title" style="margin-bottom: 2rem;">Inner Circle Only</h1>
         <p class="lock-text" style="opacity: 0.6; margin-bottom: 3rem;">
-          Access strictly prohibited. Provide the initiation frequency to synchronize your field and view this artifact.
+          Access strictly prohibited. Provide the initiation frequency to synchronize your field and view this piece.
         </p>
 
         <!-- Direct Access Phase Only -->
@@ -523,9 +523,9 @@ const onImgError = (e: any) => {
       <div class="product-gallery">
         <div class="main-img-wrapper glass">
           <transition name="fade-fast" mode="out-in">
-            <img :key="showModel ? 'model' : 'flat'" :src="showModel ? product.modelImage : currentImage" :alt="`963Hz Esoteric Artifact: ${product.title} | State of Resonance Ritual Tool`" @error="onImgError" />
+            <img :key="showModel ? 'model' : 'flat'" :src="showModel ? product.modelImage : currentImage" :alt="`963Hz Esoteric Piece: ${product.title} | State of Resonance Ritual Tool`" @error="onImgError" />
           </transition>
-          <div class="calibration-overlay">
+          <div class="construction-overlay">
             <div class="scanning-line"></div>
           </div>
           
@@ -645,9 +645,10 @@ const onImgError = (e: any) => {
 
           <!-- Trust nudges near CTA -->
           <div class="pdp-trust-strip" style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.25rem; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);">
+            <span class="pdp-trust-item">🍁 Designed in Canada</span>
             <span class="pdp-trust-item">🚚 Free shipping $110+</span>
             <span class="pdp-trust-item">↩️ 30-day returns</span>
-            <span class="pdp-trust-item">🔒 Shopify Secured</span>
+            <span class="pdp-trust-item">🔒 Secured</span>
           </div>
 
         </div>
@@ -692,6 +693,11 @@ const onImgError = (e: any) => {
         <div class="product-description">
           <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Product Details</p>
           <div v-html="product.description || ''"></div>
+        </div>
+
+        <div v-if="isClothing" class="symbol-meaning-block" style="margin-top: 2rem; padding: 1.5rem; background: rgba(212,175,55,0.02); border-left: 2px solid var(--color-gold-muted);">
+          <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.5rem; text-transform: uppercase;">✦ Symbol Meaning</p>
+          <p style="font-size: 0.9rem; line-height: 1.6; opacity: 0.85;">This garment carries a specific esoteric vibration. All symbols printed on this piece hold intent—a reminder of your active synchronization. Decode its full significance in our <router-link to="/about" class="gold-text" style="text-decoration: underline;">Symbols Lexicon</router-link>.</p>
         </div>
 
         <!-- MATERIAL & LOGISTICAL TRUST SIGNALS -->
@@ -841,7 +847,7 @@ const onImgError = (e: any) => {
   background-color: transparent;
 }
 
-.calibration-overlay {
+.construction-overlay {
   position: absolute;
   inset: 0;
   pointer-events: none;

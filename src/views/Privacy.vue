@@ -26,7 +26,7 @@ onMounted(() => {
         <p>
           At <strong>State of Resonance</strong>, we recognize that your data is a reflection of your digital frequency. 
           We are committed to protecting the sanctity of your information with the same rigor we apply to our alchemical 
-          calibrations. This policy details how your personal essence (data) is collected and utilized within the Sanctuary.
+          calibrations. This policy details how your personal essence (data) is collected and utilized within the Shop.
         </p>
       </section>
 
@@ -34,7 +34,7 @@ onMounted(() => {
         <h2>2. Data Collection (The Gathering)</h2>
         <p>
           We collect information you provide directly to us when you synchronize your field (create an account), 
-          acquire artifacts (make a purchase), or subscribe to our Transmissions (newsletter and SMS). 
+          acquire garments (make a purchase), or subscribe to our Transmissions (newsletter and SMS). 
           This may include your name, email address, shipping coordinates, and mobile number.
         </p>
       </section>
@@ -60,10 +60,10 @@ onMounted(() => {
       </section>
 
       <section>
-        <h2>5. Your Rights (Field Calibration)</h2>
+        <h2>5. Your Rights (Field Construction)</h2>
         <p>
           You have the right to access, correct, or delete your personal data at any time. To request a 
-          data purge or calibration, contact the Alchemist at <strong>support@stateofresonance.ca</strong>.
+          data purge or construction, contact the Alchemist at <strong>support@stateofresonance.ca</strong>.
         </p>
       </section>
 

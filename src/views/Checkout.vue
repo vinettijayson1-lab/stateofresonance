@@ -21,7 +21,7 @@ onMounted(() => {
         "ItemPrice": item.priceValue * (currencyStore.rates[currencyStore.active] || 1),
         "RowTotal": item.priceValue * item.quantity * (currencyStore.rates[currencyStore.active] || 1),
         "ImageURL": item.image,
-        "ProductURL": `${window.location.origin}/sanctuary/${item.handle}`
+        "ProductURL": `${window.location.origin}/shop/${item.handle}`
       }))
     });
     

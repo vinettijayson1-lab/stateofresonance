@@ -22,11 +22,11 @@ onMounted(() => {
 
     <div class="legal-content glass">
       <section>
-        <h2>1. The Sanctuary Protocol</h2>
+        <h2>1. The Shop Protocol</h2>
         <p>
-          By accessing the <strong>State of Resonance</strong> Sanctuary, you agree to abide by these terms. 
+          By accessing the <strong>State of Resonance</strong> Shop, you agree to abide by these terms. 
           This is an agreement between you (the seeker) and Jayson Vinetti, operating as State of Resonance. 
-          We provide frequency-calibrated artifacts and alchemical services.
+          We provide frequency-calibrated garments and alchemical services.
         </p>
       </section>
 
@@ -45,18 +45,18 @@ onMounted(() => {
       </section>
 
       <section>
-        <h2>3. Field Calibration & Orders</h2>
+        <h2>3. Field Construction & Orders</h2>
         <p>
-          Prices for artifacts are based on their vibrational intent and frequency calibration. 
-          We reserve the right to sync or desync artifact availability at any time.
+          Prices for garments are based on their vibrational intent and frequency construction. 
+          We reserve the right to sync or desync piece availability at any time.
         </p>
       </section>
 
       <section>
         <h2>4. Returns & Synchronizations</h2>
         <p>
-          Due to the energetic nature of our artifacts, returns are only accepted if the physical 
-          shell of the artifact is damaged upon arrival. Contact us within 48 hours of 
+          Due to the energetic nature of our garments, returns are only accepted if the physical 
+          shell of the piece is damaged upon arrival. Contact us within 48 hours of 
           synchronization (delivery) to initiate a repair protocol.
         </p>
       </section>
@@ -65,7 +65,7 @@ onMounted(() => {
         <h2>5. Limitation of Liability</h2>
         <p>
           State of Resonance and Jayson Vinetti are not responsible for any metaphysical shifts, 
-          dimensional anomalies, or physical mishaps resulting from the use of our artifacts. 
+          dimensional anomalies, or physical mishaps resulting from the use of our garments. 
           Seeker discretion is advised.
         </p>
       </section>

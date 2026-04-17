@@ -39,7 +39,7 @@ const toggle = (idx: number) => {
 const faqs = [
   {
     q: 'What makes State of Resonance different from other streetwear brands?',
-    a: 'State of Resonance operates at the intersection of esoteric philosophy and premium streetwear. Each artifact (garment) is assigned a Solfeggio frequency that aligns with its vibrational intent — 963 Hz for divine consciousness, 528 Hz for transformation. This is not decoration. It is a design system rooted in sacred geometry and field resonance theory.'
+    a: 'State of Resonance operates at the intersection of esoteric philosophy and premium streetwear. Each piece (garment) is assigned a Solfeggio frequency that aligns with its vibrational intent — 963 Hz for divine consciousness, 528 Hz for transformation. This is not decoration. It is a design system rooted in sacred geometry and field resonance theory.'
   },
   {
     q: 'What is the quality of the materials?',
@@ -51,7 +51,7 @@ const faqs = [
   },
   {
     q: 'What is your return policy?',
-    a: 'We offer a 30-day no-questions-asked return window. If an artifact does not resonate with your field, we will exchange or refund it. Contact us via the Transmissions page to initiate.'
+    a: 'We offer a 30-day no-questions-asked return window. If an piece does not resonate with your field, we will exchange or refund it. Contact us via the Transmissions page to initiate.'
   },
   {
     q: 'How do I get early access to new drops?',
@@ -59,7 +59,7 @@ const faqs = [
   },
   {
     q: 'What sizes are available?',
-    a: 'All artifacts are available in XS through 3XL. Size charts are included on each product page. If you are between sizes, we recommend sizing up — our garments are intentionally substantial.'
+    a: 'All garments are available in XS through 3XL. Size charts are included on each product page. If you are between sizes, we recommend sizing up — our garments are intentionally substantial.'
   }
 ]
 

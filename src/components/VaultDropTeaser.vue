@@ -59,7 +59,7 @@ const dropItems = [
     frequency: '963Hz',
     imageFront: '/assets/drops/death-and-rebirth-black-front.png',
     imageBack: '/assets/drops/death-and-rebirth-black-back.png',
-    description: 'Total synchronization through destruction and renewal. The ultimate artifact for shadow integration.'
+    description: 'Total synchronization through destruction and renewal. The ultimate piece for shadow integration.'
   }
 ]
 
@@ -108,9 +108,9 @@ const handleSubscribe = () => {
       <div class="drop-grid">
         <div v-for="item in dropItems" :key="item.id" class="drop-card glass hover-lift">
           <div class="image-showcase">
-            <img :src="item.imageFront" :alt="item.name + ' Front - Esoteric Luxury Streetwear Solfeggio Frequency Artifact'" class="front-img" />
-            <img :src="item.imageBack" :alt="item.name + ' Back - Occult Aesthetic Graphic Hoodie Calibration Tool'" class="back-img" />
-            <div class="calibration-badge">{{ item.frequency }}</div>
+            <img :src="item.imageFront" :alt="item.name + ' Front - Esoteric Luxury Streetwear Solfeggio Frequency Piece'" class="front-img" />
+            <img :src="item.imageBack" :alt="item.name + ' Back - Occult Aesthetic Graphic Hoodie Construction Tool'" class="back-img" />
+            <div class="construction-badge">{{ item.frequency }}</div>
           </div>
           <div class="drop-info">
             <h3 class="drop-title">{{ item.name }}</h3>
@@ -257,7 +257,7 @@ const handleSubscribe = () => {
   transform: scale(1);
 }
 
-.calibration-badge {
+.construction-badge {
   position: absolute;
   top: 1rem;
   right: 1rem;

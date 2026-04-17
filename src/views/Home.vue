@@ -186,7 +186,7 @@ const handleSmsSync = async () => {
       </div>
     </section>
 
-    <!-- All Apparel / Artifacts -->
+    <!-- All Apparel / Garments -->
     <section class="products-section container section-top">
       <div class="section-header">
         <div class="section-eyebrow">THE FREQUENCY ARCHIVE · WEARABLE ARTIFACTS</div>
@@ -293,7 +293,7 @@ const handleSmsSync = async () => {
           Through a profound personal journey battling the void of addiction, I learned a visceral truth: <strong style="color: var(--color-gold);">Matter must serve Spirit, and healing must come from within.</strong>
         </p>
         <p style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.1rem, 1.5vw, 1.3rem); line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 2.5rem;">
-          This sanctuary bridges ancient esoteric wisdom with modern reality. Every artifact is calibrated to mathematical frequencies like 432Hz and 963Hz. I didn't want to just make clothes; I wanted to create a modern uniform—a sacred shroud to cleanse the soul and keep negative energy at bay.
+          This shop bridges ancient esoteric wisdom with modern reality. Every piece is calibrated to mathematical frequencies like 432Hz and 963Hz. I didn't want to just make clothes; I wanted to create a modern uniform—a sacred shroud to cleanse the soul and keep negative energy at bay.
         </p>
         <div style="display: flex; justify-content: center; align-items: center; gap: 1.5rem;">
           <p style="font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.3em; color: var(--color-gold-muted); text-transform: uppercase;">
@@ -307,214 +307,39 @@ const handleSmsSync = async () => {
       </div>
     </section>
 
-    <div class="freq-strip">
-      <span>963 HZ — DIVINE CALIBRATION</span>
-      <span>528 HZ — RESTORATION FIELD</span>
-      <span>432 HZ — EARTH ALIGNMENT</span>
-      <span>396 HZ — LIBERATION SEQUENCE</span>
-      <span>963 HZ — DIVINE CALIBRATION</span>
-      <span>528 HZ — RESTORATION FIELD</span>
-    </div>
-
-    <!-- Brand Premise: Why State of Resonance -->
-    <section class="brand-premise-section" style="padding: 8vh 5vw; border-bottom: 1px solid rgba(212,175,55,0.08);">
+    <!-- LIFESTYLE PHOTOGRAPHY GALLERY -->
+    <section class="lifestyle-gallery" style="padding: 8vh 0; background: var(--color-bg);">
       <div class="container">
-        <div style="text-align: center; margin-bottom: 5rem;">
-          <p style="font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--color-gold-muted); opacity: 0.7; margin-bottom: 1rem;">THE LABEL</p>
-          <h2 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;">Why State of Resonance</h2>
-          <p style="font-size: 1rem; color: rgba(255,255,255,0.55); max-width: 560px; margin: 0 auto; line-height: 1.7;">Premium ritualwear for those who dress with intention. Limited-run garments and symbolic objects designed for the aesthetically initiated.</p>
+        <div style="text-align: center; margin-bottom: 4rem;">
+          <p class="section-eyebrow-text">THE LOOKBOOK</p>
+          <h2 class="hero-title" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; text-transform: uppercase;">Worn in the Real World</h2>
         </div>
-        <div class="premise-cards">
-          <div class="premise-card glass">
-            <span class="premise-icon">✦</span>
-            <h3>Designed as symbols</h3>
-            <p>Every piece is built around codes, motifs, and visual language that rewards closer attention. Apparel with meaning built in.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+          <div class="lifestyle-img-wrap" style="aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+            <img src="/images/lifestyle_urban.png" alt="Editorial Streetwear Lifestyle" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
           </div>
-          <div class="premise-card glass">
-            <span class="premise-icon">🏺</span>
-            <h3>Made in limited runs</h3>
-            <p>Small-batch releases designed for rarity, not saturation. Once a release sells out, it may not return. No mass production, ever.</p>
+          <div class="lifestyle-img-wrap" style="aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+            <img src="/images/lifestyle_model_fit.png" alt="Model wearing Boxy Crewneck" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
           </div>
-          <div class="premise-card glass">
-            <span class="premise-icon">💎</span>
-            <h3>Built to be kept</h3>
-            <p>Premium heavyweight cotton, collector-grade presentation, double-needle construction. Apparel designed to last and to mean something.</p>
+          <div class="lifestyle-img-wrap" style="aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+            <img src="/images/lifestyle_stitching.png" alt="Heavyweight Material Drop Macro" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
           </div>
         </div>
+        <component :is="'style'">
+          .lifestyle-img-wrap:hover .lifestyle-zoom { transform: scale(1.05); }
+        </component>
       </div>
     </section>
 
-    <!-- Lab Banner (Frequency Explainer / THE MANIFESTO) -->
-    <section class="lab-banner">
-      <div class="container manifesto-grid">
-        <div class="manifesto-header">
-          <p class="lab-banner-eyebrow">THE ARCHITECTURE OF RESONANCE</p>
-          <h2 class="lab-banner-title">The Signal Genesis:<br/>963 Hz & The Solfeggio Scale</h2>
-        </div>
-        
-        <div class="manifesto-split-content">
-          <div class="manifesto-column">
-            <h3 class="column-title">SOLFEGGIO: THE LOST HARMONIES</h3>
-            <p class="column-body">
-              Rooted in the ancient Gregorian chants of the 11th century, the Solfeggio scale is a series of electromagnetic frequencies 
-              designed to elicit specific spiritual and physical states. These "Lost Harmonies" were the mathematical baseline for 
-              divine rituals, recently rediscovered to bridge the gap between ancient wisdom and modern physics.
-            </p>
-          </div>
-          <div class="manifesto-column">
-            <h3 class="column-title">SYNCHRONIZED SEEKER PHILOSOPHY</h3>
-            <p class="column-body">
-              At State of Resonance, your purchase is a **Synchronization Event**. Our artifacts are priced precisely at their 
-              vibrational intent—96.30, 52.80, 43.20. The cost is the Hertz value. By acquiring an artifact, you are not just 
-              buying a garment; you are anchoring a specific frequency into your biological field.
-            </p>
-          </div>
-        </div>
-
-        <div class="freq-hz-grid">
-          <div class="hz-card glass">
-            <div class="hz-header">
-              <span class="hz-value">174 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
-            </div>
-            <div class="hz-divider"></div>
-            <p class="hz-def">
-              <strong>RELIEVING PAIN & STRESS : THE FOUNDATION</strong><br/>
-              A natural anesthetic. It gives organs a sense of security, safety and love, encouraging them to function optimally.
-            </p>
-          </div>
-          <div class="hz-card glass">
-            <div class="hz-header">
-              <span class="hz-value">285 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
-            </div>
-            <div class="hz-divider"></div>
-            <p class="hz-def">
-              <strong>HEALING TISSUE & ORGANS : THE QUANTUM HEALER</strong><br/>
-              Influencing energy fields. Sending messages to restructure damaged organs and tissue, leaving your body rejuvenated.
-            </p>
-          </div>
-          <div class="hz-card glass">
-            <div class="hz-header">
-              <span class="hz-value">396 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
-            </div>
-            <div class="hz-divider"></div>
-            <p class="hz-def">
-              <strong>LIBERATING GUILT & FEAR : THE CATALYST</strong><br/>
-              Turning grief into joy. Cleansing the feeling of guilt and subconscious fears that hold back your true potential.
-            </p>
-          </div>
-          <div class="hz-card glass">
-            <div class="hz-header">
-              <span class="hz-value">417 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
-            </div>
-            <div class="hz-divider"></div>
-            <p class="hz-def">
-              <strong>UNDOING SITUATIONS : THE CLEARING</strong><br/>
-              Facilitating change. Cleansing traumatic experiences from your past and making space for positive quantum shifts.
-            </p>
-          </div>
-          <div class="hz-card glass">
-            <div class="hz-header">
-              <span class="hz-value">528 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
-            </div>
-            <div class="hz-divider"></div>
-            <p class="hz-def">
-              <strong>TRANSFORMATION & MIRACLES : THE LOVE FREQUENCY</strong><br/>
-              Facilitating DNA repair and restoration. Resonance with the core of the biological lifecycle, clearing the path 
-              for cellular miracles and profound emotional healing.
-            </p>
-          </div>
-          <div class="hz-card glass">
-            <div class="hz-header">
-              <span class="hz-value">639 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
-            </div>
-            <div class="hz-divider"></div>
-            <p class="hz-def">
-              <strong>CONNECTING & RELATIONSHIPS : THE HARMONIZER</strong><br/>
-              Re-establishing balance within relationships and spiritual connections. Enhancing communication, understanding, and tolerance.
-            </p>
-          </div>
-          <div class="hz-card glass">
-            <div class="hz-header">
-              <span class="hz-value">741 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
-            </div>
-            <div class="hz-divider"></div>
-            <p class="hz-def">
-              <strong>EXPRESSION & SOLUTIONS : THE AWAKENING</strong><br/>
-              Cleansing the space and cells from viral, bacterial and electromagnetic toxins. Leading to pure, stable cellular expression.
-            </p>
-          </div>
-          <div class="hz-card glass">
-            <div class="hz-header">
-              <span class="hz-value">852 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
-            </div>
-            <div class="hz-divider"></div>
-            <p class="hz-def">
-              <strong>RETURNING TO SPIRITUAL ORDER : THE INTUITION</strong><br/>
-              Awakening inner strength and self-realization. Seeing through the illusions of life to discover your divine purpose.
-            </p>
-          </div>
-          <div class="hz-card glass">
-            <div class="hz-header">
-              <span class="hz-value">963 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
-            </div>
-            <div class="hz-divider"></div>
-            <p class="hz-def">
-              <strong>DIVINE CONSCIOUSNESS : THE FREQUENCY OF GODS</strong><br/>
-              Awakening the crown chakra. Returning to Unity and original Oneness with the Source. The 963 Hz signal allows direct 
-              connection to the divine and the "All" through the pineal gland.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <Testimonials />
-
-    <!-- Social Growth Section: Join the Sanctuary -->
-    <section class="frequency-calibration-cta">
-      <div class="container">
-        <div class="calibration-card glass glow-edge">
-          <div class="calibration-content">
-            <p class="calibration-eyebrow">{{ $t('calibration.eyebrow') }}</p>
-            <h2 class="calibration-title">{{ $t('calibration.title') }}</h2>
-            <p class="calibration-body">
-              {{ $t('calibration.body') }}
-            </p>
-            <router-link to="/quiz" class="btn-premium resonance-pulse">
-              {{ $t('calibration.button') }}
-            </router-link>
-          </div>
-          <div class="calibration-visual desktop-only">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="100" cy="100" r="80" stroke="var(--color-gold)" stroke-width="0.5" fill="none" opacity="0.3">
-                <animate attributeName="r" values="70;90;70" dur="4s" repeatCount="indefinite" />
-              </circle>
-              <circle cx="100" cy="100" r="40" stroke="var(--color-gold)" stroke-width="1" fill="none" opacity="0.5" />
-              <path d="M100 20V180M20 100H180" stroke="var(--color-gold)" stroke-width="0.5" opacity="0.2" />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Social Growth Section: Join the Sanctuary -->
-    <section class="social-growth-sanctuary section-top">
+    <!-- Social Growth Section: Join the Shop -->
+    <section class="social-growth-shop section-top">
       <div class="container">
         <div class="growth-grid">
           <div class="growth-text">
-            <div class="section-eyebrow">{{ $t('sanctuary.eyebrow') }}</div>
-            <h2 class="hero-title" style="font-size: clamp(2rem, 5vw, 4rem); text-align: left; line-height: 1.1;" v-html="$t('sanctuary.title').replace('\n', '<br/>')"></h2>
+            <div class="section-eyebrow">{{ $t('shop.eyebrow') }}</div>
+            <h2 class="hero-title" style="font-size: clamp(2rem, 5vw, 4rem); text-align: left; line-height: 1.1;" v-html="$t('shop.title').replace('\n', '<br/>')"></h2>
             <p class="product-meta" style="margin-top: 2rem; opacity: 0.6; font-size: 1rem; line-height: 1.8; max-width: 500px;">
-              {{ $t('sanctuary.body') }}
+              {{ $t('shop.body') }}
             </p>
             <div class="sms-sync-field section-top" v-if="subscribeStatus !== 'success'">
               <div class="field-group glass">
@@ -548,10 +373,10 @@ const handleSmsSync = async () => {
 
             <div class="social-actions section-top" style="display: flex; gap: 2rem; flex-wrap: wrap;">
               <a href="https://instagram.com/resonancestateof" target="_blank" class="glow-hover btn-gold-outline" style="display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.5rem; font-size: 0.7rem;">
-                <Instagram :size="16" /> {{ $t('sanctuary.instagram') }}
+                <Instagram :size="16" /> {{ $t('shop.instagram') }}
               </a>
               <a href="https://tiktok.com/@stateofresonance" target="_blank" class="glow-hover btn-gold-outline" style="display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.5rem; font-size: 0.7rem;">
-                <Music2 :size="16" /> {{ $t('sanctuary.tiktok') }}
+                <Music2 :size="16" /> {{ $t('shop.tiktok') }}
               </a>
             </div>
           </div>
@@ -1311,7 +1136,7 @@ const handleSmsSync = async () => {
 </style>
 
 <style scoped>
-.social-growth-sanctuary {
+.social-growth-shop {
   padding: 15vh 0;
   position: relative;
   overflow: hidden;

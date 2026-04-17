@@ -295,44 +295,34 @@ const auraStyle = computed(() => {
         </div>
 
         <!-- PRIMARY SHOPPING NAV -->
-        <router-link to="/sanctuary" class="nav-link" @click="mobileMenuOpen = false">
-          <span class="label-primary">SHOP</span>
-          <span class="label-hover">ALL PRODUCTS</span>
-        </router-link>
-        <router-link to="/best-sellers" class="nav-link nav-link--highlight" @click="mobileMenuOpen = false">
-          <span class="label-primary">BEST SELLERS</span>
-          <span class="label-hover">TOP 10</span>
-        </router-link>
-        
-        <!-- DROPDOWN FOR ATTIRE / COLLECTIONS -->
         <div class="nav-dropdown-container">
-          <router-link to="/attire" class="nav-link" @click="mobileMenuOpen = false">
-            <span class="label-primary">HOODIES & TEES</span>
+          <router-link to="/shop" class="nav-link" @click="mobileMenuOpen = false">
+            <span class="label-primary">SHOP</span>
             <span class="label-hover">COLLECTIONS</span>
           </router-link>
           <div class="nav-dropdown glass">
-            <router-link to="/collections/the-ghost-and-bones" class="dropdown-link" @click="mobileMenuOpen = false">The GHOST and BONES</router-link>
-            <router-link to="/collections/her-resonance" class="dropdown-link" @click="mobileMenuOpen = false">Her Resonance</router-link>
-            <router-link to="/collections/urban-esoterica" class="dropdown-link" @click="mobileMenuOpen = false">Urban Esoterica</router-link>
+            <router-link to="/category/hoodies" class="dropdown-link" @click="mobileMenuOpen = false">Hoodies</router-link>
+            <router-link to="/category/tees" class="dropdown-link" @click="mobileMenuOpen = false">Tees</router-link>
+            <router-link to="/category/crewnecks" class="dropdown-link" @click="mobileMenuOpen = false">Crewnecks</router-link>
+            <router-link to="/category/accessories" class="dropdown-link" @click="mobileMenuOpen = false">Accessories</router-link>
           </div>
         </div>
 
-        <!-- WORLD / LORE -->
         <router-link to="/about" class="nav-link" @click="mobileMenuOpen = false">
           <span class="label-primary">SYMBOLS</span>
-          <span class="label-hover">DECODE</span>
+          <span class="label-hover">MEANINGS</span>
         </router-link>
 
-        <router-link to="/community" class="nav-link" @click="mobileMenuOpen = false">
-          <span class="label-primary">COMMUNITY</span>
-          <span class="label-hover">THE CIRCLE</span>
+        <router-link to="/about" class="nav-link" @click="mobileMenuOpen = false">
+          <span class="label-primary">ABOUT</span>
+          <span class="label-hover">BRAND STORY</span>
         </router-link>
 
-        <!-- SUPPORT -->
-        <router-link to="/contact" class="nav-link" @click="mobileMenuOpen = false">
-          <span class="label-primary">CONTACT</span>
+        <router-link to="/faq" class="nav-link" @click="mobileMenuOpen = false">
+          <span class="label-primary">FAQ</span>
           <span class="label-hover">SUPPORT</span>
         </router-link>
+
         <router-link to="/inner-circle" class="nav-link inner-circle-link" @click="mobileMenuOpen = false">
           <span class="label-primary">✦ INNER CIRCLE</span>
           <span class="label-hover">MEMBERS</span>

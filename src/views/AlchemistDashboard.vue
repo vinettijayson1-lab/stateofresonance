@@ -241,7 +241,7 @@ const copyLink = async () => {
                }).join(' ')" />
              </svg>
           </div>
-          <span class="stat-sub">Total Unsold Artifact Value</span>
+          <span class="stat-sub">Total Unsold Piece Value</span>
         </div>
       </div>
     </div>
@@ -293,7 +293,7 @@ const copyLink = async () => {
 
         <div v-if="influencers.length === 0" class="empty-state">
           <Ghost :size="40" />
-          <p>No calibration requests from the collective.</p>
+          <p>No construction requests from the collective.</p>
         </div>
 
         <div v-else class="order-table-wrapper">
@@ -361,7 +361,7 @@ const copyLink = async () => {
               <div class="freq-bar-wrap">
                 <div class="freq-label-row">
                   <span>{{ item.name }}</span>
-                  <span>{{ item.count }} Artifacts</span>
+                  <span>{{ item.count }} Garments</span>
                 </div>
                 <div class="freq-bar-bg">
                   <div class="freq-bar-fill" :style="{ width: (item.count / products.length * 100) + '%' }"></div>

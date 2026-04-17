@@ -17,7 +17,7 @@ const loading = ref(true)
 const activeTab = ref('all')
 
 const tabs = [
-  { id: 'all', label: 'All Artifacts' },
+  { id: 'all', label: 'All Garments' },
   { id: 'Alchemical Elixirs', label: 'Elixirs' },
   { id: 'Alchemical Botanicals', label: 'Botanicals' },
   { id: 'Illuminations', label: 'Illuminations' },
@@ -91,7 +91,7 @@ import { computed } from 'vue'
 
       <div v-else-if="filteredProducts.length === 0" class="empty-state">
         <p>The laboratory is being prepared for this synchronization.</p>
-        <router-link to="/sanctuary" class="btn-premium">Return to Sanctuary</router-link>
+        <router-link to="/shop" class="btn-premium">Return to Shop</router-link>
       </div>
 
       <div v-else class="product-grid">

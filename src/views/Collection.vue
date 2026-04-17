@@ -79,7 +79,7 @@ const COLLECTION_META = computed<Record<string, { title: string; subtitle: strin
   },
   attire: {
     title: 'Attire',
-    subtitle: 'The Attire Sanctuary',
+    subtitle: 'The Attire Shop',
     categories: ['Apparel', 'The GHOST and BONES', 'Urban Esoterica'],
     image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
   },
@@ -89,10 +89,10 @@ const COLLECTION_META = computed<Record<string, { title: string; subtitle: strin
     categories: ['Ritual Tools'],
     image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/twisted-rosewood-healing-wand-8-2356934.jpg?v=1773838927'
   },
-  'shrine-artifacts': {
-    title: 'Shrine Artifacts',
+  'shrine-garments': {
+    title: 'Shrine Garments',
     subtitle: 'Objects of Sacred Veneration',
-    categories: ['Shrine Artifacts'],
+    categories: ['Shrine Garments'],
     image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/6-34-broom-pentagram-6944322.jpg?v=1773841208'
   },
   'mystic-curiosities': {
@@ -145,7 +145,7 @@ const COLLECTION_META = computed<Record<string, { title: string; subtitle: strin
   },
   'esoteric-protection': {
     title: 'Esoteric Protection',
-    subtitle: 'Shields, Wards & Protective Artifacts',
+    subtitle: 'Shields, Wards & Protective Garments',
     categories: ['Esoteric Protection'],
     image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
   },
@@ -157,7 +157,7 @@ const COLLECTION_META = computed<Record<string, { title: string; subtitle: strin
   },
   'sacred-geometry': {
     title: 'Sacred Geometry',
-    subtitle: 'Symbols, Mandalas & Geometric Artifacts',
+    subtitle: 'Symbols, Mandalas & Geometric Garments',
     categories: ['Sacred Geometry'],
     image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
   },
@@ -177,7 +177,7 @@ const formatHandle = (handle: string) => {
 
 const meta = computed(() => COLLECTION_META.value[collectionHandle] || {
   title: formatHandle(collectionHandle),
-  subtitle: 'Esoteric Artifact Reservoir',
+  subtitle: 'Esoteric Piece Collection',
   categories: [],
   image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
 })
@@ -230,7 +230,7 @@ onMounted(fetchProducts)
       <div class="hero-overlay"></div>
       <div class="container hero-content">
         <p class="collection-eyebrow">State of Resonance</p>
-        <h1 class="visually-hidden" v-html="`Sacred Attire and Esoteric Artifacts: ${meta.title}`"></h1>
+        <h1 class="visually-hidden" v-html="`Sacred Attire and Esoteric Garments: ${meta.title}`"></h1>
         <div class="hero-title" style="font-size: 4rem;" v-html="meta.title"></div>
         <p class="product-meta" style="color: var(--color-foreground);">{{ meta.subtitle }}</p>
       </div>
@@ -238,7 +238,7 @@ onMounted(fetchProducts)
 
     <div class="container main-content">
       <div class="collection-controls">
-        <p class="artifact-count">{{ products.length }} artifacts synchronized</p>
+        <p class="piece-count">{{ products.length }} garments synchronized</p>
         
         <div class="sort-wrapper">
           <label for="sort">{{ t('common.sort_by', 'Harmonize by') }}:</label>
@@ -255,11 +255,11 @@ onMounted(fetchProducts)
     </div>
 
     <div v-else-if="products.length === 0" class="empty-state">
-      <p>No artifacts found in this synchronization.</p>
+      <p>No garments found in this synchronization.</p>
       <router-link
-        to="/sanctuary"
+        to="/shop"
         class="btn-premium"
-      >Browse the Full Sanctuary →</router-link>
+      >Browse the Full Shop →</router-link>
     </div>
 
     <div v-else class="product-grid">
@@ -322,7 +322,7 @@ onMounted(fetchProducts)
   border-radius: 4px;
 }
 
-.artifact-count {
+.piece-count {
   font-family: var(--font-heading);
   font-style: italic;
   font-size: 0.9rem;

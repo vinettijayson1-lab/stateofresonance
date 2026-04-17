@@ -28,7 +28,7 @@ const handleUnlock = async () => {
       body: JSON.stringify({
         email: email.value,
         source: 'Locked Ad Squeeze Gate',
-        properties: { AdTarget: route.query.artifact || 'Unknown' }
+        properties: { AdTarget: route.query.piece || 'Unknown' }
       })
     })
     
@@ -72,7 +72,7 @@ onMounted(() => {
         <h1 class="hero-title" style="font-size: 2.2rem; margin-bottom: 1rem;">Vibrational Mismatch</h1>
         
         <p class="gate-desc">
-          You have attempted to access an artifact classified as {{ route.query.artifact ? `[ ${route.query.artifact} ]` : 'Tier 2 or higher' }}. 
+          You have attempted to access an piece classified as {{ route.query.piece ? `[ ${route.query.piece} ]` : 'Tier 2 or higher' }}. 
           Your current resonance signature is inadequate. To view this collection, you must first synchronize with the Inner Circle.
         </p>
         

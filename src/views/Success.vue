@@ -106,7 +106,7 @@ const shareSignal = () => {
         </div>
         
         <p class="section-eyebrow">— ALIGNMENT CONFIRMED —</p>
-        <h1 class="hero-title">Artifact Manifested</h1>
+        <h1 class="hero-title">Piece Manifested</h1>
 
         <!-- Tier Ascension Visual -->
         <div class="tier-ascension-banner glass">
@@ -121,7 +121,7 @@ const shareSignal = () => {
         </div>
 
         <p class="success-body">
-          Your frequency has been synchronized with the Void. The laboratory has received your intent and is currently calibrating your artifacts for physical extraction.
+          Your frequency has been synchronized with the Void. The laboratory has received your intent and is currently calibrating your garments for physical extraction.
         </p>
         <p class="order-id">TRANSMISSION ID: <span class="mono">#{{ displayId }}</span></p>
       </header>

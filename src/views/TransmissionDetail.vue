@@ -121,8 +121,8 @@ onMounted(fetchArticle)
                The frequency of this transmission aligns with seekers in the <strong>{{ article.category }}</strong> spectrum.
              </p>
              <div class="sidebar-divider"></div>
-             <div v-if="article.featuredProducts?.length" class="recommended-artifacts">
-                <p class="rec-label">Recommended Artifacts:</p>
+             <div v-if="article.featuredProducts?.length" class="recommended-garments">
+                <p class="rec-label">Recommended Garments:</p>
                 <div class="rec-grid">
                   <ProductCard 
                     v-for="p in article.featuredProducts" 
@@ -285,7 +285,7 @@ onMounted(fetchArticle)
   opacity: 0.6;
 }
 
-.recommended-artifacts {
+.recommended-garments {
   margin-top: 2rem;
 }
 

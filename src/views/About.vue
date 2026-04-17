@@ -49,102 +49,100 @@ onMounted(() => {
           <div class="hz-card glass">
             <div class="hz-header">
               <span class="hz-value">174 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
+              <span class="hz-status">SYMBOL: ALIGNED</span>
             </div>
             <div class="hz-divider"></div>
             <p class="hz-def">
-              <strong>RELIEVING PAIN & STRESS : THE FOUNDATION</strong><br/>
-              A natural anesthetic. It gives organs a sense of security, safety and love, encouraging them to function optimally.
+              <strong>THE FOUNDATION</strong><br/>
+              Symbolizes grounding and security. This frequency represents the bedrock of emotional stability and foundational strength.
             </p>
           </div>
           <div class="hz-card glass">
             <div class="hz-header">
               <span class="hz-value">285 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
+              <span class="hz-status">SYMBOL: ALIGNED</span>
             </div>
             <div class="hz-divider"></div>
             <p class="hz-def">
-              <strong>HEALING TISSUE & ORGANS : THE QUANTUM HEALER</strong><br/>
-              Influencing energy fields. Sending messages to restructure damaged organs and tissue, leaving your body rejuvenated.
+              <strong>QUANTUM HEALING</strong><br/>
+              Symbolizes the restructuring of energetic boundaries. The 285 Hz aura represents rejuvenation and profound recovery.
             </p>
           </div>
           <div class="hz-card glass">
             <div class="hz-header">
               <span class="hz-value">396 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
+              <span class="hz-status">SYMBOL: ALIGNED</span>
             </div>
             <div class="hz-divider"></div>
             <p class="hz-def">
-              <strong>LIBERATING GUILT & FEAR : THE CATALYST</strong><br/>
-              Turning grief into joy. Cleansing the feeling of guilt and subconscious fears that hold back your true potential.
+              <strong>THE CATALYST</strong><br/>
+              Symbolizes the liberation from guilt and the shedding of subconscious fears, representing the transformation of grief into bold joy.
             </p>
           </div>
           <div class="hz-card glass">
             <div class="hz-header">
               <span class="hz-value">417 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
+              <span class="hz-status">SYMBOL: ALIGNED</span>
             </div>
             <div class="hz-divider"></div>
             <p class="hz-def">
-              <strong>UNDOING SITUATIONS : THE CLEARING</strong><br/>
-              Facilitating change. Cleansing traumatic experiences from your past and making space for positive quantum shifts.
+              <strong>THE CLEARING</strong><br/>
+              Symbolizes the clearing of past trauma and the courage to embrace positive shifts. It stands for undoing situations and forging ahead.
             </p>
           </div>
           <div class="hz-card glass">
             <div class="hz-header">
               <span class="hz-value">528 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
+              <span class="hz-status">SYMBOL: ALIGNED</span>
             </div>
             <div class="hz-divider"></div>
             <p class="hz-def">
-              <strong>TRANSFORMATION & MIRACLES : THE LOVE FREQUENCY</strong><br/>
-              Facilitating DNA repair and restoration. Resonance with the core of the biological lifecycle, clearing the path 
-              for cellular miracles and profound emotional healing.
+              <strong>THE LOVE FREQUENCY</strong><br/>
+              Symbolizes transformation and miracles. Representing a deep emotional evolution, structural clarity, and the core of the biological lifecycle.
             </p>
           </div>
           <div class="hz-card glass">
             <div class="hz-header">
               <span class="hz-value">639 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
+              <span class="hz-status">SYMBOL: ALIGNED</span>
             </div>
             <div class="hz-divider"></div>
             <p class="hz-def">
-              <strong>CONNECTING & RELATIONSHIPS : THE HARMONIZER</strong><br/>
-              Re-establishing balance within relationships and spiritual connections. Enhancing communication, understanding, and tolerance.
+              <strong>THE HARMONIZER</strong><br/>
+              Symbolizes harmony in connections, reflecting enhanced understanding, tolerance, and relational balance.
             </p>
           </div>
           <div class="hz-card glass">
             <div class="hz-header">
               <span class="hz-value">741 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
+              <span class="hz-status">SYMBOL: ALIGNED</span>
             </div>
             <div class="hz-divider"></div>
             <p class="hz-def">
-              <strong>EXPRESSION & SOLUTIONS : THE AWAKENING</strong><br/>
-              Cleansing the space and cells from viral, bacterial and electromagnetic toxins. Leading to pure, stable cellular expression.
+              <strong>THE AWAKENING</strong><br/>
+              Symbolizes clear expression and the purification of creative spaces. It represents solutions, sharp intellect, and awakening intuition.
             </p>
           </div>
           <div class="hz-card glass">
             <div class="hz-header">
               <span class="hz-value">852 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
+              <span class="hz-status">SYMBOL: ALIGNED</span>
             </div>
             <div class="hz-divider"></div>
             <p class="hz-def">
-              <strong>RETURNING TO SPIRITUAL ORDER : THE INTUITION</strong><br/>
-              Awakening inner strength and self-realization. Seeing through the illusions of life to discover your divine purpose.
+              <strong>THE INTUITION</strong><br/>
+              Symbolizes inner strength and the piercing vision required to uncover your divine purpose while breaking free from illusions.
             </p>
           </div>
           <div class="hz-card glass">
             <div class="hz-header">
               <span class="hz-value">963 HZ</span>
-              <span class="hz-status">SIGNAL: ACTIVE</span>
+              <span class="hz-status">SYMBOL: ALIGNED</span>
             </div>
             <div class="hz-divider"></div>
             <p class="hz-def">
-              <strong>DIVINE CONSCIOUSNESS : THE FREQUENCY OF GODS</strong><br/>
-              Awakening the crown chakra. Returning to Unity and original Oneness with the Source. The 963 Hz signal allows direct 
-              connection to the divine and the "All" through the pineal gland.
+              <strong>THE FREQUENCY OF GODS</strong><br/>
+              Symbolizes divine consciousness and the limitless connection to the artistic source. Representing a return to Unity and structural perfection.
             </p>
           </div>
         </div>
@@ -159,7 +157,7 @@ onMounted(() => {
             When we hold onto anger or resentment, we poison our own souls and trap our minds in endless loops. To break free, we must look inward. As the ancient Alchemical motto dictates: <em>V.I.T.R.I.O.L. — Visita Interiora Terrae Rectificando Invenies Occultum Lapidem</em> (Visit the interior of the earth, and by rectifying, you will find the hidden stone). That stone is your true self.
           </p>
           <p style="margin-bottom: 1.5rem;">
-            <strong>State of Resonance</strong> was born from this rebirth. Every artifact, every garment, and every ritual tool we create is historically and materially calibrated to a specific frequency—whether it's the 432 Hz 'Heartbeat of the Earth' or the 963 Hz 'Frequency of the Gods'. They are not meant to magically fix your void; they are meant to reflect the resonance and honesty you are building from the inside out. 
+            <strong>State of Resonance</strong> was born from this rebirth. Every piece, every garment, and every ritual tool we create is historically and materially calibrated to a specific frequency—whether it's the 432 Hz 'Heartbeat of the Earth' or the 963 Hz 'Frequency of the Gods'. They are not meant to magically fix your void; they are meant to reflect the resonance and honesty you are building from the inside out. 
           </p>
           <p style="margin-bottom: 2.5rem;">
             Life is still life, with its ups and downs, but it is infinitely sweeter when you can live 'just for today', in the present moment. State of Resonance is a synchronization point for seekers who are ready to elevate their own biological and spiritual frequencies, facing their reflections with absolute honesty.

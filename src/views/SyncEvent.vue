@@ -33,7 +33,7 @@ const startCalibration = () => {
         <h1>ALIGNED BY RESONANCE</h1>
         <p class="hero-subtitle">
           The window of opportunity is open. Identify your frequency, align your field, 
-          and acquire your sacred artifacts with a <span class="gold-text">15% Event Reward</span>.
+          and acquire your sacred garments with a <span class="gold-text">15% Event Reward</span>.
         </p>
 
         <div style="margin-top: 3.5rem;">
