@@ -4,7 +4,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { CSSPlugin } from 'gsap/CSSPlugin'
 import Lenis from 'lenis/dist/lenis.mjs'
-import AnnouncementBar from './components/AnnouncementBar.vue'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import CurrencySwitcher from './components/CurrencySwitcher.vue'
 
