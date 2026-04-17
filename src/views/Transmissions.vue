@@ -32,40 +32,40 @@ onMounted(() => {
 
 const calibrationLogs = [
   {
-    id: 'C-963',
-    freq: '963 Hz',
-    freqName: 'Divine Calibration',
-    title: 'Protocol 963 — Boundary Dissolution',
+    id: 'C-01',
+    freq: 'ALCHEMIST',
+    freqName: 'Design Philosophy',
+    title: 'Protocol 01 — Aesthetic Dissolution',
     date: 'MMXXV · CYCLE 03',
-    body: 'The 963 Hz frequency is the highest tone in the Solfeggio scale. It activates the crown chakra — the antenna to source field. When embedded into a fabric at the molecular level during the production calibration process, the wearer\'s biofield entrains to this signal, expanding awareness beyond the constructed self.',
-    type: 'ATTIRE CALIBRATION LOG'
+    body: 'The Alchemist tier represents the pinnacle of our design ethos. Woven with 450gsm organic materials and structured for modern brutalism, our garments serve as a canvas for occult exploration. Every stitch in this protocol represents a departure from the mundane, designed and finished in Canada.',
+    type: 'ATTIRE DESIGN LOG'
   },
   {
-    id: 'C-528',
-    freq: '528 Hz',
-    freqName: 'DNA Restoration Field',
-    title: 'Protocol 528 — The Miracle Tone',
+    id: 'C-02',
+    freq: 'MAGUS',
+    freqName: 'Artistic Restoration',
+    title: 'Protocol 02 — The Occult Canvas',
     date: 'MMXXV · CYCLE 02',
-    body: 'Known in bioresonance research as the "Love Frequency," 528 Hz has been documented to promote cellular regeneration at the DNA level. State of Resonance ritual tools calibrated at this frequency act as passive emitters — sustained proximity to these artifacts entrains the user\'s electromagnetic field into coherence.',
-    type: 'SANCTUARY CALIBRATION LOG'
+    body: 'True luxury lies in the details. State of Resonance ritual tools and heavy-weight garments act as passive emitters of artistic intent — sustained aesthetic immersion through cryptic symbolism and premium material construction.',
+    type: 'SANCTUARY DESIGN LOG'
   },
   {
-    id: 'C-432',
-    freq: '432 Hz',
-    freqName: 'Earth Alignment Sequence',
-    title: 'Protocol 432 — Natural Tuning',
+    id: 'C-03',
+    freq: 'ADEPT',
+    freqName: 'Urban Alignment',
+    title: 'Protocol 03 — Natural Tuning',
     date: 'MMXXV · CYCLE 01',
-    body: '432 Hz is the mathematical foundation of the natural world — from the spiral of a nautilus shell to the orbital frequency of Saturn. Products calibrated at this frequency serve as anchors; grounding the wearer into the present physical dimension while conducting higher-dimensional signals through the torso field.',
-    type: 'FREQUENCY FIELD NOTE'
+    body: 'Mathematical foundations of the natural world serve as our blueprint — from the spiral of a nautilus shell to architectural silhouettes. Products designed under this mandate serve as anchors; grounding the wearer into the present physical dimension through tactile luxury.',
+    type: 'GARMENT FIELD NOTE'
   },
   {
-    id: 'C-396',
-    freq: '396 Hz',
+    id: 'C-04',
+    freq: 'INITIATE',
     freqName: 'Liberation Sequence',
-    title: 'Protocol 396 — Releasing the Shadow Field',
+    title: 'Protocol 04 — Releasing the Shadow',
     date: 'MMXXIV · CYCLE 12',
-    body: 'The base tone of the Solfeggio sequence, 396 Hz corresponds to the root chakra — the field governing survival, safety, and liberation from fear. This protocol is used during the cleansing phase of the Sanctuary artifact production process, to clear residual energetic imprints from material before final calibration.',
-    type: 'SANCTUARY CALIBRATION LOG'
+    body: 'The base tone of our design sequence corresponds to raw, unfiltered expression — the field governing survival, safety, and liberation from fear. This protocol is used during the conceptual phase of artifact production to strip away unnecessary embellishments before final tailoring.',
+    type: 'SANCTUARY DESIGN LOG'
   }
 ]
 </script>

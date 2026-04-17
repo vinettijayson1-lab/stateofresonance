@@ -34,13 +34,13 @@ const subSuccess = ref(false)
 
 const nextTier = computed(() => {
   const current = resonance.tier
-  if (current === '396_HZ') return '417_HZ'
-  if (current === '417_HZ') return '528_HZ'
-  if (current === '528_HZ') return '639_HZ'
-  if (current === '639_HZ') return '741_HZ'
-  if (current === '741_HZ') return '852_HZ'
-  if (current === '852_HZ') return '963_HZ'
-  if (current === '963_HZ') return 'RESONANCE_ACHIEVED'
+  if (current === 'INITIATE') return 'NEOPHYTE'
+  if (current === 'NEOPHYTE') return 'ACOLYTE'
+  if (current === 'ACOLYTE') return 'ADEPT'
+  if (current === 'ADEPT') return 'ORACLE'
+  if (current === 'ORACLE') return 'MAGUS'
+  if (current === 'MAGUS') return 'ALCHEMIST'
+  if (current === 'ALCHEMIST') return 'ILLUMINATED'
   return null
 })
 
@@ -66,15 +66,15 @@ const unlockAccess = () => {
     localStorage.setItem('sor_inner_circle', 'true')
     if (accessEmail.value) localStorage.setItem('sor_seer_email', accessEmail.value)
     
-    // Auto-promote to 417_HZ if initial unlock
-    if (!resonance.tier || resonance.tier === '396_HZ') {
-      resonance.commitResonance({ tier: '417_HZ' })
+    // Auto-promote to NEOPHYTE if initial unlock
+    if (!resonance.tier || resonance.tier === 'INITIATE') {
+      resonance.commitResonance({ tier: 'NEOPHYTE' })
     }
     
     if ((window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'Inner Circle Unlock' });
     fetchMembersProducts()
   } else {
-    accessError.value = t('inner_circle.access_error') || 'FREQUENCY MISMATCH'
+    accessError.value = t('inner_circle.access_error') || 'KEY MISMATCH'
   }
 }
 
@@ -241,7 +241,7 @@ onMounted(() => {
       <!-- Ascension HUD (New in Phase 5) -->
       <div class="ascension-hud glass">
         <div class="hud-header">
-          <div class="tier-badge gold-text">{{ resonance.tier ? resonance.tier.replace('_', ' ') : '396 HZ' }}</div>
+          <div class="tier-badge gold-text">{{ resonance.tier ? resonance.tier.replace('_', ' ') : 'INITIATE' }}</div>
           <div class="hud-controls" style="display: flex; gap: 1rem; align-items: center;">
             <div class="points-display">{{ $t('membership.resonance_points', { n: resonance.resonancePoints }) }}</div>
             <button @click="lockPortal" class="btn-outline" style="padding: 0.3rem 0.8rem; font-size: 0.5rem; opacity: 0.5;">LOCK PORTAL</button>
@@ -256,7 +256,7 @@ onMounted(() => {
       </div>
 
       <header class="members-header">
-        <div class="header-meta">{{ $t('membership.tier_label') }} : {{ resonance.tier ? resonance.tier.replace('_', ' ') : '396 HZ' }}</div>
+        <div class="header-meta">{{ $t('membership.tier_label') }} : {{ resonance.tier ? resonance.tier.replace('_', ' ') : 'INITIATE' }}</div>
         <h1 class="hero-title">{{ $t('inner_circle.welcome') }}</h1>
         <p class="members-intro">
           {{ $t('inner_circle.intro') }}
@@ -296,7 +296,7 @@ onMounted(() => {
                 <p>{{ $t('inner_circle.protocol_1_text') }}</p>
               </div>
             </div>
-            <div v-if="resonance.tier !== '417_HZ' && resonance.tier !== '396_HZ'" class="protocol-item">
+            <div v-if="resonance.tier !== 'NEOPHYTE' && resonance.tier !== 'INITIATE'" class="protocol-item">
               <span class="protocol-num">02</span>
               <div class="protocol-body">
                 <h3>{{ $t('inner_circle.protocol_2_title') }}</h3>

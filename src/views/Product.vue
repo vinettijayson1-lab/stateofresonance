@@ -184,15 +184,7 @@ const isOptionAvailable = (optName: string, val: string) => {
   return product.value.variants.some((v: any) => v.options[optIdx] === val && v.available !== false);
 }
 
-// Derive a frequency from price
-const getFrequency = (price: string) => {
-  const val = parseFloat(price.replace(/[^0-9.]/g, ''))
-  if (val >= 90) return '963 Hz — Divine Consciousness'
-  if (val >= 50) return '528 Hz — Transformation & Miracles'
-  if (val >= 35) return '432 Hz — Earth Alignment'
-  return '396 Hz — Liberation Sequence'
-}
-
+// Cleaned up metaphysical claims
 const memberPrice = computed(() => {
   const basePrice = parseFloat((selectedVariant.value?.price || product.value?.price || '0').replace(/[^0-9.]/g, ''))
   if (resonance.memberDiscount > 0 && isUnlocked.value) {
@@ -204,25 +196,9 @@ const memberPrice = computed(() => {
 
 const liveViewers = computed(() => {
   if (!product.value) return 0
-  // Randomized per session — prevents perceptibly static number on repeat views
   return Math.floor(Math.random() * 12) + 4
 })
 
-const freqDescription = computed(() => {
-  if (!product.value) return null
-  const val = parseFloat(product.value.price.replace(/[^0-9.]/g, ''))
-  if (val >= 90) return {
-    hz: '963 Hz',
-    title: 'THE FREQUENCY OF GODS',
-    body: 'As the Solfeggio Higher Octave, 963Hz enables a direct experience with the Divine. It awakens the crown chakra, returning any system to its natural state of Unity and Oneness. This artifact is calibrated to provide a bridge to enlightenment.'
-  }
-  if (val >= 50) return {
-    hz: '528 Hz',
-    title: 'THE LOVE FREQUENCY',
-    body: 'The "Miracle Tone" resonates with the center of your being. It is documented to facilitate DNA repair, increase vital life energy, and bring about transformation. This artifact serves as a conduit for miracles and emotional restoration.'
-  }
-  return null
-})
 
 const remainingStock = computed(() => {
   if (!product.value) return 0
@@ -577,47 +553,6 @@ const onImgError = (e: any) => {
           </div>
         </div>
         
-        <!-- Relocated Cards: Frequency Specifications & Meaning panels -->
-        <div class="freq-specs" style="margin-top: 3rem;">
-          <p class="freq-specs-title">— Field Calibration Data —</p>
-          <div class="freq-row">
-            <span class="freq-label">RESONANCE FREQ.</span>
-            <span class="freq-value gold-text">{{ getFrequency(product.price) }}</span>
-          </div>
-          
-
-
-          <div class="freq-row">
-            <span class="freq-label">WAVELENGTH</span>
-            <span class="freq-value">λ = c / f &nbsp;·&nbsp; Verified </span>
-          </div>
-          <div class="freq-row">
-            <span class="freq-label">ARTIFACT CLASS</span>
-            <span class="freq-value">{{ product.category }}</span>
-          </div>
-          <div class="freq-row">
-            <span class="freq-label">CALIBRATION STATUS</span>
-            <span class="freq-value" :style="{ color: isAvailable ? '#4ade80' : '#f87171' }">
-              {{ isAvailable ? 'LOCKED & SYNCED' : 'RETURNED TO SOURCE' }}
-            </span>
-          </div>
-          <div class="freq-row" style="border-top: 1px solid rgba(212, 175, 55, 0.2); margin-top: 0.5rem; padding-top: 1rem;">
-            <span class="freq-label">VERIFIED ARTIFACT</span>
-            <span class="freq-value gold-text" style="font-weight: bold; font-size: 0.6rem;">[ GENUINE RESONANCE UNIT ]</span>
-          </div>
-          <div class="freq-row">
-            <span class="freq-label">LAST MANIFESTED</span>
-            <span class="freq-value" style="font-size: 0.6rem; opacity: 0.6;">{{ new Date().toLocaleDateString() }} @ 963Hz</span>
-          </div>
-        </div>
-        
-        <div v-if="freqDescription" class="freq-meaning-panel glass" style="margin-bottom: 2rem;">
-          <p class="freq-meaning-hz">{{ freqDescription.hz }}</p>
-          <h4 class="freq-meaning-title gold-text">{{ freqDescription.title }}</h4>
-          <p class="freq-meaning-body">{{ freqDescription.body }}</p>
-        </div>
-
-
       </div>
       <div class="product-detail-info">
         <p class="product-meta">{{ product.category }} / {{ product.type }}</p>
@@ -724,15 +659,7 @@ const onImgError = (e: any) => {
         </div>
 
         <!-- Connection Hook for High Frequency Items -->
-        <div v-if="getFrequency(product.price).includes('963')" class="connection-hook glass section-top" style="margin-bottom: 3rem; padding: 2rem; border: 1px solid rgba(212, 175, 55, 0.3); background: rgba(212, 175, 55, 0.05);">
-          <p class="meta-vibe gold-text" style="font-size: 0.6rem; margin-bottom: 1rem;">✦ DIRECT CONNECTION ✦</p>
-          <p style="font-size: 1.1rem; line-height: 1.6; color: #fff; font-style: italic; font-weight: 500;">
-            "This isn't just a garment; it's a reminder of your original state."
-          </p>
-          <p style="font-size: 0.75rem; opacity: 0.6; margin-top: 1rem; line-height: 1.6;">
-            Calibrated at the crown chakra activator frequency (963Hz), this artifact serves as a physical anchor for your connection to the All.
-          </p>
-        </div>
+
 
         <!-- WHY THIS PIECE IS SPECIAL -->
         <div v-if="isClothing" class="why-special-block">
@@ -813,12 +740,7 @@ const onImgError = (e: any) => {
 
         <SocialShare :title="product.title" :image="product.image" style="margin-top: 2rem;" />
 
-        <!-- Frequency Player — ambient lore element, placed below all CTAs and trust signals -->
-        <div class="product-frequency-control glass" style="margin-top: 3rem; padding: 1.5rem; border: 1px solid rgba(212, 175, 55, 0.12);">
-          <p class="meta-vibe gold-text" style="font-size: 0.55rem; margin-bottom: 1rem; text-align: center; opacity: 0.7;">— VIBRATIONAL CALIBRATION —</p>
-          <FrequencyPlayer />
-          <p style="font-size: 0.5rem; opacity: 0.4; margin-top: 1rem; text-align: center; letter-spacing: 0.1em;">Activate the signal to synchronize the artifact with your current field.</p>
-        </div>
+
       </div>
     </div>
 

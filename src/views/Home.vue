@@ -112,22 +112,7 @@ const handleSmsSync = async () => {
       />
       <div class="hero-bg-overlay" aria-hidden="true"></div>
 
-      <!-- Sacred Geometry SVG Port -->
-      <svg class="sacred-geometry" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" fill="none">
-        <g stroke="rgba(212, 175, 55, 0.12)" stroke-width="0.5">
-          <circle cx="400" cy="400" r="80"/>
-          <circle cx="400" cy="320" r="80"/><circle cx="469.3" cy="360" r="80"/><circle cx="469.3" cy="440" r="80"/>
-          <circle cx="400" cy="480" r="80"/><circle cx="330.7" cy="440" r="80"/><circle cx="330.7" cy="360" r="80"/>
-          <circle cx="400" cy="160" r="80"/><circle cx="538.6" cy="240" r="80"/><circle cx="538.6" cy="400" r="80"/>
-          <circle cx="538.6" cy="560" r="80"/><circle cx="400" cy="640" r="80"/><circle cx="261.4" cy="560" r="80"/>
-          <circle cx="261.4" cy="400" r="80"/><circle cx="261.4" cy="240" r="80"/>
-          <circle cx="469.3" cy="200" r="80"/><circle cx="608" cy="320" r="80"/><circle cx="608" cy="480" r="80"/>
-          <circle cx="469.3" cy="600" r="80"/><circle cx="330.7" cy="600" r="80"/><circle cx="192" cy="480" r="80"/>
-          <circle cx="192" cy="320" r="80"/><circle cx="330.7" cy="200" r="80"/>
-          <circle cx="400" cy="400" r="240" opacity="0.3"/>
-          <circle cx="400" cy="400" r="320" opacity="0.15"/>
-        </g>
-      </svg>
+
 
       <!-- Hero Content — Centered, Full Impact -->
       <div class="hero-center" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;width:90%;max-width:820px;">

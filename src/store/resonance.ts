@@ -12,7 +12,7 @@ export interface Manifestation {
 }
 
 export interface ResonanceState {
-  tier: '396_HZ' | '417_HZ' | '528_HZ' | '639_HZ' | '741_HZ' | '852_HZ' | '963_HZ' | 'RESONANCE_ACHIEVED' | null;
+  tier: 'INITIATE' | 'NEOPHYTE' | 'ACOLYTE' | 'ADEPT' | 'ORACLE' | 'MAGUS' | 'ALCHEMIST' | 'ILLUMINATED' | null;
   energy: string | null;
   detectedFrequency: string | null;
   recommendedArtifact: string | null;
@@ -53,14 +53,14 @@ export const useResonanceStore = defineStore('resonance', {
     referrals: (state) => state.persistence.referrals,
     memberDiscount: (state) => {
       const mapping: Record<string, number> = {
-        '396_HZ': 0,
-        '417_HZ': 0.05,
-        '528_HZ': 0.10,
-        '639_HZ': 0.15,
-        '741_HZ': 0.20,
-        '852_HZ': 0.25,
-        '963_HZ': 0.30,
-        'RESONANCE_ACHIEVED': 0.35
+        'INITIATE': 0,
+        'NEOPHYTE': 0.05,
+        'ACOLYTE': 0.10,
+        'ADEPT': 0.15,
+        'ORACLE': 0.20,
+        'MAGUS': 0.25,
+        'ALCHEMIST': 0.30,
+        'ILLUMINATED': 0.35
       };
       return mapping[state.persistence.tier || ''] || 0;
     }
@@ -178,22 +178,22 @@ export const useResonanceStore = defineStore('resonance', {
       
       // Ascension Ladder
       if (artifacts.includes('the-omniscience-artifact') || points >= 963) {
-        this.persistence.tier = 'RESONANCE_ACHIEVED';
+        this.persistence.tier = 'ILLUMINATED';
       } else if (points >= 500) {
-        this.persistence.tier = '963_HZ';
+        this.persistence.tier = 'ALCHEMIST';
       } else if (points >= 400) {
-        this.persistence.tier = '852_HZ';
+        this.persistence.tier = 'MAGUS';
       } else if (points >= 300) {
-        this.persistence.tier = '741_HZ';
+        this.persistence.tier = 'ORACLE';
       } else if (points >= 200) {
-        this.persistence.tier = '639_HZ';
+        this.persistence.tier = 'ADEPT';
       } else if (points >= 100) {
-        this.persistence.tier = '528_HZ';
+        this.persistence.tier = 'ACOLYTE';
       } else if (points >= 50) {
-        this.persistence.tier = '417_HZ';
+        this.persistence.tier = 'NEOPHYTE';
       } else {
-        if (this.persistence.tier !== 'RESONANCE_ACHIEVED' && this.persistence.tier !== '963_HZ') {
-          this.persistence.tier = '396_HZ';
+        if (this.persistence.tier !== 'ILLUMINATED' && this.persistence.tier !== 'ALCHEMIST') {
+          this.persistence.tier = 'INITIATE';
         }
       }
 
@@ -207,7 +207,7 @@ export const useResonanceStore = defineStore('resonance', {
       const entry: Manifestation = {
         id: Math.random().toString(36).substring(2, 9),
         seeker: 'Seeker-' + Math.random().toString(36).substring(2, 5).toUpperCase(),
-        tier: this.tier || '396_HZ',
+        tier: this.tier || 'INITIATE',
         frequency: this.detectedFrequency || '432',
         content,
         timestamp: new Date().toISOString()

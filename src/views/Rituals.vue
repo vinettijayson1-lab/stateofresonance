@@ -8,28 +8,28 @@ const rituals = [
   {
     id: 'cleansing-963',
     title: 'Divine Cleansing Protocol',
-    frequency: '963Hz',
-    tier: '963_HZ',
+    frequency: 'ALCHEMIST TIER',
+    tier: 'ALCHEMIST',
     summary: 'A protocol for returning any manifestation to its natural state of Unity and Oneness.',
-    protocol: '1. Light the [963Hz Resonance Mist] (if owned). 2. Focus on the crown chakra. 3. Visualize a bridge of white light connecting you to the Source for 9 minutes.',
+    protocol: '1. Light the [Resonance Mist] (if owned). 2. Focus on the crown center. 3. Visualize a bridge of white light connecting you to the Source for 9 minutes.',
     isPublic: false
   },
   {
     id: 'heart-528',
-    title: 'The Solfeggio Love Bridge',
-    frequency: '528Hz',
-    tier: '741_HZ',
-    summary: 'A practice to facilitate DNA repair and increase vital life energy through the Love Frequency.',
-    protocol: '1. Place the [528Hz Alchemical Elixir] on your heart space. 2. Breathe deeply for 5 cycles of 8 seconds. 3. Repeat: "I am a conduit for miracles."',
+    title: 'The Occult Ascetic Ritual',
+    frequency: 'ORACLE TIER',
+    tier: 'ORACLE',
+    summary: 'A practice to facilitate spiritual repair and increase vital life energy through esoteric art.',
+    protocol: '1. Place the [Alchemical Elixir] on your heart space. 2. Breathe deeply for 5 cycles of 8 seconds. 3. Repeat: "I am a conduit for miracles."',
     isPublic: false
   },
   {
     id: 'earth-432',
     title: 'Grounding Synchronization',
-    frequency: '432Hz',
+    frequency: 'SEEKER TIER',
     tier: 'SEEKER',
-    summary: 'Synchronizing your field with the heartbeat of the Earth (Schumann Resonance).',
-    protocol: '1. Hold the [Natural Alignment Pendant]. 2. Step onto bare earth or grass. 3. Close your eyes and feel the 432Hz pulse of the planetary field.',
+    summary: 'Synchronizing your field with the natural geometry of the Earth.',
+    protocol: '1. Hold the [Natural Alignment Pendant]. 2. Step onto bare earth or grass. 3. Close your eyes and feel the pulse of the planetary field.',
     isPublic: true
   }
 ];
@@ -46,8 +46,8 @@ const toggleRitual = (id: string) => {
 
 const isUnlocked = (ritual: any) => {
   if (ritual.isPublic) return true;
-  if (resonance.tier === '963_HZ' || resonance.tier === 'RESONANCE_ACHIEVED') return true;
-  if ((resonance.tier === '741_HZ' || resonance.tier === '852_HZ') && ritual.tier !== '963_HZ') return true;
+  if (resonance.tier === 'ALCHEMIST' || resonance.tier === 'ILLUMINATED') return true;
+  if ((resonance.tier === 'ORACLE' || resonance.tier === 'MAGUS') && ritual.tier !== 'ALCHEMIST') return true;
   return false;
 };
 </script>
@@ -56,10 +56,10 @@ const isUnlocked = (ritual: any) => {
   <div class="rituals-view container" style="padding: 15vh 0;">
     <div class="rituals-header" style="text-align: center; margin-bottom: 6rem;">
       <span class="popup-eyebrow">✦ THE ALCHEMICAL JOURNALS ✦</span>
-      <h1 class="hero-title">High-Frequency Protocols</h1>
+      <h1 class="hero-title">Occult Protocols</h1>
       <p style="opacity: 0.5; max-width: 600px; margin: 2rem auto;">
         Practices for the sanctification of space and the transformation of the self. 
-        Higher-tier protocols are revealed to seekers who have synchronized their fields.
+        Higher-tier protocols are revealed to seekers who have initiated into the Inner Circle.
       </p>
     </div>
 

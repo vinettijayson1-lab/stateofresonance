@@ -59,13 +59,6 @@ const memberPrice = computed(() => {
   return null
 })
 
-const frequencyVal = computed(() => {
-  const val = priceValue.value
-  if (val >= 90) return '963 Hz'
-  if (val >= 50) return '528 Hz'
-  if (val >= 35) return '432 Hz'
-  return '396 Hz'
-})
 
 const alignmentScore = computed(() => {
   // Semi-randomized alignment score for "Laboratory" feel
@@ -137,15 +130,12 @@ onMounted(() => {
         @error="onImgError"
       />
       
-  <!-- Calibration Overlay (Laboratory UI) -->
+  <!-- Premium Overlay (No Pseudoscience) -->
       <div class="calibration-overlay">
-        <div class="scanning-line"></div>
         <div class="calibration-data">
-          <p class="data-label">{{ $t('product.freq') }}: <span class="gold-text">{{ frequencyVal }}</span></p>
-          <p class="data-label">{{ $t('product.sync') }}: <span class="gold-text">{{ alignmentScore }}</span></p>
-          <p class="data-label" v-html="$t('product.live', { n: `<span class='gold-text'>${liveViewers}</span>` })"></p>
+          <p class="data-label">{{ $t('product.live', { n: `<span class='gold-text'>${liveViewers}</span>` }) }}</p>
           <p class="data-status" :class="{ 'gold-border': product.metadata?.isMembersOnly }">
-            {{ product.metadata?.isMembersOnly ? $t('product.inner_circle') : $t('product.locked') }}
+            {{ product.metadata?.isMembersOnly ? $t('product.inner_circle') : 'ESOTERIC ARTIFACT' }}
           </p>
         </div>
       </div>
@@ -254,23 +244,6 @@ onMounted(() => {
   .product-card:hover .calibration-overlay {
     opacity: 1;
   }
-}
-
-.scanning-line {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--color-gold);
-  box-shadow: 0 0 15px var(--color-gold);
-  animation: scan 2s linear infinite;
-  z-index: 5;
-}
-
-@keyframes scan {
-  0% { top: 0%; }
-  100% { top: 100%; }
 }
 
 .calibration-data {

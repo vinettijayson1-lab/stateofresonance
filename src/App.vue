@@ -304,10 +304,18 @@ const auraStyle = computed(() => {
           <span class="label-hover">TOP 10</span>
         </router-link>
         
-        <router-link to="/attire" class="nav-link" @click="mobileMenuOpen = false">
-          <span class="label-primary">HOODIES & TEES</span>
-          <span class="label-hover">APPAREL</span>
-        </router-link>
+        <!-- DROPDOWN FOR ATTIRE / COLLECTIONS -->
+        <div class="nav-dropdown-container">
+          <router-link to="/attire" class="nav-link" @click="mobileMenuOpen = false">
+            <span class="label-primary">HOODIES & TEES</span>
+            <span class="label-hover">COLLECTIONS</span>
+          </router-link>
+          <div class="nav-dropdown glass">
+            <router-link to="/collections/the-ghost-and-bones" class="dropdown-link" @click="mobileMenuOpen = false">The GHOST and BONES</router-link>
+            <router-link to="/collections/her-resonance" class="dropdown-link" @click="mobileMenuOpen = false">Her Resonance</router-link>
+            <router-link to="/collections/urban-esoterica" class="dropdown-link" @click="mobileMenuOpen = false">Urban Esoterica</router-link>
+          </div>
+        </div>
 
         <!-- WORLD / LORE -->
         <router-link to="/about" class="nav-link" @click="mobileMenuOpen = false">
@@ -662,6 +670,51 @@ const auraStyle = computed(() => {
   color: var(--color-gold);
   font-weight: 700;
   opacity: 1;
+}
+
+.nav-dropdown-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 200px;
+  background: rgba(8, 8, 10, 0.95);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s var(--ease-out-expo);
+  z-index: 100;
+}
+
+.nav-dropdown-container:hover .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-link {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  text-align: center;
+  transition: color 0.3s;
+}
+
+.dropdown-link:hover {
+  color: var(--color-gold);
 }
 
 .nav-link--highlight {
