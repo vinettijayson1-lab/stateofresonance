@@ -37,6 +37,13 @@ app.use(createPinia())
 app.use(router)
 app.use(i18n)
 
+import { inject as injectAnalytics } from '@vercel/analytics';
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
+// Boot Vercel Telemetry on CSR level ensures Vue-Router transitions log successfully
+injectAnalytics();
+injectSpeedInsights();
+
 // --- GLOBAL CALIBRATION (Phase 6) ---
 const userLocale = localStorage.getItem('user-locale') || 'en'
 const userCurrency = localStorage.getItem('user-currency')
