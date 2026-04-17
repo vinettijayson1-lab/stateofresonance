@@ -343,18 +343,7 @@ const auraStyle = computed(() => {
       </div>
 
       <div class="nav-actions">
-        <!-- Resonance HUD -->
-        <div v-if="resonance.isCalibrated" class="resonance-hud desktop-only interactive" title="Current Vibrational State">
-          <div class="hud-monitor">
-            <span class="hud-freq">{{ resonance.detectedFrequency }}Hz</span>
-            <span class="hud-tier">{{ resonance.tier }}</span>
-          </div>
-          <div class="hud-waves">
-            <span class="wave"></span>
-            <span class="wave"></span>
-            <span class="wave"></span>
-          </div>
-        </div>
+
 
         <router-link to="/quiz" class="sync-icon-link interactive mobile-only" title="Sync Your Field">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
