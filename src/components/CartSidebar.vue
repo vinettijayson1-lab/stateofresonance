@@ -523,7 +523,7 @@ watch(() => cart.isOpen, (val) => {
 .item-img-container {
   width: 90px;
   height: 90px;
-  background: var(--color-onyx);
+  background: transparent;
   border: 1px solid rgba(212, 175, 55, 0.2);
   position: relative;
   overflow: hidden;
