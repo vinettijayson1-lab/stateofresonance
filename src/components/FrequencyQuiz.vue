@@ -137,7 +137,7 @@ const calculateResult = () => {
       results.value = {
         title: targetHandle === 'the-sigil-hoodie' ? 'The Sigil Hoodie' : 'The Ascended Master Hoodie',
         handle: targetHandle,
-        image: '/placeholder.png',
+        image: '/assets/placeholder.png',
         reason: reason,
         price: '$96.30',
         tier: tier,

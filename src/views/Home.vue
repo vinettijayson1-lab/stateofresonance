@@ -95,11 +95,11 @@ const handleSmsSync = async () => {
 
 
       <!-- Hero Content — Centered, Full Impact -->
-      <div class="hero-center" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;width:90%;max-width:820px;">
-        <h1 class="hero-wordmark" style="text-transform: uppercase;">Wear the Symbols<br/><span style="color:var(--color-gold);">That Shape You</span></h1>
-        <div class="hero-text-content" style="margin-bottom: 1.5rem;">
+      <div class="hero-center">
+        <h1 class="hero-wordmark">Wear the Symbols<br/><span style="color:var(--color-gold);">That Shape You</span></h1>
+        <div class="hero-text-content">
           <p class="hero-tagline" style="margin-bottom: 1.5rem;">Premium, heavyweight streetwear inspired by ancient geometry, spiritual archetypes, and the path of inner alignment.</p>
-          <p class="artisan-quote" style="font-family: var(--font-body); font-style: italic; color: var(--color-gold); font-size: 0.85rem; letter-spacing: 0.15em; line-height: 1.6; opacity: 1;">"Made to order. Embroidered locally. Passes through my hands before yours."</p>
+          <p class="artisan-quote">"Made to order. Embroidered locally. Passes through my hands before yours."</p>
         </div>
         <div class="hero-cta-group">
           <router-link to="/best-sellers" class="btn-premium animate-glint" id="hero-shop-btn">
@@ -532,13 +532,14 @@ const handleSmsSync = async () => {
 }
 
 .void-choice {
-  height: 100dvh;
+  min-height: 100dvh;
   width: 100%;
   display: flex;
   position: relative;
   overflow: hidden;
   align-items: center;
   justify-content: center;
+  padding: 120px 5vw 100px;
   background: #050507;
 }
 
@@ -578,32 +579,42 @@ const handleSmsSync = async () => {
 
 
 /* === NEW CINEMATIC HERO STYLES === */
-.hero-eyebrow {
-  font-size: 0.6rem;
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
-  color: var(--color-gold-muted);
-  margin-bottom: 2rem;
-  display: block;
+.hero-center {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  width: 90%;
+  max-width: 820px;
 }
 
 .hero-wordmark {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-size: clamp(3rem, 9vw, 6.5rem);
   line-height: 0.95;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #fff;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-shadow: 0 4px 40px rgba(0,0,0,0.8);
 }
 
 .hero-tagline {
-  font-size: 0.9rem;
-  letter-spacing: 0.2em;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
   color: rgba(255,255,255,0.6);
-  margin-bottom: 3rem;
+  margin-bottom: 0;
   text-transform: uppercase;
+}
+
+.artisan-quote {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--color-gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .hero-cta-group {

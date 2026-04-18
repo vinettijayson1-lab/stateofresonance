@@ -168,8 +168,8 @@ onMounted(() => {
 <style scoped>
 .product-card {
   position: relative;
-  background: var(--color-onyx);
-  border: 1px solid var(--glass-border);
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.12);
   overflow: hidden;
   transition: var(--transition-premium);
 }
@@ -188,7 +188,7 @@ onMounted(() => {
   aspect-ratio: 3/4;
   overflow: hidden;
   background: transparent;
-  border: 1px solid rgba(212, 175, 55, 0.15);
+  border: none;
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
