@@ -95,9 +95,9 @@ const handleSmsSync = async () => {
 
 
       <!-- Hero Content — Centered, Full Impact -->
-      <div class="hero-center" style="position:absolute;top:58%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;width:90%;max-width:820px;">
+      <div class="hero-center" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;width:90%;max-width:820px;">
         <h1 class="hero-wordmark" style="text-transform: uppercase;">Wear the Symbols<br/><span style="color:var(--color-gold);">That Shape You</span></h1>
-        <div class="hero-text-content" style="margin-bottom: 2.5rem;">
+        <div class="hero-text-content" style="margin-bottom: 1.5rem;">
           <p class="hero-tagline" style="margin-bottom: 1.5rem;">Premium, heavyweight streetwear inspired by ancient geometry, spiritual archetypes, and the path of inner alignment.</p>
           <p class="artisan-quote" style="font-family: var(--font-body); font-style: italic; color: var(--color-gold); font-size: 0.85rem; letter-spacing: 0.15em; line-height: 1.6; opacity: 1;">"Made to order. Embroidered locally. Passes through my hands before yours."</p>
         </div>
@@ -594,7 +594,7 @@ const handleSmsSync = async () => {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #fff;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-shadow: 0 4px 40px rgba(0,0,0,0.8);
 }
 
@@ -611,7 +611,7 @@ const handleSmsSync = async () => {
   gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .btn-ghost {
