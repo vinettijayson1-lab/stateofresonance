@@ -34,14 +34,7 @@ const onImgError = (e: any) => {
 // Shopify CDN image resizing — adds ?width=600 to serve appropriately sized images
 // This cuts product image payload from ~9.6MB down to ~400KB per page
 const optimizedImage = computed(() => {
-  const src = props.product.image
-  if (!src) return src
-  // Shopify CDN supports width param natively — serves WebP automatically when supported
-  if (src.includes('cdn.shopify.com')) {
-    const separator = src.includes('?') ? '&' : '?'
-    return `${src}${separator}width=600&format=webp`
-  }
-  return src
+  return props.product.image
 })
 
 // Derive a frequency from price (reproduction of logic in Product.vue)

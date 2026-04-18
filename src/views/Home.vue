@@ -97,8 +97,10 @@ const handleSmsSync = async () => {
       <!-- Hero Content — Centered, Full Impact -->
       <div class="hero-center" style="position:absolute;top:58%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;width:90%;max-width:820px;">
         <h1 class="hero-wordmark" style="text-transform: uppercase;">Wear the Symbols<br/><span style="color:var(--color-gold);">That Shape You</span></h1>
-        <p class="hero-tagline">Premium, heavyweight streetwear inspired by ancient geometry, spiritual archetypes, and the path of inner alignment.</p>
-        <p class="hero-tagline" style="font-family: var(--font-body); font-style: italic; color: var(--color-gold); font-size: 0.8rem; margin-top: -1.5rem; text-transform: none; letter-spacing: 0.1em; opacity: 0.9;">"Made to order. Embroidered locally. Passes through my hands before yours."</p>
+        <div class="hero-text-content" style="margin-bottom: 2.5rem;">
+          <p class="hero-tagline" style="margin-bottom: 1.5rem;">Premium, heavyweight streetwear inspired by ancient geometry, spiritual archetypes, and the path of inner alignment.</p>
+          <p class="artisan-quote" style="font-family: var(--font-body); font-style: italic; color: var(--color-gold); font-size: 0.85rem; letter-spacing: 0.15em; line-height: 1.6; opacity: 1;">"Made to order. Embroidered locally. Passes through my hands before yours."</p>
+        </div>
         <div class="hero-cta-group">
           <router-link to="/best-sellers" class="btn-premium animate-glint" id="hero-shop-btn">
             Shop Collection
