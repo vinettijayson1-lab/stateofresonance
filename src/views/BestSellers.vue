@@ -376,9 +376,9 @@ const goToProduct = (handle: string) => {
 .bs-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.6s ease;
-  filter: brightness(0.9);
+  filter: brightness(1);
 }
 
 .bs-item:hover .bs-img {

@@ -205,7 +205,7 @@ onMounted(() => {
   object-fit: contain;
   object-position: center center;
   transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.5s ease;
-  filter: brightness(0.9);
+  filter: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
