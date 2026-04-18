@@ -131,19 +131,32 @@ const onMountedHandler = () => {
     splashDone.value = true
   }
 
-  // Initialize Lenis Smooth Scroll
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-  })
+  // Initialize Lenis Smooth Scroll — deferred to idle to avoid blocking LCP/TTI
+  const initLenis = () => {
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0)
+    if (isTouch) {
+      document.documentElement.classList.remove('lenis')
+      return // Bypass custom scrolling on iOS/Mobile to rely on native momentum speed
+    }
 
-  function raf(time: number) {
-    lenis.raf(time)
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    })
+
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
     requestAnimationFrame(raf)
   }
 
-  requestAnimationFrame(raf)
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(initLenis, { timeout: 2000 })
+  } else {
+    setTimeout(initLenis, 500)
+  }
 
   // Scroll logic for Navbar (Omniscience UI Protocol)
   window.addEventListener('scroll', () => {
@@ -1002,7 +1015,10 @@ footer {
   display: flex !important;
   flex-direction: column;
   background: rgba(5, 5, 5, 0.98);
-  backdrop-filter: blur(40px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transform: translateZ(0);
+  will-change: transform;
   padding: 8rem 3rem 4rem;
   z-index: 2000;
   gap: 2rem;
