@@ -34,11 +34,13 @@ export default defineConfig({
     // Consistent hashed filenames for long-term caching
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['vue', 'vue-router', 'pinia'],
-          gsap: ['gsap'],
-          lenis: ['lenis'],
-          three: ['three']
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+             if (id.includes('vue') || id.includes('pinia')) return 'vendor';
+             if (id.includes('gsap')) return 'gsap';
+             if (id.includes('lenis')) return 'lenis';
+             if (id.includes('three')) return 'three';
+          }
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
