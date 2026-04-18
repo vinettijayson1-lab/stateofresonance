@@ -586,8 +586,8 @@ const onImgError = (e: any) => {
         <div v-if="isClothing || product.inventory_quantity" class="limited-edition-badge">
           <span class="ltd-flame">🏺</span>
           <div class="ltd-text">
-            <span class="ltd-title">LIMITED PRODUCTION RUN</span>
-            <span class="ltd-sub">Produced in limited quantities. Once this release sells out, it may not return.</span>
+            <span class="ltd-title" style="color: var(--color-gold);">LIMITED 10 PIECE DROP</span>
+            <span class="ltd-sub" style="color: var(--color-gold-muted);">Each piece is made to order. I have the embroidery done at my local shop and print them myself, so every single artifact goes explicitly through my own hands.</span>
           </div>
         </div>
         
