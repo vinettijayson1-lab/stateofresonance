@@ -125,9 +125,6 @@ const handleSmsSync = async () => {
       </div>
     </section>
 
-    <!-- NEW VAULT DROP TEASER SECTION -->
-    <VaultDropTeaser />
-
     <!-- SECTION 2 — THE GROUNDING -->
     <section class="the-meaning-section" style="padding: 8vh 5vw; background: var(--color-bg); text-align: center;">
       <div class="container" style="max-width: 800px; margin: 0 auto;">

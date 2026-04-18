@@ -336,11 +336,11 @@ onMounted(() => {
 }
 
 .badge.scarcity {
-  background: #ff3e3e;
-  color: white;
+  background: var(--color-gold);
+  color: #000;
   font-weight: 800;
-  box-shadow: 0 0 15px rgba(255, 62, 62, 0.4);
-  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+  border: 1px solid rgba(212, 175, 55, 0.4);
 }
 
 .badge.members-only {
