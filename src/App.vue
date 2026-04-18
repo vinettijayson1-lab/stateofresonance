@@ -385,7 +385,7 @@ const auraStyle = computed(() => {
     <div class="toast-container"></div>
     <div id="teleport-target"></div>
     
-    <!-- WhatsApp support link removed — placeholder number was set, will re-add with real number -->
+    
 
 
     <main>

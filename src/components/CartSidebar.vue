@@ -42,11 +42,6 @@ const suggestedAddon = computed(() => {
   return potentialAddons.find(addon => !cart.items.some(item => item.handle === addon.handle)) || potentialAddons[0]
 })
 
-const isAddonInCart = computed(() => {
-  return cart.items.length > 0 && cart.items.every(item => potentialAddons.some(addon => addon.handle === item.handle)) && potentialAddons.every(addon => cart.items.some(item => item.handle === addon.handle))
-})
-
-// Simpler check: are all potential addons in the cart?
 const allAddonsInCart = computed(() => {
   return potentialAddons.every(addon => cart.items.some(item => item.handle === addon.handle))
 })

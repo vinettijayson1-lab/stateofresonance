@@ -137,8 +137,6 @@ const handleSmsSync = async () => {
       </div>
     </section>
 
-    <!-- ===== PRODUCTS: RIGHT UNDER THE HERO ===== -->
-    <!-- ===== PRODUCTS: RIGHT UNDER SECTION 2 ===== -->
     <!-- The Resonance Series -->
     <section class="products-section container section-top">
       <div class="section-header">
