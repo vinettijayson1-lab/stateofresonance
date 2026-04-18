@@ -368,11 +368,8 @@ const auraStyle = computed(() => {
           </div>
         </button>
 
-        <button @click="cart.isOpen = true; mobileMenuOpen = false" class="nav-link reservoir-btn" style="background: none; border: none; cursor: pointer;" aria-label="Open shopping cart">
-          <span class="desktop-only text-label">
-            <span class="label-primary">{{ $t('nav.reservoir') }}</span>
-            <span class="label-hover">VIEW CART</span>
-          </span>
+        <button @click="cart.isOpen = true; mobileMenuOpen = false" class="reservoir-btn interactive" style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; letter-spacing: 0.15em; font-weight: 500; background: none; border: none; cursor: pointer; text-transform: uppercase;" aria-label="Open shopping cart">
+          <span class="desktop-only">{{ $t('nav.reservoir') }}</span>
           <svg class="mobile-only cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <path d="M16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11M5 9H19L20 21H4L5 9Z" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -686,19 +683,11 @@ const auraStyle = computed(() => {
   color: var(--color-gold);
 }
 
-.reservoir-btn .text-label {
-  display: flex;
-  flex-direction: column;
-  height: 1.1rem;
-  overflow: hidden;
-  white-space: nowrap;
-  padding-right: 0.15em;
+.reservoir-btn {
+  transition: opacity 0.3s ease;
 }
-
-@media (hover: hover) and (pointer: fine) {
-  .reservoir-btn:hover .text-label span {
-    transform: translateY(-100%);
-  }
+.reservoir-btn:hover {
+  opacity: 0.7;
 }
 
 .nav-logo {

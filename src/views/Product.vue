@@ -120,7 +120,7 @@ const toggleModelView = () => {
 
 // Variant Selection State
 const selectedOptions = ref<Record<string, string>>({})
-const userSelected = ref<Set<string>>(new Set()) // Tracks options the user explicitly clicked
+const userSelected = ref<string[]>([]) // Tracks options the user explicitly clicked
 const sizeError = ref(false)
 const quantity = ref(1)
 
@@ -129,7 +129,7 @@ const addToCartWithQty = () => {
 
   // Guard: require explicit size selection if product has a Size option
   const sizeOpt = product.value.options?.find((o: any) => o.name === 'Size')
-  if (sizeOpt && !userSelected.value.has('Size')) {
+  if (sizeOpt && !userSelected.value.includes('Size')) {
     sizeError.value = true
     // Clear error after 3s
     setTimeout(() => { sizeError.value = false }, 3000)
@@ -258,6 +258,7 @@ onMounted(async () => {
     }
 
     const data = await res.json()
+    if (data.error) throw new Error("Product data extraction failed: " + data.error)
     product.value = data
     
     // Tier Ad redirection (HIDDEN TO ALLOW COLD TRAFFIC CHECKOUT)
@@ -610,7 +611,7 @@ const onImgError = (e: any) => {
                   active: selectedOptions[opt.name] === val,
                   'out-of-stock-chip': !isOptionAvailable(opt.name, val)
                 }"
-                @click="selectedOptions[opt.name] = val; userSelected.add(opt.name); sizeError = false"
+                @click="selectedOptions[opt.name] = val; if (!userSelected.includes(opt.name)) { userSelected.push(opt.name); }; sizeError = false"
               >
                 {{ val }}
               </button>

@@ -809,7 +809,7 @@ watch(() => cart.isOpen, (val) => {
 .custom-scroll::-webkit-scrollbar-thumb { background: var(--glass-border); }
 
 @media (max-width: 880px) {
-  .cart-panel { width: 100%; }
+  .cart-panel { width: 85vw; max-width: 400px; right: 0; }
   .collection-visual-side { display: none; }
   .cart-layout-pines { flex-direction: column; }
 }
