@@ -535,11 +535,12 @@ const handleSmsSync = async () => {
   min-height: 100dvh;
   width: 100%;
   display: flex;
+  flex-direction: column;
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   align-items: center;
   justify-content: center;
-  padding: 120px 5vw 100px;
+  padding: 130px 5vw 110px;
   background: #050507;
 }
 

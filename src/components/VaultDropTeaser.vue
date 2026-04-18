@@ -230,7 +230,7 @@ const handleSubscribe = () => {
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 4px;
-  background: rgba(0,0,0,0.2);
+  background: transparent;
   margin-bottom: 1.5rem;
 }
 

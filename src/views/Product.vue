@@ -825,7 +825,7 @@ const onImgError = (e: any) => {
   aspect-ratio: 4/5;
   max-height: 75vh;
   overflow: hidden;
-  background-color: #000000;
+  background-color: transparent;
   backdrop-filter: blur(8px);
   margin-bottom: 1rem;
   border-radius: 4px;
@@ -849,8 +849,8 @@ const onImgError = (e: any) => {
   flex-shrink: 0;
   scroll-snap-align: start;
   cursor: pointer;
-  border: 1px solid rgba(255,255,255,0.05);
-  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: transparent;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   overflow: hidden;
 }

@@ -369,7 +369,7 @@ const goToProduct = (handle: string) => {
   position: relative;
   overflow: hidden;
   aspect-ratio: 1;
-  background: rgba(0,0,0,0.3);
+  background: transparent;
   flex-shrink: 0;
 }
 
