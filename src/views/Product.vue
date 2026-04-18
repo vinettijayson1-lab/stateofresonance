@@ -521,7 +521,7 @@ const onImgError = (e: any) => {
 
     <div v-else-if="product" class="product-split">
       <div class="product-gallery">
-        <div class="main-img-wrapper glass">
+        <div class="main-img-wrapper">
           <transition name="fade-fast" mode="out-in">
             <img :key="showModel ? 'model' : 'flat'" :src="showModel ? product.modelImage : currentImage" :alt="`963Hz Esoteric Piece: ${product.title} | State of Resonance Ritual Tool`" @error="onImgError" />
           </transition>
@@ -545,7 +545,7 @@ const onImgError = (e: any) => {
           <div 
             v-for="(img, idx) in product.images" 
             :key="idx"
-            class="thumb-item glass"
+            class="thumb-item"
             :class="{ active: currentImage === img }"
             @click="setMainImage(img)"
           >

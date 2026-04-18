@@ -119,7 +119,7 @@ const goToProduct = (handle: string) => {
       <div
         v-for="(product, index) in products"
         :key="product.id"
-        class="bs-item glass"
+        class="bs-item"
         :class="{ 'bs-item--top3': index < 3 }"
         @click="goToProduct(product.handle)"
       >

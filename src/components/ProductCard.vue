@@ -110,7 +110,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <router-link ref="cardRef" :to="'/product/' + product.handle" class="product-card glass">
+  <router-link ref="cardRef" :to="'/product/' + product.handle" class="product-card">
     <div class="product-img-wrapper">
       <img
         :src="optimizedImage"
