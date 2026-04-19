@@ -104,11 +104,8 @@ function prioritizeFrontImage(images: {url: string, alt: string}[]): string {
   const front = images.find(i => /front|model|main/i.test(i.alt) || /front|model/i.test(i.url));
   if (front) return front.url;
   
-  // Fallback 1: Print-on-demand networks almost always inject the front-facing standard mockup 
-  // as the 2nd image (index 1) when the main graphic is on the back or sleeve.
-  if (images.length >= 2) return images[1].url;
-  
-  // Default to whatever Shopify generated first
+  // If Shopify alt texts are hashed, strictly trust the exact manual sort order from the Shopify Admin.
+  // The first image (Main Image) is what the user dragged to the front.
   return images[0].url;
 }
 
@@ -123,9 +120,8 @@ function reorderImagesForGallery(images: {url: string, alt: string}[]): string[]
     return reordered.map(i => i.url);
   }
   
-  // Print-on-demand networks almost always inject the front-facing standard mockup 
-  // as the 2nd image (index 1). Swap it to be first in the gallery.
-  return [images[1].url, images[0].url, ...images.slice(2).map(i => i.url)];
+  // If no alt tags exist to guide us, trust the exact sort array returned by Shopify
+  return images.map(i => i.url);
 }
 
 function formatPrice(amount: string): string {
