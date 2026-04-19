@@ -18,9 +18,14 @@ export default function AddToCartButton({ product }: { product: ShopifyProduct }
   });
 
   const currentVariant = product?.variants?.find(v => {
-    const opts = Object.values(selectedOptions);
-    const vOpts = [v.option1, v.option2, v.option3].filter(Boolean);
-    return opts.length === 0 || opts.every((val, i) => val === vOpts[i]);
+    const selected = Object.entries(selectedOptions);
+    if (selected.length === 0) return true;
+    const vOpts: Record<string, string> = {};
+    product.options?.forEach((opt, i) => {
+      const val = [v.option1, v.option2, v.option3][i];
+      if (val) vOpts[opt.name] = val;
+    });
+    return selected.every(([name, val]) => vOpts[name] === val);
   }) || product?.variants?.[0];
 
   const isAvailable = currentVariant?.available !== false;
