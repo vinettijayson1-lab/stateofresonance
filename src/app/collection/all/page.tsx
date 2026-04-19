@@ -27,7 +27,10 @@ function Card({ p }: { p: ShopifyProduct }) {
         </div>
         <div className="p-6 text-center">
           <h3 className="font-serif text-[1rem] text-gray-100 group-hover:text-[var(--color-gold)] transition-colors">{p.title}</h3>
-          <p className="text-[var(--color-gold-muted)] font-mono text-sm mt-2">{p.price} CAD</p>
+          <div className="flex items-center justify-center gap-2 mt-2">
+            {p.compareAtPrice && <span className="text-gray-500 line-through text-xs font-mono">{p.compareAtPrice}</span>}
+            <p className="text-[var(--color-gold-muted)] font-mono text-sm">{p.price} CAD</p>
+          </div>
         </div>
       </div>
     </Link>

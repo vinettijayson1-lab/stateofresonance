@@ -159,7 +159,10 @@ function ProductCard({ p }: { p: ShopifyProduct }) {
         <div className="p-6">
           <h3 className="font-serif text-[1rem] leading-snug mb-2 text-gray-100 group-hover:text-[var(--color-gold)] transition-colors text-center">{p.title}</h3>
           <div className="flex justify-between items-center mt-4 border-t border-[rgba(255,255,255,0.05)] py-4">
-            <span className="text-[var(--color-gold-muted)] font-mono text-sm tracking-wider">{p.price} CAD</span>
+            <div className="flex items-center gap-2">
+              {p.compareAtPrice && <span className="text-gray-500 line-through text-xs font-mono">{p.compareAtPrice}</span>}
+              <span className="text-[var(--color-gold-muted)] font-mono text-sm tracking-wider">{p.price} CAD</span>
+            </div>
             <span className="text-xs text-gray-500 uppercase tracking-widest hidden md:block group-hover:text-[var(--color-gold)] transition-colors">Explore</span>
           </div>
         </div>

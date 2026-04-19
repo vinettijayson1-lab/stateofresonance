@@ -1,13 +1,26 @@
 "use client";
 
 import { useCartStore } from "@/store/cart";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ShopifyProduct } from "@/lib/shopify";
 import { trackAddToCart } from "@/lib/tracking";
 
 export default function AddToCartButton({ product }: { product: ShopifyProduct }) {
   const addItem = useCartStore(s => s.addItem);
   const toggleCart = useCartStore(s => s.toggleCart);
+  
+  const buttonRef = useRef<HTMLDivElement>(null);
+  const [showSticky, setShowSticky] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      // Show sticky when main button scrolls up past viewport
+      setShowSticky(entry.boundingClientRect.y < 0 && !entry.isIntersecting);
+    }, { threshold: 0 });
+
+    if (buttonRef.current) observer.observe(buttonRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>(() => {
     const defaults: Record<string, string> = {};
@@ -69,7 +82,7 @@ export default function AddToCartButton({ product }: { product: ShopifyProduct }
         </div>
       )}
 
-      <div className="flex flex-col gap-3">
+      <div ref={buttonRef} className="flex flex-col gap-3">
         <button onClick={handleAcquire} disabled={!isAvailable}
           className={`w-full transition-colors font-bold uppercase tracking-[0.2em] py-5 ${isAvailable ? 'bg-[var(--color-gold)] hover:bg-[#b5952f] text-black shadow-[0_0_30px_rgba(212,175,55,0.2)]' : 'bg-[var(--color-onyx-light)] text-gray-500 cursor-not-allowed border border-[rgba(255,255,255,0.05)]'}`}>
           {isAvailable ? 'Acquire Artifact' : 'Resonance Depleted'}
@@ -81,6 +94,20 @@ export default function AddToCartButton({ product }: { product: ShopifyProduct }
           </button>
         )}
       </div>
+
+      {/* Sticky Mobile CTA */}
+      {isAvailable && (
+        <div className={`fixed bottom-0 left-0 right-0 z-40 bg-[rgba(0,0,0,0.85)] p-4 border-t border-[rgba(255,255,255,0.05)] backdrop-blur-md md:hidden transition-transform duration-300 ${showSticky ? 'translate-y-0' : 'translate-y-full'}`}>
+          <div className="flex gap-3">
+            <button onClick={handleAcquire} className="flex-1 bg-[var(--color-gold)] text-black font-bold uppercase tracking-[0.1em] py-3 text-xs shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:bg-[#b5952f]">
+              Add To Cart
+            </button>
+            <button onClick={() => { handleAcquire(); setTimeout(() => { window.location.href = useCartStore.getState().getCheckoutUrl(); }, 100); }} className="flex-1 bg-transparent border border-white text-white font-bold uppercase tracking-[0.1em] py-3 text-xs hover:bg-white hover:text-black">
+              Buy Now
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

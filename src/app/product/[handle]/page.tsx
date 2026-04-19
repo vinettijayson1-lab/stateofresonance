@@ -5,10 +5,45 @@ import AddToCartButton from "@/components/pdp/AddToCartButton";
 import ProductGallery from "@/components/pdp/ProductGallery";
 import TrustBadges from "@/components/pdp/TrustBadges";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+const BASE_URL = "https://stateofresonance.ca";
 
 export async function generateStaticParams() {
   const products = await fetchProducts();
   return products.map(p => ({ handle: p.handle }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }): Promise<Metadata> {
+  const { handle } = await params;
+  const products = await fetchProducts();
+  const product = products.find(p => p.handle === handle);
+  if (!product) return { title: "Product Not Found | State of Resonance" };
+
+  const desc = product.descriptionHtml
+    ? product.descriptionHtml.replace(/<[^>]*>/g, '').slice(0, 155).trim() + '…'
+    : `Shop ${product.title} — premium occult streetwear by State of Resonance. 450gsm heavyweight cotton, limited to 120 units.`;
+
+  return {
+    title: `${product.title} | State of Resonance`,
+    description: desc,
+    alternates: { canonical: `${BASE_URL}/product/${handle}` },
+    openGraph: {
+      title: `${product.title} — ${product.price} CAD`,
+      description: desc,
+      url: `${BASE_URL}/product/${handle}`,
+      siteName: "State of Resonance",
+      images: [{ url: product.image, width: 800, height: 1000, alt: product.title }],
+      type: "website",
+      locale: "en_CA",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.title} | State of Resonance`,
+      description: desc,
+      images: [product.image],
+    },
+  };
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
@@ -79,7 +114,12 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
             <div className="jdgm-widget jdgm-preview-badge mb-6 min-h-[20px]" data-id={numericId} data-template="product" />
 
             <div className="flex flex-col gap-2 mb-8">
-              <p className="text-2xl font-mono text-gray-300 tracking-wider">{product.price} <span className="text-sm text-gray-500 font-sans">CAD</span></p>
+              <div className="flex items-end gap-3 text-2xl font-mono tracking-wider">
+                {product.compareAtPrice && (
+                  <span className="text-gray-500 line-through text-xl">{product.compareAtPrice}</span>
+                )}
+                <p className="text-gray-300">{product.price} <span className="text-sm text-gray-500 font-sans">CAD</span></p>
+              </div>
               <div className="flex items-center justify-center lg:justify-start gap-4 text-xs tracking-widest text-[#5a5a5a] uppercase mt-2 font-mono">
                 <span>Shop Pay</span><span>•</span><span>Apple Pay</span><span>•</span><span>Google Pay</span>
               </div>
