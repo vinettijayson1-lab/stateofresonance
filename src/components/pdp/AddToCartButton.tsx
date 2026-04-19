@@ -64,10 +64,10 @@ export default function AddToCartButton({ product }: { product: ShopifyProduct }
                   <SizeGuideModal />
                 )}
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3">
                 {option.values.map(val => (
                   <button key={val} onClick={() => setSelectedOptions(p => ({ ...p, [option.name]: val }))}
-                    className={`px-4 py-2 text-xs tracking-widest uppercase transition-all border ${selectedOptions[option.name] === val ? 'border-[var(--color-gold)] bg-[var(--color-gold)] text-black font-bold shadow-[0_0_15px_rgba(212,175,55,0.3)]' : 'border-[rgba(255,255,255,0.1)] text-gray-400 bg-transparent hover:border-[rgba(255,255,255,0.3)]'}`}>
+                    className={`px-5 py-3 text-xs tracking-widest uppercase transition-all border ${selectedOptions[option.name] === val ? 'border-[var(--color-gold)] bg-[var(--color-gold)] text-black font-bold shadow-[0_0_15px_rgba(212,175,55,0.3)]' : 'border-[rgba(255,255,255,0.1)] text-gray-400 bg-transparent hover:border-[rgba(255,255,255,0.3)]'}`}>
                     {val}
                   </button>
                 ))}

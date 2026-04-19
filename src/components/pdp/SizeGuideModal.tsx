@@ -9,7 +9,7 @@ export default function SizeGuideModal() {
     <>
       <button 
         onClick={() => setIsOpen(true)} 
-        className="text-[0.6rem] uppercase tracking-[0.2em] text-[var(--color-gold-muted)] underline hover:text-[var(--color-gold)] transition-colors"
+        className="text-[0.6rem] uppercase tracking-[0.2em] text-[var(--color-gold-muted)] underline hover:text-[var(--color-gold)] transition-colors p-3 -mr-3"
       >
         Size Guide
       </button>
