@@ -27,9 +27,14 @@ export default async function Home() {
             Wear the Symbols That Shape You
           </h1>
           <div className="w-[80px] md:w-[150px] h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold-muted)] to-transparent my-6 md:my-10 shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
-          <p className="font-sans text-sm md:text-base tracking-widest text-gray-400 max-w-2xl uppercase leading-relaxed mb-12">
-            Premium, limited-edition streetwear designed for those who walk the path of inner alignment.
+          <p className="font-sans text-sm md:text-base tracking-widest text-gray-300 max-w-2xl uppercase leading-relaxed mb-6">
+            Premium streetwear designed for those who walk the path of inner alignment.
           </p>
+          <div className="bg-black/50 border border-[rgba(212,175,55,0.3)] p-6 max-w-3xl mb-12 backdrop-blur-sm">
+            <p className="font-sans text-xs md:text-sm tracking-widest text-[var(--color-gold-muted)] uppercase leading-relaxed">
+              Every artifact is made to order, embroidered locally, and passes through my hands to guarantee quality. Because of this process, <strong className="text-white">only 10 pieces</strong> of each design are made before moving on to new prints.
+            </p>
+          </div>
           <div className="flex flex-col sm:flex-row items-center gap-6">
             <Link href="#shop-all" className="bg-[var(--color-gold)] shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:scale-105 text-black px-10 py-4 font-bold tracking-widest uppercase text-sm transition-all duration-300">Shop The Archive</Link>
             <Link href="/symbols" className="border border-[var(--color-gold-muted)] text-[var(--color-gold-muted)] px-10 py-4 font-bold tracking-widest uppercase text-sm hover:bg-[rgba(212,175,55,0.05)] transition-colors">Decode the Symbols</Link>
