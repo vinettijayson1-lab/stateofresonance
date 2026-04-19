@@ -99,20 +99,22 @@ function cleanImageUrl(url: string): string {
 
 function prioritizeFrontImage(images: {url: string, alt: string}[]): string {
   if (!images.length) return '/luxury-occult-bg.png';
-  // Explicit front match
+  
+  // Explicit front match if alt text was ever set manually
   const front = images.find(i => /front|model|main/i.test(i.alt) || /front|model/i.test(i.url));
   if (front) return front.url;
-  // Deprioritize back/graphic views
-  const backPatterns = /back|rear|graphic|print|design|close/i;
-  // If we have an image that isn't a back shot, use it
-  const possibleFronts = images.filter(i => !backPatterns.test(i.alt) && !backPatterns.test(i.url));
-  if (possibleFronts.length > 0) return possibleFronts[0].url;
-  // Default to first image if everything matched "back"
+  
+  // Fallback 1: Print-on-demand networks almost always inject the front-facing standard mockup 
+  // as the 2nd image (index 1) when the main graphic is on the back or sleeve.
+  if (images.length >= 2) return images[1].url;
+  
+  // Default to whatever Shopify generated first
   return images[0].url;
 }
 
 function reorderImagesForGallery(images: {url: string, alt: string}[]): string[] {
   if (images.length <= 1) return images.map(i => i.url);
+  
   const frontIdx = images.findIndex(i => /front|model|main/i.test(i.alt) || /front|model/i.test(i.url));
   if (frontIdx > 0) {
     const reordered = [...images];
@@ -120,14 +122,10 @@ function reorderImagesForGallery(images: {url: string, alt: string}[]): string[]
     reordered.unshift(front);
     return reordered.map(i => i.url);
   }
-  // If no explicit front tag, push anything tagged "back" to the end
-  const backPatterns = /back|rear|graphic|print/i;
-  const backIdx = images.findIndex(i => backPatterns.test(i.alt) || backPatterns.test(i.url));
-  if (backIdx === 0 && images.length >= 2) {
-      // The first image is explicitly a back image, swap it with the second
-      return [images[1].url, images[0].url, ...images.slice(2).map(i => i.url)];
-  }
-  return images.map(i => i.url);
+  
+  // Print-on-demand networks almost always inject the front-facing standard mockup 
+  // as the 2nd image (index 1). Swap it to be first in the gallery.
+  return [images[1].url, images[0].url, ...images.slice(2).map(i => i.url)];
 }
 
 function formatPrice(amount: string): string {
