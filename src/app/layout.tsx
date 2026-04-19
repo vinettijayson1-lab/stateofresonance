@@ -5,6 +5,8 @@ import HeaderNav from "@/components/layout/HeaderNav";
 import Footer from "@/components/layout/Footer";
 import CartSidebar from "@/components/layout/CartSidebar";
 import Analytics from "@/components/layout/Analytics";
+import AnnouncementBar from "@/components/layout/AnnouncementBar";
+import ExitIntentPopup from "@/components/layout/ExitIntentPopup";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -12,9 +14,15 @@ const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "State of Resonance | Occult Luxury Streetwear",
+  title: {
+    template: "%s | State of Resonance",
+    default: "State of Resonance | Occult Luxury Streetwear",
+  },
   description: "Exclusive, alchemically-inspired streetwear designed to elevate your resonance. Limited drops. Premium fabrics. Unseen architecture.",
   keywords: ["occult streetwear", "luxury streetwear", "esoteric clothing", "alchemy apparel", "state of resonance"],
+  alternates: {
+    canonical: "https://stateofresonance.ca",
+  },
   other: {
     "facebook-domain-verification": "5mwd35tiaxnja0398tp7ct5dc1x1dr",
     "google-site-verification": "FsFIRctLjbwsOkCtvffNKYyvSC02fra-Z79OQ6sDtWs",
@@ -24,12 +32,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-background text-foreground bg-noise">
+      <body className="min-h-full flex flex-col bg-background text-foreground bg-noise relative">
+        <AnnouncementBar />
         <HeaderNav />
         <div className="fixed inset-0 pointer-events-none z-[-1] opacity-5 bg-[url('/luxury-occult-bg.png')] bg-cover bg-center mix-blend-overlay" />
         <main className="flex-1 flex flex-col relative z-0">{children}</main>
         <Footer />
         <CartSidebar />
+        <ExitIntentPopup />
         <Analytics />
         <VercelAnalytics />
         <SpeedInsights />

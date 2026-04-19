@@ -4,7 +4,6 @@ const LINKS = [
   { label: "The Frequency Spreads", platform: "Facebook", image: "/jayson-social.jpg", url: "https://www.facebook.com/photo?fbid=10164200068961063&set=a.10154362149296063" },
   { label: "David Goudro", platform: "Instagram", image: "/david-social.jpg", url: "https://www.instagram.com/reel/DWGyGd1Eby5/" },
   { label: "Virgin Radio Kelly", platform: "Instagram", image: "/kelly-social.jpg", url: "https://www.instagram.com/p/DVCd7LUkbxS/" },
-  { label: "Martin Bedard", platform: "Facebook", image: "/martin-social.jpg", url: "https://www.facebook.com/photo/?fbid=10163985728591063&set=a.10154362149296063" },
   { label: "Customer Look 5", platform: "Facebook", image: null, url: "https://www.facebook.com/photo/?fbid=122108735319242137&set=a.122103581931242137" },
   { label: "Customer Look 6", platform: "Instagram", image: null, url: "https://www.instagram.com/p/DUw1FD2Dtqp/" },
   { label: "Customer Look 7", platform: "Instagram", image: null, url: "https://www.instagram.com/reel/DVRH6e1j-K2/" },
@@ -15,7 +14,7 @@ export default function SocialProofPage() {
   return (
     <div className="min-h-screen bg-black">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative w-full pt-48 pb-32 flex flex-col items-center justify-center border-b border-[rgba(255,255,255,0.05)] overflow-hidden">
+      <section className="relative w-full pt-56 md:pt-64 pb-32 flex flex-col items-center justify-center border-b border-[rgba(255,255,255,0.05)] overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-celestial.png')] bg-cover bg-center opacity-30 mix-blend-luminosity" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black" />
         

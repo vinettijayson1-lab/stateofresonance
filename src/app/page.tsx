@@ -2,6 +2,7 @@ import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import Link from "next/link";
 import Image from "next/image";
 import EmailCaptureForm from "@/components/layout/EmailCaptureForm";
+import ProductCard from "@/components/shared/ProductCard";
 
 const SOCIAL_IMAGES = [
   { src: "/martin-social.jpg", label: "Martin Bedard", url: "https://www.facebook.com/photo/?fbid=10163985728591063&set=a.10154362149296063" },
@@ -17,7 +18,7 @@ export default async function Home() {
     <div className="min-h-screen bg-black">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative w-full min-h-[85vh] md:min-h-[100vh] pt-48 md:pt-56 pb-20 flex flex-col items-center justify-center overflow-hidden border-b border-[rgba(212,175,55,0.15)]">
+      <section className="relative w-full min-h-[85vh] md:min-h-[100vh] pt-56 md:pt-64 pb-20 flex flex-col items-center justify-center overflow-hidden border-b border-[rgba(212,175,55,0.15)]">
         <div className="absolute inset-0 bg-[url('/hero-celestial.png')] bg-cover bg-center bg-no-repeat opacity-60 scale-[1.02]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-[rgba(0,0,0,0.8)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.05)_0%,_transparent_60%)] pointer-events-none" />
@@ -60,8 +61,8 @@ export default async function Home() {
           </div>
         </div>
         {allProducts.length > 0 && (
-          <div className="flex flex-wrap justify-center gap-8 mt-16 w-full">
-            {allProducts.map(p => <ProductCard key={p.id} p={p} />)}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16 w-full place-items-center">
+            {allProducts.map((p, index) => <ProductCard key={p.id} p={p} priority={index < 3} />)}
           </div>
         )}
       </section>
@@ -151,29 +152,5 @@ export default async function Home() {
       </section>
 
     </div>
-  );
-}
-
-function ProductCard({ p }: { p: ShopifyProduct }) {
-  return (
-    <Link href={`/product/${p.handle}`} className="group relative w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-[400px]">
-      <article className="obsidian-glass overflow-hidden rounded-md transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-gold-muted)]">
-        <div className="w-full aspect-[4/5] relative border-b border-[rgba(255,255,255,0.05)] overflow-hidden flex items-center justify-center group-hover:brightness-110 transition-all duration-700 bg-[url('/esoteric-backdrop.png')] bg-cover bg-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={p.image} alt={p.title} className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105 z-10 drop-shadow-2xl" />
-          <div className="absolute top-4 right-4 bg-[var(--color-gold-muted)] text-black text-[0.65rem] font-bold px-3 py-1 tracking-widest uppercase z-20">Limited Drop</div>
-        </div>
-        <div className="p-6">
-          <h3 className="font-serif text-[1rem] leading-snug mb-2 text-gray-100 group-hover:text-[var(--color-gold)] transition-colors text-center">{p.title}</h3>
-          <div className="flex justify-between items-center mt-4 border-t border-[rgba(255,255,255,0.05)] py-4">
-            <div className="flex items-center gap-2">
-              {p.compareAtPrice && <span className="text-gray-500 line-through text-xs font-mono">{p.compareAtPrice}</span>}
-              <span className="text-[var(--color-gold-muted)] font-mono text-sm tracking-wider">{p.price} CAD</span>
-            </div>
-            <span className="text-xs text-gray-500 uppercase tracking-widest hidden md:block group-hover:text-[var(--color-gold)] transition-colors">Explore</span>
-          </div>
-        </div>
-      </article>
-    </Link>
   );
 }

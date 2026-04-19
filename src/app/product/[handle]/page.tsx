@@ -4,6 +4,7 @@ import Link from "next/link";
 import AddToCartButton from "@/components/pdp/AddToCartButton";
 import ProductGallery from "@/components/pdp/ProductGallery";
 import TrustBadges from "@/components/pdp/TrustBadges";
+import StickyMobileCart from "@/components/pdp/StickyMobileCart";
 import Image from "next/image";
 import type { Metadata } from "next";
 
@@ -18,14 +19,14 @@ export async function generateMetadata({ params }: { params: Promise<{ handle: s
   const { handle } = await params;
   const products = await fetchProducts();
   const product = products.find(p => p.handle === handle);
-  if (!product) return { title: "Product Not Found | State of Resonance" };
+  if (!product) return { title: "Product Not Found" };
 
   const desc = product.descriptionHtml
     ? product.descriptionHtml.replace(/<[^>]*>/g, '').slice(0, 155).trim() + '…'
-    : `Shop ${product.title} — premium occult streetwear by State of Resonance. 450gsm heavyweight cotton, limited to 120 units.`;
+    : `Shop ${product.title} — premium occult streetwear by State of Resonance. 450gsm heavyweight cotton, limited to 10 units.`;
 
   return {
-    title: `${product.title} | State of Resonance`,
+    title: product.title,
     description: desc,
     alternates: { canonical: `${BASE_URL}/product/${handle}` },
     openGraph: {
@@ -33,15 +34,15 @@ export async function generateMetadata({ params }: { params: Promise<{ handle: s
       description: desc,
       url: `${BASE_URL}/product/${handle}`,
       siteName: "State of Resonance",
-      images: [{ url: product.image, width: 800, height: 1000, alt: product.title }],
-      type: "website",
+      images: [{ url: product.image.url, width: 800, height: 1000, alt: product.image.alt }],
+      type: "website", // Standardizing on website as it safely maps preview images
       locale: "en_CA",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${product.title} | State of Resonance`,
+      title: product.title,
       description: desc,
-      images: [product.image],
+      images: [product.image.url],
     },
   };
 }
@@ -56,7 +57,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   const numericId = product.id.replace('gid://shopify/Product/', '');
 
   return (
-    <div className="w-full min-h-screen relative z-10 pt-32 pb-24 px-4 sm:px-8 max-w-7xl mx-auto flex flex-col">
+    <div className="w-full min-h-screen relative z-10 pt-56 lg:pt-64 pb-24 px-4 sm:px-8 max-w-7xl mx-auto flex flex-col">
 
       {/* Breadcrumbs */}
       <nav className="mb-8 font-sans text-xs uppercase tracking-widest text-gray-500 flex gap-2">
@@ -74,7 +75,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
           {
             "@type": "Product",
             name: product.title,
-            image: product.images,
+            image: product.images.map(i => i.url),
             description: `State of Resonance Official Artifact: ${product.title}`,
             brand: { "@type": "Brand", name: "State of Resonance" },
             offers: {
@@ -101,7 +102,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
         {/* LEFT: Gallery */}
         <div className="w-full lg:w-1/2">
-          <ProductGallery title={product.title} mainImage={product.image} images={product.images} />
+          <ProductGallery mainImage={product.image} images={product.images} />
         </div>
 
         {/* RIGHT: Info */}
@@ -139,7 +140,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
             <div>
               <h3 className="font-serif text-xl text-[var(--color-gold-muted)] uppercase tracking-widest mb-4">Why This Piece Is Special</h3>
               <ul className="space-y-3 font-sans text-sm tracking-wide text-gray-300 uppercase">
-                {["450gsm heavyweight cotton", "Oversized, structured silhouette", "Double‑stitched seams", "Limited to 120 units", "Designed in Canada"].map((s, i) => <li key={i}>• {s}</li>)}
+                {["450gsm heavyweight cotton", "Oversized, structured silhouette", "Double‑stitched seams", "Limited to 10 units", "Designed in Canada"].map((s, i) => <li key={i}>• {s}</li>)}
               </ul>
             </div>
             <div>
@@ -189,17 +190,22 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                 <div className="aspect-[4/5] bg-black border border-[rgba(255,255,255,0.05)] flex items-center justify-center p-4 relative overflow-hidden group-hover:border-[var(--color-gold-muted)] transition-colors">
                   <div className="absolute inset-0 bg-[url('/esoteric-backdrop.png')] bg-cover bg-center opacity-50 group-hover:opacity-100 transition-opacity" />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.image} alt={p.title} className="w-full h-full object-contain relative z-10 drop-shadow-2xl group-hover:scale-105 transition-transform duration-700" />
+                  <img src={p.image.url} alt={p.image.alt} className="w-full h-full object-contain relative z-10 drop-shadow-2xl group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 </div>
                 <div className="mt-4 text-center">
                   <h3 className="text-white font-serif text-sm group-hover:text-[var(--color-gold-muted)] transition-colors">{p.title}</h3>
-                  <p className="text-[var(--color-gold-muted)] font-mono text-xs mt-1">{p.price}</p>
+                  <div className="flex justify-center items-center gap-2 mt-1">
+                    {p.compareAtPrice && <span className="text-gray-500 line-through text-[0.65rem] font-mono">{p.compareAtPrice}</span>}
+                    <p className="text-[var(--color-gold-muted)] font-mono text-xs">{p.price}</p>
+                  </div>
                 </div>
               </a>
             ))}
           </div>
         </div>
       )}
+      
+      <StickyMobileCart product={product} />
     </div>
   );
 }

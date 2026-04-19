@@ -13,8 +13,8 @@ export interface ShopifyProduct {
   title: string;
   price: string;
   compareAtPrice: string | null;
-  image: string;
-  images: string[];
+  image: { url: string; alt: string };
+  images: { url: string; alt: string }[];
   descriptionHtml: string;
   category: string;
   tags: string[];
@@ -88,45 +88,42 @@ async function shopifyFetch<T>(query: string): Promise<T> {
 
   const json = await res.json();
   if (json.errors) {
-    throw new Error(json.errors.map((e: { message: string }) => e.message).join(', '));
+    throw new Error(`Shopify API errors: ${JSON.stringify(json.errors)}`);
   }
   return json.data;
 }
 
 function cleanImageUrl(url: string): string {
-  return url.replace(/(\.[a-z]+)\?.*$/, '$1');
+  const i = url.indexOf('?');
+  return i > -1 ? url.substring(0, i) : url;
 }
 
-function prioritizeFrontImage(images: {url: string, alt: string}[]): string {
-  if (!images.length) return '/luxury-occult-bg.png';
+function prioritizeFrontImage(images: {url: string, alt: string}[]): {url: string, alt: string} {
+  if (!images.length) return { url: '/luxury-occult-bg.png', alt: 'State of Resonance' };
   
   // Explicit front match if alt text was ever set manually
   const front = images.find(i => /front|model|main/i.test(i.alt) || /front|model/i.test(i.url));
-  if (front) return front.url;
+  if (front) return front;
   
-  // If Shopify alt texts are hashed, strictly trust the exact manual sort order from the Shopify Admin.
-  // The first image (Main Image) is what the user dragged to the front.
-  return images[0].url;
+  return images[0];
 }
 
-function reorderImagesForGallery(images: {url: string, alt: string}[]): string[] {
-  if (images.length <= 1) return images.map(i => i.url);
+function reorderImagesForGallery(images: {url: string, alt: string}[]): {url: string, alt: string}[] {
+  if (images.length <= 1) return images;
   
   const frontIdx = images.findIndex(i => /front|model|main/i.test(i.alt) || /front|model/i.test(i.url));
   if (frontIdx > 0) {
     const reordered = [...images];
     const [front] = reordered.splice(frontIdx, 1);
     reordered.unshift(front);
-    return reordered.map(i => i.url);
+    return reordered;
   }
   
-  // If no alt tags exist to guide us, trust the exact sort array returned by Shopify
-  return images.map(i => i.url);
+  return images;
 }
 
 function formatPrice(amount: string): string {
-  const num = parseFloat(amount);
-  return `$${num % 1 === 0 ? num.toFixed(0) : num.toFixed(2)}`;
+  return parseFloat(amount) > 0 ? `$${parseFloat(amount).toFixed(2)}` : '';
 }
 
 interface GqlProduct {
@@ -157,7 +154,7 @@ export async function fetchProducts(): Promise<ShopifyProduct[]> {
     const data = await shopifyFetch<{ products: { edges: { node: GqlProduct }[] } }>(PRODUCTS_QUERY);
 
     return data.products.edges.map(({ node: p }) => {
-      const imageObjs = p.images.edges.map(e => ({url: cleanImageUrl(e.node.url), alt: e.node.altText || ''}));
+      const imageObjs = p.images.edges.map(e => ({url: cleanImageUrl(e.node.url), alt: e.node.altText || p.title}));
       const galleryImages = reorderImagesForGallery(imageObjs);
       const bestImg = prioritizeFrontImage(imageObjs);
       const firstVariant = p.variants.edges[0]?.node;
@@ -210,7 +207,7 @@ async function fetchProductsFallback(): Promise<ShopifyProduct[]> {
       price: firstVariant ? formatPrice(firstVariant.price) : 'TBA',
       compareAtPrice: null,
       image: prioritizeFrontImage(imageObjs),
-      images: imageObjs.map(i => i.url),
+      images: imageObjs,
       category: (p.product_type as string) || 'Streetwear',
       tags: typeof p.tags === 'string' ? (p.tags as string).split(', ') : (p.tags as string[]) || [],
       options: (p.options as { name: string; values: string[] }[]) || [],
