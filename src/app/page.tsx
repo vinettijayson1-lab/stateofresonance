@@ -17,7 +17,7 @@ export default async function Home() {
     <div className="min-h-screen bg-black">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative w-full min-h-[70vh] md:min-h-[90vh] pt-32 pb-16 flex flex-col items-center justify-center overflow-hidden border-b border-[rgba(212,175,55,0.15)]">
+      <section className="relative w-full min-h-[85vh] md:min-h-[100vh] pt-48 md:pt-56 pb-20 flex flex-col items-center justify-center overflow-hidden border-b border-[rgba(212,175,55,0.15)]">
         <div className="absolute inset-0 bg-[url('/hero-celestial.png')] bg-cover bg-center bg-no-repeat opacity-60 scale-[1.02]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-[rgba(0,0,0,0.8)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.05)_0%,_transparent_60%)] pointer-events-none" />
