@@ -68,6 +68,26 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ═══════ FOUNDER STORY ═══════ */}
+      <section className="py-32 px-6 max-w-4xl mx-auto border-t border-[rgba(255,255,255,0.05)]">
+        <div className="flex flex-col items-center text-center">
+          <p className="text-[var(--color-gold)] uppercase tracking-[0.4em] text-xs mb-6 inline-block border-b border-[var(--color-gold-muted)] pb-2 pr-1">The Architect</p>
+          <h2 className="font-serif text-3xl md:text-4xl text-white uppercase tracking-widest mb-12">A Word from the Founder</h2>
+          
+          <div className="space-y-6 text-gray-300 font-sans text-sm md:text-base leading-relaxed tracking-wide text-left md:text-center max-w-3xl">
+            <p><strong>[Your Backstory Goes Here]</strong></p>
+            <p><em>(Tell me the story of what sparked State of Resonance. What personal event or spiritual realization made you want to build this? Why streetwear?)</em></p>
+            <p><em>(I will drop your raw story directly into this beautiful layout once you provide it!)</em></p>
+          </div>
+          
+          <div className="mt-16 flex flex-col items-center">
+            <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold-muted)] to-transparent mb-6" />
+            <p className="font-serif italic text-white text-xl">Jayson</p>
+            <p className="text-xs text-[var(--color-gold-muted)] uppercase tracking-widest mt-2">Founder & Creator</p>
+          </div>
+        </div>
+      </section>
+
       {/* ═══════ QUOTE ═══════ */}
       <section className="py-32 px-6 border-t border-[rgba(255,255,255,0.05)] bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.03)_0%,_black_70%)] text-center">
         <p className="text-[var(--color-gold-muted)] font-serif italic text-2xl md:text-4xl max-w-3xl mx-auto leading-relaxed shadow-gold">
