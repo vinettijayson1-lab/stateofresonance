@@ -31,6 +31,11 @@ export default function Analytics() {
       <Script id="ms-clarity" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
         (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${CLARITY_TAG}");
       `}} />
+
+      {/* ---------- KLAVIYO ONSITE ---------- */}
+      {process.env.NEXT_PUBLIC_KLAVIYO_SITE_ID && (
+        <Script src={`https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=${process.env.NEXT_PUBLIC_KLAVIYO_SITE_ID}`} strategy="afterInteractive" />
+      )}
     </>
   );
 }
