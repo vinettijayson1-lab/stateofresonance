@@ -74,15 +74,21 @@ export default function AboutPage() {
           <p className="text-[var(--color-gold)] uppercase tracking-[0.4em] text-xs mb-6 inline-block border-b border-[var(--color-gold-muted)] pb-2 pr-1">The Architect</p>
           <h2 className="font-serif text-3xl md:text-4xl text-white uppercase tracking-widest mb-12">A Word from the Founder</h2>
           
-          <div className="space-y-6 text-gray-300 font-sans text-sm md:text-base leading-relaxed tracking-wide text-left md:text-center max-w-3xl">
-            <p><strong>[Your Backstory Goes Here]</strong></p>
-            <p><em>(Tell me the story of what sparked State of Resonance. What personal event or spiritual realization made you want to build this? Why streetwear?)</em></p>
-            <p><em>(I will drop your raw story directly into this beautiful layout once you provide it!)</em></p>
+          <div className="space-y-6 text-gray-300 font-sans text-sm md:text-base leading-relaxed tracking-wide text-left md:text-justify max-w-3xl">
+            <p className="text-[var(--color-gold)] font-serif text-xl md:text-2xl mb-8 text-center uppercase tracking-widest">The Quest for Self.</p>
+            <p>For many years, I searched for something without ever really knowing what or why. I carried an overwhelming emptiness in my soul—a void that never seemed to fill. Despite a beautiful family and a happy childhood, the feeling of not being &quot;enough&quot; persisted.</p>
+            <p>At 13, I found a way to make that awkwardness evaporate. It became my solution, and it worked for 30 years—despite the chaos it created. Until the relief turned into despair. I was completely broken.</p>
+            <p>November 21, 2024, was the day everything changed. Entering rehabilitation taught me that the only way to climb out of the dark was to finally admit I needed help. I learned to process my emotions rather than numb them. Because what I was truly searching for was myself. The void can only be filled from the inside.</p>
+            <p>Through meditation, faith, and immersing myself in the mathematics of resonance and alchemical design, I realized I had to build the bridge between ancient esoteric wisdom and my modern reality.</p>
+            <p>I began to see fashion as the architecture of the self. I wanted to create a modern uniform—something that feels like luxury loungewear, but behaves like a sacred shroud to cleanse the soul. <strong>State of Resonance was born from this rebirth.</strong></p>
+            <p>Every artifact and garment is calibrated to a specific frequency—whether it&apos;s the 432Hz &apos;Heartbeat of the Earth&apos; or the 963Hz &apos;Frequency of the Gods&apos;. They are not meant to magically fix your void; they are meant to reflect the resonance and honesty you are building from the inside out. As the ancient Alchemical motto dictates: <em>V.I.T.R.I.O.L. — Visit the interior of the earth, and by rectifying, you will find the hidden stone.</em> That stone is your true self.</p>
+            <p className="text-center font-serif text-[var(--color-gold-muted)] italic mt-8 text-lg">Life is infinitely sweeter when you can live &apos;just for today&apos;.</p>
+            <p className="text-center text-white tracking-widest uppercase text-xs mt-4">Welcome to the synchronization point.</p>
           </div>
           
           <div className="mt-16 flex flex-col items-center">
             <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold-muted)] to-transparent mb-6" />
-            <p className="font-serif italic text-white text-xl">Jayson</p>
+            <p className="font-serif italic text-white text-xl">Jay</p>
             <p className="text-xs text-[var(--color-gold-muted)] uppercase tracking-widest mt-2">Founder & Creator</p>
           </div>
         </div>
