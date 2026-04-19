@@ -3,7 +3,7 @@
 import Script from 'next/script';
 
 export default function Analytics() {
-  const FB_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || '1274953901410673';
+  const FB_PIXEL_ID = '1274953901410673';
   const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-1Q6RNL65J4';
   const CLARITY_TAG = process.env.NEXT_PUBLIC_CLARITY_TAG || 'w1rmxt8w4b';
 
