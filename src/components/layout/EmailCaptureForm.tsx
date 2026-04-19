@@ -29,7 +29,7 @@ export default function EmailCaptureForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 justify-center">
       <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="YOUR EMAIL" required disabled={status === 'loading'}
-        className="bg-black border border-[rgba(255,255,255,0.1)] text-white px-6 py-4 outline-none font-mono text-sm tracking-widest w-full sm:w-auto min-w-[280px] focus:border-[var(--color-gold-muted)] transition-colors disabled:opacity-50" />
+        className="bg-black border border-[rgba(255,255,255,0.1)] text-white px-6 py-4 outline-none font-mono text-sm tracking-widest text-center w-full sm:w-auto min-w-[280px] focus:border-[var(--color-gold-muted)] transition-colors disabled:opacity-50" />
       <button type="submit" disabled={status === 'loading'}
         className="bg-[var(--color-gold-muted)] text-black px-8 py-4 font-bold tracking-widest text-xs uppercase hover:bg-[var(--color-gold)] transition-colors disabled:opacity-50">
         {status === 'loading' ? 'Transmitting...' : 'Unlock the Guide'}

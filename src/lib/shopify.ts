@@ -97,31 +97,37 @@ function cleanImageUrl(url: string): string {
   return url.replace(/(\.[a-z]+)\?.*$/, '$1');
 }
 
-function prioritizeFrontImage(images: string[]): string {
+function prioritizeFrontImage(images: {url: string, alt: string}[]): string {
   if (!images.length) return '/luxury-occult-bg.png';
   // Explicit front match
-  const front = images.find(i => /front/i.test(i));
-  if (front) return front;
-  // Deprioritize back/graphic views — if first image looks like back, prefer second
-  const backPatterns = /back|rear|graphic|print|design/i;
-  if (images.length >= 2 && backPatterns.test(images[0])) return images[1];
-  // Common Shopify pattern: back graphic uploaded first, front is second
-  // If there are 2+ images, prefer the second (usually the model/front shot)
-  if (images.length >= 2) return images[1];
-  return images[0];
+  const front = images.find(i => /front|model|main/i.test(i.alt) || /front|model/i.test(i.url));
+  if (front) return front.url;
+  // Deprioritize back/graphic views
+  const backPatterns = /back|rear|graphic|print|design|close/i;
+  // If we have an image that isn't a back shot, use it
+  const possibleFronts = images.filter(i => !backPatterns.test(i.alt) && !backPatterns.test(i.url));
+  if (possibleFronts.length > 0) return possibleFronts[0].url;
+  // Default to first image if everything matched "back"
+  return images[0].url;
 }
 
-function reorderImagesForGallery(images: string[]): string[] {
-  if (images.length <= 1) return images;
-  const frontIdx = images.findIndex(i => /front/i.test(i));
+function reorderImagesForGallery(images: {url: string, alt: string}[]): string[] {
+  if (images.length <= 1) return images.map(i => i.url);
+  const frontIdx = images.findIndex(i => /front|model|main/i.test(i.alt) || /front|model/i.test(i.url));
   if (frontIdx > 0) {
     const reordered = [...images];
     const [front] = reordered.splice(frontIdx, 1);
     reordered.unshift(front);
-    return reordered;
+    return reordered.map(i => i.url);
   }
-  // Default: swap first two so front (usually #2) shows first
-  return [images[1], images[0], ...images.slice(2)];
+  // If no explicit front tag, push anything tagged "back" to the end
+  const backPatterns = /back|rear|graphic|print/i;
+  const backIdx = images.findIndex(i => backPatterns.test(i.alt) || backPatterns.test(i.url));
+  if (backIdx === 0 && images.length >= 2) {
+      // The first image is explicitly a back image, swap it with the second
+      return [images[1].url, images[0].url, ...images.slice(2).map(i => i.url)];
+  }
+  return images.map(i => i.url);
 }
 
 function formatPrice(amount: string): string {
@@ -157,9 +163,9 @@ export async function fetchProducts(): Promise<ShopifyProduct[]> {
     const data = await shopifyFetch<{ products: { edges: { node: GqlProduct }[] } }>(PRODUCTS_QUERY);
 
     return data.products.edges.map(({ node: p }) => {
-      const allImages = p.images.edges.map(e => cleanImageUrl(e.node.url));
-      const galleryImages = reorderImagesForGallery(allImages);
-      const bestImg = prioritizeFrontImage(allImages);
+      const imageObjs = p.images.edges.map(e => ({url: cleanImageUrl(e.node.url), alt: e.node.altText || ''}));
+      const galleryImages = reorderImagesForGallery(imageObjs);
+      const bestImg = prioritizeFrontImage(imageObjs);
       const firstVariant = p.variants.edges[0]?.node;
 
       return {
@@ -199,7 +205,7 @@ async function fetchProductsFallback(): Promise<ShopifyProduct[]> {
   if (!res.ok) return [];
   const data = await res.json();
   return data.products.map((p: Record<string, unknown>) => {
-    const images = ((p.images as { src: string }[]) || []).map(i => cleanImageUrl(i.src));
+    const imageObjs = ((p.images as { src: string, alt?: string }[]) || []).map(i => ({url: cleanImageUrl(i.src), alt: i.alt || ''}));
     const variants = (p.variants as { id: number; title: string; price: string; available: boolean; option1?: string; option2?: string; option3?: string }[]) || [];
     const firstVariant = variants[0];
     return {
@@ -209,8 +215,8 @@ async function fetchProductsFallback(): Promise<ShopifyProduct[]> {
       descriptionHtml: (p.body_html as string) || '',
       price: firstVariant ? formatPrice(firstVariant.price) : 'TBA',
       compareAtPrice: null,
-      image: prioritizeFrontImage(images),
-      images,
+      image: prioritizeFrontImage(imageObjs),
+      images: imageObjs.map(i => i.url),
       category: (p.product_type as string) || 'Streetwear',
       tags: typeof p.tags === 'string' ? (p.tags as string).split(', ') : (p.tags as string[]) || [],
       options: (p.options as { name: string; values: string[] }[]) || [],

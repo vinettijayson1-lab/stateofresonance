@@ -3,12 +3,12 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <footer className="w-full border-t border-[rgba(255,255,255,0.05)] bg-black py-16 px-6 relative z-10">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
-        <div className="flex flex-col gap-4 max-w-sm">
+      <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-12 text-center">
+        <div className="flex flex-col items-center gap-4 max-w-sm">
           <h2 className="font-serif text-2xl text-white tracking-widest uppercase">State of Resonance</h2>
-          <p className="text-sm font-sans tracking-widest text-gray-400 uppercase leading-relaxed">Symbolic streetwear for the spiritually awakened.</p>
+          <p className="text-sm font-sans tracking-widest text-gray-400 uppercase leading-relaxed text-center">Symbolic streetwear for the spiritually awakened.</p>
         </div>
-        <nav className="flex flex-col sm:flex-row sm:flex-wrap gap-y-5 gap-x-8 items-center sm:items-start">
+        <nav className="flex flex-col sm:flex-row sm:flex-wrap gap-y-5 gap-x-8 items-center justify-center">
           {[
             { label: 'Shop', href: '/collection/all' },
             { label: 'About', href: '/about' },
@@ -25,7 +25,7 @@ export default function Footer() {
           ))}
         </nav>
       </div>
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-[rgba(255,255,255,0.05)] text-center md:text-left">
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-[rgba(255,255,255,0.05)] text-center">
         <p className="text-xs text-gray-600 uppercase tracking-widest">© {new Date().getFullYear()} State of Resonance — All Rights Reserved</p>
       </div>
     </footer>

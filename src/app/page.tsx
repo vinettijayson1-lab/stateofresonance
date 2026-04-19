@@ -86,13 +86,15 @@ export default async function Home() {
         <p className="text-gray-400 font-sans tracking-wide mb-16 max-w-2xl mx-auto">Every symbol carries a story. Every story carries a transformation.</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mb-16">
           {[
-            { title: "Metatron's Cube", desc: "clarity, structure, alignment" },
-            { title: "Flower of Life", desc: "expansion, unity, creation" },
-            { title: "963 Hz (symbolic)", desc: "awakening, intuition, higher perspective" },
-            { title: "OM", desc: "grounding, breath, inner stillness" },
+            { title: "Metatron's Cube", desc: "clarity, structure, alignment", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><polygon points="12 2 22 8 22 16 12 22 2 16 2 8 12 2"></polygon><polyline points="2 8 12 14 22 8"></polyline><line x1="12" y1="14" x2="12" y2="22"></line><line x1="12" y1="2" x2="12" y2="14"></line><line x1="2" y1="16" x2="12" y2="14"></line><line x1="22" y1="16" x2="12" y2="14"></line></svg> },
+            { title: "Flower of Life", desc: "expansion, unity, creation", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><circle cx="12" cy="12" r="8"></circle><circle cx="6" cy="12" r="8"></circle><circle cx="18" cy="12" r="8"></circle><circle cx="12" cy="6" r="8"></circle><circle cx="12" cy="18" r="8"></circle><circle cx="7" cy="8" r="8"></circle><circle cx="17" cy="8" r="8"></circle><circle cx="7" cy="16" r="8"></circle><circle cx="17" cy="16" r="8"></circle></svg> },
+            { title: "963 Hz", desc: "awakening, intuition, higher perspective", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><path d="M2 12c3-6 7 6 10 0s7-6 10 0"></path><path d="M2 16c3-6 7 6 10 0s7-6 10 0"></path></svg> },
+            { title: "OM", desc: "grounding, breath, inner stillness", icon: <span className="text-2xl mt-1 text-[var(--color-gold)] opacity-80" style={{fontFamily: 'sans-serif'}}>ॐ</span> },
           ].map((sym, i) => (
             <div key={i} className="p-8 border border-[rgba(255,255,255,0.05)] bg-black flex flex-col items-center text-center group hover:border-[var(--color-gold-muted)] transition-colors">
-              <div className="w-16 h-16 rounded-full border border-[var(--color-gold-muted)] flex items-center justify-center mb-6 text-[var(--color-gold-muted)] font-serif text-xs opacity-50 group-hover:opacity-100 transition-opacity">∆</div>
+              <div className="w-16 h-16 rounded-full border border-[var(--color-gold-muted)] flex items-center justify-center mb-6 text-[var(--color-gold-muted)] opacity-50 group-hover:opacity-100 transition-all [&_svg]:w-6 [&_svg]:h-6 overflow-hidden scale-100 group-hover:scale-110">
+                {sym.icon}
+              </div>
               <h3 className="font-serif text-lg text-white mb-2">{sym.title}</h3>
               <p className="text-xs font-sans text-gray-500 uppercase tracking-widest">{sym.desc}</p>
             </div>
