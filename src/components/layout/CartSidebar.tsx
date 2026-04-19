@@ -13,7 +13,10 @@ export default function CartSidebar() {
 
   const handleCheckout = () => {
     trackInitiateCheckout(items.map(i => ({ id: i.id, title: i.title, price: i.price })));
-    window.location.href = getCheckoutUrl();
+    const url = useCartStore.getState().getCheckoutUrl();
+    if (url && url !== '#') {
+      window.location.assign(url);
+    }
   };
 
   return (

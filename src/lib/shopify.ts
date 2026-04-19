@@ -98,8 +98,30 @@ function cleanImageUrl(url: string): string {
 }
 
 function prioritizeFrontImage(images: string[]): string {
-  const front = images.find(i => i.toLowerCase().includes('front'));
-  return front || images.find(i => i.endsWith('.png')) || images[0] || '/luxury-occult-bg.png';
+  if (!images.length) return '/luxury-occult-bg.png';
+  // Explicit front match
+  const front = images.find(i => /front/i.test(i));
+  if (front) return front;
+  // Deprioritize back/graphic views — if first image looks like back, prefer second
+  const backPatterns = /back|rear|graphic|print|design/i;
+  if (images.length >= 2 && backPatterns.test(images[0])) return images[1];
+  // Common Shopify pattern: back graphic uploaded first, front is second
+  // If there are 2+ images, prefer the second (usually the model/front shot)
+  if (images.length >= 2) return images[1];
+  return images[0];
+}
+
+function reorderImagesForGallery(images: string[]): string[] {
+  if (images.length <= 1) return images;
+  const frontIdx = images.findIndex(i => /front/i.test(i));
+  if (frontIdx > 0) {
+    const reordered = [...images];
+    const [front] = reordered.splice(frontIdx, 1);
+    reordered.unshift(front);
+    return reordered;
+  }
+  // Default: swap first two so front (usually #2) shows first
+  return [images[1], images[0], ...images.slice(2)];
 }
 
 function formatPrice(amount: string): string {
@@ -136,6 +158,7 @@ export async function fetchProducts(): Promise<ShopifyProduct[]> {
 
     return data.products.edges.map(({ node: p }) => {
       const allImages = p.images.edges.map(e => cleanImageUrl(e.node.url));
+      const galleryImages = reorderImagesForGallery(allImages);
       const bestImg = prioritizeFrontImage(allImages);
       const firstVariant = p.variants.edges[0]?.node;
 
@@ -149,7 +172,7 @@ export async function fetchProducts(): Promise<ShopifyProduct[]> {
           ? formatPrice(firstVariant.compareAtPrice.amount)
           : null,
         image: bestImg,
-        images: allImages,
+        images: galleryImages,
         category: p.productType || 'Streetwear',
         tags: p.tags || [],
         options: p.options || [],

@@ -8,7 +8,7 @@ export default function Footer() {
           <h2 className="font-serif text-2xl text-white tracking-widest uppercase">State of Resonance</h2>
           <p className="text-sm font-sans tracking-widest text-gray-400 uppercase leading-relaxed">Symbolic streetwear for the spiritually awakened.</p>
         </div>
-        <nav className="flex flex-wrap gap-x-8 gap-y-4">
+        <nav className="flex flex-col sm:flex-row sm:flex-wrap gap-y-5 gap-x-8 items-center sm:items-start">
           {[
             { label: 'Shop', href: '/collection/all' },
             { label: 'About', href: '/about' },
@@ -19,7 +19,7 @@ export default function Footer() {
             { label: 'Terms', href: '/terms' },
             { label: 'Contact', href: 'mailto:support@stateofresonance.ca' },
           ].map(link => (
-            <Link key={link.href} href={link.href} className="text-sm font-sans tracking-widest text-gray-400 uppercase hover:text-[var(--color-gold)] transition-colors">
+            <Link key={link.href} href={link.href} className="text-sm font-sans tracking-widest text-gray-400 uppercase hover:text-[var(--color-gold)] transition-colors py-1">
               {link.label}
             </Link>
           ))}
