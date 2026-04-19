@@ -76,7 +76,7 @@ export default async function Home() {
           <p className="mt-12 text-[var(--color-gold-muted)] font-serif italic text-xl tracking-wide">Crafted for presence. Built to last.</p>
         </div>
         <div className="aspect-[4/5] relative bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] overflow-hidden">
-          <Image src="https://images.unsplash.com/photo-1620610344583-6629e8461ab1?q=80&w=800&auto=format&fit=crop" alt="Heavyweight cotton macro" fill className="object-cover opacity-80 mix-blend-luminosity hover:opacity-100 hover:scale-105 transition-all duration-700 hover:mix-blend-normal" />
+          <Image src="/fabric-texture.png" alt="450gsm heavyweight cotton close-up" fill className="object-cover opacity-80 mix-blend-luminosity hover:opacity-100 hover:scale-105 transition-all duration-700 hover:mix-blend-normal" />
         </div>
       </section>
 
@@ -110,7 +110,7 @@ export default async function Home() {
             <a key={i} href={img.url} target="_blank" rel="noopener noreferrer" className="aspect-square relative overflow-hidden border border-[rgba(255,255,255,0.05)] group">
               <Image src={img.src} alt={img.label} fill className="object-cover grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
-              <span className="absolute bottom-3 left-3 text-[0.6rem] text-gray-300 font-sans tracking-widest uppercase z-10 group-hover:text-white transition-colors">{img.label}</span>
+              <span className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[0.6rem] text-gray-300 font-sans tracking-widest uppercase z-10 group-hover:text-white transition-colors text-center">{img.label}</span>
             </a>
           ))}
         </div>
@@ -120,7 +120,7 @@ export default async function Home() {
       {/* ═══════ REVIEWS ═══════ */}
       <section className="py-20 px-6 max-w-5xl mx-auto text-center">
         <h2 className="font-serif text-2xl text-white mb-16 uppercase tracking-widest">The Verdict</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-center">
           {[
             { body: "Best hoodie I've ever owned. Heavy, structured, and the symbolism hits deeply.", name: "Verified Customer" },
             { body: "The fit is insane. You feel different wearing it.", name: "Verified Customer" },
@@ -157,7 +157,7 @@ function ProductCard({ p }: { p: ShopifyProduct }) {
           <div className="absolute top-4 right-4 bg-[var(--color-gold-muted)] text-black text-[0.65rem] font-bold px-3 py-1 tracking-widest uppercase z-20">Limited Drop</div>
         </div>
         <div className="p-6">
-          <h3 className="font-serif text-[1rem] leading-snug mb-2 text-gray-100 group-hover:text-[var(--color-gold)] transition-colors text-left">{p.title}</h3>
+          <h3 className="font-serif text-[1rem] leading-snug mb-2 text-gray-100 group-hover:text-[var(--color-gold)] transition-colors text-center">{p.title}</h3>
           <div className="flex justify-between items-center mt-4 border-t border-[rgba(255,255,255,0.05)] py-4">
             <span className="text-[var(--color-gold-muted)] font-mono text-sm tracking-wider">{p.price} CAD</span>
             <span className="text-xs text-gray-500 uppercase tracking-widest hidden md:block group-hover:text-[var(--color-gold)] transition-colors">Explore</span>

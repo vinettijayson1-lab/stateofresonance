@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 const LINKS = [
-  { label: "Martin Bedard", platform: "Facebook", image: "/martin-social.jpg", url: "https://www.facebook.com/photo/?fbid=10163985728591063&set=a.10154362149296063" },
   { label: "The Frequency Spreads", platform: "Facebook", image: "/jayson-social.jpg", url: "https://www.facebook.com/photo?fbid=10164200068961063&set=a.10154362149296063" },
   { label: "David Goudro", platform: "Instagram", image: "/david-social.jpg", url: "https://www.instagram.com/reel/DWGyGd1Eby5/" },
   { label: "Virgin Radio Kelly", platform: "Instagram", image: "/kelly-social.jpg", url: "https://www.instagram.com/p/DVCd7LUkbxS/" },
+  { label: "Martin Bedard", platform: "Facebook", image: "/martin-social.jpg", url: "https://www.facebook.com/photo/?fbid=10163985728591063&set=a.10154362149296063" },
   { label: "Customer Look 5", platform: "Facebook", image: null, url: "https://www.facebook.com/photo/?fbid=122108735319242137&set=a.122103581931242137" },
   { label: "Customer Look 6", platform: "Instagram", image: null, url: "https://www.instagram.com/p/DUw1FD2Dtqp/" },
   { label: "Customer Look 7", platform: "Instagram", image: null, url: "https://www.instagram.com/reel/DVRH6e1j-K2/" },
@@ -17,25 +17,25 @@ export default function SocialProofPage() {
       <div className="text-center mb-16">
         <p className="text-[var(--color-gold)] uppercase tracking-[0.3em] text-xs mb-4">Verified Transmutations</p>
         <h1 className="text-4xl md:text-5xl font-serif tracking-wide text-white mb-6">Social Proof</h1>
-        <p className="text-gray-400 max-w-2xl mx-auto text-sm tracking-wider font-mono px-4 leading-relaxed">Cryptographically verified artifacts and the seekers who manifested them.</p>
+        <p className="text-gray-400 max-w-2xl mx-auto text-sm tracking-wider font-mono px-4 leading-relaxed text-center">Cryptographically verified artifacts and the seekers who manifested them.</p>
       </div>
 
-      {/* Featured */}
+      {/* Featured — Jayson Vinetti wearing the brand */}
       <div className="w-full flex justify-center mb-24">
         <div className="relative group p-6 border border-[rgba(212,175,55,0.15)] bg-[rgba(0,0,0,0.4)] shadow-[0_0_30px_rgba(212,175,55,0.05)] w-full max-w-md">
           <div className="absolute -top-3 -left-3 w-6 h-6 border-t border-l border-[var(--color-gold)]" />
           <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b border-r border-[var(--color-gold)]" />
-          <Image src="/martin-social.jpg" alt="Martin Bedard wearing State of Resonance" width={500} height={510} className="w-full grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90" />
+          <Image src="/jayson-social.jpg" alt="Customer wearing State of Resonance hoodie" width={500} height={510} className="w-full grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90" />
           <div className="mt-8 text-center border-t border-[rgba(255,255,255,0.05)] pt-6">
-            <p className="text-[var(--color-gold-muted)] font-serif italic text-lg mb-3 tracking-wide">&quot;J&apos;ai aussi capté la résonance !!!&quot;</p>
-            <p className="text-gray-500 text-xs tracking-[0.2em] uppercase font-mono">— Martin Bedard</p>
+            <p className="text-[var(--color-gold-muted)] font-serif italic text-lg mb-3 tracking-wide">&quot;The frequency speaks for itself.&quot;</p>
+            <p className="text-gray-500 text-xs tracking-[0.2em] uppercase font-mono">— Verified Customer</p>
           </div>
         </div>
       </div>
 
       {/* Share Your Look Grid */}
       <div className="w-full border-t border-[rgba(255,255,255,0.05)] pt-16 max-w-6xl mx-auto px-4 md:px-0">
-        <div className="text-left mb-12">
+        <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl text-white italic mb-2 tracking-wide">Share your look. Share your story.</h2>
           <p className="text-[var(--color-gold-muted)] uppercase tracking-widest text-xs font-bold font-sans">TAG #STATEOFRESONANCE TO BE FEATURED.</p>
         </div>

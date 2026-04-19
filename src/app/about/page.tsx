@@ -3,7 +3,7 @@ export default function AboutPage() {
     <div className="min-h-screen pt-48 pb-24 px-6 max-w-3xl mx-auto">
       <p className="text-[var(--color-gold)] uppercase tracking-[0.3em] text-xs mb-4 text-center">The Origin</p>
       <h1 className="text-4xl md:text-5xl font-serif text-white text-center mb-12 tracking-wide">About State of Resonance</h1>
-      <div className="space-y-8 text-gray-300 font-sans text-sm leading-relaxed tracking-wide">
+      <div className="space-y-8 text-gray-300 font-sans text-sm leading-relaxed tracking-wide text-center">
         <p>State of Resonance was born from a simple belief: what you wear should mean something.</p>
         <p>Every piece in our collection is designed around sacred geometry, ancient symbols, and intentional frequencies. We don&apos;t just make clothes — we create artifacts that carry meaning.</p>
         <p>Our garments are crafted from 450gsm heavyweight cotton, built with double-stitched seams, and produced in limited batches of 120 units or fewer. We believe in quality over quantity, depth over trend.</p>

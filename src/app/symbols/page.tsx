@@ -15,7 +15,7 @@ export default function SymbolsPage() {
       </div>
       <div className="space-y-16">
         {symbols.map((sym, i) => (
-          <div key={i} className="border-l-2 border-[var(--color-gold-muted)] pl-8">
+          <div key={i} className="border-l-2 border-[var(--color-gold-muted)] pl-8 text-center">
             <h2 className="font-serif text-2xl text-white mb-4">{sym.title}</h2>
             <p className="text-gray-300 font-sans text-sm leading-relaxed mb-3">{sym.meaning}</p>
             <p className="text-[var(--color-gold-muted)] text-xs uppercase tracking-widest font-mono">{sym.usage}</p>

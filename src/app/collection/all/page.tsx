@@ -25,7 +25,7 @@ function Card({ p }: { p: ShopifyProduct }) {
           <img src={p.image} alt={p.title} className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105 z-10 drop-shadow-2xl" />
           <div className="absolute top-4 right-4 bg-[var(--color-gold-muted)] text-black text-[0.65rem] font-bold px-3 py-1 tracking-widest uppercase z-20">Limited Drop</div>
         </div>
-        <div className="p-6">
+        <div className="p-6 text-center">
           <h3 className="font-serif text-[1rem] text-gray-100 group-hover:text-[var(--color-gold)] transition-colors">{p.title}</h3>
           <p className="text-[var(--color-gold-muted)] font-mono text-sm mt-2">{p.price} CAD</p>
         </div>
