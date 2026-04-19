@@ -1,0 +1,43 @@
+import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
+import "./globals.css";
+import HeaderNav from "@/components/layout/HeaderNav";
+import Footer from "@/components/layout/Footer";
+import CartSidebar from "@/components/layout/CartSidebar";
+import Analytics from "@/components/layout/Analytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
+const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "State of Resonance | Occult Luxury Streetwear",
+  description: "Exclusive, alchemically-inspired streetwear designed to elevate your resonance. Limited drops. Premium fabrics. Unseen architecture.",
+  keywords: ["occult streetwear", "luxury streetwear", "esoteric clothing", "alchemy apparel", "state of resonance"],
+  other: {
+    "facebook-domain-verification": "5mwd35tiaxnja0398tp7ct5dc1x1dr",
+    "google-site-verification": "FsFIRctLjbwsOkCtvffNKYyvSC02fra-Z79OQ6sDtWs",
+  },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-background text-foreground bg-noise">
+        <HeaderNav />
+        <div className="fixed inset-0 pointer-events-none z-[-1] opacity-5 bg-[url('/luxury-occult-bg.png')] bg-cover bg-center mix-blend-overlay" />
+        <main className="flex-1 flex flex-col relative z-0">{children}</main>
+        <Footer />
+        <CartSidebar />
+        <Analytics />
+        <VercelAnalytics />
+        <SpeedInsights />
+
+        {/* Judge.me Native Scripts */}
+        <script dangerouslySetInnerHTML={{ __html: `jdgm=window.jdgm||{};jdgm.SHOP_DOMAIN='state-of-resonance.myshopify.com';` }} />
+        <script src="https://cdn.judge.me/widget_preloader.js" async></script>
+      </body>
+    </html>
+  );
+}

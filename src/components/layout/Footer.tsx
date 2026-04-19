@@ -1,0 +1,33 @@
+import Link from 'next/link';
+
+export default function Footer() {
+  return (
+    <footer className="w-full border-t border-[rgba(255,255,255,0.05)] bg-black py-16 px-6 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
+        <div className="flex flex-col gap-4 max-w-sm">
+          <h2 className="font-serif text-2xl text-white tracking-widest uppercase">State of Resonance</h2>
+          <p className="text-sm font-sans tracking-widest text-gray-400 uppercase leading-relaxed">Symbolic streetwear for the spiritually awakened.</p>
+        </div>
+        <nav className="flex flex-wrap gap-x-8 gap-y-4">
+          {[
+            { label: 'Shop', href: '/collection/all' },
+            { label: 'About', href: '/about' },
+            { label: 'Symbols', href: '/symbols' },
+            { label: 'Social Proof', href: '/social-proof' },
+            { label: 'FAQ', href: '/faq' },
+            { label: 'Privacy', href: '/privacy' },
+            { label: 'Terms', href: '/terms' },
+            { label: 'Contact', href: 'mailto:support@stateofresonance.ca' },
+          ].map(link => (
+            <Link key={link.href} href={link.href} className="text-sm font-sans tracking-widest text-gray-400 uppercase hover:text-[var(--color-gold)] transition-colors">
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-[rgba(255,255,255,0.05)] text-center md:text-left">
+        <p className="text-xs text-gray-600 uppercase tracking-widest">© {new Date().getFullYear()} State of Resonance — All Rights Reserved</p>
+      </div>
+    </footer>
+  );
+}
