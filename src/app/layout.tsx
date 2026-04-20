@@ -9,6 +9,7 @@ import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import ExitIntentPopup from "@/components/layout/ExitIntentPopup";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["latin"] });
@@ -45,8 +46,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SpeedInsights />
 
         {/* Judge.me Native Scripts */}
-        <script dangerouslySetInnerHTML={{ __html: `jdgm=window.jdgm||{};jdgm.SHOP_DOMAIN='state-of-resonance.myshopify.com';` }} />
-        <script src="https://cdn.judge.me/widget_preloader.js" async></script>
+        <Script id="judge-me-config" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: `jdgm=window.jdgm||{};jdgm.SHOP_DOMAIN='state-of-resonance.myshopify.com';` }} />
+        <Script id="judge-me-preloader" src="https://cdn.judge.me/widget_preloader.js" strategy="lazyOnload" />
       </body>
     </html>
   );
