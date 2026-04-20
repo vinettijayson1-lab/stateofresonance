@@ -163,8 +163,8 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       {/* Social Proof on PDP */}
       <div className="w-full mt-24 border-t border-[rgba(255,255,255,0.05)] pt-16">
         <h2 className="font-serif text-2xl text-center text-white mb-8 uppercase tracking-widest">Worn by the Community</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-          {["/martin-social.jpg", "/jayson-social.jpg", "/david-social.jpg", "/kelly-social.jpg"].map((src, i) => (
+        <div className="grid grid-cols-3 gap-4 max-w-5xl mx-auto">
+          {["/jayson-social.jpg", "/david-social.jpg", "/kelly-social.jpg"].map((src, i) => (
             <div key={i} className="aspect-square relative overflow-hidden border border-[rgba(255,255,255,0.05)] group">
               <Image src={src} alt={`Community ${i + 1}`} fill className="object-cover grayscale group-hover:grayscale-0 opacity-50 group-hover:opacity-100 transition-all duration-700" />
             </div>

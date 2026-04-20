@@ -5,7 +5,6 @@ import EmailCaptureForm from "@/components/layout/EmailCaptureForm";
 import ProductCard from "@/components/shared/ProductCard";
 
 const SOCIAL_IMAGES = [
-  { src: "/martin-social.jpg", label: "Martin Bedard", url: "https://www.facebook.com/photo/?fbid=10163985728591063&set=a.10154362149296063" },
   { src: "/jayson-social.jpg", label: "The Frequency Spreads", url: "https://www.facebook.com/photo?fbid=10164200068961063&set=a.10154362149296063" },
   { src: "/david-social.jpg", label: "David Goudro", url: "https://www.instagram.com/reel/DWGyGd1Eby5/" },
   { src: "/kelly-social.jpg", label: "Virgin Radio Kelly", url: "https://www.instagram.com/p/DVCd7LUkbxS/" },
