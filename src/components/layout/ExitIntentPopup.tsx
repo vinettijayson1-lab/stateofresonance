@@ -7,6 +7,11 @@ export default function ExitIntentPopup() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
+  const triggerPopup = () => {
+    setShow(true);
+    localStorage.setItem('sor_exit_intent_seen', 'true');
+  };
+
   useEffect(() => {
     if (localStorage.getItem('sor_exit_intent_seen')) return;
 
@@ -41,11 +46,6 @@ export default function ExitIntentPopup() {
       clearTimeout(timer);
     };
   }, []);
-
-  const triggerPopup = () => {
-    setShow(true);
-    localStorage.setItem('sor_exit_intent_seen', 'true');
-  };
 
   if (!show) return null;
 
