@@ -20,11 +20,13 @@ export default function Analytics() {
         <img height="1" width="1" style={{ display: 'none' }} src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`} alt="" />
       </noscript>
 
-      {/* ---------- GA4 ---------- */}
+      {/* ---------- GA4 & GOOGLE ADS ---------- */}
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
-      <Script id="ga4" strategy="afterInteractive">{`
+      <Script id="ga4-and-ads" strategy="afterInteractive">{`
         window.dataLayer=window.dataLayer||[];function gtag(){window.dataLayer.push(arguments);}
-        gtag('js',new Date());gtag('config','${GA_ID}');
+        gtag('js',new Date());
+        gtag('config','${GA_ID}');
+        gtag('config','AW-18006931785');
       `}</Script>
 
       {/* ---------- MICROSOFT CLARITY ---------- */}
