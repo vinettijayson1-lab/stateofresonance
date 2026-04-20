@@ -69,7 +69,7 @@ function AddToCartInner({ product }: { product: ShopifyProduct }) {
   };
 
   return (
-    <div className="w-full relative mt-4 mb-8">
+    <div id="variant-selector" className="w-full relative mt-4 mb-8">
       {/* Variant Selector */}
       {product?.options?.some(o => o.name !== 'Title') && (
         <div className="flex flex-col gap-6 mb-8 pt-4 border-t border-[rgba(255,255,255,0.05)]">

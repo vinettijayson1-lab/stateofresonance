@@ -30,12 +30,24 @@ function StickyMobileCartInner({ product }: { product: ShopifyProduct }) {
 
   const handleCTA = () => {
     if (product.options && product.options.some(o => o.name !== 'Title')) {
-      window.scrollTo({ top: 300, behavior: 'smooth' });
+      const el = document.getElementById('variant-selector');
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 100;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 300, behavior: 'smooth' });
+      }
       return;
     }
     
     if (!isAvailable) {
-      window.scrollTo({ top: 300, behavior: 'smooth' });
+      const el = document.getElementById('variant-selector');
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 100;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 300, behavior: 'smooth' });
+      }
       return;
     }
     
