@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useCartStore } from '@/store/cart';
 
 export default function ExitIntentPopup() {
   const [show, setShow] = useState(false);
@@ -8,6 +9,8 @@ export default function ExitIntentPopup() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const triggerPopup = () => {
+    if (localStorage.getItem('sor_exit_intent_seen') === 'true') return;
+    if (useCartStore.getState().isOpen) return;
     setShow(true);
     localStorage.setItem('sor_exit_intent_seen', 'true');
   };

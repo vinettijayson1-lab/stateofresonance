@@ -1,14 +1,17 @@
 "use client";
 
 import { useCartStore } from "@/store/cart";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { ShopifyProduct } from "@/lib/shopify";
 import { trackAddToCart } from "@/lib/tracking";
 import SizeGuideModal from "./SizeGuideModal";
+import { useSearchParams } from "next/navigation";
 
-export default function AddToCartButton({ product }: { product: ShopifyProduct }) {
+function AddToCartInner({ product }: { product: ShopifyProduct }) {
   const addItem = useCartStore(s => s.addItem);
   const toggleCart = useCartStore(s => s.toggleCart);
+  const searchParams = useSearchParams();
+  const variantParam = searchParams.get('variant');
   
   const buttonRef = useRef<HTMLDivElement>(null);
   const [showSticky, setShowSticky] = useState(false);
@@ -24,6 +27,20 @@ export default function AddToCartButton({ product }: { product: ShopifyProduct }
   }, []);
 
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>(() => {
+    if (variantParam && product?.variants) {
+      const urlVariant = product.variants.find(v => v.id.includes(variantParam));
+      if (urlVariant) {
+        const opts: Record<string, string> = {};
+        product.options?.forEach((opt, i) => {
+          if (opt.name !== 'Title') {
+            const val = [urlVariant.option1, urlVariant.option2, urlVariant.option3][i];
+            if (val) opts[opt.name] = val;
+          }
+        });
+        return opts;
+      }
+    }
+
     const defaults: Record<string, string> = {};
     product?.options?.forEach(opt => {
       if (opt.name !== 'Title' && opt.values?.length > 0) defaults[opt.name] = opt.values[0];
@@ -112,5 +129,13 @@ export default function AddToCartButton({ product }: { product: ShopifyProduct }
         )}
       </div>
     </div>
+  );
+}
+
+export default function AddToCartButton({ product }: { product: ShopifyProduct }) {
+  return (
+    <Suspense fallback={<div className="h-20 w-full bg-black/50 animate-pulse border border-[rgba(255,255,255,0.1)]"></div>}>
+      <AddToCartInner product={product} />
+    </Suspense>
   );
 }

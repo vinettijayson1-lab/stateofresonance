@@ -1,18 +1,22 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { ShopifyProduct } from '@/lib/shopify';
 import { useCartStore } from '@/store/cart';
+import { useSearchParams } from 'next/navigation';
 
-export default function StickyMobileCart({ product }: { product: ShopifyProduct }) {
+function StickyMobileCartInner({ product }: { product: ShopifyProduct }) {
   const [visible, setVisible] = useState(false);
   const addItem = useCartStore(s => s.addItem);
   const toggleCart = useCartStore(s => s.toggleCart);
-  const isAvailable = product.variants[0]?.available;
+  
+  const searchParams = useSearchParams();
+  const variantParam = searchParams.get('variant');
+  const currentVariant = (variantParam && product.variants.find(v => v.id.includes(variantParam))) || product.variants[0];
+  const isAvailable = currentVariant?.available;
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show sticky cart button after scrolling down ~500px on mobile
       if (window.innerWidth < 768 && window.scrollY > 400) {
         setVisible(true);
       } else {
@@ -25,11 +29,16 @@ export default function StickyMobileCart({ product }: { product: ShopifyProduct 
   }, []);
 
   const handleCTA = () => {
-    if (!isAvailable) {
-      window.scrollTo({ top: 300, behavior: 'smooth' }); // Scroll back up to the Notify Me form
+    if (product.options && product.options.some(o => o.name !== 'Title')) {
+      window.scrollTo({ top: 300, behavior: 'smooth' });
       return;
     }
-    const currentVariant = product.variants[0];
+    
+    if (!isAvailable) {
+      window.scrollTo({ top: 300, behavior: 'smooth' });
+      return;
+    }
+    
     addItem({ id: product.id, variantId: currentVariant?.id || product.id, title: product.title, price: currentVariant?.price || product.price, image: product.image.url, quantity: 1 });
     toggleCart();
   };
@@ -45,5 +54,13 @@ export default function StickyMobileCart({ product }: { product: ShopifyProduct 
         {isAvailable ? 'Acquire Artifact' : 'Notify Me'}
       </button>
     </div>
+  );
+}
+
+export default function StickyMobileCart({ product }: { product: ShopifyProduct }) {
+  return (
+    <Suspense fallback={null}>
+      <StickyMobileCartInner product={product} />
+    </Suspense>
   );
 }
