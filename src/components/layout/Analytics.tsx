@@ -31,7 +31,13 @@ export default function Analytics() {
 
       {/* ---------- MICROSOFT CLARITY ---------- */}
       <Script id="ms-clarity" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
-        (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${CLARITY_TAG}");
+        (function(){
+          var ua = navigator.userAgent || '';
+          var dominated = /bot|crawl|spider|facebookexternalhit|Facebot|LinkedInBot|Twitterbot|Googlebot|Bingbot|Slurp|DuckDuckBot|Baiduspider|YandexBot|Sogou|Exabot|ia_archiver|MJ12bot|AhrefsBot|SemrushBot|DotBot/i.test(ua);
+          if (dominated) return;
+          if (document.visibilityState === 'prerender') return;
+          (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${CLARITY_TAG}");
+        })();
       `}} />
 
       {/* ---------- KLAVIYO ONSITE ---------- */}
