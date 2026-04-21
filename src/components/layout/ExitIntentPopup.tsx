@@ -18,35 +18,43 @@ export default function ExitIntentPopup() {
   useEffect(() => {
     if (localStorage.getItem('sor_exit_intent_seen')) return;
 
-    // Desktop: exit intent (mouse leaves viewport top)
+    // Track page views in current session
+    const currentViews = parseInt(sessionStorage.getItem('sor_page_views') || '0', 10);
+    const newViews = currentViews + 1;
+    sessionStorage.setItem('sor_page_views', newViews.toString());
+
+    // Strategy 1: Desktop True Exit Intent (only if they've been here 10s so we don't spam instantly)
+    let canExitIntent = false;
+    const safetyTimer = setTimeout(() => { canExitIntent = true; }, 10000);
+
     const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
+      if (canExitIntent && e.clientY <= 0) {
         triggerPopup();
       }
     };
 
-    // Mobile: 15s timer OR scrolling past 60% of doc
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const docHeight = document.body.offsetHeight;
-      const winHeight = window.innerHeight;
-      if (scrollY / (docHeight - winHeight) > 0.6) {
-        triggerPopup();
-      }
-    };
+    // Strategy 2: Time Delayed (Staggered over a minute)
+    // Only set the long timer if they are on at least their 2nd page view, OR after 60 seconds.
+    // This prevents hitting cold traffic with an instant wall.
+    let mainTimer: NodeJS.Timeout;
+    
+    if (newViews >= 2) {
+      // If it's their second page, show it after 15 seconds of reading the new page
+      mainTimer = setTimeout(() => { triggerPopup(); }, 15000);
+    } else {
+      // First page they land on: Wait 60 seconds minimum (1 minute)
+      mainTimer = setTimeout(() => { triggerPopup(); }, 60000);
+    }
 
-    const timer = setTimeout(() => {
-      triggerPopup();
-    }, 15000);
+    // We removed the "60% scroll" trigger. If someone scrolls 60% down your product page, 
+    // they are reading your sizing or reviews. Interrupting them ruins the conversion funnel.
 
-    // Bind events
     document.addEventListener('mouseleave', handleMouseLeave);
-    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timer);
+      clearTimeout(safetyTimer);
+      clearTimeout(mainTimer);
     };
   }, []);
 
