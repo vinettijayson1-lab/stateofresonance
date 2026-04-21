@@ -79,7 +79,8 @@ async function shopifyFetch<T>(query: string): Promise<T> {
       'X-Shopify-Storefront-Access-Token': TOKEN,
     },
     body: JSON.stringify({ query }),
-    cache: 'no-store',
+    // CHANGED: Replaced cache: 'no-store' with next: { revalidate: 60 }
+    next: { revalidate: 60 },
   });
 
   if (!res.ok) {
@@ -192,7 +193,8 @@ export async function fetchProducts(): Promise<ShopifyProduct[]> {
 }
 
 async function fetchProductsFallback(): Promise<ShopifyProduct[]> {
-  const res = await fetch(`https://${DOMAIN}/products.json?limit=250`, { cache: 'no-store' });
+  // CHANGED: Replaced cache: 'no-store' with next: { revalidate: 60 }
+  const res = await fetch(`https://${DOMAIN}/products.json?limit=250`, { next: { revalidate: 60 } });
   if (!res.ok) return [];
   const data = await res.json();
   return data.products.map((p: Record<string, unknown>) => {
