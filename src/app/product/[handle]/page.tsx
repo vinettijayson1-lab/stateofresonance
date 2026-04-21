@@ -24,17 +24,7 @@ export default function AboutPage() {
       </div>
     </div>
   );
-}      images: [{ url: product.image.url, width: 800, height: 1000, alt: product.image.alt }],
-      type: "website",
-      locale: "en_CA",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: product.title,
-      description: desc,
-      images: [product.image.url],
-    },
-  };
+}  };
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
