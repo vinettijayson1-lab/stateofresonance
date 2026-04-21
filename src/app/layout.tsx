@@ -25,10 +25,10 @@ export const metadata: Metadata = {
     canonical: "https://stateofresonance.ca",
   },
   other: {
-  "facebook-domain-verification": "5mwd35tiaxnj...",
-  "google-site-verification": "FsFIRctLjbwsOkCt...",
-  "judge-me-verification": "-V1Ltj5NCRp5rGiOoAB6tIZNG3s",
-},
+    "facebook-domain-verification": "5mwd35tiaxnj...",
+    "google-site-verification": "FsFIRctLjbwsOkCt...",
+    "judge-me-verification": "-V1Ltj5NCRp5rGiOoAB6tIZNG3s",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -47,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SpeedInsights />
 
         {/* Judge.me Native Scripts */}
-        <Script id="judge-me-config" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `jdgm=window.jdgm||{};jdgm.SHOP_DOMAIN='state-of-resonance.myshopify.com';` }} />
+        <Script id="judge-me-config" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `jdgm=window.jdgm||{};jdgm.SHOP_DOMAIN='uscedz-sm.myshopify.com';` }} />
         <Script id="judge-me-preloader" src="https://cdn.judge.me/widget_preloader.js" strategy="lazyOnload" />
       </body>
     </html>
