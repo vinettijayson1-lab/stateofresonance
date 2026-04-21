@@ -131,8 +131,8 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
           </div>
 
           <div className="w-full mb-12">
-            <AddToCartButton product={product} />
-            <div className="mt-6"><TrustBadges /></div>
+            <TrustBadges />
+            <div className="mt-6"><AddToCartButton product={product} /></div>
           </div>
 
           {/* Product Details */}

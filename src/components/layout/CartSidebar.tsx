@@ -51,6 +51,23 @@ export default function CartSidebar() {
 
         {items.length > 0 && (
           <div className="p-6 border-t border-[rgba(255,255,255,0.05)]">
+            {/* Shipping Estimate */}
+            {total >= 110 ? (
+              <div className="flex items-center gap-2 mb-4 px-3 py-2 border border-[rgba(212,175,55,0.2)] bg-[rgba(212,175,55,0.03)]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--color-gold-muted)] flex-shrink-0"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/><circle cx="7" cy="18" r="2"/><path d="M15 18H9"/><circle cx="17" cy="18" r="2"/></svg>
+                <span className="text-[0.6rem] text-[var(--color-gold-muted)] uppercase tracking-widest font-sans">Free Shipping Unlocked ✓</span>
+              </div>
+            ) : (
+              <div className="mb-4">
+                <div className="flex items-center gap-2 px-3 py-2 border border-[rgba(255,255,255,0.05)] bg-[rgba(255,255,255,0.01)]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-500 flex-shrink-0"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/><circle cx="7" cy="18" r="2"/><path d="M15 18H9"/><circle cx="17" cy="18" r="2"/></svg>
+                  <span className="text-[0.6rem] text-gray-400 uppercase tracking-widest font-sans">Add ${(110 - total).toFixed(2)} more for free shipping</span>
+                </div>
+                <div className="w-full h-[2px] bg-[rgba(255,255,255,0.05)] mt-2">
+                  <div className="h-full bg-[var(--color-gold-muted)] transition-all duration-500" style={{ width: `${Math.min((total / 110) * 100, 100)}%` }} />
+                </div>
+              </div>
+            )}
             <div className="flex justify-between mb-6">
               <span className="text-sm text-gray-400 uppercase tracking-widest">Total</span>
               <span className="text-lg text-white font-mono">${total.toFixed(2)} CAD</span>
