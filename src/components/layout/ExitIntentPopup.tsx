@@ -18,43 +18,23 @@ export default function ExitIntentPopup() {
   useEffect(() => {
     if (localStorage.getItem('sor_exit_intent_seen')) return;
 
-    // Track page views in current session
-    const currentViews = parseInt(sessionStorage.getItem('sor_page_views') || '0', 10);
-    const newViews = currentViews + 1;
-    sessionStorage.setItem('sor_page_views', newViews.toString());
-
-    // Strategy 1: Desktop True Exit Intent (only if they've been here 10s so we don't spam instantly)
+    // Safety Timer: Wait 10 seconds before exit intent tracking becomes active
+    // so it doesn't accidentally trigger if a user's mouse slips immediately.
     let canExitIntent = false;
     const safetyTimer = setTimeout(() => { canExitIntent = true; }, 10000);
 
     const handleMouseLeave = (e: MouseEvent) => {
+      // Trigger strictly when mouse leaves viewport from the top (closing tab/browser)
       if (canExitIntent && e.clientY <= 0) {
         triggerPopup();
       }
     };
-
-    // Strategy 2: Time Delayed (Staggered over a minute)
-    // Only set the long timer if they are on at least their 2nd page view, OR after 60 seconds.
-    // This prevents hitting cold traffic with an instant wall.
-    let mainTimer: NodeJS.Timeout;
-    
-    if (newViews >= 2) {
-      // If it's their second page, show it after 15 seconds of reading the new page
-      mainTimer = setTimeout(() => { triggerPopup(); }, 15000);
-    } else {
-      // First page they land on: Wait 60 seconds minimum (1 minute)
-      mainTimer = setTimeout(() => { triggerPopup(); }, 60000);
-    }
-
-    // We removed the "60% scroll" trigger. If someone scrolls 60% down your product page, 
-    // they are reading your sizing or reviews. Interrupting them ruins the conversion funnel.
 
     document.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       clearTimeout(safetyTimer);
-      clearTimeout(mainTimer);
     };
   }, []);
 
