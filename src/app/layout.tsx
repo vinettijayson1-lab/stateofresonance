@@ -48,9 +48,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Judge.me Floating Review Button */}
         <div className="jdgm-widget jdgm-floating-reviews-tab" />
 
-        {/* Judge.me Native Scripts — exact config from Shopify theme */}
+        {/* Judge.me Widget Scripts */}
         <Script id="judge-me-config" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `jdgm=window.jdgm||{};jdgm.SHOP_DOMAIN='state-of-resonance.myshopify.com';jdgm.PLATFORM='shopify';jdgm.PUBLIC_TOKEN='-V1Ltj5NCRp5rGiOoAB6tIZNG3s';` }} />
         <Script id="judge-me-preloader" data-cfasync="false" src="https://cdnwidget.judge.me/widget_preloader.js" strategy="lazyOnload" />
+
+        {/* TrustIndex — Rich Snippets & Review Aggregation */}
+        <Script id="trustindex-richsnippet" src="https://cdn.trustindex.io/assets/js/richsnippet.js?4ac058435219g3d9" strategy="lazyOnload" />
       </body>
     </html>
   );
