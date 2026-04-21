@@ -25,9 +25,10 @@ export const metadata: Metadata = {
     canonical: "https://stateofresonance.ca",
   },
   other: {
-    "facebook-domain-verification": "5mwd35tiaxnja0398tp7ct5dc1x1dr",
-    "google-site-verification": "FsFIRctLjbwsOkCtvffNKYyvSC02fra-Z79OQ6sDtWs",
-  },
+  "facebook-domain-verification": "5mwd35tiaxnj...",
+  "google-site-verification": "FsFIRctLjbwsOkCt...",
+  "judge-me-verification": "-V1Ltj5NCRp5rGiOoAB6tIZNG3s",
+},
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
