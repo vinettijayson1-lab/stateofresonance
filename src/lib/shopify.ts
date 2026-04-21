@@ -79,7 +79,6 @@ async function shopifyFetch<T>(query: string): Promise<T> {
       'X-Shopify-Storefront-Access-Token': TOKEN,
     },
     body: JSON.stringify({ query }),
-    // CHANGED: Replaced cache: 'no-store' with next: { revalidate: 60 }
     next: { revalidate: 60 },
   });
 
@@ -102,7 +101,6 @@ function cleanImageUrl(url: string): string {
 function prioritizeFrontImage(images: {url: string, alt: string}[]): {url: string, alt: string} {
   if (!images.length) return { url: '/luxury-occult-bg.png', alt: 'State of Resonance' };
   
-  // Explicit front match if alt text was ever set manually
   const front = images.find(i => /front|model|main/i.test(i.alt) || /front|model/i.test(i.url));
   if (front) return front;
   
@@ -187,13 +185,11 @@ export async function fetchProducts(): Promise<ShopifyProduct[]> {
     });
   } catch (err) {
     console.error('Shopify fetch error:', err);
-    // Fallback to public JSON API if GraphQL fails
     return fetchProductsFallback();
   }
 }
 
 async function fetchProductsFallback(): Promise<ShopifyProduct[]> {
-  // CHANGED: Replaced cache: 'no-store' with next: { revalidate: 60 }
   const res = await fetch(`https://${DOMAIN}/products.json?limit=250`, { next: { revalidate: 60 } });
   if (!res.ok) return [];
   const data = await res.json();
