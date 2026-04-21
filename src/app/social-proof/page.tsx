@@ -89,6 +89,31 @@ export default function SocialProofPage() {
         </div>
         <div className="trustindex-widget" data-url="cabe8cb70335182b45167fb72cb" />
       </section>
+
+      {/* ═══════ QR CODE — LEAVE A REVIEW ═══════ */}
+      <section className="py-24 px-6 border-t border-[rgba(255,255,255,0.05)]">
+        <div className="max-w-sm mx-auto text-center flex flex-col items-center gap-8">
+          <div>
+            <p className="text-[var(--color-gold)] uppercase tracking-[0.4em] text-xs mb-4 font-mono">Speak Your Truth</p>
+            <h2 className="font-serif text-2xl md:text-3xl text-white tracking-widest uppercase mb-3">Leave a Review</h2>
+            <p className="text-gray-400 text-sm font-sans tracking-wide leading-relaxed">
+              Scan the code below to share your experience with the State of Resonance.
+            </p>
+          </div>
+
+          {/* QR Code */}
+          <div className="relative p-5 border border-[var(--color-gold-muted)] bg-white shadow-[0_0_40px_rgba(212,175,55,0.15)]">
+            <div className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-[var(--color-gold)]" />
+            <div className="absolute -top-2 -right-2 w-4 h-4 border-t-2 border-r-2 border-[var(--color-gold)]" />
+            <div className="absolute -bottom-2 -left-2 w-4 h-4 border-b-2 border-l-2 border-[var(--color-gold)]" />
+            <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-[var(--color-gold)]" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/review-qr.png" alt="Scan to leave a review for State of Resonance" width={200} height={200} className="block" />
+          </div>
+
+          <p className="text-xs text-gray-600 uppercase tracking-widest font-mono">Point your camera at the code</p>
+        </div>
+      </section>
     </div>
   );
 }
