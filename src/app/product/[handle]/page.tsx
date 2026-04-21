@@ -1,4 +1,4 @@
-import { fetchProducts } from "@/lib/shopify";
+import React from 'react';import { fetchProducts } from "@/lib/shopify";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import AddToCartButton from "@/components/pdp/AddToCartButton";
