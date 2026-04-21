@@ -79,6 +79,16 @@ export default function SocialProofPage() {
           ))}
         </div>
       </section>
+
+      {/* ═══════ TRUSTINDEX REVIEW FEED ═══════ */}
+      <section className="py-24 px-6 max-w-6xl mx-auto border-t border-[rgba(255,255,255,0.05)]">
+        <div className="text-center mb-16">
+          <p className="text-[var(--color-gold)] uppercase tracking-[0.4em] text-xs mb-4 font-mono">Verified Reviews</p>
+          <h2 className="font-serif text-3xl md:text-4xl text-white mb-4 tracking-wide uppercase">Alchemical Reports</h2>
+          <p className="text-gray-400 text-sm font-sans tracking-widest uppercase">What seekers are saying about their artifacts.</p>
+        </div>
+        <div className="trustindex-widget" data-url="cabe8cb70335182b45167fb72cb" />
+      </section>
     </div>
   );
 }
