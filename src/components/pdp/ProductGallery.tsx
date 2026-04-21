@@ -12,7 +12,7 @@ export default function ProductGallery({ mainImage, images }: { mainImage: ImgOb
   return (
     <div className="flex flex-col gap-4">
       <div className="aspect-[4/5] relative border border-[rgba(255,255,255,0.05)] overflow-hidden bg-[url('/esoteric-backdrop.png')] bg-cover bg-center flex items-center justify-center">
-        <Image src={allImages[active].url} alt={allImages[active].alt} fill className="object-contain p-4 drop-shadow-2xl" priority />
+        <Image src={allImages[active].url} alt={allImages[active].alt} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain p-4 drop-shadow-2xl" priority />
       </div>
       {allImages.length > 1 && (
         <div className="flex gap-2 overflow-x-auto pb-2">

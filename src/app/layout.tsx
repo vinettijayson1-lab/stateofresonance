@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SpeedInsights />
 
         {/* Judge.me Native Scripts */}
-        <Script id="judge-me-config" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: `jdgm=window.jdgm||{};jdgm.SHOP_DOMAIN='state-of-resonance.myshopify.com';` }} />
+        <Script id="judge-me-config" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `jdgm=window.jdgm||{};jdgm.SHOP_DOMAIN='state-of-resonance.myshopify.com';` }} />
         <Script id="judge-me-preloader" src="https://cdn.judge.me/widget_preloader.js" strategy="lazyOnload" />
       </body>
     </html>
