@@ -164,10 +164,16 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       <div className="w-full mt-24 border-t border-[rgba(255,255,255,0.05)] pt-16">
         <h2 className="font-serif text-2xl text-center text-white mb-8 uppercase tracking-widest">Worn by the Community</h2>
         <div className="grid grid-cols-3 gap-4 max-w-5xl mx-auto">
-          {["/jayson-social.jpg", "/david-social.jpg", "/kelly-social.jpg"].map((src, i) => (
-            <div key={i} className="aspect-square relative overflow-hidden border border-[rgba(255,255,255,0.05)] group">
-              <Image src={src} alt={`Community ${i + 1}`} fill className="object-cover grayscale group-hover:grayscale-0 opacity-50 group-hover:opacity-100 transition-all duration-700" />
-            </div>
+          {[
+            { src: "/jayson-social.jpg", label: "The Frequency Spreads", url: "https://www.facebook.com/photo?fbid=10164200068961063&set=a.10154362149296063" },
+            { src: "/david-social.jpg", label: "David Goudro", url: "https://www.instagram.com/reel/DWGyGd1Eby5/" },
+            { src: "/kelly-social.jpg", label: "Virgin Radio Kelly", url: "https://www.instagram.com/p/DVCd7LUkbxS/" },
+          ].map((img, i) => (
+            <a key={i} href={img.url} target="_blank" rel="noopener noreferrer" className="aspect-square relative overflow-hidden border border-[rgba(255,255,255,0.05)] group cursor-pointer hover:border-[var(--color-gold-muted)] transition-colors">
+              <Image src={img.src} alt={img.label} fill className="object-cover grayscale group-hover:grayscale-0 opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <span className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[0.6rem] text-gray-300 font-sans tracking-widest uppercase z-10 group-hover:text-white transition-colors text-center whitespace-nowrap">{img.label}</span>
+            </a>
           ))}
         </div>
       </div>
