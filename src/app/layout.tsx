@@ -55,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* TrustIndex — Widget Loader (renders visible review widget) */}
         <Script id="trustindex-loader" src="https://cdn.trustindex.io/loader.js?2344a8869a5f373c8f9603a105f" strategy="lazyOnload" />
         {/* TrustIndex — Feed/Carousel Widget */}
-        <Script id="trustindex-feed" src="https://cdn.trustindex.io/loader-feed.js?23e85926815b0989143629301fc" strategy="lazyOnload" />
+        <Script id="trustindex-feed" src="https://cdn.trustindex.io/loader-feed.js?cabe8cb70335182b45167fb72cb" strategy="lazyOnload" />
         {/* TrustIndex — Trust Certificate */}
         <Script id="trustindex-cert" src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" strategy="lazyOnload" />
         {/* TrustIndex — Rich Snippets (Google star ratings in search) */}
