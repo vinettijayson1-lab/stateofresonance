@@ -143,12 +143,12 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       </div>
       
       <div className="w-full mt-24 border-t border-[rgba(255,255,255,0.05)] pt-16 pb-16" id="reviews">
-        <h2 className="font-serif text-3xl text-center text-white mb-8 tracking-widest uppercase">Alchemical Reports</h2>
-        <div className="flex justify-center mb-8">
-          <a href="#reviews" className="jdgm-write-rev-link text-xs tracking-widest uppercase font-sans border border-[var(--color-gold-muted)] text-[var(--color-gold-muted)] px-6 py-3 hover:bg-[var(--color-gold-muted)] hover:text-black transition-colors" data-id={numericId}>Write a Review</a>
-        </div>
+        <h2 className="font-serif text-3xl text-center text-white mb-12 tracking-widest uppercase">Alchemical Reports</h2>
         <div className="max-w-5xl mx-auto px-4">
-          <div className="jdgm-widget jdgm-review-widget" data-id={numericId} />
+          {/* TrustIndex Widget — populated by loader.js */}
+          <div className="trustindex-widget" data-url="2344a8869a5f373c8f9603a105f" />
+          {/* Judge.me fallback (hidden until token resolved) */}
+          <div className="jdgm-widget jdgm-review-widget" data-id={numericId} style={{display:'none'}} />
         </div>
       </div>
       

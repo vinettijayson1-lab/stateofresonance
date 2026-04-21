@@ -52,7 +52,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script id="judge-me-config" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `jdgm=window.jdgm||{};jdgm.SHOP_DOMAIN='state-of-resonance.myshopify.com';jdgm.PLATFORM='shopify';jdgm.PUBLIC_TOKEN='-V1Ltj5NCRp5rGiOoAB6tIZNG3s';` }} />
         <Script id="judge-me-preloader" data-cfasync="false" src="https://cdnwidget.judge.me/widget_preloader.js" strategy="lazyOnload" />
 
-        {/* TrustIndex — Rich Snippets & Review Aggregation */}
+        {/* TrustIndex — Widget Loader (renders visible review widget) */}
+        <Script id="trustindex-loader" src="https://cdn.trustindex.io/loader.js?2344a8869a5f373c8f9603a105f" strategy="lazyOnload" />
+        {/* TrustIndex — Trust Certificate */}
+        <Script id="trustindex-cert" src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" strategy="lazyOnload" />
+        {/* TrustIndex — Rich Snippets (Google star ratings in search) */}
         <Script id="trustindex-richsnippet" src="https://cdn.trustindex.io/assets/js/richsnippet.js?4ac058435219g3d9" strategy="lazyOnload" />
       </body>
     </html>
