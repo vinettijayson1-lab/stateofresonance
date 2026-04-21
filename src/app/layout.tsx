@@ -7,6 +7,7 @@ import CartSidebar from "@/components/layout/CartSidebar";
 import Analytics from "@/components/layout/Analytics";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import ExitIntentPopup from "@/components/layout/ExitIntentPopup";
+import ReviewQR from "@/components/layout/ReviewQR";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <HeaderNav />
         <div className="fixed inset-0 pointer-events-none z-[-1] opacity-5 bg-[url('/luxury-occult-bg.png')] bg-cover bg-center mix-blend-overlay" />
         <main className="flex-1 flex flex-col relative z-0">{children}</main>
+        <ReviewQR />
         <Footer />
         <CartSidebar />
         <ExitIntentPopup />
