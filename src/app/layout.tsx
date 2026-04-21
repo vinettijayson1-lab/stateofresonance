@@ -49,8 +49,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="jdgm-widget jdgm-floating-reviews-tab" />
 
         {/* Judge.me Native Scripts */}
-        <Script id="judge-me-config" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `jdgm=window.jdgm||{};jdgm.SHOP_DOMAIN='state-of-resonance.myshopify.com';` }} />
+        <Script id="judge-me-config" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `window.jdgm=window.jdgm||{};window.jdgm.SHOP_DOMAIN='state-of-resonance.myshopify.com';window.jdgm.PLATFORM='shopify';` }} />
         <Script id="judge-me-preloader" src="https://cdn.judge.me/widget_preloader.js" strategy="lazyOnload" />
+        <Script src="https://cdn1.judge.me/assets/installed.js" strategy="lazyOnload" />
       </body>
     </html>
   );
