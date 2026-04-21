@@ -45,6 +45,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <VercelAnalytics />
         <SpeedInsights />
 
+        {/* Judge.me Floating Review Button */}
+        <div className="jdgm-widget jdgm-floating-reviews-tab" />
+
         {/* Judge.me Native Scripts */}
         <Script id="judge-me-config" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `jdgm=window.jdgm||{};jdgm.SHOP_DOMAIN='state-of-resonance.myshopify.com';` }} />
         <Script id="judge-me-preloader" src="https://cdn.judge.me/widget_preloader.js" strategy="lazyOnload" />
