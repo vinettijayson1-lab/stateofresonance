@@ -1,40 +1,30 @@
-import { fetchProducts } from "@/lib/shopify";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import AddToCartButton from "@/components/pdp/AddToCartButton";
-import ProductGallery from "@/components/pdp/ProductGallery";
-import TrustBadges from "@/components/pdp/TrustBadges";
-import StickyMobileCart from "@/components/pdp/StickyMobileCart";
-import Image from "next/image";
 import type { Metadata } from "next";
 
-const BASE_URL = "https://stateofresonance.ca";
+export const metadata: Metadata = {
+  title: "About",
+  description: "State of Resonance — the philosophy behind the brand.",
+};
 
-export async function generateStaticParams() {
-  const products = await fetchProducts();
-  return products.map(p => ({ handle: p.handle }));
-}
-
-export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }): Promise<Metadata> {
-  const { handle } = await params;
-  const products = await fetchProducts();
-  const product = products.find(p => p.handle === handle);
-  if (!product) return { title: "Product Not Found" };
-
-  const desc = product.descriptionHtml
-    ? product.descriptionHtml.replace(/<[^>]*>/g, '').slice(0, 155).trim() + '…'
-    : `Shop ${product.title} — premium occult streetwear by State of Resonance. 450gsm heavyweight cotton, limited to 10 units.`;
-
-  return {
-    title: product.title,
-    description: desc,
-    alternates: { canonical: `${BASE_URL}/product/${handle}` },
-    openGraph: {
-      title: `${product.title} — ${product.price} CAD`,
-      description: desc,
-      url: `${BASE_URL}/product/${handle}`,
-      siteName: "State of Resonance",
-      images: [{ url: product.image.url, width: 800, height: 1000, alt: product.image.alt }],
+export default function AboutPage() {
+  return (
+    <div className="w-full min-h-screen relative z-10 pt-56 lg:pt-64 pb-24 px-4 sm:px-8 max-w-4xl mx-auto flex flex-col">
+      <h1 className="font-serif text-4xl lg:text-5xl text-white tracking-wide mb-12 text-center uppercase">
+        About
+      </h1>
+      <div className="font-sans text-gray-400 leading-relaxed tracking-wide space-y-6 text-sm lg:text-base">
+        <p>
+          State of Resonance is an occult luxury streetwear brand built on the intersection of sacred geometry, alchemical symbolism, and premium craftsmanship.
+        </p>
+        <p>
+          Every piece is limited to 10 units. Every symbol is intentional. Every thread carries frequency.
+        </p>
+        <p>
+          We don&apos;t make clothes. We forge artifacts.
+        </p>
+      </div>
+    </div>
+  );
+}      images: [{ url: product.image.url, width: 800, height: 1000, alt: product.image.alt }],
       type: "website",
       locale: "en_CA",
     },
