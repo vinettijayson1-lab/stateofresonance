@@ -32,6 +32,8 @@ Both models lead to the same practice. The mechanism you believe in is less impo
 
 ## How to Create a Sigil
 
+![Abstract golden occult sigil glowing faintly against a dark, textured heavy cotton fabric background](/sigil-art.png)
+
 There are several methods. This is the one rooted in Spare's tradition — simple, effective, and deeply personal.
 
 ### Step 1: Write Your Statement of Intent

@@ -40,6 +40,8 @@ Bosch does not illustrate this abstractly. He hides it beneath a surface so stra
 
 ## Alchemy in Art: The Great Work Painted
 
+![A detailed, cinematic modern interpretation of a Hermetic alchemical diagram, featuring sacred geometry intersecting with a golden sun and a dark celestial background](/esoteric-diagram.png)
+
 Alchemical art is among the most deliberately coded in Western history. The alchemical manuscripts — illuminated texts from the medieval and Renaissance periods — are some of the strangest and most beautiful objects ever produced. They are also almost entirely opaque to anyone unfamiliar with their symbolic conventions.
 
 The key vocabulary:
