@@ -14,9 +14,9 @@ This is not about darkness, manipulation, or anything that requires you to compr
 
 ## Where Sigils Come From
 
-The word *sigil* comes from the Latin *sigillum* — a seal. Historically, sigils were the seals of angels and spirits catalogued in grimoires like the *Lesser Key of Solomon*, where each entity had a specific geometric signature by which it could be invoked.
+The word *sigil* comes from the Latin *sigillum* — a seal. Historically, sigils were the seals of angels and spirits catalogued in grimoires like the [*Lesser Key of Solomon*](https://en.wikipedia.org/wiki/Lesser_Key_of_Solomon), where each entity had a specific geometric signature by which it could be invoked.
 
-The modern approach to sigil creation was largely developed by the artist and occultist **Austin Osman Spare** in the early twentieth century. Spare's method stripped sigil work of its elaborate ceremonial scaffolding and reduced it to its essential mechanism: a statement of intention, encoded into an abstract symbol, and then forgotten.
+The modern approach to sigil creation was largely developed by the artist and occultist **[Austin Osman Spare](https://en.wikipedia.org/wiki/Austin_Osman_Spare)** in the early twentieth century. Spare's method stripped sigil work of its elaborate ceremonial scaffolding and reduced it to its essential mechanism: a statement of intention, encoded into an abstract symbol, and then forgotten.
 
 Spare understood something crucial — that the conscious mind is often the obstacle. Belief, doubt, desire, analysis: these are the forces that interrupt the deeper will from operating. The sigil bypasses them entirely.
 
