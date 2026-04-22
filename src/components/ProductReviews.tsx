@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-const SHOP_DOMAIN = 'uscedz-sm.myshopify.com';
+const SHOP_DOMAIN = 'state-of-resonance.myshopify.com';
 const JUDGEME_TOKEN = process.env.NEXT_PUBLIC_JUDGEME_TOKEN!;
 
 interface Review {
@@ -42,22 +42,22 @@ export function ProductReviews({ shopifyProductId }: ProductReviewsProps) {
   if (!reviews.length) return null;
 
   return (
-    <div style={{ marginTop: '2rem' }}>
+    <div className="mt-8 space-y-0">
       {rating && (
-        <div style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>
-          ★ {rating.rating.toFixed(1)} / 5 · {rating.reviews_count} reviews
+        <div className="mb-6 flex items-center gap-2 text-[var(--color-gold)] font-mono text-sm tracking-widest">
+          <span>{'★'.repeat(Math.round(rating.rating))}</span>
+          <span className="text-gray-400">{rating.rating.toFixed(1)} / 5 · {rating.reviews_count} reviews</span>
         </div>
       )}
       {reviews.map((review) => (
-        <div key={review.id} style={{
-          borderTop: '1px solid #e5e5e5',
-          padding: '1rem 0',
-        }}>
-          <strong>{review.reviewer.name}</strong>
-          <span style={{ marginLeft: '8px', color: '#FFD700' }}>
-            {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
-          </span>
-          <p style={{ marginTop: '0.5rem', color: '#444' }}>{review.body}</p>
+        <div key={review.id} className="border-t border-[rgba(255,255,255,0.06)] py-5">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="text-white font-sans text-sm font-semibold tracking-wide">{review.reviewer.name}</span>
+            <span className="text-[var(--color-gold)] text-xs">
+              {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
+            </span>
+          </div>
+          <p className="text-gray-400 text-sm font-sans leading-relaxed tracking-wide">{review.body}</p>
         </div>
       ))}
     </div>

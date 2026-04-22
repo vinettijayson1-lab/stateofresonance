@@ -81,7 +81,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
           <div className="mb-8 border-b border-[rgba(255,255,255,0.05)] pb-8">
             <p className="text-[var(--color-gold-muted)] tracking-[0.3em] text-xs uppercase mb-4 animate-pulse">{product.category}</p>
             <h1 className="text-4xl lg:text-5xl font-serif text-white tracking-wide mb-4 leading-tight">{product.title}</h1>
-            <div className="jdgm-widget jdgm-preview-badge mb-6 min-h-[20px]" data-id={numericId} data-template="product" />
+
             
             <div className="flex flex-col gap-2 mb-8">
               <div className="flex items-end gap-3 text-2xl font-mono tracking-wider">
@@ -147,8 +147,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
         <div className="max-w-5xl mx-auto px-4">
           {/* TrustIndex Widget — populated by loader.js */}
           <div className="trustindex-widget" data-url="2344a8869a5f373c8f9603a105f" />
-          {/* Judge.me fallback (hidden until token resolved) */}
-          <div className="jdgm-widget jdgm-review-widget" data-id={numericId} style={{display:'none'}} />
+
         </div>
       </div>
       

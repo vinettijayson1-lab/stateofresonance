@@ -36,9 +36,7 @@ export default function ProductCard({ p, priority = false }: { p: ShopifyProduct
       <div className="mt-8 text-center w-full flex flex-col items-center">
         <h2 className="text-xl md:text-2xl font-serif text-white tracking-wide group-hover:text-[var(--color-gold)] transition-colors">{p.title}</h2>
         
-        {/* Judge.me snippet */}
-        <div className="jdgm-widget jdgm-preview-badge min-h-[20px] mb-2 scale-90" data-id={numericId} data-template="product" />
-        
+
         <div className="flex gap-3 text-sm md:text-base font-mono mt-1">
           {p.compareAtPrice && <p className="text-gray-500 line-through">{p.compareAtPrice}</p>}
           <p className="text-gray-300 tracking-wider font-bold">{p.price}</p>

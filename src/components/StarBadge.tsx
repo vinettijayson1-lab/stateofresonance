@@ -1,6 +1,6 @@
 'use client';
 
-const SHOP_DOMAIN = 'uscedz-sm.myshopify.com';
+const SHOP_DOMAIN = 'state-of-resonance.myshopify.com';
 const JUDGEME_TOKEN = process.env.NEXT_PUBLIC_JUDGEME_TOKEN!;
 
 export async function getProductRating(shopifyProductId: number) {
