@@ -69,7 +69,7 @@ export default function CollabPage() {
 
   // Shopify Collabs affiliate application URL
   const COLLABS_URL =
-    'https://checkout.stateofresonance.ca/pages/collab';
+    'https://api.collabs.shopify.com/creator/signup/community_application/f02d4683be03cfbf';
 
   return (
     <div className="min-h-screen bg-black overflow-x-hidden">
