@@ -99,11 +99,9 @@ function AddToCartInner({ product }: { product: ShopifyProduct }) {
       </p>
 
       {isAvailable && (() => {
-        const totalAvailable = product.variants
-          .filter(v => v.available)
-          .reduce((sum, v) => sum + (v.quantityAvailable ?? 0), 0);
-        const label = totalAvailable > 0 && totalAvailable <= 20
-          ? `${totalAvailable} artifact${totalAvailable === 1 ? '' : 's'} remaining`
+        const qty = currentVariant?.quantityAvailable;
+        const label = qty != null && qty <= 15
+          ? `${qty} artifact${qty === 1 ? '' : 's'} remaining`
           : 'High Frequency — Very Few Artifacts Remain';
         return (
           <div className="flex items-center justify-center gap-2 mb-4 animate-pulse">
