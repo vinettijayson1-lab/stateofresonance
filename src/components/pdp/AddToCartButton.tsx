@@ -98,12 +98,20 @@ function AddToCartInner({ product }: { product: ShopifyProduct }) {
         &quot;Let your vibes resonate. Enter the state of resonance.&quot;
       </p>
 
-      {isAvailable && (
-        <div className="flex items-center justify-center gap-2 mb-4 animate-pulse">
-          <div className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
-          <span className="text-[0.55rem] tracking-widest text-red-400 font-mono uppercase">High Frequency — Very Few Artifacts Remain</span>
-        </div>
-      )}
+      {isAvailable && (() => {
+        const totalAvailable = product.variants
+          .filter(v => v.available)
+          .reduce((sum, v) => sum + (v.quantityAvailable ?? 0), 0);
+        const label = totalAvailable > 0 && totalAvailable <= 20
+          ? `${totalAvailable} artifact${totalAvailable === 1 ? '' : 's'} remaining`
+          : 'High Frequency — Very Few Artifacts Remain';
+        return (
+          <div className="flex items-center justify-center gap-2 mb-4 animate-pulse">
+            <div className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
+            <span className="text-[0.55rem] tracking-widest text-red-400 font-mono uppercase">{label}</span>
+          </div>
+        );
+      })()}
 
       <div ref={buttonRef} className="flex flex-col gap-3">
         {isAvailable ? (

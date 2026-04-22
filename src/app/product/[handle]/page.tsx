@@ -6,6 +6,7 @@ import AddToCartButton from "@/components/pdp/AddToCartButton";
 import ProductGallery from "@/components/pdp/ProductGallery";
 import TrustBadges from "@/components/pdp/TrustBadges";
 import StickyMobileCart from "@/components/pdp/StickyMobileCart";
+import FrequencySignup from "@/components/pdp/FrequencySignup";
 import Image from "next/image";
 import type { Metadata } from "next";
 
@@ -121,6 +122,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                 {["Oversized", "Drop shoulder", "Thick, warm, premium feel", "True to size for oversized look"].map((s, i) => <li key={i}>• {s}</li>)}
               </ul>
             </div>
+            <FrequencySignup />
           </div>
         </div>
       </div>

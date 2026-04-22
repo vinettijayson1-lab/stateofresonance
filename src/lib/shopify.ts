@@ -24,6 +24,7 @@ export interface ShopifyProduct {
     title: string;
     price: string;
     available: boolean;
+    quantityAvailable?: number;
     option1?: string;
     option2?: string;
     option3?: string;
@@ -59,6 +60,7 @@ const PRODUCTS_QUERY = `
                 id
                 title
                 availableForSale
+                quantityAvailable
                 price { amount currencyCode }
                 compareAtPrice { amount currencyCode }
                 selectedOptions { name value }
@@ -140,6 +142,7 @@ interface GqlProduct {
         id: string;
         title: string;
         availableForSale: boolean;
+        quantityAvailable: number | null;
         price: { amount: string; currencyCode: string };
         compareAtPrice: { amount: string; currencyCode: string } | null;
         selectedOptions: { name: string; value: string }[];
@@ -177,6 +180,7 @@ export async function fetchProducts(): Promise<ShopifyProduct[]> {
           title: v.title,
           price: formatPrice(v.price.amount),
           available: v.availableForSale,
+          quantityAvailable: v.quantityAvailable ?? undefined,
           option1: v.selectedOptions[0]?.value,
           option2: v.selectedOptions[1]?.value,
           option3: v.selectedOptions[2]?.value,
