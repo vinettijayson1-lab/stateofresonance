@@ -10,7 +10,10 @@ export default function ExitIntentPopup() {
 
   const triggerPopup = () => {
     if (localStorage.getItem('sor_exit_intent_seen') === 'true') return;
-    if (useCartStore.getState().isOpen) return;
+    // Don't stack on top of the cart — suppress if cart was opened in the last 60s
+    const { isOpen, lastCartOpenedAt } = useCartStore.getState();
+    if (isOpen) return;
+    if (lastCartOpenedAt && Date.now() - lastCartOpenedAt < 60_000) return;
     setShow(true);
     localStorage.setItem('sor_exit_intent_seen', 'true');
   };

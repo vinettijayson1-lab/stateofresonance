@@ -13,6 +13,7 @@ export interface CartItem {
 interface CartStore {
   items: CartItem[];
   isOpen: boolean;
+  lastCartOpenedAt: number | null;
   addItem: (item: CartItem) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, qty: number) => void;
@@ -36,7 +37,12 @@ export const useCartStore = create<CartStore>()(
     (set, get) => ({
       items: [],
       isOpen: false,
-      toggleCart: () => set(s => ({ isOpen: !s.isOpen })),
+      lastCartOpenedAt: null,
+      toggleCart: () => set(s => ({
+        isOpen: !s.isOpen,
+        // Record timestamp whenever cart is opened (not closed)
+        lastCartOpenedAt: !s.isOpen ? Date.now() : s.lastCartOpenedAt,
+      })),
       addItem: (product) => set(s => {
         const existing = s.items.find(i => i.id === product.id);
         if (existing) return { items: s.items.map(i => i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i) };
