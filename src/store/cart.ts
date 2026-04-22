@@ -22,6 +22,15 @@ interface CartStore {
 
 const extractId = (gid: string) => gid.includes('gid://') ? gid.split('/').pop() : gid;
 
+// Helper function to read the cookie securely on the client side
+const getCookie = (name: string) => {
+  if (typeof document === 'undefined') return null;
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(';').shift();
+  return null;
+};
+
 export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
@@ -40,8 +49,20 @@ export const useCartStore = create<CartStore>()(
       getCheckoutUrl: () => {
         const items = get().items;
         if (!items.length) return '#';
+        
+        // Build the base Shopify Cart Permalink
         const urlStr = items.map(item => `${extractId(item.variantId || item.id)}:${item.quantity}`).join(',');
-        return `https://state-of-resonance.myshopify.com/cart/${urlStr}`;
+        let checkoutUrl = `https://state-of-resonance.myshopify.com/cart/${urlStr}`;
+
+        // Check if the user has a Collabs discount code saved
+        const discountCode = getCookie('discount_code');
+        
+        // If they do, append it to the URL!
+        if (discountCode) {
+          checkoutUrl += `?discount=${discountCode}`;
+        }
+
+        return checkoutUrl;
       },
     }),
     {
