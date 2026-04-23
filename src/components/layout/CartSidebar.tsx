@@ -3,11 +3,17 @@
 import { useCartStore } from '@/store/cart';
 import { trackInitiateCheckout } from '@/lib/tracking';
 import { X, Minus, Plus } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function CartSidebar() {
   const { items, isOpen, toggleCart, removeItem, updateQuantity, getCheckoutUrl } = useCartStore();
+  const [mounted, setMounted] = useState(false);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || !isOpen) return null;
 
   const total = items.reduce((s, i) => s + parseFloat(i.price.replace(/[^0-9.]/g, '')) * i.quantity, 0);
 

@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Symbols', href: '/symbols' },
   { label: 'FAQ', href: '/faq' },
+  { label: 'Contact', href: 'mailto:support@stateofresonance.ca' },
 ];
 
 export default function HeaderNav() {

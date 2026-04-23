@@ -17,7 +17,8 @@ function StickyMobileCartInner({ product }: { product: ShopifyProduct }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerWidth < 768 && window.scrollY > 400) {
+      const isNearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 300;
+      if (window.innerWidth < 768 && window.scrollY > 400 && !isNearBottom) {
         setVisible(true);
       } else {
         setVisible(false);
