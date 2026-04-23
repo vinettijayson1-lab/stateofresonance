@@ -98,8 +98,8 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
           </div>
           
           <div className="w-full mb-12">
+            <div className="mb-6"><AddToCartButton product={product} /></div>
             <TrustBadges />
-            <div className="mt-6"><AddToCartButton product={product} /></div>
           </div>
           
           <div className="w-full flex flex-col gap-10 mt-8 border-t border-[rgba(255,255,255,0.05)] pt-12 text-left">
