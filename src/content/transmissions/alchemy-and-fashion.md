@@ -22,7 +22,7 @@ This is how we approach design:
 - **Purification**: What remains? Fabric. Silhouette. Symbol. Weight. Intention.
 - **Coagulation**: Reassemble these elements into an artifact that carries specific frequency — not fashion, but transmission.
 
-The result is not clothing in the conventional sense. It is the end product of a process.
+The result is not clothing in the conventional sense. It is the end product of a process. [Explore the resulting Artifacts in our collection](/collection/all).
 
 ## Nigredo: The Black Phase
 

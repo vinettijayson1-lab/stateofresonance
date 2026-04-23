@@ -28,7 +28,7 @@ Sacred geometry operates on the premise that mathematical patterns carry frequen
 
 ## The Midnight Explorer Hoodie
 
-The Metatron's Cube on our **Midnight Explorer Hoodie** is placed at the solar plexus — the body's center of personal will, identity, and power. This is the chakra associated with action, transformation, and the assertion of self in the world.
+The Metatron's Cube on our **[Midnight Explorer Hoodie](/product/urban-hoodie-1)** is placed at the solar plexus — the body's center of personal will, identity, and power. This is the chakra associated with action, transformation, and the assertion of self in the world.
 
 The placement is deliberate. The symbol at the seat of will is an instruction: *know what you are made of. Act accordingly.*
 

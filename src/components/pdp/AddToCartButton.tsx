@@ -115,7 +115,7 @@ function AddToCartInner({ product }: { product: ShopifyProduct }) {
         {isAvailable ? (
           <>
             <button onClick={handleAcquire}
-              className={`w-full transition-colors font-bold uppercase tracking-[0.2em] py-5 bg-[var(--color-gold)] hover:bg-[#b5952f] text-black shadow-[0_0_30px_rgba(212,175,55,0.2)]`}>
+              className={`w-full transition-all duration-300 font-extrabold uppercase tracking-[0.2em] py-5 bg-[var(--color-gold)] hover:bg-[#c9a738] hover:brightness-110 text-black shadow-[0_0_40px_rgba(212,175,55,0.4)]`}>
               Acquire Artifact
             </button>
             <button onClick={() => { handleAcquire(); setTimeout(() => { window.location.href = useCartStore.getState().getCheckoutUrl(); }, 100); }}
