@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { label: 'Best Sellers', href: '/collection/best-sellers' },
   { label: 'Social Proof', href: '/social-proof' },
   { label: 'Transmissions', href: '/transmissions' },
+  { label: 'Collaborate', href: '/collab' },
   { label: 'About', href: '/about' },
   { label: 'Symbols', href: '/symbols' },
   { label: 'FAQ', href: '/faq' },
