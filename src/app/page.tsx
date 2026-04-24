@@ -17,27 +17,27 @@ export default async function Home() {
     <div className="min-h-screen bg-black">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative w-full min-h-[85vh] md:min-h-[100vh] pt-32 md:pt-40 pb-20 flex flex-col items-center justify-center overflow-hidden border-b border-[rgba(212,175,55,0.15)]">
-        <Image src="/hero-celestial.png" alt="State of Resonance — Occult Luxury Streetwear" fill priority sizes="100vw" className="object-cover opacity-60 scale-[1.02]" />
+      <section className="relative w-full min-h-[85vh] md:min-h-[100vh] pt-20 md:pt-40 pb-12 md:pb-20 flex flex-col items-center justify-center overflow-hidden border-b border-[rgba(212,175,55,0.15)]">
+        <Image src="/hero-celestial.png" alt="State of Resonance — Occult Luxury Streetwear" fill priority sizes="(max-width: 768px) 100vw, 100vw" className="object-cover opacity-60 scale-[1.02]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-[rgba(0,0,0,0.8)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.05)_0%,_transparent_60%)] pointer-events-none" />
 
         <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-7xl mx-auto w-full">
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-[7.5rem] tracking-[0.05em] xl:tracking-[0.08em] text-white mb-6 uppercase drop-shadow-[0_10px_25px_rgba(255,255,255,0.4)] leading-none max-w-5xl">
+          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl xl:text-[7.5rem] tracking-[0.05em] xl:tracking-[0.08em] text-white mb-4 md:mb-6 uppercase drop-shadow-[0_10px_25px_rgba(255,255,255,0.4)] leading-none max-w-5xl">
             Wear the Symbols That Shape You
           </h1>
           <div className="w-[80px] md:w-[150px] h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold-muted)] to-transparent my-6 md:my-10 shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
           <p className="font-sans text-sm md:text-base tracking-widest text-gray-300 max-w-2xl uppercase leading-relaxed mb-6">
             Premium streetwear designed for those who walk the path of inner alignment.
           </p>
-          <div className="bg-black/50 border border-[rgba(212,175,55,0.3)] p-6 max-w-3xl mb-12 backdrop-blur-sm">
-            <p className="font-sans text-xs md:text-sm tracking-widest text-[var(--color-gold-muted)] uppercase leading-relaxed">
+          <div className="bg-black/50 border border-[rgba(212,175,55,0.3)] p-4 md:p-6 max-w-3xl mb-6 md:mb-12 backdrop-blur-sm">
+            <p className="font-sans text-[0.65rem] md:text-sm tracking-widest text-[var(--color-gold-muted)] uppercase leading-relaxed">
               Every artifact is made to order, embroidered locally, and passes through my hands to guarantee quality. Because of this process, <strong className="text-white">only 10 pieces</strong> of each design are made before moving on to new prints.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
-            <Link href="#shop-all" className="bg-[var(--color-gold)] shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:scale-105 text-black px-10 py-4 font-bold tracking-widest uppercase text-sm transition-all duration-300">Shop The Archive</Link>
-            <Link href="/symbols" className="border border-[var(--color-gold-muted)] text-[var(--color-gold-muted)] px-10 py-4 font-bold tracking-widest uppercase text-sm hover:bg-[rgba(212,175,55,0.05)] transition-colors">Decode the Symbols</Link>
+          <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 mb-8 w-full sm:w-auto">
+            <Link href="#shop-all" className="w-full sm:w-auto bg-[var(--color-gold)] shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:scale-105 text-black px-8 py-4 md:px-10 font-bold tracking-widest uppercase text-xs md:text-sm transition-all duration-300">Shop The Archive</Link>
+            <Link href="/symbols" className="w-full sm:w-auto border border-[var(--color-gold-muted)] text-[var(--color-gold-muted)] px-8 py-4 md:px-10 font-bold tracking-widest uppercase text-xs md:text-sm hover:bg-[rgba(212,175,55,0.05)] transition-colors">Decode the Symbols</Link>
           </div>
           
           <a href="#reviews" className="flex items-center gap-2 group inline-flex cursor-pointer transition-opacity hover:opacity-80">

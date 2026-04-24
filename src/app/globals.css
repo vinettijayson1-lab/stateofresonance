@@ -17,7 +17,7 @@
   --font-serif: var(--font-playfair);
 }
 
-* { box-sizing: border-box; padding: 0; margin: 0; }
+* { box-sizing: border-box; padding: 0; margin: 0; -webkit-tap-highlight-color: transparent; }
 
 html {
   /* Prevent iOS Safari auto-zoom on inputs */

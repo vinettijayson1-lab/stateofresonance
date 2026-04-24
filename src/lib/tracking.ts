@@ -23,33 +23,7 @@ const fbq = () => win().fbq as (...a: unknown[]) => void;
 const gtag = () => win().gtag as (...a: unknown[]) => void;
 const price = (p: string) => parseFloat(p.replace(/[^0-9.]/g, '')) || 0;
 
-// NEW: Page View tracking (Crucial for Collabs "Click" metrics)
-export function trackPageView(url: string) {
-  if (hasFbq()) fbq()('track', 'PageView');
-  if (hasGtag()) gtag()('event', 'page_view', { page_path: url });
-  
-  if (hasShopify()) {
-    const Shopify = win().Shopify as any;
-    if (Shopify.analytics && typeof Shopify.analytics.publish === 'function') {
-      Shopify.analytics.publish('page_viewed', { 
-        page: { url: window.location.href, path: url } 
-      });
-    }
-  }
-}
 
-export function trackViewContent(product: ProductData) {
-  const v = price(product.price);
-  if (hasFbq()) fbq()('track', 'ViewContent', { content_name: product.title, content_ids: [product.id], content_type: 'product', value: v, currency: 'CAD' });
-  if (hasGtag()) gtag()('event', 'view_item', { currency: 'CAD', value: v, items: [{ item_id: product.id, item_name: product.title, item_category: product.category || 'Streetwear', price: v }] });
-  
-  if (hasShopify()) {
-    const Shopify = win().Shopify as any;
-    if (Shopify.analytics && typeof Shopify.analytics.publish === 'function') {
-      Shopify.analytics.publish('product_viewed', { product: { id: product.id, title: product.title, price: v } });
-    }
-  }
-}
 
 export function trackAddToCart(product: ProductData, quantity = 1) {
   const v = price(product.price) * quantity;
