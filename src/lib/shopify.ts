@@ -101,7 +101,7 @@ function cleanImageUrl(url: string): string {
 }
 
 function prioritizeFrontImage(images: {url: string, alt: string}[]): {url: string, alt: string} {
-  if (!images.length) return { url: '/luxury-occult-bg.png', alt: 'State of Resonance' };
+  if (!images.length) return { url: '/luxury-occult-bg.webp', alt: 'State of Resonance' };
   
   const front = images.find(i => /front|model|main/i.test(i.alt) || /front|model/i.test(i.url));
   if (front) return front;

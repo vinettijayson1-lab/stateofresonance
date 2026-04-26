@@ -12,13 +12,20 @@ const SOCIAL_IMAGES = [
 
 export default async function Home() {
   const allProducts = await fetchProducts();
+  
+  // Sort products to push gateway items ($60 tees) to the top to lower the psychological barrier for cold traffic.
+  const sortedProducts = [...allProducts].sort((a, b) => {
+    const priceA = parseFloat(a.price.replace(/[^0-9.]/g, '')) || 999;
+    const priceB = parseFloat(b.price.replace(/[^0-9.]/g, '')) || 999;
+    return priceA - priceB;
+  });
 
   return (
     <div className="min-h-screen bg-black">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative w-full min-h-[85vh] md:min-h-[100vh] pt-20 md:pt-40 pb-12 md:pb-20 flex flex-col items-center justify-center overflow-hidden border-b border-[rgba(212,175,55,0.15)]">
-        <Image src="/hero-celestial.png" alt="State of Resonance — Occult Luxury Streetwear" fill priority sizes="(max-width: 768px) 100vw, 100vw" className="object-cover opacity-60 scale-[1.02]" />
+      <section className="relative w-full min-h-[85vh] md:min-h-[100vh] pt-16 md:pt-40 pb-8 md:pb-20 flex flex-col items-center justify-center overflow-hidden border-b border-[rgba(212,175,55,0.15)]">
+        <Image src="/hero-celestial.webp" alt="State of Resonance — Occult Luxury Streetwear" fill priority sizes="(max-width: 768px) 100vw, 100vw" className="object-cover opacity-60 scale-[1.02]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-[rgba(0,0,0,0.8)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.05)_0%,_transparent_60%)] pointer-events-none" />
 
@@ -26,11 +33,11 @@ export default async function Home() {
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl xl:text-[7.5rem] tracking-[0.05em] xl:tracking-[0.08em] text-white mb-4 md:mb-6 uppercase drop-shadow-[0_10px_25px_rgba(255,255,255,0.4)] leading-none max-w-5xl">
             Wear the Symbols That Shape You
           </h1>
-          <div className="w-[80px] md:w-[150px] h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold-muted)] to-transparent my-6 md:my-10 shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
+          <div className="w-[80px] md:w-[150px] h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold-muted)] to-transparent my-4 md:my-10 shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
           <p className="font-sans text-sm md:text-base tracking-widest text-gray-300 max-w-2xl uppercase leading-relaxed mb-6">
             Premium streetwear designed for those who walk the path of inner alignment.
           </p>
-          <div className="bg-black/50 border border-[rgba(212,175,55,0.3)] p-4 md:p-6 max-w-3xl mb-6 md:mb-12 backdrop-blur-sm">
+          <div className="bg-black/50 border border-[rgba(212,175,55,0.3)] p-4 md:p-6 max-w-3xl mb-4 md:mb-12 backdrop-blur-sm">
             <p className="font-sans text-[0.65rem] md:text-sm tracking-widest text-[var(--color-gold-muted)] uppercase leading-relaxed">
               Every artifact is made to order, embroidered locally, and passes through my hands to guarantee quality. Because of this process, <strong className="text-white">only 10 pieces</strong> of each design are made before moving on to new prints.
             </p>
@@ -72,7 +79,7 @@ export default async function Home() {
         </div>
         {allProducts.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16 w-full place-items-center">
-            {allProducts.map((p, index) => <ProductCard key={p.id} p={p} priority={index < 3} />)}
+            {sortedProducts.map((p, index) => <ProductCard key={p.id} p={p} priority={index < 3} />)}
           </div>
         )}
       </section>
@@ -92,7 +99,7 @@ export default async function Home() {
           <p className="mt-12 text-[var(--color-gold-muted)] font-serif italic text-xl tracking-wide">Crafted for presence. Built to last.</p>
         </div>
         <div className="aspect-[4/5] relative bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] overflow-hidden">
-          <Image src="/fabric-texture.png" alt="450gsm heavyweight cotton close-up" fill className="object-cover opacity-80 mix-blend-luminosity hover:opacity-100 hover:scale-105 transition-all duration-700 hover:mix-blend-normal" />
+          <Image src="/fabric-texture.webp" alt="450gsm heavyweight cotton close-up" fill className="object-cover opacity-80 mix-blend-luminosity hover:opacity-100 hover:scale-105 transition-all duration-700 hover:mix-blend-normal" />
         </div>
       </section>
 

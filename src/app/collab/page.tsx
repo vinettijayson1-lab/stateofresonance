@@ -134,7 +134,7 @@ export default function CollabPage() {
 
           <p className="text-gray-400 text-sm md:text-base font-sans tracking-wide leading-relaxed max-w-xl mx-auto mb-12">
             No gatekeeping. No follower minimums. No fake energy.
-            If your aesthetic, your audience, and your intention align with what we're building — you belong in this circle.
+            If your aesthetic, your audience, and your intention align with what we&apos;re building — you belong in this circle.
           </p>
 
           <a
@@ -208,7 +208,7 @@ export default function CollabPage() {
               <p className="text-[var(--color-gold)] uppercase tracking-[0.4em] text-xs mb-4">No Application Needed for This Part</p>
               <h2 className="font-serif text-4xl md:text-5xl text-white uppercase tracking-widest">The Vibe Check</h2>
               <p className="text-gray-500 text-sm mt-4 font-sans">
-                We don't have a rigid checklist. But if these land for you — you're already in.
+                We don&apos;t have a rigid checklist. But if these land for you — you&apos;re already in.
               </p>
             </div>
 
@@ -230,7 +230,7 @@ export default function CollabPage() {
 
             <div className="mt-14 text-center">
               <p className="text-[var(--color-gold-muted)] font-serif italic text-xl md:text-2xl mb-8">
-                "Style is an extension of spirit."
+                &quot;Style is an extension of spirit.&quot;
               </p>
               <a
                 href={COLLABS_URL}

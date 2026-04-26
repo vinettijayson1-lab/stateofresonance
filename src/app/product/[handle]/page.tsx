@@ -56,7 +56,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   const numericId = product.id.replace('gid://shopify/Product/', '');
   
   return (
-    <div className="w-full min-h-screen relative z-10 pt-32 lg:pt-40 pb-24 px-4 sm:px-8 max-w-7xl mx-auto flex flex-col">
+    <div className="w-full min-h-screen relative z-10 pt-24 lg:pt-40 pb-24 px-4 sm:px-8 max-w-7xl mx-auto flex flex-col">
       <nav className="mb-8 font-sans text-xs uppercase tracking-widest text-gray-500 flex gap-2">
         <Link href="/" className="hover:text-[var(--color-gold-muted)] transition-colors">Home</Link>
         <span>/</span>
@@ -170,7 +170,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
             {related.map(p => (
               <a key={p.id} href={`/product/${p.handle}`} className="group relative block transition-all duration-500 hover:-translate-y-2">
                 <div className="aspect-[4/5] bg-black border border-[rgba(255,255,255,0.05)] flex items-center justify-center p-4 relative overflow-hidden group-hover:border-[var(--color-gold-muted)] transition-colors">
-                  <div className="absolute inset-0 bg-[url('/esoteric-backdrop.png')] bg-cover bg-center opacity-50 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-[url('/esoteric-backdrop.webp')] bg-cover bg-center opacity-50 group-hover:opacity-100 transition-opacity" />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={p.image.url} alt={p.image.alt} className="w-full h-full object-contain relative z-10 drop-shadow-2xl group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 </div>
