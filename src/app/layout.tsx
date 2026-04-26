@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col bg-background text-foreground bg-noise relative">
         <AnnouncementBar />
         <HeaderNav />
-        <div className="fixed inset-0 pointer-events-none z-[-1] opacity-5 bg-[url('/luxury-occult-bg.png')] bg-cover bg-center mix-blend-overlay" />
+        <div className="fixed inset-0 pointer-events-none z-[-1] opacity-5 bg-[url('/luxury-occult-bg.webp')] bg-cover bg-center mix-blend-overlay" />
         <main className="flex-1 flex flex-col relative z-0">{children}</main>
         <ReviewQR />
         <Footer />

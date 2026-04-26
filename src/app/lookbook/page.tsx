@@ -35,7 +35,7 @@ export default function LookbookPage() {
         </div>
 
         {images.length === 0 ? (
-          <div className="text-center text-gray-600 py-10 md:py-20 font-sans tracking-widest uppercase text-sm">
+          <div className="text-center text-gray-400 py-10 md:py-20 font-sans tracking-widest uppercase text-sm">
             <p>[ Signal Lost ]</p>
           </div>
         ) : (
@@ -61,6 +61,7 @@ export default function LookbookPage() {
                   height={img.height}
                   className={`w-full h-auto object-cover transform scale-100 md:group-hover:scale-105 transition-transform duration-[1500ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${img.style === 'bw' ? 'contrast-125 grayscale' : 'saturate-50 contrast-125 sepia-[.15]'}`}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  quality={75}
                   loading={idx < 4 ? "eager" : "lazy"}
                 />
               </div>

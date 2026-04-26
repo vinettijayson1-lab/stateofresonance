@@ -11,7 +11,7 @@ PROJECT_DIR = r"C:\Users\jayvi\.gemini\antigravity\scratch\stateofresonance-v3"
 TARGET_DIR = os.path.join(PROJECT_DIR, "public", "lookbook")
 JSON_OUTPUT = os.path.join(PROJECT_DIR, "src", "content", "lookbook.json")
 
-MAX_DIMENSION = 1600 # Increased for huge hero images
+MAX_DIMENSION = 1000 # Optimized for mobile LCP
 TARGET_COUNT = 25
 
 def calculate_score(img):
@@ -88,7 +88,7 @@ def process_photos():
                 is_bw = i in bw_indices
                 img = apply_master_edit(img, is_bw)
                 
-                img.save(target_path, "WEBP", quality=90)
+                img.save(target_path, "WEBP", quality=80)
                 
                 lookbook_data.append({
                     "src": f"/lookbook/{target_filename}",
