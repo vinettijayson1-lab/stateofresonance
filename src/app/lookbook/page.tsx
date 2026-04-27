@@ -25,9 +25,9 @@ export default function LookbookPage() {
       <div className="relative z-10 py-16 md:py-32 px-4 md:px-12 max-w-[1800px] mx-auto">
         <div className="mb-12 md:mb-20 text-center">
           <p className="font-sans text-[0.65rem] md:text-xs tracking-[0.4em] md:tracking-[0.5em] text-gray-500 uppercase mb-3 md:mb-4">Archive 001</p>
-          <h2 className="font-playfair text-4xl md:text-5xl lg:text-7xl tracking-widest leading-tight mb-4 md:mb-6 uppercase">
+          <h1 className="font-playfair text-4xl md:text-5xl lg:text-7xl tracking-widest leading-tight mb-4 md:mb-6 uppercase">
             Master Collection
-          </h2>
+          </h1>
           <p className="text-gray-400 text-sm md:text-xl font-sans tracking-wide max-w-2xl mx-auto leading-relaxed px-4">
             We are the architects of the unseen. A brutalist manifestation of esoteric truth.
           </p>
