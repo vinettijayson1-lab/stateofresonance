@@ -24,38 +24,33 @@ export default async function Home() {
     <div className="min-h-screen bg-black">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative w-full min-h-[85vh] md:min-h-[100vh] pt-16 md:pt-40 pb-8 md:pb-20 flex flex-col items-center justify-center overflow-hidden border-b border-[rgba(212,175,55,0.15)]">
+      <section className="relative w-full min-h-[60vh] md:min-h-[100vh] pt-12 md:pt-40 pb-8 md:pb-20 flex flex-col items-center justify-center overflow-hidden border-b border-[rgba(212,175,55,0.15)]">
         <Image src="/hero-celestial.webp" alt="State of Resonance — Occult Luxury Streetwear" fill priority sizes="(max-width: 768px) 100vw, 100vw" className="object-cover opacity-60 scale-[1.02]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-[rgba(0,0,0,0.8)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.05)_0%,_transparent_60%)] pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-7xl mx-auto w-full">
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl xl:text-[7.5rem] tracking-[0.05em] xl:tracking-[0.08em] text-white mb-4 md:mb-6 uppercase drop-shadow-[0_10px_25px_rgba(255,255,255,0.4)] leading-none max-w-5xl">
+        <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-7xl mx-auto w-full">
+          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl xl:text-[7.5rem] tracking-[0.05em] xl:tracking-[0.08em] text-white mb-2 md:mb-6 uppercase drop-shadow-[0_10px_25px_rgba(255,255,255,0.4)] leading-none max-w-5xl">
             Wear the Symbols That Shape You
           </h1>
-          <div className="w-[80px] md:w-[150px] h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold-muted)] to-transparent my-4 md:my-10 shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
-          <p className="font-sans text-sm md:text-base tracking-widest text-gray-300 max-w-2xl uppercase leading-relaxed mb-6">
+          <div className="w-[60px] md:w-[150px] h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold-muted)] to-transparent my-3 md:my-10 shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
+          <p className="font-sans text-xs md:text-base tracking-widest text-gray-300 max-w-2xl uppercase leading-relaxed mb-6 md:mb-12">
             Premium streetwear designed for those who walk the path of inner alignment.
           </p>
-          <div className="bg-black/50 border border-[rgba(212,175,55,0.3)] p-4 md:p-6 max-w-3xl mb-4 md:mb-12 backdrop-blur-sm">
-            <p className="font-sans text-[0.65rem] md:text-sm tracking-widest text-[var(--color-gold-muted)] uppercase leading-relaxed">
-              Every artifact is made to order, embroidered locally, and passes through my hands to guarantee quality. Because of this process, <strong className="text-white">only 10 pieces</strong> of each design are made before moving on to new prints.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 mb-8 w-full sm:w-auto">
-            <Link href="#shop-all" className="w-full sm:w-auto bg-[var(--color-gold)] shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:scale-105 text-black px-8 py-4 md:px-10 font-bold tracking-widest uppercase text-xs md:text-sm transition-all duration-300">Shop The Archive</Link>
-            <Link href="/symbols" className="w-full sm:w-auto border border-[var(--color-gold-muted)] text-[var(--color-gold-muted)] px-8 py-4 md:px-10 font-bold tracking-widest uppercase text-xs md:text-sm hover:bg-[rgba(212,175,55,0.05)] transition-colors">Decode the Symbols</Link>
+          <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-6 mb-6 md:mb-8 w-full sm:w-auto">
+            <Link href="#shop-all" className="w-full sm:w-auto bg-[var(--color-gold)] shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:scale-105 text-black px-6 py-3 md:px-10 md:py-4 font-bold tracking-widest uppercase text-[10px] md:text-sm transition-all duration-300">Shop The Archive</Link>
+            <Link href="/symbols" className="w-full sm:w-auto border border-[var(--color-gold-muted)] text-[var(--color-gold-muted)] px-6 py-3 md:px-10 md:py-4 font-bold tracking-widest uppercase text-[10px] md:text-sm hover:bg-[rgba(212,175,55,0.05)] transition-colors">Decode the Symbols</Link>
           </div>
           
           <a href="#reviews" className="flex items-center gap-2 group inline-flex cursor-pointer transition-opacity hover:opacity-80">
             <div className="flex gap-1 text-[var(--color-gold-muted)]">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 md:w-4 md:h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 md:w-4 md:h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 md:w-4 md:h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 md:w-4 md:h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 md:w-4 md:h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
             </div>
-            <span className="text-xs text-gray-400 font-sans tracking-wide uppercase">4.9/5 from Verified Buyers</span>
+            <span className="text-[10px] md:text-xs text-gray-400 font-sans tracking-wide uppercase">4.9/5 from Verified Buyers</span>
           </a>
         </div>
       </section>
@@ -88,7 +83,7 @@ export default async function Home() {
       <section className="py-20 px-6 max-w-6xl mx-auto border-b border-[rgba(255,255,255,0.05)] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-24 items-center">
         <div>
           <h2 className="font-serif text-3xl md:text-4xl text-white mb-10 uppercase tracking-widest leading-tight">Why Our Pieces<br />Feel Different</h2>
-          <ul className="space-y-6">
+          <ul className="space-y-6 mb-8">
             {["450gsm heavyweight cotton", "Oversized, structured fit", "Double‑stitched construction", "Designed in Canada", "Limited to small‑batch drops"].map((item, i) => (
               <li key={i} className="flex items-center gap-4">
                 <div className="w-1.5 h-1.5 bg-[var(--color-gold-muted)] rounded-full shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
@@ -96,7 +91,14 @@ export default async function Home() {
               </li>
             ))}
           </ul>
-          <p className="mt-12 text-[var(--color-gold-muted)] font-serif italic text-xl tracking-wide">Crafted for presence. Built to last.</p>
+          
+          <div className="bg-[rgba(212,175,55,0.05)] border border-[rgba(212,175,55,0.3)] p-5 md:p-6 mb-10 rounded-sm">
+            <p className="font-sans text-[0.7rem] md:text-sm tracking-widest text-[var(--color-gold-muted)] uppercase leading-relaxed">
+              Every artifact is made to order, embroidered locally, and passes through my hands to guarantee quality. Because of this process, <strong className="text-white">only 10 pieces</strong> of each design are made before moving on to new prints.
+            </p>
+          </div>
+
+          <p className="text-[var(--color-gold-muted)] font-serif italic text-xl tracking-wide">Crafted for presence. Built to last.</p>
         </div>
         <div className="aspect-[4/5] relative bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] overflow-hidden">
           <Image src="/fabric-texture.webp" alt="450gsm heavyweight cotton close-up" fill className="object-cover opacity-80 mix-blend-luminosity hover:opacity-100 hover:scale-105 transition-all duration-700 hover:mix-blend-normal" />

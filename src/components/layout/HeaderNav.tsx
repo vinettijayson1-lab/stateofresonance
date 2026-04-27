@@ -24,7 +24,7 @@ export default function HeaderNav() {
   const count = items.reduce((s, i) => s + i.quantity, 0);
 
   return (
-    <header className="sticky top-0 w-full z-50 bg-black border-b border-[rgba(255,255,255,0.05)]">
+    <header className="sticky top-0 w-full z-50 bg-black/60 backdrop-blur-md border-b border-[rgba(255,255,255,0.05)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
         <Link href="/" className="font-serif text-lg tracking-[0.15em] text-white uppercase hover:text-[var(--color-gold-muted)] transition-colors">
           State of Resonance
