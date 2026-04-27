@@ -44,14 +44,7 @@ export default function LookbookPage() {
                 key={idx} 
                 className="group relative overflow-hidden break-inside-avoid bg-[#111] border border-white/5 shadow-xl md:shadow-2xl rounded-sm"
               >
-                {/* Hover overlay - made to show partially on mobile or on tap */}
-                <div className="absolute inset-0 bg-black/40 md:bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-700 z-20 flex items-center justify-center backdrop-blur-[2px] md:backdrop-blur-sm">
-                  <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="font-sans tracking-[0.2em] md:tracking-[0.3em] text-white/90 uppercase text-[0.65rem] md:text-xs border border-white/20 px-4 py-2 md:px-6 md:py-3 block mb-2">
-                      {img.style === 'bw' ? 'Noir Edition' : 'Cinematic'}
-                    </span>
-                  </div>
-                </div>
+
 
                 <Image
                   src={img.src}
