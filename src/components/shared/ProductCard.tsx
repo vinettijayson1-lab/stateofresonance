@@ -7,7 +7,7 @@ export default function ProductCard({ p, priority = false }: { p: ShopifyProduct
 
   return (
     <Link href={`/product/${p.handle}`} className="group w-full max-w-sm flex flex-col items-center">
-      <div className="w-full aspect-[4/5] relative border border-[rgba(255,255,255,0.05)] overflow-hidden bg-[url('/esoteric-backdrop.png')] bg-cover bg-center flex items-center justify-center p-4 md:p-8">
+      <div className="w-full aspect-[4/5] relative border border-[rgba(255,255,255,0.05)] overflow-hidden bg-[url('/esoteric-backdrop.webp')] bg-cover bg-center flex items-center justify-center p-4 md:p-8">
         <div className="absolute inset-0 bg-black/15 group-hover:bg-black/5 transition-colors z-[1]" />
         
         {/* Compare At Badge */}
@@ -21,6 +21,7 @@ export default function ProductCard({ p, priority = false }: { p: ShopifyProduct
           src={p.image.url} 
           alt={p.image.alt} 
           fill 
+          sizes="(max-width: 768px) 75vw, (max-width: 1200px) 40vw, 30vw"
           priority={priority}
           loading={priority ? undefined : "lazy"}
           className="object-contain p-8 drop-shadow-[0_20px_30px_rgba(0,0,0,0.6)] group-hover:brightness-105 group-hover:scale-105 transition-all duration-700 ease-in-out relative z-[2]" 

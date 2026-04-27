@@ -41,8 +41,8 @@ export default async function Home() {
             Premium streetwear designed for those who walk the path of inner alignment.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-6 mb-6 md:mb-8 w-full sm:w-auto">
-            <Link href="#shop-all" className="w-full sm:w-auto bg-[var(--color-gold)] shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:scale-105 text-black px-6 py-3 md:px-10 md:py-4 font-bold tracking-widest uppercase text-[10px] md:text-sm transition-all duration-300">Shop The Archive</Link>
-            <Link href="/symbols" className="w-full sm:w-auto border border-[var(--color-gold-muted)] text-[var(--color-gold-muted)] px-6 py-3 md:px-10 md:py-4 font-bold tracking-widest uppercase text-[10px] md:text-sm hover:bg-[rgba(212,175,55,0.05)] transition-colors">Decode the Symbols</Link>
+            <Link href="#shop-all" className="w-full sm:w-auto bg-[var(--color-gold)] shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:scale-105 text-black px-6 min-h-[48px] flex items-center justify-center md:px-10 font-bold tracking-widest uppercase text-[10px] md:text-sm transition-all duration-300">Shop The Archive</Link>
+            <Link href="/symbols" className="w-full sm:w-auto border border-[var(--color-gold-muted)] text-[var(--color-gold-muted)] px-6 min-h-[48px] flex items-center justify-center md:px-10 font-bold tracking-widest uppercase text-[10px] md:text-sm hover:bg-[rgba(212,175,55,0.05)] transition-colors">Decode the Symbols</Link>
           </div>
           
           <a href="#reviews" className="flex items-center gap-2 group inline-flex cursor-pointer transition-opacity hover:opacity-80">
