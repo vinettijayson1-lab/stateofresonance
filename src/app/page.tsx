@@ -3,6 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import EmailCaptureForm from "@/components/layout/EmailCaptureForm";
 import ProductCard from "@/components/shared/ProductCard";
+import ScrollReveal from "@/components/shared/ScrollReveal";
+import HorizontalCarousel from "@/components/shared/HorizontalCarousel";
+import StickyBottomBar from "@/components/layout/StickyBottomBar";
 
 const SOCIAL_IMAGES = [
   { src: "/jayson-social.jpg", label: "The Frequency Spreads", url: "https://www.facebook.com/photo?fbid=10164200068961063&set=a.10154362149296063" },
@@ -25,11 +28,11 @@ export default async function Home() {
 
       {/* ═══════ HERO ═══════ */}
       <section className="relative w-full min-h-[60vh] md:min-h-[100vh] pt-12 md:pt-40 pb-8 md:pb-20 flex flex-col items-center justify-center overflow-hidden border-b border-[rgba(212,175,55,0.15)]">
-        <Image src="/hero-celestial.webp" alt="State of Resonance — Occult Luxury Streetwear" fill priority sizes="(max-width: 768px) 100vw, 100vw" className="object-cover opacity-60 scale-[1.02]" />
+        <Image src="/hero-celestial.webp" alt="State of Resonance — Occult Luxury Streetwear" fill priority sizes="(max-width: 768px) 100vw, 100vw" className="object-cover opacity-60 animate-ken-burns" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-[rgba(0,0,0,0.8)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.05)_0%,_transparent_60%)] pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-7xl mx-auto w-full">
+        <ScrollReveal className="relative z-10 flex flex-col items-center text-center px-4 max-w-7xl mx-auto w-full mt-auto mb-auto">
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl xl:text-[7.5rem] tracking-[0.05em] xl:tracking-[0.08em] text-white mb-2 md:mb-6 uppercase drop-shadow-[0_10px_25px_rgba(255,255,255,0.4)] leading-none max-w-5xl">
             Wear the Symbols That Shape You
           </h1>
@@ -52,7 +55,7 @@ export default async function Home() {
             </div>
             <span className="text-[10px] md:text-xs text-gray-400 font-sans tracking-wide uppercase">4.9/5 from Verified Buyers</span>
           </a>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ═══════ MEANING ═══════ */}
@@ -67,15 +70,31 @@ export default async function Home() {
       {/* ═══════ ALL PRODUCTS ═══════ */}
       <section id="shop-all" className="py-20 px-6 max-w-[1400px] mx-auto text-center border-b border-[rgba(255,255,255,0.05)]">
         <div className="mb-12">
-          <h2 className="font-serif text-3xl md:text-5xl text-white mb-4 uppercase tracking-widest">The Archive</h2>
-          <div className="text-gray-400 font-sans tracking-widest uppercase text-xs md:text-sm flex flex-col md:flex-row justify-center items-center gap-2 md:gap-6">
-            <span>Heavyweight silhouettes.</span><span className="hidden md:block">•</span><span>Intentional design.</span><span className="hidden md:block">•</span><span>Limited quantities.</span>
-          </div>
+          <ScrollReveal>
+            <h2 className="font-serif text-3xl md:text-5xl text-white mb-4 uppercase tracking-widest">The Archive</h2>
+            <div className="text-gray-400 font-sans tracking-widest uppercase text-xs md:text-sm flex flex-col md:flex-row justify-center items-center gap-2 md:gap-6">
+              <span>Heavyweight silhouettes.</span><span className="hidden md:block">•</span><span>Intentional design.</span><span className="hidden md:block">•</span><span>Limited quantities.</span>
+            </div>
+          </ScrollReveal>
         </div>
         {allProducts.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16 w-full place-items-center">
-            {sortedProducts.map((p, index) => <ProductCard key={p.id} p={p} priority={index < 3} />)}
-          </div>
+          <ScrollReveal>
+            {/* Mobile Carousel */}
+            <div className="md:hidden -mx-6">
+              <HorizontalCarousel>
+                {sortedProducts.slice(0, 6).map((p, index) => (
+                  <div key={p.id} className="min-w-[75vw] snap-center">
+                    <ProductCard p={p} priority={index < 3} />
+                  </div>
+                ))}
+              </HorizontalCarousel>
+            </div>
+            
+            {/* Desktop Grid */}
+            <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 mt-16 w-full place-items-center">
+              {sortedProducts.map((p, index) => <ProductCard key={p.id} p={p} priority={index < 3} />)}
+            </div>
+          </ScrollReveal>
         )}
       </section>
 
@@ -155,12 +174,14 @@ export default async function Home() {
 
       {/* ═══════ EMAIL CAPTURE ═══════ */}
       <section className="py-20 border-t border-[rgba(255,255,255,0.05)] bg-[rgba(212,175,55,0.02)]">
-        <div className="max-w-2xl mx-auto text-center px-6">
+        <ScrollReveal className="max-w-2xl mx-auto text-center px-6">
           <h2 className="font-serif text-3xl text-white mb-6 uppercase tracking-widest">Decode Your Symbol</h2>
           <p className="text-sm font-sans tracking-widest text-gray-400 uppercase leading-relaxed mb-10">Get a free guide explaining the meaning behind the symbols in our collection, plus early access to drops.</p>
           <EmailCaptureForm />
-        </div>
+        </ScrollReveal>
       </section>
+
+      <StickyBottomBar />
 
     </div>
   );
