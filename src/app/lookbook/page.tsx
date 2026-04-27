@@ -59,7 +59,7 @@ export default function LookbookPage() {
                   alt={img.alt}
                   width={img.width}
                   height={img.height}
-                  className={`w-full h-auto object-cover transform scale-100 md:group-hover:scale-105 transition-transform duration-[1500ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${img.style === 'bw' ? 'contrast-125 grayscale' : 'saturate-50 contrast-125 sepia-[.15]'}`}
+                  className={`w-full h-auto object-cover transform scale-100 md:group-hover:scale-105 transition-transform duration-[1500ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${img.style === 'bw' ? 'grayscale contrast-105' : 'contrast-105'}`}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                   quality={75}
                   loading={idx < 4 ? "eager" : "lazy"}
