@@ -41,7 +41,7 @@ export default function HeaderNav() {
         }`}
       >
         <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
-          <nav className="flex items-center h-16 md:h-20">
+          <nav className="flex items-center justify-between h-16 md:h-20">
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileMenuOpen(true)}
@@ -51,21 +51,21 @@ export default function HeaderNav() {
               <Menu className="w-5 h-5" />
             </button>
 
-            {/* Logo - left */}
+            {/* Logo - left with proper spacing */}
             <Link 
               href="/" 
-              className="font-serif text-lg md:text-xl tracking-wide text-[#fafafa] mr-8 md:mr-12"
+              className="font-serif text-lg md:text-xl tracking-wide text-[#fafafa] flex-shrink-0"
             >
               State of Resonance
             </Link>
 
-            {/* Desktop nav links */}
-            <div className="hidden md:flex items-center gap-6 flex-1">
+            {/* Desktop nav links - centered */}
+            <div className="hidden md:flex items-center justify-center gap-6 flex-1 mx-8">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-[11px] font-medium tracking-[0.08em] uppercase text-[#737373] hover:text-[#fafafa] transition-colors whitespace-nowrap"
+                  className="text-[10px] font-medium tracking-[0.08em] uppercase text-[#737373] hover:text-[#fafafa] transition-colors whitespace-nowrap"
                 >
                   {link.label}
                 </Link>
@@ -75,7 +75,7 @@ export default function HeaderNav() {
             {/* Cart - right */}
             <button
               onClick={toggleCart}
-              className="relative p-2 ml-auto text-[#fafafa] hover:text-[#737373] transition-colors"
+              className="relative p-2 text-[#fafafa] hover:text-[#737373] transition-colors flex-shrink-0"
               aria-label="Open cart"
             >
               <ShoppingBag className="w-5 h-5" />

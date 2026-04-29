@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import ProductCard from "@/components/shared/ProductCard";
 import { ArrowRight } from "lucide-react";
-import Script from "next/script";
 
 export default async function Home() {
   const allProducts = await fetchProducts();
@@ -118,26 +117,6 @@ export default async function Home() {
             <h2 className="font-serif text-3xl md:text-4xl text-[#fafafa]">
               What People Say
             </h2>
-          </div>
-          
-          {/* TrustIndex Reviews Feed Widget */}
-          <div className="mb-12">
-            <Script 
-              src="https://cdn.trustindex.io/loader-feed.js?b0f2da868a2e12699466c6e2535" 
-              strategy="afterInteractive"
-              defer
-              async
-            />
-          </div>
-          
-          {/* TrustIndex Reviews Widget */}
-          <div className="mb-8">
-            <Script 
-              src="https://cdn.trustindex.io/loader.js?8c1bb1d6840c23179906838fc83" 
-              strategy="afterInteractive"
-              defer
-              async
-            />
           </div>
           
           {/* Featured review */}

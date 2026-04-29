@@ -8,7 +8,6 @@ import ProductAccordion from "@/components/pdp/ProductAccordion";
 import TrustBadges from "@/components/pdp/TrustBadges";
 import RelatedProducts from "@/components/pdp/RelatedProducts";
 import { ChevronRight } from "lucide-react";
-import Script from "next/script";
 
 const BASE_URL = "https://stateofresonance.ca";
 
@@ -176,29 +175,6 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
             {/* Trust Badges - Right below add to cart for conversion */}
             <div className="mt-8">
               <TrustBadges />
-            </div>
-            
-            {/* TrustIndex Certified Secure Badge - Near Add to Cart for trust */}
-            <div className="mt-8 pt-8 border-t border-[#141414]">
-              <Script 
-                src="https://cdn.trustindex.io/loader-cert.js?89afbc870f02180fa3860457c48" 
-                strategy="afterInteractive"
-                defer
-                async
-              />
-            </div>
-            
-            {/* TrustIndex Reviews Widget on PDP */}
-            <div className="mt-6">
-              <p className="text-[11px] tracking-[0.2em] uppercase text-[#525252] mb-4 text-center">
-                Verified Reviews
-              </p>
-              <Script 
-                src="https://cdn.trustindex.io/loader.js?8c1bb1d6840c23179906838fc83" 
-                strategy="lazyOnload"
-                defer
-                async
-              />
             </div>
             
             {/* Payment methods */}
