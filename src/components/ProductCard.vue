@@ -168,7 +168,7 @@ onMounted(() => {
 <style scoped>
 .product-card {
   position: relative;
-  background: #000;
+  background: transparent;
   border: none;
   overflow: hidden;
   transition: var(--transition-premium);
@@ -187,7 +187,7 @@ onMounted(() => {
   display: block;
   aspect-ratio: 3/4;
   overflow: hidden;
-  background: #050505;
+  background: transparent;
   border: none;
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
@@ -209,6 +209,7 @@ onMounted(() => {
   object-position: center top;
   transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.5s ease;
   filter: none;
+  mix-blend-mode: lighten;
 }
 
 @media (hover: hover) and (pointer: fine) {

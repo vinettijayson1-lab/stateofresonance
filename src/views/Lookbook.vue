@@ -4,31 +4,31 @@ import { onMounted, ref } from 'vue'
 const loaded = ref(false)
 
 const shots = [
-  { src: '/images/upgraded/ps-edit-1.jpg', label: 'THE SEER', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'tall' },
-  { src: '/images/upgraded/ps-edit-4.jpg', label: 'RESONANCE', piece: 'OG Crewneck', handle: 'og-crewnwck', size: 'wide' },
-  { src: '/images/upgraded/ps-edit-3.jpg', label: 'VOID FREQUENCY', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'square' },
-  { src: '/images/upgraded/ps-edit-5.jpg', label: 'THE SIGNAL', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'square' },
-  { src: '/images/upgraded/ps-edit-2.jpg', label: 'THE CHANNEL', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'tall' },
-  { src: '/images/upgraded/urban-garment-dyed-hoodie-1.webp', label: 'EARTH FREQUENCY', piece: 'Garment Dyed Hoodie', handle: 'urban-garment-dyed-hoodie-1', size: 'wide' },
-  { src: '/images/upgraded/the-hermetic-scales-pullover.webp', label: 'HERMETIC ORDER', piece: 'Hermetic Scales Pullover', handle: 'the-hermetic-scales-pullover', size: 'square' },
-  { src: '/images/upgraded/the-hand-of-mysteries-pullover.webp', label: 'HAND OF MYSTERIES', piece: 'Hand of Mysteries Pullover', handle: 'the-hand-of-mysteries-pullover', size: 'tall' },
-  { src: '/images/upgraded/the-awakened-hand-pullover-1.webp', label: 'THE AWAKENED', piece: 'Awakened Hand Pullover', handle: 'the-awakened-hand-pullover-1', size: 'square' },
-  { src: '/images/upgraded/sacred-heart.webp', label: 'SACRED HEART', piece: 'Sacred Heart', handle: 'sacred-heart', size: 'wide' },
-  { src: '/images/upgraded/resonace.webp', label: 'RESONANCE', piece: 'Resonace Tee', handle: 'resonace', size: 'tall' },
-  { src: '/images/upgraded/oversized-faded-t-shirt.webp', label: 'FADED SIGNAL', piece: 'Oversized Faded Tee', handle: 'oversized-faded-t-shirt', size: 'square' },
-  { src: '/images/upgraded/oversized-faded-t-shirt-1.webp', label: 'FREQUENCY WASH', piece: 'Oversized Faded Tee', handle: 'oversized-faded-t-shirt', size: 'square' },
-  { src: '/images/upgraded/og-crewnwck.webp', label: 'THE ORIGINAL', piece: 'OG Crewneck', handle: 'og-crewnwck', size: 'wide' },
-  { src: '/images/upgraded/men-s-box-hoodie.webp', label: 'BOX GEOMETRY', piece: "Men's Box Hoodie", handle: 'men-s-box-hoodie', size: 'tall' },
-  { src: '/images/upgraded/her-resonance-hoodie.webp', label: 'HER FREQUENCY', piece: 'Her Resonance Hoodie', handle: 'her-resonance-hoodie', size: 'square' },
-  { src: '/images/upgraded/crop-hoodie.webp', label: 'CROPPED RITUAL', piece: 'Crop Hoodie', handle: 'crop-hoodie', size: 'wide' },
-  { src: '/images/upgraded/celestial-alignment.webp', label: 'CELESTIAL', piece: 'Celestial Alignment', handle: 'celestial-alignment', size: 'tall' },
-  { src: '/images/upgraded/unisex-premium-sweatshirt.webp', label: 'PREMIUM WEIGHT', piece: 'Unisex Premium Sweatshirt', handle: 'unisex-premium-sweatshirt', size: 'square' },
-  { src: '/images/upgraded/unisex-premium-mid-weight-hoodie-1.webp', label: 'MID WEIGHT', piece: 'Premium Mid-Weight Hoodie', handle: 'unisex-premium-mid-weight-hoodie-1', size: 'square' },
-  { src: '/images/upgraded/unisex-oversized-hoodie.webp', label: 'OVERSIZE FORM', piece: 'Unisex Oversized Hoodie', handle: 'unisex-oversized-hoodie', size: 'wide' },
-  { src: '/images/upgraded/unisex-garment-dyed-heavyweight-t-shirt.webp', label: '450 GSM', piece: 'Heavyweight Tee', handle: 'unisex-garment-dyed-heavyweight-t-shirt', size: 'tall' },
-  { src: '/images/upgraded/unisex-garment-dyed-heavyweight-t-shirt-2.webp', label: 'GARMENT DYED', piece: 'Heavyweight Tee', handle: 'unisex-garment-dyed-heavyweight-t-shirt', size: 'square' },
-  { src: '/images/upgraded/unisex-garment-dyed-heavyweight-t-shirt-3.webp', label: 'EARTH PIGMENT', piece: 'Heavyweight Tee', handle: 'unisex-garment-dyed-heavyweight-t-shirt', size: 'square' },
-  { src: '/images/upgraded/women-s-relaxed-v-neck-t-shirt.webp', label: 'FEMININE SIGNAL', piece: "Women's V-Neck", handle: 'women-s-relaxed-v-neck-t-shirt', size: 'wide' },
+  { src: '/images/lookbook/20260426_152121-edit-20260429171606.jpg', label: 'THE SEER', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'tall' },
+  { src: '/images/lookbook/20260426_152219-edit-20260429171820.jpg', label: 'RESONANCE', piece: 'OG Crewneck', handle: 'og-crewnwck', size: 'wide' },
+  { src: '/images/lookbook/20260426_152340-edit-20260429171747.jpg', label: 'VOID FREQUENCY', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'square' },
+  { src: '/images/lookbook/20260426_151256-edit-20260429172132.jpg', label: 'THE SIGNAL', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'square' },
+  { src: '/images/lookbook/20260426_151529-edit-20260429171533.jpg', label: 'THE CHANNEL', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'tall' },
+  { src: '/images/lookbook/hero_pose.jpg', label: 'EARTH FREQUENCY', piece: 'Garment Dyed Hoodie', handle: 'urban-garment-dyed-hoodie-1', size: 'wide' },
+  { src: '/images/lookbook/hero_pose_0.jpg', label: 'HERMETIC ORDER', piece: 'Hermetic Scales Pullover', handle: 'the-hermetic-scales-pullover', size: 'square' },
+  { src: '/images/lookbook/lookbook-hero.jpg', label: 'HAND OF MYSTERIES', piece: 'Hand of Mysteries Pullover', handle: 'the-hand-of-mysteries-pullover', size: 'tall' },
+  { src: '/images/lookbook/20260426_150335.jpg', label: 'THE AWAKENED', piece: 'Awakened Hand Pullover', handle: 'the-awakened-hand-pullover-1', size: 'square' },
+  { src: '/images/lookbook/20260426_150343.jpg', label: 'SACRED HEART', piece: 'Sacred Heart', handle: 'sacred-heart', size: 'wide' },
+  { src: '/images/lookbook/20260426_150444.jpg', label: 'RESONANCE', piece: 'Resonace Tee', handle: 'resonace', size: 'tall' },
+  { src: '/images/lookbook/20260426_150530.jpg', label: 'FADED SIGNAL', piece: 'Oversized Faded Tee', handle: 'oversized-faded-t-shirt', size: 'square' },
+  { src: '/images/lookbook/20260426_150732.jpg', label: 'FREQUENCY WASH', piece: 'Oversized Faded Tee', handle: 'oversized-faded-t-shirt', size: 'square' },
+  { src: '/images/lookbook/20260426_150747.jpg', label: 'THE ORIGINAL', piece: 'OG Crewneck', handle: 'og-crewnwck', size: 'wide' },
+  { src: '/images/lookbook/20260426_151256.jpg', label: 'BOX GEOMETRY', piece: "Men's Box Hoodie", handle: 'men-s-box-hoodie', size: 'tall' },
+  { src: '/images/lookbook/20260426_151344.jpg', label: 'HER FREQUENCY', piece: 'Her Resonance Hoodie', handle: 'her-resonance-hoodie', size: 'square' },
+  { src: '/images/lookbook/20260426_151349.jpg', label: 'CROPPED RITUAL', piece: 'Crop Hoodie', handle: 'crop-hoodie', size: 'wide' },
+  { src: '/images/lookbook/20260426_151450.jpg', label: 'CELESTIAL', piece: 'Celestial Alignment', handle: 'celestial-alignment', size: 'tall' },
+  { src: '/images/lookbook/20260426_151529.jpg', label: 'PREMIUM WEIGHT', piece: 'Unisex Premium Sweatshirt', handle: 'unisex-premium-sweatshirt', size: 'square' },
+  { src: '/images/lookbook/20260426_151538.jpg', label: 'MID WEIGHT', piece: 'Premium Mid-Weight Hoodie', handle: 'unisex-premium-mid-weight-hoodie-1', size: 'square' },
+  { src: '/images/lookbook/20260426_152138.jpg', label: 'OVERSIZE FORM', piece: 'Unisex Oversized Hoodie', handle: 'unisex-oversized-hoodie', size: 'wide' },
+  { src: '/images/lookbook/20260426_152314.jpg', label: '450 GSM', piece: 'Heavyweight Tee', handle: 'unisex-garment-dyed-heavyweight-t-shirt', size: 'tall' },
+  { src: '/images/lookbook/20260426_152405.jpg', label: 'GARMENT DYED', piece: 'Heavyweight Tee', handle: 'unisex-garment-dyed-heavyweight-t-shirt', size: 'square' },
+  { src: '/images/lookbook/20260426_152411.jpg', label: 'EARTH PIGMENT', piece: 'Heavyweight Tee', handle: 'unisex-garment-dyed-heavyweight-t-shirt', size: 'square' },
+  { src: '/images/lookbook/20260426_152525.jpg', label: 'FEMININE SIGNAL', piece: "Women's V-Neck", handle: 'women-s-relaxed-v-neck-t-shirt', size: 'wide' },
 ]
 
 onMounted(() => {
@@ -55,7 +55,7 @@ onMounted(() => {
     <!-- HERO -->
     <div class="lb-hero">
       <div class="lb-hero-bg">
-        <img src="/images/upgraded/ps-edit-4.jpg" alt="State of Resonance — The Lookbook" class="lb-hero-img" />
+        <img src="/images/lookbook/lookbook-hero.jpg" alt="State of Resonance — The Lookbook" class="lb-hero-img" />
         <div class="lb-hero-overlay"></div>
       </div>
       <div class="lb-hero-content">

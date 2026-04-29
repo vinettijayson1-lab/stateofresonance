@@ -120,23 +120,23 @@ const archiveLogs = [
         <ProductCard v-for="product in attireProducts.slice(0,6)" :key="product.id" :product="product" />
       </div>
       <div style="text-align:center;padding:4rem 0 2rem;">
-        <router-link to="/best-sellers" class="btn-outline">View Full Collection</router-link>
+        <router-link to="/collections/all" class="btn-outline">View Full Collection</router-link>
       </div>
     </section>
 
     <!-- SECTION 4: EDITORIAL LOOKBOOK (Fossil Brand Section) -->
     <section class="fossil-lookbook">
       <div class="fossil-lookbook-grid">
-        <div class="fossil-lookbook-main">
+        <router-link to="/product/urban-hoodie-1" class="fossil-lookbook-main" style="display:block;">
           <img src="/images/upgraded/the-hermetic-scales-pullover.webp" alt="Hermetic Scales — State of Resonance" class="fossil-lookbook-img" loading="lazy" />
-        </div>
+        </router-link>
         <div class="fossil-lookbook-side">
-          <div class="fossil-lookbook-top">
+          <router-link to="/product/men-s-box-hoodie" class="fossil-lookbook-top" style="display:block; height:100%;">
             <img src="/images/upgraded/urban-garment-dyed-hoodie-1.webp" alt="Urban Garment Dyed Hoodie" class="fossil-lookbook-img" loading="lazy" />
-          </div>
-          <div class="fossil-lookbook-bottom">
+          </router-link>
+          <router-link to="/product/crop-hoodie" class="fossil-lookbook-bottom" style="display:block; height:100%;">
             <img src="/images/upgraded/urban-hoodie-7.webp" alt="Urban Hoodie Editorial" class="fossil-lookbook-img" loading="lazy" />
-          </div>
+          </router-link>
         </div>
         <div class="fossil-lookbook-text-overlay">
           <span class="fossil-eyebrow">The Lookbook</span>

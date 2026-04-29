@@ -25,7 +25,7 @@ const router = createRouter({
     },
     {
       path: '/shop',
-      redirect: '/best-sellers'
+      redirect: '/collections/all'
     },
     {
       path: '/attire',

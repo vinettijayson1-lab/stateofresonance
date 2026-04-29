@@ -224,9 +224,12 @@ const isClothing = computed(() => {
 // Build the Shopify checkout URL
 const shopifyUrl = computed(() => {
   if (!product.value) return '#'
-  const vid = selectedVariant.value?.id || product.value.variantId
+  let vid = selectedVariant.value?.id || product.value.variantId
   if (vid) {
-    return `https://checkout.stateofresonance.ca/cart/${vid}:1`
+    if (typeof vid === 'string' && vid.includes('gid://')) {
+      vid = vid.split('/').pop() || vid
+    }
+    return `https://state-of-resonance.myshopify.com/cart/${vid}:1`
   }
   return `https://state-of-resonance.myshopify.com/products/${product.value.handle}`
 })
@@ -647,7 +650,7 @@ const onImgError = (e: any) => {
           </div>
           
           <!-- SECONDARY: Buy Now -->
-          <a v-if="isAvailable" :href="shopifyUrl" class="btn-acquire animate-glint full-width-buy" style="display: block; text-align: center; margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: #fff; text-decoration: none; letter-spacing: 0.2em; font-size: 0.8rem; text-transform: uppercase;" @click="addToCartWithQty">
+          <a v-if="isAvailable" :href="shopifyUrl" class="btn-solid-gold animate-glint full-width-buy" style="display: block; text-align: center; margin-top: 1rem; padding: 1.25rem; background: var(--color-gold); border: 1px solid var(--color-gold); color: #000; font-weight: bold; text-decoration: none; letter-spacing: 0.2em; font-size: 1rem; text-transform: uppercase; transition: transform 0.3s ease;" @click="addToCartWithQty">
             BUY NOW
           </a>
 
@@ -773,15 +776,15 @@ const onImgError = (e: any) => {
         <h2 class="hero-title" style="font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; text-transform: uppercase;">Where Intention Meets Aesthetic</h2>
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-        <div class="lifestyle-img-wrap" style="aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+        <router-link to="/product/urban-hoodie-1" class="lifestyle-img-wrap" style="display:block; aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
           <img src="/images/lifestyle_urban.png" alt="Editorial Streetwear Lifestyle" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
-        </div>
-        <div class="lifestyle-img-wrap" style="aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+        </router-link>
+        <router-link to="/product/unisex-oversized-hoodie" class="lifestyle-img-wrap" style="display:block; aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
           <img src="/images/lifestyle_model_fit.png" alt="Model wearing Boxy Crewneck" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
-        </div>
-        <div class="lifestyle-img-wrap" style="aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+        </router-link>
+        <router-link to="/best-sellers" class="lifestyle-img-wrap" style="display:block; aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
           <img src="/images/lifestyle_stitching.png" alt="Heavyweight Material Drop Macro" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
-        </div>
+        </router-link>
       </div>
 
     </section>
@@ -883,6 +886,7 @@ const onImgError = (e: any) => {
   height: 100%;
   object-fit: contain;
   background-color: transparent;
+  mix-blend-mode: lighten;
 }
 
 .construction-overlay {

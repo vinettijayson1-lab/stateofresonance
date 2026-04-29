@@ -4,31 +4,31 @@ import axios from 'axios';
 const getLuxImage = (handle: string, originalImage: string): string => {
   // Luxury esoteric occult background overrides — WebP for 88% size reduction
   const overrides: Record<string, string> = {
-    'the-hermetic-scales-pullover': '/images/upgraded/the-hermetic-scales-pullover.webp',
-    'the-hand-of-mysteries-pullover': '/images/upgraded/the-hand-of-mysteries-pullover.webp',
-    'the-awakened-hand-pullover-1': '/images/upgraded/the-awakened-hand-pullover-1.webp',
-    'urban-hoodie-9': '/images/upgraded/urban-hoodie-9.webp',
-    'oversized-faded-t-shirt-1': '/images/upgraded/oversized-faded-t-shirt-1.webp',
-    'unisex-garment-dyed-heavyweight-t-shirt-3': '/images/upgraded/unisex-garment-dyed-heavyweight-t-shirt-3.webp',
-    'unisex-garment-dyed-heavyweight-t-shirt-2': '/images/upgraded/unisex-garment-dyed-heavyweight-t-shirt-2.webp',
-    'urban-hoodie-8': '/images/upgraded/urban-hoodie-8.webp',
-    'urban-hoodie-7': '/images/upgraded/urban-hoodie-7.webp',
-    'urban-hoodie-6': '/images/upgraded/urban-hoodie-6.webp',
-    'unisex-garment-dyed-heavyweight-t-shirt': '/images/upgraded/unisex-garment-dyed-heavyweight-t-shirt.webp',
-    'urban-garment-dyed-hoodie-1': '/images/upgraded/urban-garment-dyed-hoodie-1.webp',
-    'crop-hoodie': '/images/upgraded/crop-hoodie.webp',
-    'women-s-relaxed-v-neck-t-shirt': '/images/upgraded/women-s-relaxed-v-neck-t-shirt.webp',
-    'unisex-premium-sweatshirt': '/images/upgraded/unisex-premium-sweatshirt.webp',
-    'unisex-premium-mid-weight-hoodie-1': '/images/upgraded/unisex-premium-mid-weight-hoodie-1.webp',
-    'unisex-oversized-hoodie': '/images/upgraded/unisex-oversized-hoodie.webp',
-    'urban-hoodie-1': '/images/upgraded/urban-hoodie-1.webp',
-    'og-crewnwck': '/images/upgraded/og-crewnwck.webp',
-    'men-s-box-hoodie': '/images/upgraded/men-s-box-hoodie.webp',
-    'her-resonance-hoodie': '/images/upgraded/her-resonance-hoodie.webp',
-    'celestial-alignment': '/images/upgraded/celestial-alignment.webp',
-    'oversized-faded-t-shirt': '/images/upgraded/oversized-faded-t-shirt.webp',
-    'resonace': '/images/upgraded/resonace.webp',
-    'sacred-heart': '/images/upgraded/sacred-heart.webp',
+    'the-hermetic-scales-pullover': '/images/lookbook/20260426_150335.jpg',
+    'the-hand-of-mysteries-pullover': '/images/lookbook/20260426_150343.jpg',
+    'the-awakened-hand-pullover-1': '/images/lookbook/20260426_150444.jpg',
+    'urban-hoodie-9': '/images/lookbook/20260426_150530.jpg',
+    'oversized-faded-t-shirt-1': '/images/lookbook/20260426_150732.jpg',
+    'unisex-garment-dyed-heavyweight-t-shirt-3': '/images/lookbook/20260426_150747.jpg',
+    'unisex-garment-dyed-heavyweight-t-shirt-2': '/images/lookbook/20260426_151256-edit-20260429172132.jpg',
+    'urban-hoodie-8': '/images/lookbook/20260426_151256.jpg',
+    'urban-hoodie-7': '/images/lookbook/20260426_151344.jpg',
+    'urban-hoodie-6': '/images/lookbook/20260426_151349.jpg',
+    'unisex-garment-dyed-heavyweight-t-shirt': '/images/lookbook/20260426_151450.jpg',
+    'urban-garment-dyed-hoodie-1': '/images/lookbook/20260426_151529-edit-20260429171533.jpg',
+    'crop-hoodie': '/images/lookbook/20260426_151529.jpg',
+    'women-s-relaxed-v-neck-t-shirt': '/images/lookbook/20260426_151538.jpg',
+    'unisex-premium-sweatshirt': '/images/lookbook/20260426_152121-edit-20260429171606.jpg',
+    'unisex-premium-mid-weight-hoodie-1': '/images/lookbook/20260426_152138.jpg',
+    'unisex-oversized-hoodie': '/images/lookbook/20260426_152219-edit-20260429171820.jpg',
+    'urban-hoodie-1': '/images/lookbook/20260426_152314.jpg',
+    'og-crewnwck': '/images/lookbook/20260426_152340-edit-20260429171747.jpg',
+    'men-s-box-hoodie': '/images/lookbook/20260426_152405.jpg',
+    'her-resonance-hoodie': '/images/lookbook/20260426_152411.jpg',
+    'celestial-alignment': '/images/lookbook/20260426_152525.jpg',
+    'oversized-faded-t-shirt': '/images/lookbook/20260426_152532.jpg',
+    'resonace': '/images/lookbook/20260426_152832.jpg',
+    'sacred-heart': '/images/lookbook/20260426_152918.jpg',
   };
   return overrides[handle] || originalImage;
 };
@@ -174,7 +174,9 @@ export default async function handler(req: any, res: any) {
 
     if (collection && collection !== 'undefined') {
        const col = Array.isArray(collection) ? collection[0].toLowerCase() : collection.toLowerCase();
-       if (col === 'attire') {
+       if (col === 'all') {
+           // Return all products, no filtering required
+       } else if (col === 'attire') {
            mapped = mapped.filter((p: any) => p.category === 'Attire' || p.category === 'Apparel' || String(p.type).includes('Vault') || String(p.category).includes('Ghost'));
        } else if (col === 'sanctuary') {
            mapped = mapped.filter((p: any) => ['Decor', 'Illuminations', 'Earth Relics', 'Artifacts', 'Boxes', 'Shrine'].includes(p.category));

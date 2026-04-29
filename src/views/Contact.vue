@@ -10,7 +10,8 @@ import {
   Instagram, 
   Music2, 
   Twitter,
-  ChevronRight
+  ChevronRight,
+  Users
 } from 'lucide-vue-next'
 
 const links = [
@@ -34,16 +35,10 @@ const links = [
     icon: ShoppingBag
   },
   {
-    title: '✦ INNER CIRCLE',
-    subtitle: 'Restricted access & priority drops.',
-    url: '/inner-circle',
-    icon: Crown
-  },
-  {
-    title: 'THE VOID TRANSMISSIONS',
-    subtitle: 'Read our latest esoteric manuscripts.',
-    url: '/transmissions',
-    icon: BookOpen
+    title: 'COLLABS APPLICATION',
+    subtitle: 'Work with us. Partner with the brand.',
+    url: '/collaborate',
+    icon: Users
   }
 ]
 

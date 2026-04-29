@@ -65,6 +65,12 @@ const sortedProducts = computed(() => {
 })
 
 const COLLECTION_META = computed<Record<string, { title: string; subtitle: string; categories: string[]; image?: string }>>(() => ({
+  'all': {
+    title: t('collections.all.title', 'The Complete Archive').replace('\n', ' '),
+    subtitle: t('collections.all.subtitle', 'All Artifacts & Attire'),
+    categories: [],
+    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+  },
   'the-ghost-and-bones': {
     title: t('collections.ghost_bones.title', 'The GHOST and BONES').replace('\n', ' '),
     subtitle: t('collections.ghost_bones.subtitle', 'Premium Resonance Attire'),

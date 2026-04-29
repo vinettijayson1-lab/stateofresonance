@@ -156,7 +156,7 @@ const auraStyle = computed(() => {
             <div class="resonance-trace"></div>
           </div>
 
-          <router-link to="/best-sellers" class="nav-link" @click="mobileMenuOpen = false">
+          <router-link to="/collections/all" class="nav-link" @click="mobileMenuOpen = false">
             <span class="label-primary" style="font-weight:500;letter-spacing:0.1em;">SHOP</span>
             <span class="label-hover">SHOP</span>
           </router-link>
@@ -249,7 +249,7 @@ const auraStyle = computed(() => {
             <div class="fossil-footer-col">
               <h4 class="fossil-footer-col-title">Navigate</h4>
               <nav class="fossil-footer-nav">
-                <router-link to="/best-sellers" class="fossil-footer-link">Shop</router-link>
+                <router-link to="/collections/all" class="fossil-footer-link">Shop</router-link>
                 <router-link to="/lookbook" class="fossil-footer-link">Lookbook</router-link>
                 <router-link to="/about" class="fossil-footer-link">About</router-link>
                 <router-link to="/transmissions" class="fossil-footer-link">Archives</router-link>
