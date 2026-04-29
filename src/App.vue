@@ -8,7 +8,6 @@ import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import CurrencySwitcher from './components/CurrencySwitcher.vue'
 const CartSidebar = defineAsyncComponent(() => import('./components/CartSidebar.vue'))
 const ExitIntentGate = defineAsyncComponent(() => import('./components/ExitIntentGate.vue'))
-import TrustindexWidget from './components/TrustindexWidget.vue'
 import { cart } from './store/cart'
 import { useResonanceStore } from './store/resonance'
 import { klaviyoService } from './services/klaviyo'
@@ -282,12 +281,15 @@ const auraStyle = computed(() => {
               <div class="fossil-trust-badge">
                 <div class="trustindex-badge-wrapper">
                   <!-- Trustindex cert badges — all 4 -->
-                  <div class="ti-rating-badge">
-                    <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
+                  <div class="ti-rating-badge" data-widget-id="1703b7e689202141f136d18372e">
+                    <div class="ti-badge-fallback">
+                      <span class="ti-badge-stars">★★★★★</span>
+                      <span class="ti-badge-label">5.0 · Google Reviews</span>
+                    </div>
                   </div>
-                  <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
-                  <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
-                  <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
+                  <div data-widget-id="ea9bfdd7014018072776609e74f"></div>
+                  <div data-widget-id="6e7277670e8c181e27066a48ca1"></div>
+                  <div data-widget-id="ef204277027f181fb316fe34015"></div>
                 </div>
               </div>
               <div class="fossil-footer-language" style="margin-top:2rem;">
@@ -303,9 +305,11 @@ const auraStyle = computed(() => {
             <!-- TRUSTINDEX WIDGET: Replace data-widget-id with your actual Trustindex widget ID from trustindex.io dashboard -->
             <div class="trustindex-widget-container">
               <!-- Main reviews widget + feed -->
-              <div id="trustindex-reviews-widget">
-                <TrustindexWidget src="https://cdn.trustindex.io/loader.js?8c1bb1d6840c23179906838fc83" />
-                <TrustindexWidget src="https://cdn.trustindex.io/loader-feed.js?b0f2da868a2e12699466c6e2535" />
+              <div id="trustindex-reviews-widget" data-widget-id="8c1bb1d6840c23179906838fc83">
+                <!-- Feed widget -->
+                <div data-widget-id="b0f2da868a2e12699466c6e2535"></div>
+                <!-- Fallback shown until Trustindex script loads -->
+                <p class="fossil-subtext" style="text-align:center;opacity:0.4;padding:2rem 0;">Loading verified reviews...</p>
               </div>
             </div>
           </div>
