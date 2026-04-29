@@ -4,11 +4,11 @@ import { onMounted, ref } from 'vue'
 const loaded = ref(false)
 
 const shots = [
-  { src: '/images/upgraded/urban-hoodie-9.webp', label: 'THE SEER', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'tall' },
-  { src: '/images/upgraded/urban-hoodie-8.webp', label: 'VOID WALKER', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'wide' },
-  { src: '/images/upgraded/urban-hoodie-7.webp', label: 'NOIR ALCHEMIST', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'square' },
-  { src: '/images/upgraded/urban-hoodie-6.webp', label: 'SIGNAL CARRIER', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'square' },
-  { src: '/images/upgraded/urban-hoodie-1.webp', label: 'THE CHANNEL', piece: 'Hermetic Scales Pullover', handle: 'the-hermetic-scales-pullover', size: 'tall' },
+  { src: '/images/upgraded/ps-edit-1.jpg', label: 'THE SEER', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'tall' },
+  { src: '/images/upgraded/ps-edit-4.jpg', label: 'RESONANCE', piece: 'OG Crewneck', handle: 'og-crewnwck', size: 'wide' },
+  { src: '/images/upgraded/ps-edit-3.jpg', label: 'VOID FREQUENCY', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'square' },
+  { src: '/images/upgraded/ps-edit-5.jpg', label: 'THE SIGNAL', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'square' },
+  { src: '/images/upgraded/ps-edit-2.jpg', label: 'THE CHANNEL', piece: 'Urban Hoodie', handle: 'urban-hoodie-1', size: 'tall' },
   { src: '/images/upgraded/urban-garment-dyed-hoodie-1.webp', label: 'EARTH FREQUENCY', piece: 'Garment Dyed Hoodie', handle: 'urban-garment-dyed-hoodie-1', size: 'wide' },
   { src: '/images/upgraded/the-hermetic-scales-pullover.webp', label: 'HERMETIC ORDER', piece: 'Hermetic Scales Pullover', handle: 'the-hermetic-scales-pullover', size: 'square' },
   { src: '/images/upgraded/the-hand-of-mysteries-pullover.webp', label: 'HAND OF MYSTERIES', piece: 'Hand of Mysteries Pullover', handle: 'the-hand-of-mysteries-pullover', size: 'tall' },
@@ -55,7 +55,7 @@ onMounted(() => {
     <!-- HERO -->
     <div class="lb-hero">
       <div class="lb-hero-bg">
-        <img src="/images/upgraded/lookbook-hero.jpg" alt="State of Resonance — The Creator" class="lb-hero-img" />
+        <img src="/images/upgraded/ps-edit-4.jpg" alt="State of Resonance — The Lookbook" class="lb-hero-img" />
         <div class="lb-hero-overlay"></div>
       </div>
       <div class="lb-hero-content">

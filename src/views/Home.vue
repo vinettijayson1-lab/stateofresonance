@@ -57,7 +57,7 @@ const archiveLogs = [
     <!-- SECTION 1: FOSSIL HERO -->
     <section class="fossil-hero">
       <div class="fossil-hero-bg">
-        <img src="/images/upgraded/urban-hoodie-1.webp" alt="State of Resonance" class="fossil-hero-img" fetchpriority="high" />
+        <img src="/images/upgraded/ps-edit-2.jpg" alt="State of Resonance" class="fossil-hero-img" fetchpriority="high" />
         <div class="fossil-hero-overlay"></div>
       </div>
 
@@ -283,7 +283,7 @@ const archiveLogs = [
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 60%;
 }
 .fossil-hero-overlay {
   position: absolute;
