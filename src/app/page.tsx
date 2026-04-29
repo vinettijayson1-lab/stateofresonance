@@ -144,65 +144,66 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Philosophy Section - Cleaner split */}
+      {/* Philosophy Section — fully centered to match the rest of the page */}
       <section className="py-32 border-t border-[#141414]">
-        <div className="w-full max-w-[1200px] mx-auto px-8">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            {/* Image */}
-            <div className="relative aspect-[4/5] bg-[#111] overflow-hidden">
-              <Image 
-                src="/fabric-texture.webp" 
-                alt="450gsm heavyweight cotton detail" 
-                fill 
-                className="object-cover"
-              />
-            </div>
-            
-            {/* Content */}
-            <div className="lg:pl-8">
-              <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#525252] mb-6">
-                Our Philosophy
-              </p>
-              <h2 className="font-serif text-4xl md:text-5xl text-[#fafafa] mb-8 leading-[1.1]">
-                Heavyweight Quality
-                <br />
-                <span className="italic text-[#c4a077]">Over Fast Fashion</span>
-              </h2>
-              <div className="space-y-6 text-[#737373] leading-relaxed">
-                <p>
-                  Every piece is crafted from 450gsm heavyweight cotton - the kind of fabric 
-                  that makes you stop and feel the difference. Thick, structured, premium.
-                </p>
-                <p>
-                  We produce in small batches of 10 units per design. When they&apos;re gone, 
-                  they&apos;re gone. This isn&apos;t artificial scarcity - it&apos;s intentional craft.
-                </p>
-              </div>
-              
-              {/* Feature list */}
-              <ul className="mt-10 space-y-4">
-                {[
-                  "450gsm heavyweight cotton",
-                  "Oversized, structured fit",
-                  "Double-stitched construction",
-                  "Limited to 10 units per design",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-[#fafafa]">
-                    <span className="w-1.5 h-1.5 bg-[#c4a077] rounded-full" />
-                    <span className="text-sm tracking-wide">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <Link 
-                href="/about" 
-                className="inline-flex items-center gap-2 mt-10 text-sm text-[#c4a077] hover:text-[#fafafa] transition-colors tracking-[0.1em] uppercase"
-              >
-                Our Story
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+        <div className="w-full max-w-[1100px] mx-auto px-8 flex flex-col items-center text-center">
+          {/* Eyebrow */}
+          <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#525252] mb-6">
+            Our Philosophy
+          </p>
+
+          {/* Headline */}
+          <h2 className="font-serif text-4xl md:text-5xl text-[#fafafa] mb-12 leading-[1.1]">
+            Heavyweight Quality
+            <br />
+            <span className="italic text-[#c4a077]">Over Fast Fashion</span>
+          </h2>
+
+          {/* Image — centered, capped width */}
+          <div className="relative w-full max-w-2xl aspect-[4/3] bg-[#111] overflow-hidden mb-12">
+            <Image 
+              src="/fabric-texture.webp" 
+              alt="450gsm heavyweight cotton detail" 
+              fill 
+              sizes="(max-width: 1024px) 100vw, 700px"
+              className="object-cover"
+            />
           </div>
+
+          {/* Body copy */}
+          <div className="space-y-6 text-[#737373] leading-relaxed max-w-2xl">
+            <p>
+              Every piece is crafted from 450gsm heavyweight cotton — the kind of fabric 
+              that makes you stop and feel the difference. Thick, structured, premium.
+            </p>
+            <p>
+              We produce in small batches of 10 units per design. When they&apos;re gone, 
+              they&apos;re gone. This isn&apos;t artificial scarcity — it&apos;s intentional craft.
+            </p>
+          </div>
+
+          {/* Feature list — centered */}
+          <ul className="mt-12 flex flex-col items-center gap-4">
+            {[
+              "450gsm heavyweight cotton",
+              "Oversized, structured fit",
+              "Double-stitched construction",
+              "Limited to 10 units per design",
+            ].map((item, i) => (
+              <li key={i} className="flex items-center gap-4 text-[#fafafa]">
+                <span className="w-1.5 h-1.5 bg-[#c4a077] rounded-full" />
+                <span className="text-sm tracking-wide">{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <Link 
+            href="/about" 
+            className="inline-flex items-center gap-2 mt-12 text-sm text-[#c4a077] hover:text-[#fafafa] transition-colors tracking-[0.1em] uppercase"
+          >
+            Our Story
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 
