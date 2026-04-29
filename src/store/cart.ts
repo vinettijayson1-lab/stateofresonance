@@ -44,13 +44,27 @@ export const useCartStore = create<CartStore>()(
         lastCartOpenedAt: !s.isOpen ? Date.now() : s.lastCartOpenedAt,
       })),
       addItem: (product) => set(s => {
-        const existing = s.items.find(i => i.id === product.id);
-        if (existing) return { items: s.items.map(i => i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i) };
-        return { items: [...s.items, { ...product, quantity: 1 }] };
+        const qty = Math.max(1, product.quantity || 1);
+        const matchKey = product.variantId || product.id;
+        const existing = s.items.find(i => (i.variantId || i.id) === matchKey);
+        if (existing) {
+          return {
+            items: s.items.map(i =>
+              (i.variantId || i.id) === matchKey
+                ? { ...i, quantity: i.quantity + qty }
+                : i
+            )
+          };
+        }
+        return { items: [...s.items, { ...product, quantity: qty }] };
       }),
-      removeItem: (id) => set(s => ({ items: s.items.filter(i => i.id !== id) })),
+      removeItem: (id) => set(s => ({
+        items: s.items.filter(i => (i.variantId || i.id) !== id)
+      })),
       updateQuantity: (id, qty) => set(s => ({
-        items: qty < 1 ? s.items.filter(i => i.id !== id) : s.items.map(i => i.id === id ? { ...i, quantity: qty } : i)
+        items: qty < 1
+          ? s.items.filter(i => (i.variantId || i.id) !== id)
+          : s.items.map(i => (i.variantId || i.id) === id ? { ...i, quantity: qty } : i)
       })),
       getCheckoutUrl: () => {
         const items = get().items;

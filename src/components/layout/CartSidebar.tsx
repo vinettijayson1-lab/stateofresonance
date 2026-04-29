@@ -3,7 +3,7 @@
 import { useCartStore } from '@/store/cart';
 import { trackInitiateCheckout } from '@/lib/tracking';
 import { X, Minus, Plus } from 'lucide-react';
-import { useSyncExternalStore } from 'react';
+import { useSyncExternalStore, useEffect } from 'react';
 import Image from 'next/image';
 
 // Hydration-safe mounting pattern
@@ -14,6 +14,15 @@ const getServerSnapshot = () => false;
 export default function CartSidebar() {
   const { items, isOpen, toggleCart, removeItem, updateQuantity } = useCartStore();
   const isMounted = useSyncExternalStore(emptySubscribe, getClientSnapshot, getServerSnapshot);
+
+  // Lock body scroll while cart is open (iOS-safe)
+  useEffect(() => {
+    if (isOpen) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = original; };
+    }
+  }, [isOpen]);
 
   // Don't render anything on server or before hydration
   if (!isMounted) return null;
@@ -72,15 +81,21 @@ export default function CartSidebar() {
             </div>
           ) : (
             <div className="p-6 space-y-6">
-              {items.map(item => (
-                <div key={item.id} className="flex gap-4">
+              {items.map(item => {
+                const itemKey = item.variantId || item.id;
+                return (
+                <div key={itemKey} className="flex gap-4">
                   <div className="relative w-20 h-24 bg-[#111] shrink-0">
-                    <Image 
-                      src={item.image} 
-                      alt={item.title} 
-                      fill
-                      className="object-cover"
-                    />
+                    {item.image ? (
+                      <Image 
+                        src={item.image} 
+                        alt={item.title} 
+                        fill
+                        unoptimized
+                        sizes="80px"
+                        className="object-cover"
+                      />
+                    ) : null}
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-sm text-[#fafafa] font-serif line-clamp-2">{item.title}</h3>
@@ -88,7 +103,7 @@ export default function CartSidebar() {
                     <div className="flex items-center gap-3 mt-3">
                       <div className="flex items-center border border-[#262626]">
                         <button 
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          onClick={() => updateQuantity(itemKey, item.quantity - 1)}
                           className="p-2 text-[#737373] hover:text-[#fafafa] transition-colors"
                           aria-label="Decrease quantity"
                         >
@@ -96,7 +111,7 @@ export default function CartSidebar() {
                         </button>
                         <span className="w-8 text-center text-sm text-[#fafafa]">{item.quantity}</span>
                         <button 
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() => updateQuantity(itemKey, item.quantity + 1)}
                           className="p-2 text-[#737373] hover:text-[#fafafa] transition-colors"
                           aria-label="Increase quantity"
                         >
@@ -104,7 +119,7 @@ export default function CartSidebar() {
                         </button>
                       </div>
                       <button 
-                        onClick={() => removeItem(item.id)} 
+                        onClick={() => removeItem(itemKey)} 
                         className="text-xs text-[#737373] hover:text-red-400 transition-colors ml-auto"
                       >
                         Remove
@@ -112,7 +127,8 @@ export default function CartSidebar() {
                     </div>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>

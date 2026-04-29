@@ -521,6 +521,29 @@ button {
   }
 }
 
+/* iOS-specific fixes — prevent input zoom on focus by enforcing 16px minimum */
+@supports (-webkit-touch-callout: none) {
+  input[type="text"],
+  input[type="email"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="password"],
+  input[type="number"],
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+/* Safe-area inset support for iOS notch/home indicator */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,

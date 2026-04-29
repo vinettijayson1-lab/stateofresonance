@@ -22,14 +22,25 @@ export default function HeaderNav() {
   const toggleCart = useCartStore(s => s.toggleCart);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
+    setHydrated(true);
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  // Lock body scroll when mobile menu is open (iOS-safe)
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = original; };
+    }
+  }, [mobileMenuOpen]);
+
+  const itemCount = hydrated ? items.reduce((sum, item) => sum + item.quantity, 0) : 0;
 
   return (
     <>
