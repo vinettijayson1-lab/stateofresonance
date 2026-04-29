@@ -582,11 +582,19 @@ const onImgError = (e: any) => {
           </div>
         </div>
 
-        <!-- Limited Edition Badge -->
-        <div v-if="isClothing || product.inventory_quantity" class="limited-edition-badge">
+        <!-- Real Inventory Signal — only show when we have actual stock data and it's low -->
+        <div v-if="selectedVariant?.inventory_quantity !== null && selectedVariant?.inventory_quantity !== undefined && selectedVariant.inventory_quantity <= 5 && selectedVariant.inventory_quantity > 0" class="limited-edition-badge">
           <span class="ltd-flame">🏺</span>
           <div class="ltd-text">
-            <span class="ltd-title" style="color: var(--color-gold);">LIMITED 10 PIECE DROP</span>
+            <span class="ltd-title" style="color: var(--color-gold);">ONLY {{ selectedVariant.inventory_quantity }} LEFT IN THIS SIZE</span>
+            <span class="ltd-sub" style="color: var(--color-gold-muted);">Each piece is made to order — embroidered and printed by hand. Once this size sells out, it may not return.</span>
+          </div>
+        </div>
+        <!-- Fallback badge when no real inventory (Printful/on-demand) -->
+        <div v-else-if="isClothing && (selectedVariant?.inventory_quantity === null || selectedVariant?.inventory_quantity === undefined)" class="limited-edition-badge">
+          <span class="ltd-flame">🏺</span>
+          <div class="ltd-text">
+            <span class="ltd-title" style="color: var(--color-gold);">MADE TO ORDER — LIMITED RUN</span>
             <span class="ltd-sub" style="color: var(--color-gold-muted);">Each piece is made to order. I have the embroidery done at my local shop and print them myself, so every single artifact goes explicitly through my own hands.</span>
           </div>
         </div>

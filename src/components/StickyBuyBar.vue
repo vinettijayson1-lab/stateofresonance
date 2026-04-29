@@ -11,8 +11,9 @@ const props = defineProps<{
 const isVisible = ref(false)
 
 const handleScroll = () => {
-  // Show bar when scrolled past 600px (roughly past the main buy button)
-  isVisible.value = window.scrollY > 800 && window.innerWidth < 768
+  // Show bar when user has scrolled past the main buy section (~500px)
+  // Lower threshold ensures it appears before they scroll too far
+  isVisible.value = window.scrollY > 500 && window.innerWidth < 900
 }
 
 onMounted(() => {
@@ -61,11 +62,13 @@ const addToCart = () => {
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 1rem 1.5rem 2rem; /* Extra bottom padding for safe area */
+  padding: 1rem 1.5rem;
+  padding-bottom: max(1.5rem, calc(1rem + env(safe-area-inset-bottom))); /* iOS notch fix */
   z-index: 1000;
-  border-top: 1px solid var(--glass-border);
-  background: rgba(5, 5, 8, 0.9);
-  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: rgba(5, 5, 8, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .sticky-content {
@@ -127,7 +130,7 @@ const addToCart = () => {
   transform: translateY(100%);
 }
 
-@media (min-width: 769px) {
+@media (min-width: 901px) {
   .sticky-buy-bar { display: none; }
 }
 </style>

@@ -24,6 +24,11 @@ const products = ref<Product[]>([])
 const loading = ref(true)
 const addingId = ref<string | null>(null)
 
+// Size picker state
+const pickerProduct = ref<Product | null>(null)
+const pickerSelectedSize = ref<string>('')
+const showSizePicker = ref(false)
+
 const RANK_LABELS: Record<number, string> = {
   1: 'Best Seller',
   2: 'Top Rated',
@@ -64,9 +69,40 @@ onMounted(async () => {
 })
 
 const quickAdd = (product: Product) => {
+  // Clothing: must pick a size first
+  const hasSizeOption = product.variants && product.variants.length > 1
+  const isClothing = ['hoodie', 'tee', 'shirt', 'crewneck', 'sweatshirt'].some(t =>
+    product.title.toLowerCase().includes(t)
+  )
+  if (hasSizeOption && isClothing) {
+    pickerProduct.value = product
+    pickerSelectedSize.value = product.variants?.find(v => v.available)?.id || ''
+    showSizePicker.value = true
+    return
+  }
+  // Non-clothing or single variant: add directly
   addingId.value = product.id
   cart.add({ ...product })
   setTimeout(() => { addingId.value = null }, 1200)
+}
+
+const confirmSizePicker = () => {
+  if (!pickerProduct.value || !pickerSelectedSize.value) return
+  const variant = pickerProduct.value.variants?.find(v => v.id === pickerSelectedSize.value)
+  addingId.value = pickerProduct.value.id
+  cart.add({
+    ...pickerProduct.value,
+    variantId: variant?.id || pickerProduct.value.variantId,
+    price: variant?.price || pickerProduct.value.price
+  })
+  showSizePicker.value = false
+  pickerProduct.value = null
+  setTimeout(() => { addingId.value = null }, 1200)
+}
+
+const closePicker = () => {
+  showSizePicker.value = false
+  pickerProduct.value = null
 }
 
 const goToProduct = (handle: string) => {
@@ -148,6 +184,12 @@ const goToProduct = (handle: string) => {
               <span class="bs-price">{{ currencyStore.formatPrice ? currencyStore.formatPrice(parseFloat((product.price || '0').replace(/[^0-9.]/g, ''))) : product.price }}</span>
               <span class="bs-edition">Limited edition</span>
             </div>
+            <!-- Available sizes display -->
+            <div v-if="product.variants && product.variants.length > 1" class="bs-sizes-available">
+              <span v-for="v in product.variants.filter(v => v.available)" :key="v.id" class="bs-size-chip">
+                {{ v.options?.[0] || v.title }}
+              </span>
+            </div>
 
             <div class="bs-cta-row" @click.stop>
               <button
@@ -174,6 +216,47 @@ const goToProduct = (handle: string) => {
         </div>
       </div>
     </div>
+
+    <!-- SIZE PICKER MODAL -->
+    <Teleport to="body">
+      <Transition name="fade">
+        <div v-if="showSizePicker && pickerProduct" class="bs-picker-overlay" @click.self="closePicker">
+          <div class="bs-picker-modal">
+            <button class="bs-picker-close" @click="closePicker">✕</button>
+            <div class="bs-picker-img-wrap">
+              <img :src="pickerProduct.image" :alt="pickerProduct.title" class="bs-picker-img" />
+            </div>
+            <div class="bs-picker-info">
+              <p class="bs-picker-name">{{ pickerProduct.title }}</p>
+              <p class="bs-picker-price gold-text">{{ currencyStore.formatPrice(parseFloat((pickerProduct.price || '0').replace(/[^0-9.]/g, ''))) }}</p>
+              <p class="bs-picker-label">SELECT SIZE</p>
+              <div class="bs-picker-sizes">
+                <button
+                  v-for="v in pickerProduct.variants"
+                  :key="v.id"
+                  class="bs-picker-size-btn"
+                  :class="{ active: pickerSelectedSize === v.id, 'oos': !v.available }"
+                  :disabled="!v.available"
+                  @click="pickerSelectedSize = v.id"
+                >
+                  {{ v.options?.[0] || v.title }}
+                </button>
+              </div>
+              <button
+                class="btn-premium bs-picker-confirm"
+                :disabled="!pickerSelectedSize"
+                @click="confirmSizePicker"
+              >
+                {{ addingId === pickerProduct.id ? '✓ Added to Bag!' : 'Add to Bag' }}
+              </button>
+              <router-link :to="`/product/${pickerProduct.handle}`" class="bs-picker-view" @click="closePicker">
+                View full details →
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
 
     <!-- Bottom Trust Section -->
     <section class="bs-footer-trust container">
@@ -659,3 +742,64 @@ const goToProduct = (handle: string) => {
   }
 }
 </style>
+
+<style>
+/* Size chips on product list */
+.bs-sizes-available { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 0.75rem; }
+.bs-size-chip { font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.12); padding: 0.2rem 0.5rem; color: rgba(255,255,255,0.45); }
+
+/* Size picker overlay */
+.bs-picker-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+  display: flex; align-items: flex-end; justify-content: center;
+}
+@media (min-width: 640px) { .bs-picker-overlay { align-items: center; } }
+
+.bs-picker-modal {
+  background: #0a0a0a; border: 1px solid rgba(255,255,255,0.08);
+  width: 100%; max-width: 520px; border-radius: 0;
+  display: grid; grid-template-columns: 160px 1fr;
+  position: relative; overflow: hidden;
+  max-height: 90dvh;
+}
+@media (max-width: 480px) { .bs-picker-modal { grid-template-columns: 1fr; } }
+
+.bs-picker-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: none; border: none; color: rgba(255,255,255,0.4);
+  font-size: 1.2rem; cursor: pointer; z-index: 10;
+  transition: color 0.2s; width: 32px; height: 32px;
+}
+.bs-picker-close:hover { color: #fff; }
+
+.bs-picker-img-wrap { background: #050505; aspect-ratio: 3/4; overflow: hidden; }
+.bs-picker-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+.bs-picker-info { padding: 2rem 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.bs-picker-name { font-family: 'Playfair Display', serif; font-size: 1rem; color: #fff; line-height: 1.2; }
+.bs-picker-price { font-size: 0.9rem; font-weight: 600; }
+.bs-picker-label { font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 0.5rem; }
+
+.bs-picker-sizes { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.bs-picker-size-btn {
+  font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.5rem 0.9rem; background: transparent;
+  border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.6);
+  cursor: pointer; transition: all 0.2s;
+}
+.bs-picker-size-btn:hover:not(:disabled) { border-color: rgba(255,255,255,0.5); color: #fff; }
+.bs-picker-size-btn.active { border-color: #d4af37; color: #d4af37; background: rgba(212,175,55,0.05); }
+.bs-picker-size-btn.oos { opacity: 0.25; cursor: not-allowed; text-decoration: line-through; }
+
+.bs-picker-confirm { width: 100%; padding: 1rem; font-size: 0.8rem; margin-top: 0.5rem; }
+.bs-picker-confirm:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.bs-picker-view { font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); text-decoration: none; text-align: center; transition: color 0.2s; }
+.bs-picker-view:hover { color: rgba(255,255,255,0.7); }
+
+/* Transition */
+.fade-enter-active, .fade-leave-active { transition: opacity 0.25s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+</style>
+

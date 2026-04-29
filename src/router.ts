@@ -184,6 +184,11 @@ const router = createRouter({
       component: () => import('./views/SiteLocker.vue')
     },
     {
+      path: '/collaborate',
+      name: 'Collaborate',
+      component: () => import('./views/Collaborate.vue')
+    },
+    {
       // 404 catch-all - redirect to home
       path: '/:pathMatch(.*)*',
       name: 'NotFound',

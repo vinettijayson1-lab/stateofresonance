@@ -311,8 +311,8 @@ export const cart: CartStore = reactive({
       return finalUrl
     }
 
-    const first = cart.items[0]
-    return `https://state-of-resonance.myshopify.com/products/${first.handle}`
+    // Fallback: can't extract a valid numeric variant ID — send to cart page
+    return `https://state-of-resonance.myshopify.com/cart`
   }) as unknown as string,
 
   globalResonanceCount: 963,

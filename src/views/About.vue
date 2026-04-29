@@ -169,6 +169,19 @@ onMounted(() => {
 
       </div>
     </div>
+
+    <!-- Shop CTA — every page should have a conversion path -->
+    <section style="border-top: 1px solid rgba(212,175,55,0.08); margin-top: 8vh; padding: 10vh 0; text-align: center; background: #000;">
+      <div class="container">
+        <p style="font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--color-gold-muted); margin-bottom: 1.5rem; opacity: 0.6;">✦ THE COLLECTION ✦</p>
+        <h2 style="font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: #fff; margin-bottom: 1rem; letter-spacing: 0.02em;">Wear Your Frequency</h2>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.45); max-width: 480px; margin: 0 auto 3rem; line-height: 1.7;">Each garment is designed to reflect the resonance you are building from the inside out. Limited runs. Ships from Canada.</p>
+        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+          <router-link to="/best-sellers" class="btn-premium" style="padding: 1rem 2.5rem; letter-spacing: 0.2em; font-size: 0.8rem;">SHOP THE COLLECTION</router-link>
+          <router-link to="/quiz" class="btn-outline" style="padding: 1rem 2rem; letter-spacing: 0.15em; font-size: 0.8rem;">Find Your Frequency →</router-link>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 

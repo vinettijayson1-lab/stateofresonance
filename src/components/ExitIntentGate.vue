@@ -46,7 +46,9 @@ const handleMobileScroll = () => {
 const triggerGate = () => {
   isVisible.value = true
   hasFired.value = true
-  localStorage.setItem('sor_exit_triggered', 'true')
+  // Store timestamp — will reset after 7 days
+  localStorage.setItem('sor_exit_triggered', String(Date.now()))
+
   
   // High-end entrance sequence
   gsap.fromTo('.exit-gate-overlay', 
@@ -112,7 +114,10 @@ const captureIntent = async () => {
 }
 
 onMounted(() => {
-  if (!localStorage.getItem('sor_exit_triggered')) {
+  const stored = localStorage.getItem('sor_exit_triggered')
+  const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000
+  const hasTriggeredRecently = stored && (Date.now() - parseInt(stored)) < SEVEN_DAYS
+  if (!hasTriggeredRecently) {
     document.addEventListener('mouseleave', handleMouseLeave)
     window.addEventListener('scroll', handleMobileScroll, { passive: true })
   }

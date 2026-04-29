@@ -103,49 +103,55 @@ export default async function handler(req: any, res: any) {
     let mapped = data.filter((p: any) => p.handle).map((p: any) => {
       const tagsStr = (Array.isArray(p.tags) ? p.tags.join(',') : String(p.tags || '')).toLowerCase();
       
-      // Dynamic Metadata mapping directly from Shopify tagging
       const isMembersOnly = tagsStr.includes('locked') || tagsStr.includes('vault') || tagsStr.includes('membersonly') || p.title.toLowerCase().includes('vault');
-      
       const categoryStr = detectCategory(p.title || '', p.product_type || '', tagsStr);
       
-      // Enforce rigorous pricing schema based on Printful's literal push
       let rawPrice = p.variants?.[0]?.price ? String(p.variants[0].price) : 'TBA';
-      if (rawPrice !== 'TBA' && !rawPrice.includes('$')) {
-         rawPrice = `$${rawPrice}`; 
-      }
+      if (rawPrice !== 'TBA' && !rawPrice.includes('$')) rawPrice = `$${rawPrice}`;
 
-      // Optimize images (Remove Shopify sizing params for HQ)
-      const optimizedImages = (p.images || []).map((img: any) => {
-        return img.src.replace(/(\.[a-z]+)\?.*$/, '$1'); // Strip ?v= parameters
-      });
+      // Optimize images (strip Shopify sizing params for HQ)
+      const optimizedImages = (p.images || []).map((img: any) => ({
+        src: img.src.replace(/(\.[a-z]+)\?.*$/, '$1'),
+        alt: img.alt || '',
+        position: img.position || 99
+      }));
 
-      const primaryImage = optimizedImages[0] || '/assets/placeholder.png';
+      // FRONT-FACING IMAGE PRIORITY:
+      // 1. Our curated override (photoshoot image) — highest quality
+      // 2. Image with 'front' in alt text or filename from Shopify
+      // 3. First image (Shopify default)
+      const frontImage = optimizedImages.find((img: any) =>
+        (img.alt || '').toLowerCase().includes('front') ||
+        (img.src || '').toLowerCase().includes('front')
+      );
+      const primaryRawImage = (frontImage || optimizedImages[0])?.src || '/assets/placeholder.png';
+      const primaryImage = getLuxImage(p.handle, primaryRawImage);
 
       return {
         id: p.id ? p.id.toString() : Math.random().toString(36).substring(7),
         title: p.title,
         handle: p.handle || '',
         price: rawPrice,
-        image: getLuxImage(p.handle, primaryImage),
+        image: primaryImage,
         category: categoryStr,
         type: detectType(p.title || '', p.product_type || ''),
         variantId: p.variants?.[0]?.id ? p.variants[0].id.toString() : null,
         variants: (p.variants || []).map((v: any) => {
           let vPrice = v.price ? String(v.price) : rawPrice;
-          if (vPrice !== 'TBA' && !vPrice.includes('$')) {
-             vPrice = `$${vPrice}`;
-          }
+          if (vPrice !== 'TBA' && !vPrice.includes('$')) vPrice = `$${vPrice}`;
           return {
             id: v.id ? v.id.toString() : null,
             title: v.title || 'Standard',
             price: vPrice,
             available: v.available !== false,
+            inventory_quantity: v.inventory_quantity ?? null,
             options: [v.option1, v.option2, v.option3].filter(Boolean)
           };
         }),
-        images: optimizedImages,
+        images: optimizedImages.map((img: any) => img.src),
         modelImage: getModelImage(p.handle, p.title),
         options: p.options || [],
+        available: p.variants?.some((v: any) => v.available !== false) ?? true,
         collections: [{ handle: 'all' }],
         metadata: {
           isMembersOnly: isMembersOnly,

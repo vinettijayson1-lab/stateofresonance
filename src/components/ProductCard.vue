@@ -168,17 +168,17 @@ onMounted(() => {
 <style scoped>
 .product-card {
   position: relative;
-  background: transparent;
-  border: 1px solid rgba(212, 175, 55, 0.12);
+  background: #000;
+  border: none;
   overflow: hidden;
   transition: var(--transition-premium);
+  box-shadow: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .product-card:hover {
-    border-color: var(--color-gold-muted);
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212, 175, 55, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.7);
   }
 }
 
@@ -187,31 +187,34 @@ onMounted(() => {
   display: block;
   aspect-ratio: 3/4;
   overflow: hidden;
-  background: transparent;
+  background: #050505;
   border: none;
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .product-card:hover .product-img-wrapper {
-    border-color: rgba(212, 175, 55, 0.6);
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
-  }
+/* Soft bottom vignette to blend product into card — no hard lines */
+.product-img-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.35) 100%);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .product-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center center;
+  object-fit: cover;
+  object-position: center top;
   transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.5s ease;
   filter: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .product-card:hover .product-img {
-    transform: scale(1.08);
-    filter: brightness(1.1);
+    transform: scale(1.05);
+    filter: brightness(1.08);
   }
 }
 
