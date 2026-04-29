@@ -157,7 +157,9 @@ interface GqlProduct {
 
 export async function fetchProducts(): Promise<ShopifyProduct[]> {
   try {
+    console.log('[v0] Fetching from Shopify endpoint:', ENDPOINT);
     const data = await shopifyFetch<{ products: { edges: { node: GqlProduct }[] } }>(PRODUCTS_QUERY);
+    console.log('[v0] Shopify returned', data?.products?.edges?.length, 'products');
 
     return data.products.edges.map(({ node: p }) => {
       const imageObjs = p.images.edges.map(e => ({url: cleanImageUrl(e.node.url), alt: e.node.altText || p.title}));
@@ -192,14 +194,17 @@ export async function fetchProducts(): Promise<ShopifyProduct[]> {
       };
     });
   } catch (err) {
-    console.error('Shopify fetch error:', err);
+    console.error('[v0] Shopify GraphQL fetch error:', err);
+    console.log('[v0] Falling back to products.json REST API');
     return fetchProductsFallback();
   }
 }
 
 async function fetchProductsFallback(): Promise<ShopifyProduct[]> {
   const res = await fetch(`https://${DOMAIN}/products.json?limit=250`, { next: { revalidate: 60 } });
+  console.log('[v0] products.json status:', res.status);
   if (!res.ok) return [];
+  
   const data = await res.json();
   return data.products.map((p: Record<string, unknown>) => {
     const imageObjs = ((p.images as { src: string, alt?: string }[]) || []).map(i => ({url: cleanImageUrl(i.src), alt: i.alt || ''}));
