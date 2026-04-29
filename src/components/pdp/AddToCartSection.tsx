@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useCartStore } from '@/store/cart';
 import { ShopifyProduct } from '@/lib/shopify';
 import { Minus, Plus, Check } from 'lucide-react';
@@ -9,30 +9,31 @@ interface AddToCartSectionProps {
   product: ShopifyProduct;
 }
 
+// Compute initial options from product (pure function)
+function getInitialOptions(product: ShopifyProduct): Record<string, string> {
+  const firstAvailable = product.variants.find(v => v.available) || product.variants[0];
+  if (!firstAvailable) return {};
+  
+  const initialOptions: Record<string, string> = {};
+  product.options.forEach((option, idx) => {
+    const variantOption = idx === 0 ? firstAvailable.option1 
+      : idx === 1 ? firstAvailable.option2 
+      : firstAvailable.option3;
+    initialOptions[option.name] = variantOption || option.values[0];
+  });
+  return initialOptions;
+}
+
 export default function AddToCartSection({ product }: AddToCartSectionProps) {
   const addItem = useCartStore(s => s.addItem);
   const toggleCart = useCartStore(s => s.toggleCart);
   
-  const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
+  // Use useMemo with a function to compute initial state
+  const initialOptions = useMemo(() => getInitialOptions(product), [product]);
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>(initialOptions);
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
-
-  // Initialize with first available variant's options
-  useEffect(() => {
-    const firstAvailable = product.variants.find(v => v.available) || product.variants[0];
-    if (firstAvailable) {
-      const initialOptions: Record<string, string> = {};
-      product.options.forEach((option, idx) => {
-        // Map option index to variant option property
-        const variantOption = idx === 0 ? firstAvailable.option1 
-          : idx === 1 ? firstAvailable.option2 
-          : firstAvailable.option3;
-        initialOptions[option.name] = variantOption || option.values[0];
-      });
-      setSelectedOptions(initialOptions);
-    }
-  }, [product]);
 
   // Find matching variant based on selected options
   const selectedVariant = product.variants.find(variant => {
@@ -48,7 +49,6 @@ export default function AddToCartSection({ product }: AddToCartSectionProps) {
   const isAvailable = selectedVariant?.available ?? true;
 
   const handleAddToCart = () => {
-    // Always use the first available variant if no variant is properly selected
     const variant = selectedVariant || product.variants.find(v => v.available) || product.variants[0];
     
     if (!variant || isAdding) return;

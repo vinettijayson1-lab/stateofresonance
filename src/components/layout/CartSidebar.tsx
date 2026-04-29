@@ -3,19 +3,20 @@
 import { useCartStore } from '@/store/cart';
 import { trackInitiateCheckout } from '@/lib/tracking';
 import { X, Minus, Plus } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useSyncExternalStore } from 'react';
 import Image from 'next/image';
+
+// Hydration-safe mounting pattern
+const emptySubscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 export default function CartSidebar() {
   const { items, isOpen, toggleCart, removeItem, updateQuantity } = useCartStore();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const isMounted = useSyncExternalStore(emptySubscribe, getClientSnapshot, getServerSnapshot);
 
   // Don't render anything on server or before hydration
-  if (!mounted) return null;
+  if (!isMounted) return null;
   
   // Only render when cart is open
   if (!isOpen) return null;

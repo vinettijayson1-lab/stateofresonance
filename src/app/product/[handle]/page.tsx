@@ -1,7 +1,6 @@
 import { fetchProducts } from "@/lib/shopify";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import AddToCartSection from "@/components/pdp/AddToCartSection";
 import ProductGallery from "@/components/pdp/ProductGallery";
