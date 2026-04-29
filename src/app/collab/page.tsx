@@ -89,7 +89,7 @@ export default function CollabPage() {
         />
         {/* bg texture */}
         <div
-          className="absolute inset-0 bg-[url('/luxury-occult-bg.png')] bg-cover bg-center opacity-20 mix-blend-luminosity"
+          className="absolute inset-0 bg-[url('/luxury-occult-bg.webp')] bg-cover bg-center opacity-20 mix-blend-luminosity"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
 
