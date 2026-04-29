@@ -120,15 +120,23 @@ export default async function Home() {
             </h2>
           </div>
           
-          {/* TrustIndex Widget - Clear visibility */}
+          {/* TrustIndex Reviews Feed Widget */}
           <div className="mb-12">
-            <div 
-              className="trustindex-widget" 
-              data-url="cabe8cb70335182b45167fb72cb"
-            />
             <Script 
-              src="https://cdn.trustindex.io/loader.js?cabe8cb70335182b45167fb72cb" 
+              src="https://cdn.trustindex.io/loader-feed.js?b0f2da868a2e12699466c6e2535" 
               strategy="afterInteractive"
+              defer
+              async
+            />
+          </div>
+          
+          {/* TrustIndex Reviews Widget */}
+          <div className="mb-8">
+            <Script 
+              src="https://cdn.trustindex.io/loader.js?8c1bb1d6840c23179906838fc83" 
+              strategy="afterInteractive"
+              defer
+              async
             />
           </div>
           

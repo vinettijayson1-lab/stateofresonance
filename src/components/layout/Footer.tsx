@@ -1,9 +1,26 @@
 import Link from 'next/link';
+import Script from 'next/script';
 
 export default function Footer() {
   return (
     <footer className="border-t border-[#1a1a1a] bg-[#0a0a0a]">
       <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 py-12">
+        
+        {/* TrustIndex Certified Badges */}
+        <div className="flex items-center justify-center gap-4 mb-10">
+          <Script 
+            src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" 
+            strategy="lazyOnload"
+            defer
+            async
+          />
+          <Script 
+            src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" 
+            strategy="lazyOnload"
+            defer
+            async
+          />
+        </div>
         
         {/* Simple single row footer */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
