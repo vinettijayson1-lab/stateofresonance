@@ -84,7 +84,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       />
       
       {/* Breadcrumb */}
-      <nav className="pt-24 md:pt-28 px-8 max-w-[1200px] mx-auto">
+     <nav className="pt-24 md:pt-28 px-6 md:px-8 max-w-[1100px] mx-auto">
         <ol className="flex items-center gap-2 text-sm text-[#525252]">
           <li>
             <Link href="/" className="hover:text-[#fafafa] transition-colors">Home</Link>
@@ -99,8 +99,8 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       </nav>
       
       {/* Main product section */}
-      <section className="pt-8 pb-24 px-8 max-w-[1200px] mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+     <section className="pt-8 pb-24 px-6 md:px-8 max-w-[1100px] mx-auto">
+       <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Left: Gallery */}
           <div className="lg:sticky lg:top-28 lg:self-start">
             <ProductGallery images={product.images} title={product.title} />
@@ -197,7 +197,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       {/* Related products */}
       {related.length > 0 && (
         <section className="py-24 border-t border-[#141414]">
-          <div className="px-8 max-w-[1200px] mx-auto">
+          <div className="px-6 md:px-8 max-w-[1100px] mx-auto">
             <h2 className="font-serif text-3xl text-[#fafafa] mb-12 text-center">
               You May Also Like
             </h2>
