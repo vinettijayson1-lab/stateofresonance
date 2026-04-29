@@ -287,7 +287,7 @@ const goToProduct = (handle: string) => {
         <p class="bs-cta-eyebrow">Looking for more?</p>
         <h3 class="bs-cta-title">Explore the full archive</h3>
         <div class="bs-cta-buttons">
-          <router-link to="/best-sellers" class="btn-gold">SHOP ALL CLOTHING</router-link>
+          <router-link to="/collections/all" class="btn-gold">SHOP ALL CLOTHING</router-link>
           <router-link to="/quiz" class="btn-outline">Find Your Frequency</router-link>
         </div>
       </div>
@@ -451,15 +451,20 @@ const goToProduct = (handle: string) => {
 .bs-img-wrap {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 1;
+  width: 100%;
+  height: 100%;
   background: transparent;
   flex-shrink: 0;
 }
 
 .bs-img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center top;
   transition: transform 0.6s ease;
   filter: brightness(1);
 }
