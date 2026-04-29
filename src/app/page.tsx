@@ -273,35 +273,36 @@ export default async function Home() {
         </section>
       )}
 
-      {/* Newsletter Section - Clean and minimal */}
-      <section className="py-32 border-t border-[#141414]">
-        <div className="w-full max-w-xl mx-auto px-8 text-center">
-          <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#525252] mb-4">
+      {/* Newsletter Section - Clean and minimal with generous breathing room */}
+      <section className="pt-40 md:pt-48 pb-40 md:pb-48 border-t border-[#141414]">
+        <div className="w-full max-w-xl mx-auto px-8 flex flex-col items-center text-center">
+          <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#525252] mb-5">
             Join The Circle
           </p>
-          <h2 className="font-serif text-4xl text-[#fafafa] mb-6">
+          <h2 className="font-serif text-4xl md:text-5xl text-[#fafafa] mb-8">
             Early Access
           </h2>
-          <p className="text-[#525252] mb-10 leading-relaxed">
-            Get notified about new drops before anyone else. 
+          <p className="text-[#737373] mb-12 leading-relaxed max-w-md">
+            Get notified about new drops before anyone else.
             Plus a free guide explaining the meaning behind our symbols.
           </p>
           
-          <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <form className="flex flex-col sm:flex-row gap-3 w-full max-w-md mx-auto">
             <input 
               type="email" 
               placeholder="Enter your email"
-              className="flex-1 bg-transparent border border-[#1a1a1a] text-[#fafafa] px-5 py-4 text-sm placeholder:text-[#525252] focus:outline-none focus:border-[#c4a077] transition-colors"
+              className="flex-1 min-w-0 bg-transparent border border-[#1a1a1a] text-[#fafafa] px-5 py-4 text-sm placeholder:text-[#525252] focus:outline-none focus:border-[#c4a077] transition-colors"
             />
             <button 
               type="submit"
-              className="bg-[#fafafa] text-[#0a0a0a] px-8 py-4 text-sm font-medium tracking-[0.1em] uppercase hover:bg-[#c4a077] transition-colors whitespace-nowrap"
+              style={{ color: '#0a0a0a', backgroundColor: '#fafafa' }}
+              className="px-8 py-4 text-sm font-medium tracking-[0.1em] uppercase hover:bg-[#c4a077] transition-colors whitespace-nowrap"
             >
               Subscribe
             </button>
           </form>
           
-          <p className="text-[11px] text-[#3a3a3a] mt-6 tracking-wide">
+          <p className="text-[11px] text-[#3a3a3a] mt-8 tracking-wide">
             No spam. Unsubscribe anytime.
           </p>
         </div>
