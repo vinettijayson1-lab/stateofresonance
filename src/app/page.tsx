@@ -37,7 +37,7 @@ export default async function Home() {
         </div>
         
         {/* Hero content */}
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 md:px-8 pt-20 pb-16">
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 pt-24 pb-16">
           <div className="max-w-4xl">
             {/* Eyebrow */}
             <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#737373] mb-6">
@@ -84,7 +84,7 @@ export default async function Home() {
 
       {/* Featured Products Grid */}
       <section className="py-24 md:py-32">
-        <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
+        <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
           {/* Section header */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <div>
@@ -115,7 +115,7 @@ export default async function Home() {
 
       {/* Philosophy Section - Split layout */}
       <section className="py-24 md:py-32 border-t border-[#1a1a1a]">
-        <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
+        <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Image */}
             <div className="relative aspect-[4/5] bg-[#111] overflow-hidden order-2 lg:order-1">
@@ -170,7 +170,7 @@ export default async function Home() {
       {/* Transmissions / Blog Section */}
       {featuredTransmissions.length > 0 && (
         <section className="py-24 md:py-32 border-t border-[#1a1a1a]">
-          <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
+          <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
               <div>
                 <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#737373] mb-3">
@@ -237,7 +237,7 @@ export default async function Home() {
 
       {/* Social Proof / Reviews Section with TrustIndex */}
       <section className="py-24 md:py-32 border-t border-[#1a1a1a] bg-[#0f0f0f]">
-        <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
+        <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="flex items-center justify-center gap-1 mb-4">
               {[...Array(5)].map((_, i) => (
@@ -292,7 +292,7 @@ export default async function Home() {
 
       {/* Newsletter Section */}
       <section className="py-24 md:py-32 border-t border-[#1a1a1a]">
-        <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
+        <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="max-w-xl mx-auto text-center">
             <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#737373] mb-3">
               Join The Circle

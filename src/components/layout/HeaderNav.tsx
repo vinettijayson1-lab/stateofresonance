@@ -40,42 +40,42 @@ export default function HeaderNav() {
             : 'bg-transparent'
         }`}
       >
-        <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
-          <nav className="flex items-center justify-between h-16 md:h-20">
+        <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
+          <nav className="flex items-center h-16 md:h-20">
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2 -ml-2 text-[#fafafa] hover:text-[#737373] transition-colors"
+              className="md:hidden p-2 text-[#fafafa] hover:text-[#737373] transition-colors"
               aria-label="Open menu"
             >
               <Menu className="w-5 h-5" />
             </button>
 
-            {/* Desktop nav links - left */}
-            <div className="hidden md:flex items-center gap-8">
+            {/* Logo - left */}
+            <Link 
+              href="/" 
+              className="font-serif text-lg md:text-xl tracking-wide text-[#fafafa] mr-8 md:mr-12"
+            >
+              State of Resonance
+            </Link>
+
+            {/* Desktop nav links */}
+            <div className="hidden md:flex items-center gap-6 flex-1">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-xs font-medium tracking-[0.1em] uppercase text-[#737373] hover:text-[#fafafa] transition-colors"
+                  className="text-[11px] font-medium tracking-[0.08em] uppercase text-[#737373] hover:text-[#fafafa] transition-colors whitespace-nowrap"
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
 
-            {/* Logo - center */}
-            <Link 
-              href="/" 
-              className="absolute left-1/2 -translate-x-1/2 font-serif text-lg md:text-xl tracking-wide text-[#fafafa]"
-            >
-              State of Resonance
-            </Link>
-
             {/* Cart - right */}
             <button
               onClick={toggleCart}
-              className="relative p-2 -mr-2 text-[#fafafa] hover:text-[#737373] transition-colors"
+              className="relative p-2 ml-auto text-[#fafafa] hover:text-[#737373] transition-colors"
               aria-label="Open cart"
             >
               <ShoppingBag className="w-5 h-5" />
