@@ -5,8 +5,10 @@ import type { Metadata } from "next";
 import AddToCartSection from "@/components/pdp/AddToCartSection";
 import ProductGallery from "@/components/pdp/ProductGallery";
 import ProductAccordion from "@/components/pdp/ProductAccordion";
+import TrustBadges from "@/components/pdp/TrustBadges";
 import RelatedProducts from "@/components/pdp/RelatedProducts";
 import { ChevronRight } from "lucide-react";
+import Script from "next/script";
 
 const BASE_URL = "https://stateofresonance.ca";
 
@@ -83,8 +85,8 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       />
       
       {/* Breadcrumb */}
-      <nav className="pt-20 md:pt-24 px-4 md:px-8 max-w-[1400px] mx-auto">
-        <ol className="flex items-center gap-2 text-sm text-[#737373]">
+      <nav className="pt-24 md:pt-28 px-8 max-w-[1200px] mx-auto">
+        <ol className="flex items-center gap-2 text-sm text-[#525252]">
           <li>
             <Link href="/" className="hover:text-[#fafafa] transition-colors">Home</Link>
           </li>
@@ -98,27 +100,27 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       </nav>
       
       {/* Main product section */}
-      <section className="pt-8 pb-16 md:pb-24 px-4 md:px-8 max-w-[1400px] mx-auto">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+      <section className="pt-8 pb-24 px-8 max-w-[1200px] mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Left: Gallery */}
-          <div className="lg:sticky lg:top-24 lg:self-start">
+          <div className="lg:sticky lg:top-28 lg:self-start">
             <ProductGallery images={product.images} title={product.title} />
           </div>
           
           {/* Right: Product info */}
           <div className="lg:py-4">
             {/* Category */}
-            <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#c4a077] mb-4">
+            <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#c4a077] mb-4">
               {product.category || 'Premium Streetwear'}
             </p>
             
             {/* Title */}
-            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#fafafa] mb-4">
+            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#fafafa] mb-6 leading-[1.1]">
               {product.title}
             </h1>
             
-            {/* Rating */}
-            <div className="flex items-center gap-2 mb-6">
+            {/* Rating with TrustIndex link */}
+            <div className="flex items-center gap-3 mb-6">
               <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <svg key={i} className="w-4 h-4 text-[#c4a077]" fill="currentColor" viewBox="0 0 20 20">
@@ -126,58 +128,78 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                   </svg>
                 ))}
               </div>
-              <span className="text-sm text-[#737373]">4.9/5 from verified buyers</span>
+              <span className="text-sm text-[#525252]">4.9/5 from verified buyers</span>
             </div>
             
-            {/* Price */}
+            {/* Price - Large and prominent */}
             <div className="flex items-baseline gap-3 mb-8">
               {product.compareAtPrice && (
-                <span className="text-xl text-[#737373] line-through">{product.compareAtPrice}</span>
+                <span className="text-xl text-[#525252] line-through">{product.compareAtPrice}</span>
               )}
-              <span className="text-2xl md:text-3xl text-[#fafafa]">{product.price}</span>
-              <span className="text-sm text-[#737373]">CAD</span>
+              <span className="text-3xl md:text-4xl font-serif text-[#fafafa]">{product.price}</span>
+              <span className="text-sm text-[#525252]">CAD</span>
             </div>
             
             {/* Description */}
             {product.descriptionHtml && product.descriptionHtml.length > 5 && (
               <div 
-                className="prose prose-sm prose-invert mb-8 text-[#a3a3a3]"
+                className="prose prose-sm prose-invert mb-8 text-[#737373] leading-relaxed [&_p]:mb-4"
                 dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} 
               />
             )}
             
-            {/* Trust badges - above the fold */}
-            <div className="flex flex-wrap items-center gap-4 mb-8 py-4 border-y border-[#1a1a1a]">
-              <div className="flex items-center gap-2 text-sm text-[#a3a3a3]">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {/* Trust indicators - inline */}
+            <div className="flex flex-wrap items-center gap-6 mb-8 py-6 border-y border-[#141414]">
+              <div className="flex items-center gap-2 text-sm text-[#737373]">
+                <svg className="w-4 h-4 text-[#c4a077]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
                 </svg>
                 450gsm Heavyweight
               </div>
-              <div className="flex items-center gap-2 text-sm text-[#a3a3a3]">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center gap-2 text-sm text-[#737373]">
+                <svg className="w-4 h-4 text-[#c4a077]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
                 </svg>
-                Limited to 10 Units
+                Limited Edition
               </div>
-              <div className="flex items-center gap-2 text-sm text-[#a3a3a3]">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center gap-2 text-sm text-[#737373]">
+                <svg className="w-4 h-4 text-[#c4a077]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
                 </svg>
                 Free Shipping $100+
               </div>
             </div>
             
-            {/* Add to cart section - prominent and sticky on mobile */}
+            {/* Add to cart section */}
             <AddToCartSection product={product} />
             
+            {/* Trust Badges - Right below add to cart for conversion */}
+            <div className="mt-8">
+              <TrustBadges />
+            </div>
+            
+            {/* TrustIndex widget for social proof on PDP */}
+            <div className="mt-8 pt-8 border-t border-[#141414]">
+              <p className="text-[11px] tracking-[0.2em] uppercase text-[#525252] mb-4 text-center">
+                Verified Reviews
+              </p>
+              <div 
+                className="trustindex-widget" 
+                data-url="cabe8cb70335182b45167fb72cb"
+              />
+              <Script 
+                src="https://cdn.trustindex.io/loader.js?cabe8cb70335182b45167fb72cb" 
+                strategy="lazyOnload"
+              />
+            </div>
+            
             {/* Payment methods */}
-            <div className="mt-6 flex items-center justify-center gap-4 text-[#737373]">
-              <span className="text-xs tracking-wide">Shop Pay</span>
-              <span className="text-[#262626]">|</span>
-              <span className="text-xs tracking-wide">Apple Pay</span>
-              <span className="text-[#262626]">|</span>
-              <span className="text-xs tracking-wide">Google Pay</span>
+            <div className="mt-8 flex items-center justify-center gap-6 text-[#525252]">
+              <span className="text-[11px] tracking-[0.15em] uppercase">Shop Pay</span>
+              <span className="text-[#1a1a1a]">|</span>
+              <span className="text-[11px] tracking-[0.15em] uppercase">Apple Pay</span>
+              <span className="text-[#1a1a1a]">|</span>
+              <span className="text-[11px] tracking-[0.15em] uppercase">Google Pay</span>
             </div>
             
             {/* Accordions with important info */}
@@ -190,9 +212,9 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       
       {/* Related products */}
       {related.length > 0 && (
-        <section className="py-16 md:py-24 border-t border-[#1a1a1a]">
-          <div className="px-4 md:px-8 max-w-[1400px] mx-auto">
-            <h2 className="font-serif text-2xl md:text-3xl text-[#fafafa] mb-8 text-center">
+        <section className="py-24 border-t border-[#141414]">
+          <div className="px-8 max-w-[1200px] mx-auto">
+            <h2 className="font-serif text-3xl text-[#fafafa] mb-12 text-center">
               You May Also Like
             </h2>
             <RelatedProducts products={related} />

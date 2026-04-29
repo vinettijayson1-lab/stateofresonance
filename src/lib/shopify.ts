@@ -96,6 +96,10 @@ async function shopifyFetch<T>(query: string): Promise<T> {
 }
 
 function cleanImageUrl(url: string): string {
+  // Keep Shopify CDN URLs intact - they need version parameters
+  if (url.includes('cdn.shopify.com')) {
+    return url;
+  }
   const i = url.indexOf('?');
   return i > -1 ? url.substring(0, i) : url;
 }
