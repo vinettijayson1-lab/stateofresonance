@@ -23,7 +23,7 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
     <div className="space-y-4">
       {/* Main image */}
       <div 
-        className="relative aspect-[3/4] bg-[#111] overflow-hidden cursor-zoom-in"
+        className="relative aspect-[4/5] bg-[#111] overflow-hidden cursor-zoom-in"
         onClick={() => setIsZoomed(true)}
       >
         <Image 
@@ -84,7 +84,7 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
             </svg>
           </button>
           
-          <div className="relative w-full max-w-4xl aspect-[3/4]">
+          <div className="relative w-full max-w-3xl aspect-[4/5]">
             <Image 
               src={displayImages[activeIndex].url} 
               alt={displayImages[activeIndex].alt || title}
