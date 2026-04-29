@@ -7,6 +7,7 @@ import { klaviyoService } from '../services/klaviyo'
 import gsap from 'gsap'
 import ProductCard from '../components/ProductCard.vue'
 import StickyBuyBar from '../components/StickyBuyBar.vue'
+import TrustindexWidget from '../components/TrustindexWidget.vue'
 
 import SocialShare from '../components/SocialShare.vue'
 import { currencyStore } from '../store/currency'
@@ -653,6 +654,14 @@ const onImgError = (e: any) => {
           <a v-if="isAvailable" :href="shopifyUrl" class="btn-solid-gold animate-glint full-width-buy" style="display: block; text-align: center; margin-top: 1rem; padding: 1.25rem; background: var(--color-gold); border: 1px solid var(--color-gold); color: #000; font-weight: bold; text-decoration: none; letter-spacing: 0.2em; font-size: 1rem; text-transform: uppercase; transition: transform 0.3s ease;" @click="addToCartWithQty">
             BUY NOW
           </a>
+
+          <!-- Trustindex Verified Badges -->
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; margin-top:1.5rem;">
+            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
+            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
+            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
+            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
+          </div>
 
           <!-- Trust nudges near CTA -->
           <div class="pdp-trust-strip" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.25rem; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); font-size: 0.75rem;">

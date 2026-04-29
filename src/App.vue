@@ -278,19 +278,7 @@ const auraStyle = computed(() => {
                 <a href="https://tiktok.com/@stateofresonance" target="_blank" class="fossil-social-link" aria-label="TikTok"><Music2 :size="16" /></a>
                 <a href="https://pinterest.com/stateofresonance" target="_blank" class="fossil-social-link" aria-label="Pinterest"><Compass :size="16" /></a>
               </div>
-              <!-- Trustindex Google Badge -->
-              <div class="fossil-trust-badge">
-                <div class="trustindex-badge-wrapper">
-                  <!-- Trustindex cert badges — all 5 -->
-                  <div style="display:flex; flex-wrap:wrap; gap:1rem;">
-                    <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
-                    <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
-                    <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?89afbc870f02180fa3860457c48" />
-                    <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
-                    <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
-                  </div>
-                </div>
-              </div>
+
               <div class="fossil-footer-language" style="margin-top:2rem;">
                 <span class="fossil-footer-col-title">Language</span>
                 <LanguageSwitcher />
