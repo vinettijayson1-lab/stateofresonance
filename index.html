@@ -62,28 +62,6 @@
     <!-- 2. HERO IMAGE PRELOAD — new Fossil hero image -->
     <link rel="preload" as="image" href="/images/upgraded/urban-hoodie-1.webp" fetchpriority="high" type="image/webp" />
 
-    <!-- Trustindex — all widgets loaded after page is interactive -->
-    <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        var scripts = [
-          'https://cdn.trustindex.io/loader.js?8c1bb1d6840c23179906838fc83',
-          'https://cdn.trustindex.io/loader-feed.js?b0f2da868a2e12699466c6e2535',
-          'https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e',
-          'https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f',
-          'https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1',
-          'https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015'
-        ];
-        scripts.forEach(function(src) {
-          var s = document.createElement('script');
-          s.src = src;
-          s.async = true;
-          s.defer = true;
-          document.head.appendChild(s);
-        });
-      }, 2000);
-    });
-    </script>
 
     <!-- 3. GOOGLE FONTS — non-blocking via print→all swap trick (fastest method) -->
     <link
