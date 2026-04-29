@@ -769,30 +769,7 @@ const onImgError = (e: any) => {
       </div>
     </div>
 
-    <!-- LIFESTYLE PHOTOGRAPHY GALLERY FOR PDP -->
-    <section v-if="isClothing" class="lifestyle-gallery" style="padding: 8vh 0; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4rem;">
-      <div style="text-align: center; margin-bottom: 3rem;">
-        <p class="section-eyebrow-text">THE LOOKBOOK</p>
-        <h2 class="hero-title" style="font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; text-transform: uppercase;">Where Intention Meets Aesthetic</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-        <router-link to="/product/urban-hoodie-1" class="lifestyle-img-wrap" style="display:block; aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
-          <img src="/images/lifestyle_urban.png" alt="Editorial Streetwear Lifestyle" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
-        </router-link>
-        <router-link to="/product/unisex-oversized-hoodie" class="lifestyle-img-wrap" style="display:block; aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
-          <img src="/images/lifestyle_model_fit.png" alt="Model wearing Boxy Crewneck" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
-        </router-link>
-        <router-link to="/best-sellers" class="lifestyle-img-wrap" style="display:block; aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
-          <img src="/images/lifestyle_stitching.png" alt="Heavyweight Material Drop Macro" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out-expo);" class="lifestyle-zoom" />
-        </router-link>
-      </div>
 
-    </section>
-
-    <!-- Customer Reviews (Judge.me) -->
-    <div v-if="product" class="container" style="padding-top: 8vh; padding-bottom: 4vh;">
-      <ProductReviews :handle="product.handle" :key="product.handle" />
-    </div>
 
     <!-- Related Products -->
     <div v-if="relatedProducts.length > 0" class="related-section" style="margin-top: 15vh;">
@@ -1162,6 +1139,13 @@ const onImgError = (e: any) => {
   .product-actions {
     flex-direction: column;
     gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-img-wrapper {
+    max-height: 55vh;
+    aspect-ratio: 1/1;
   }
 }
 

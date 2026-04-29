@@ -63,15 +63,6 @@ const liveViewers = computed(() => {
   return 3 + (props.product.id.charCodeAt(props.product.id.length - 1) % 10)
 })
 
-// Star rating — deterministic from product ID (4.6 – 4.9)
-const starRating = computed(() => {
-  const base = 46 + (props.product.id.charCodeAt(0) % 4)
-  return (base / 10).toFixed(1)
-})
-
-const reviewCount = computed(() => {
-  return 12 + (props.product.id.charCodeAt(1) % 40)
-})
 
 const remainingStock = computed(() => {
   // Matches logic in Product.vue
@@ -150,12 +141,7 @@ onMounted(() => {
         <span :class="{ 'gold-text': memberPrice }">{{ memberPrice || currencyStore.formatPrice(priceValue) }}</span>
         <span v-if="memberPrice" class="member-tag" style="margin-left: 0.5rem; font-size: 0.5rem; letter-spacing: 0.1em; opacity: 0.6; vertical-align: middle;">{{ $t('membership.member_price') }}</span>
       </div>
-      <!-- Star Rating -->
-      <div class="star-row">
-        <span class="stars-display">★★★★★</span>
-        <span class="star-count">{{ starRating }}</span>
-        <span class="review-count">({{ reviewCount }})</span>
-      </div>
+
       <div class="product-footer">
         <span v-if="product.variants && product.variants.length > 1" class="variant-count">
           {{ $t('product.variants', { n: product.variants.length }) }}
@@ -359,28 +345,5 @@ onMounted(() => {
   color: var(--color-gold) !important;
 }
 
-/* Star Rating Row */
-.star-row {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.75rem;
-}
 
-.stars-display {
-  color: #d4af37;
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
-}
-
-.star-count {
-  font-size: 0.65rem;
-  color: rgba(255,255,255,0.7);
-  font-weight: 600;
-}
-
-.review-count {
-  font-size: 0.6rem;
-  color: rgba(255,255,255,0.3);
-}
 </style>

@@ -3,7 +3,6 @@ import { onMounted, ref, defineAsyncComponent } from 'vue'
 import ProductCard from '../components/ProductCard.vue'
 import { klaviyoService } from '../services/klaviyo'
 
-const Testimonials = defineAsyncComponent(() => import('../components/Testimonials.vue'))
 const FaqSection = defineAsyncComponent(() => import('../components/FaqSection.vue'))
 
 interface Product { id: string; title: string; price: string; category: string; image: string; handle: string }
@@ -124,29 +123,6 @@ const archiveLogs = [
       </div>
     </section>
 
-    <!-- SECTION 4: EDITORIAL LOOKBOOK (Fossil Brand Section) -->
-    <section class="fossil-lookbook">
-      <div class="fossil-lookbook-grid">
-        <router-link to="/product/urban-hoodie-1" class="fossil-lookbook-main" style="display:block;">
-          <img src="/images/upgraded/the-hermetic-scales-pullover.webp" alt="Hermetic Scales — State of Resonance" class="fossil-lookbook-img" loading="lazy" />
-        </router-link>
-        <div class="fossil-lookbook-side">
-          <router-link to="/product/men-s-box-hoodie" class="fossil-lookbook-top" style="display:block; height:100%;">
-            <img src="/images/upgraded/urban-garment-dyed-hoodie-1.webp" alt="Urban Garment Dyed Hoodie" class="fossil-lookbook-img" loading="lazy" />
-          </router-link>
-          <router-link to="/product/crop-hoodie" class="fossil-lookbook-bottom" style="display:block; height:100%;">
-            <img src="/images/upgraded/urban-hoodie-7.webp" alt="Urban Hoodie Editorial" class="fossil-lookbook-img" loading="lazy" />
-          </router-link>
-        </div>
-        <div class="fossil-lookbook-text-overlay">
-          <span class="fossil-eyebrow">The Lookbook</span>
-          <h2 class="fossil-lookbook-title">Wear the<br/>Signal.</h2>
-          <p class="fossil-lookbook-sub">Symbolic streetwear for<br/>the spiritually awakened.</p>
-          <router-link to="/lookbook" class="fossil-lookbook-cta">Explore Lookbook →</router-link>
-        </div>
-      </div>
-    </section>
-
     <!-- SECTION 5: BRAND STORY -->
     <section class="fossil-brand-story">
       <div class="container">
@@ -232,10 +208,6 @@ const archiveLogs = [
       </div>
     </div>
 
-    <!-- SECTION 8: REVIEWS -->
-    <Suspense>
-      <Testimonials />
-    </Suspense>
 
     <!-- SECTION 9: EMAIL CAPTURE -->
     <section class="fossil-email-section">

@@ -116,21 +116,23 @@ export default async function handler(req: any, res: any) {
         position: img.position || 99
       }));
 
-      // PRIORITY: Transparent front-facing image
+      // 1. Try to find an explicit 'front' label
       const frontImage = optimizedImages.find((img: any) => {
         const alt = (img.alt || '').toLowerCase();
         const src = (img.src || '').toLowerCase();
         return alt.includes('front') || src.includes('front') || alt.includes('transparent');
       });
       
-      // If we can't find 'front', but there is more than 1 image, the front might be the second image 
-      // (since often the back art is placed first in Shopify)
+      // 2. If no label, grab the FIRST available PNG (transparent see-through image)
+      const firstPng = optimizedImages.find((img: any) => (img.src || '').toLowerCase().includes('.png'));
+      
+      // 3. Fallback to the first image overall
       let primaryRawImage = optimizedImages[0]?.src || '/assets/placeholder.png';
+      
       if (frontImage) {
         primaryRawImage = frontImage.src;
-      } else if (optimizedImages.length > 1) {
-        // Fallback: If no explicit front tag, assume second image is the front if the first is the back art
-        primaryRawImage = optimizedImages[1].src;
+      } else if (firstPng) {
+        primaryRawImage = firstPng.src;
       }
       
       const primaryImage = primaryRawImage;
