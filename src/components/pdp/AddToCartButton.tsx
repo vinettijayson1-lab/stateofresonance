@@ -1,10 +1,9 @@
 "use client";
 
 import { useCartStore } from "@/store/cart";
-import { useState, useEffect, useRef, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { ShopifyProduct } from "@/lib/shopify";
 import { trackAddToCart } from "@/lib/tracking";
-import SizeGuideModal from "./SizeGuideModal";
 import { useSearchParams } from "next/navigation";
 
 function AddToCartInner({ product }: { product: ShopifyProduct }) {
@@ -12,19 +11,6 @@ function AddToCartInner({ product }: { product: ShopifyProduct }) {
   const toggleCart = useCartStore(s => s.toggleCart);
   const searchParams = useSearchParams();
   const variantParam = searchParams.get('variant');
-  
-  const buttonRef = useRef<HTMLDivElement>(null);
-  const [showSticky, setShowSticky] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      // Show sticky when main button scrolls up past viewport
-      setShowSticky(entry.boundingClientRect.y < 0 && !entry.isIntersecting);
-    }, { threshold: 0 });
-
-    if (buttonRef.current) observer.observe(buttonRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>(() => {
     if (variantParam && product?.variants) {
@@ -63,28 +49,46 @@ function AddToCartInner({ product }: { product: ShopifyProduct }) {
 
   const handleAcquire = () => {
     if (!isAvailable) return;
-    addItem({ id: product.id, variantId: currentVariant?.id || product.id, title: product.title, price: currentVariant?.price || product.price, image: product.image.url, quantity: 1 });
-    trackAddToCart({ id: product.id, title: product.title, price: currentVariant?.price || product.price, category: product.category });
+    addItem({ 
+      id: product.id, 
+      variantId: currentVariant?.id || product.id, 
+      title: product.title, 
+      price: currentVariant?.price || product.price, 
+      image: product.image.url, 
+      quantity: 1 
+    });
+    trackAddToCart({ 
+      id: product.id, 
+      title: product.title, 
+      price: currentVariant?.price || product.price, 
+      category: product.category 
+    });
     toggleCart();
   };
 
   return (
-    <div id="variant-selector" className="w-full relative mt-4 mb-8">
+    <div id="variant-selector" className="w-full mb-6">
       {/* Variant Selector */}
       {product?.options?.some(o => o.name !== 'Title') && (
-        <div className="flex flex-col gap-6 mb-8 pt-4 border-t border-[rgba(255,255,255,0.05)]">
+        <div className="flex flex-col gap-6 mb-6">
           {product.options.filter(o => o.name !== 'Title').map(option => (
             <div key={option.name} className="flex flex-col gap-3">
-              <div className="flex justify-between items-center w-full">
-                <span className="text-[0.6rem] uppercase tracking-[0.2em] text-gray-500">Select {option.name}</span>
-                {option.name.toLowerCase() === 'size' && (
-                  <SizeGuideModal />
-                )}
+              <div className="flex justify-between items-center">
+                <span className="text-xs uppercase tracking-widest text-muted-foreground">
+                  {option.name}: <span className="text-foreground">{selectedOptions[option.name]}</span>
+                </span>
               </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2">
                 {option.values.map(val => (
-                  <button key={val} onClick={() => setSelectedOptions(p => ({ ...p, [option.name]: val }))}
-                    className={`px-5 py-3 text-xs tracking-widest uppercase transition-all border ${selectedOptions[option.name] === val ? 'border-[var(--color-gold)] bg-[var(--color-gold)] text-black font-bold shadow-[0_0_15px_rgba(212,175,55,0.3)]' : 'border-[rgba(255,255,255,0.1)] text-gray-400 bg-transparent hover:border-[rgba(255,255,255,0.3)]'}`}>
+                  <button 
+                    key={val} 
+                    onClick={() => setSelectedOptions(p => ({ ...p, [option.name]: val }))}
+                    className={`min-w-[3rem] px-4 py-2.5 text-xs tracking-wide uppercase transition-all border ${
+                      selectedOptions[option.name] === val 
+                        ? 'border-foreground bg-foreground text-background' 
+                        : 'border-border bg-transparent text-foreground hover:border-foreground'
+                    }`}
+                  >
                     {val}
                   </button>
                 ))}
@@ -94,42 +98,56 @@ function AddToCartInner({ product }: { product: ShopifyProduct }) {
         </div>
       )}
 
-      <p className="text-center text-[0.65rem] tracking-[0.3em] font-serif uppercase text-[var(--color-gold-muted)] mb-4 italic drop-shadow-[0_0_8px_rgba(212,175,55,0.2)]">
-        &quot;Let your vibes resonate. Enter the state of resonance.&quot;
-      </p>
+      {/* Stock indicator */}
+      {isAvailable && currentVariant?.quantityAvailable != null && currentVariant.quantityAvailable <= 10 && (
+        <div className="flex items-center gap-2 mb-4">
+          <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+          <span className="text-xs text-muted-foreground">
+            Only {currentVariant.quantityAvailable} left in stock
+          </span>
+        </div>
+      )}
 
-      {isAvailable && (() => {
-        const qty = currentVariant?.quantityAvailable;
-        const label = qty != null && qty <= 15
-          ? `${qty} artifact${qty === 1 ? '' : 's'} remaining`
-          : 'High Frequency — Very Few Artifacts Remain';
-        return (
-          <div className="flex items-center justify-center gap-2 mb-4 animate-pulse">
-            <div className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
-            <span className="text-[0.55rem] tracking-widest text-red-400 font-mono uppercase">{label}</span>
-          </div>
-        );
-      })()}
-
-      <div ref={buttonRef} className="flex flex-col gap-3">
+      {/* Add to Cart Button */}
+      <div id="main-add-to-cart" className="flex flex-col gap-3">
         {isAvailable ? (
           <>
-            <button onClick={handleAcquire}
-              className={`w-full transition-all duration-300 font-extrabold uppercase tracking-[0.2em] py-5 bg-[var(--color-gold)] hover:bg-[#c9a738] hover:brightness-110 text-black shadow-[0_0_40px_rgba(212,175,55,0.4)]`}>
-              Acquire Artifact
+            <button 
+              onClick={handleAcquire}
+              className="w-full py-4 bg-foreground text-background font-medium tracking-wide uppercase text-sm transition-all hover:bg-foreground/90 active:scale-[0.98]"
+            >
+              Add to Cart — {currentVariant?.price || product.price}
             </button>
-            <button onClick={() => { handleAcquire(); setTimeout(() => { window.location.href = useCartStore.getState().getCheckoutUrl(); }, 100); }}
-              className="w-full bg-transparent hover:bg-white hover:text-black text-white border border-white transition-colors font-bold uppercase tracking-[0.2em] py-4">
-              Buy It Now
+            <button 
+              onClick={() => { 
+                handleAcquire(); 
+                setTimeout(() => { 
+                  window.location.href = useCartStore.getState().getCheckoutUrl(); 
+                }, 100); 
+              }}
+              className="w-full py-4 bg-transparent text-foreground border border-border font-medium tracking-wide uppercase text-sm transition-all hover:bg-secondary"
+            >
+              Buy Now
             </button>
           </>
         ) : (
-          <div className="flex flex-col gap-3">
-            <h4 className="text-[var(--color-gold-muted)] font-serif italic text-lg text-center mt-2">Resonance Depleted</h4>
-            <p className="text-gray-400 font-sans text-xs tracking-widest uppercase text-center mb-2">Sign up to be notified of the next manifestation.</p>
-            <form onSubmit={(e) => { e.preventDefault(); alert("Notify logic simulated"); }} className="flex w-full">
-              <input type="email" placeholder="ENTER YOUR EMAIL" required className="w-full bg-black border border-[rgba(255,255,255,0.1)] border-r-0 px-4 py-4 text-xs font-sans tracking-widest text-white placeholder-gray-600 focus:outline-none focus:border-[var(--color-gold-muted)]" />
-              <button type="submit" className="bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-white hover:bg-[var(--color-gold)] hover:text-black hover:border-[var(--color-gold)] transition-colors px-6 text-xs font-bold uppercase tracking-widest shrink-0">Notify Me</button>
+          <div className="flex flex-col gap-4">
+            <div className="py-4 bg-secondary text-muted-foreground text-center font-medium tracking-wide uppercase text-sm">
+              Sold Out
+            </div>
+            <form onSubmit={(e) => { e.preventDefault(); alert("Notify logic simulated"); }} className="flex">
+              <input 
+                type="email" 
+                placeholder="Enter email for restock updates" 
+                required 
+                className="flex-1 bg-transparent border border-border border-r-0 px-4 py-3 text-sm placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors" 
+              />
+              <button 
+                type="submit" 
+                className="px-6 py-3 bg-foreground text-background text-sm font-medium tracking-wide uppercase shrink-0 hover:bg-foreground/90 transition-colors"
+              >
+                Notify Me
+              </button>
             </form>
           </div>
         )}
@@ -140,7 +158,7 @@ function AddToCartInner({ product }: { product: ShopifyProduct }) {
 
 export default function AddToCartButton({ product }: { product: ShopifyProduct }) {
   return (
-    <Suspense fallback={<div className="h-20 w-full bg-black/50 animate-pulse border border-[rgba(255,255,255,0.1)]"></div>}>
+    <Suspense fallback={<div className="h-20 w-full bg-secondary animate-pulse" />}>
       <AddToCartInner product={product} />
     </Suspense>
   );

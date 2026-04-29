@@ -1,18 +1,36 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --color-gold: #d4af37;
-  --color-gold-muted: rgba(212, 175, 55, 0.7);
-  --color-onyx: #0a0a0c;
-  --color-onyx-light: #121216;
-  --glass-border: rgba(212, 175, 55, 0.15);
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --muted: #737373;
+  --muted-foreground: #a3a3a3;
+  --border: #262626;
+  --accent: #e5e5e5;
+  --accent-foreground: #0a0a0a;
+  --primary: #fafafa;
+  --primary-foreground: #0a0a0a;
+  --secondary: #171717;
+  --secondary-foreground: #fafafa;
+  --card: #0f0f0f;
+  --card-foreground: #fafafa;
+  --radius: 0rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
 }
@@ -22,6 +40,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   touch-action: manipulation;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -33,124 +52,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Webkit Scrollbar */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--background); }
-::-webkit-scrollbar-thumb { background: var(--color-onyx-light); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-gold-muted); }
+/* Minimal Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
 /* Heading defaults */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif), serif;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-/* Obsidian Glass utility */
-.obsidian-glass {
-  background: var(--color-onyx);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-}
-
-/* Film Grain overlay */
-.bg-noise { position: relative; }
-.bg-noise::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.03;
-  mix-blend-mode: overlay;
-  z-index: 9999;
-}
-
-/* GPU-accelerated glassmorphism for iOS */
-.glass-accelerated {
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-/* Bypass JS smooth scroll on touch */
-@media (pointer: coarse) {
-  html { scroll-behavior: auto !important; }
-}
-
-/* Hide Next.js dev indicator */
-nextjs-portal { display: none !important; }
-
-/* Markdown Blog Link Styling */
-.prose a {
-  color: var(--color-gold);
-  text-decoration: underline;
-  text-decoration-color: var(--color-gold-muted);
-  text-underline-offset: 4px;
-  transition: all 0.2s ease;
-}
-.prose a:hover {
-  color: #fff;
-  text-decoration-color: #fff;
-}
-
-/* ═══════════════════════════════════════════════
-   ANIMATIONS — Message AI Inspired
-   ═══════════════════════════════════════════════ */
-
-/* Ken Burns Hero Animation */
-@keyframes ken-burns {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
-}
-.animate-ken-burns {
-  animation: ken-burns 25s ease-in-out infinite;
-}
-
-/* Scroll Reveal */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Staggered reveal delays */
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-
-/* Scroll indicator bounce */
-@keyframes scroll-bounce {
-  0%, 100% { transform: translateY(0); opacity: 0.6; }
-  50% { transform: translateY(8px); opacity: 1; }
-}
-.animate-scroll-bounce {
-  animation: scroll-bounce 2s ease-in-out infinite;
-}
-
-/* Pulsing gold glow */
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.4); }
-}
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-/* Aura orb floating */
-@keyframes float-orb {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(10px, -15px) scale(1.05); }
-  66% { transform: translate(-8px, 8px) scale(0.97); }
-}
-.animate-float-orb {
-  animation: float-orb 12s ease-in-out infinite;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 /* Hide scrollbar for carousel */
@@ -162,36 +74,68 @@ nextjs-portal { display: none !important; }
   display: none;
 }
 
-/* Glassmorphism card */
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+/* Subtle reveal animation */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.glass-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(212, 175, 55, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(212, 175, 55, 0.08);
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out forwards;
 }
 
-/* Section dot label */
-.dot-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--color-gold-muted);
-  font-family: var(--font-sans), system-ui, sans-serif;
+/* Stagger delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+
+/* Image zoom on hover */
+.img-zoom {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.dot-label::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-gold);
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+.img-zoom:hover {
+  transform: scale(1.03);
+}
+
+/* Button hover effect */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-primary:hover::before {
+  opacity: 0.1;
+}
+
+/* Prose styling */
+.prose a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity 0.2s ease;
+}
+.prose a:hover {
+  opacity: 0.7;
+}
+
+/* Hide Next.js dev indicator */
+nextjs-portal { display: none !important; }
+
+/* Bypass JS smooth scroll on touch */
+@media (pointer: coarse) {
+  html { scroll-behavior: auto !important; }
 }

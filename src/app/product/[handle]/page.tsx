@@ -4,9 +4,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import AddToCartButton from "@/components/pdp/AddToCartButton";
 import ProductGallery from "@/components/pdp/ProductGallery";
-import TrustBadges from "@/components/pdp/TrustBadges";
 import StickyMobileCart from "@/components/pdp/StickyMobileCart";
-import FrequencySignup from "@/components/pdp/FrequencySignup";
+import ProductAccordion from "@/components/pdp/ProductAccordion";
 import Image from "next/image";
 import type { Metadata } from "next";
 
@@ -24,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ handle: s
   if (!product) return { title: "Product Not Found" };
   const desc = product.descriptionHtml
     ? product.descriptionHtml.replace(/<[^>]*>/g, '').slice(0, 155).trim() + '…'
-    : `Shop ${product.title} — premium occult streetwear by State of Resonance. 450gsm heavyweight cotton, limited to 10 units.`;
+    : `Shop ${product.title} — premium streetwear. Limited edition.`;
   return {
     title: product.title,
     description: desc,
@@ -53,139 +52,210 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   const product = allProducts.find(p => p.handle === handle);
   if (!product) return notFound();
   const related = allProducts.filter(p => p.handle !== handle).slice(0, 4);
-  const numericId = product.id.replace('gid://shopify/Product/', '');
+
+  const accordionItems = [
+    {
+      title: 'Size Guide',
+      content: (
+        <div className="space-y-4">
+          <p>Our pieces are designed with an oversized, structured silhouette. We recommend sizing down for a more fitted look, or staying true to size for the intended oversized aesthetic.</p>
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 font-medium">Size</th>
+                <th className="text-left py-2 font-medium">Chest</th>
+                <th className="text-left py-2 font-medium">Length</th>
+                <th className="text-left py-2 font-medium">Shoulder</th>
+              </tr>
+            </thead>
+            <tbody className="text-muted-foreground">
+              <tr className="border-b border-border/50"><td className="py-2">S</td><td>54cm</td><td>70cm</td><td>52cm</td></tr>
+              <tr className="border-b border-border/50"><td className="py-2">M</td><td>57cm</td><td>72cm</td><td>54cm</td></tr>
+              <tr className="border-b border-border/50"><td className="py-2">L</td><td>60cm</td><td>74cm</td><td>56cm</td></tr>
+              <tr className="border-b border-border/50"><td className="py-2">XL</td><td>63cm</td><td>76cm</td><td>58cm</td></tr>
+              <tr><td className="py-2">XXL</td><td>66cm</td><td>78cm</td><td>60cm</td></tr>
+            </tbody>
+          </table>
+        </div>
+      ),
+    },
+    {
+      title: 'Details & Care',
+      content: (
+        <ul className="space-y-2">
+          <li>• 450gsm heavyweight cotton</li>
+          <li>• Double-stitched seams throughout</li>
+          <li>• Oversized, drop-shoulder construction</li>
+          <li>• Machine wash cold, hang dry</li>
+          <li>• Do not bleach or tumble dry</li>
+        </ul>
+      ),
+    },
+    {
+      title: 'Shipping & Returns',
+      content: (
+        <div className="space-y-3">
+          <p>Free shipping on orders over $150 CAD. Standard delivery takes 3-7 business days within Canada, 7-14 days internationally.</p>
+          <p>We accept returns within 14 days of delivery for unworn items with tags attached. Final sale items are non-returnable.</p>
+        </div>
+      ),
+    },
+  ];
   
   return (
-    <div className="w-full min-h-screen relative z-10 pt-24 lg:pt-40 pb-24 px-4 sm:px-8 max-w-7xl mx-auto flex flex-col">
-      <nav className="mb-8 font-sans text-xs uppercase tracking-widest text-gray-500 flex gap-2">
-        <Link href="/" className="hover:text-[var(--color-gold-muted)] transition-colors">Home</Link>
-        <span>/</span>
-        <Link href="/collection/all" className="hover:text-[var(--color-gold-muted)] transition-colors">Shop</Link>
-        <span>/</span>
-        <span className="text-gray-300">{product.title}</span>
+    <div className="min-h-screen bg-background">
+      {/* Breadcrumb */}
+      <nav className="px-4 lg:px-8 py-4 border-b border-border">
+        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs text-muted-foreground">
+          <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+          <span>/</span>
+          <Link href="/collection/all" className="hover:text-foreground transition-colors">Shop</Link>
+          <span>/</span>
+          <span className="text-foreground truncate">{product.title}</span>
+        </div>
       </nav>
-      
+
+      {/* Schema */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org/",
         "@graph": [
-          { "@type": "Product", name: product.title, image: product.images.map(i => i.url), description: `State of Resonance Official Artifact: ${product.title}`, brand: { "@type": "Brand", name: "State of Resonance" }, aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "12" }, offers: { "@type": "Offer", url: `https://stateofresonance.ca/product/${product.handle}`, priceCurrency: "CAD", price: product.price.replace('$', ''), availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition" } },
-          { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://stateofresonance.ca" }, { "@type": "ListItem", position: 2, name: "Shop", item: "https://stateofresonance.ca/collection/all" }, { "@type": "ListItem", position: 3, name: product.title, item: `https://stateofresonance.ca/product/${product.handle}` }] },
+          { "@type": "Product", name: product.title, image: product.images.map(i => i.url), description: product.descriptionHtml?.replace(/<[^>]*>/g, '').slice(0, 200) || product.title, brand: { "@type": "Brand", name: "State of Resonance" }, aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "12" }, offers: { "@type": "Offer", url: `${BASE_URL}/product/${product.handle}`, priceCurrency: "CAD", price: product.price.replace('$', ''), availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition" } },
+          { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: BASE_URL }, { "@type": "ListItem", position: 2, name: "Shop", item: `${BASE_URL}/collection/all` }, { "@type": "ListItem", position: 3, name: product.title, item: `${BASE_URL}/product/${product.handle}` }] },
         ],
       })}} />
       
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start w-full">
-        <div className="w-full lg:w-1/2">
+      {/* Main Product Section */}
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+          {/* Gallery */}
           <ProductGallery mainImage={product.image} images={product.images} />
-        </div>
-        
-        <div className="w-full lg:w-1/2 flex flex-col text-center lg:text-left pt-4">
-          <div className="mb-8 border-b border-[rgba(255,255,255,0.05)] pb-8">
-            <p className="text-[var(--color-gold-muted)] tracking-[0.3em] text-xs uppercase mb-4 animate-pulse">{product.category}</p>
-            <h1 className="text-4xl lg:text-5xl font-serif text-white tracking-wide mb-4 leading-tight">{product.title}</h1>
+          
+          {/* Product Info */}
+          <div className="flex flex-col animate-fade-up">
+            {/* Category */}
+            <p className="text-xs tracking-widest uppercase text-muted-foreground mb-3">
+              {product.category}
+            </p>
+            
+            {/* Title */}
+            <h1 className="text-3xl lg:text-4xl font-medium tracking-tight mb-4 text-balance">
+              {product.title}
+            </h1>
 
-            <a href="#reviews" className="flex items-center gap-2 mb-6 group inline-flex cursor-pointer transition-opacity hover:opacity-80">
-              <div className="flex gap-1 text-[var(--color-gold-muted)]">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" /></svg>
+            {/* Rating */}
+            <a href="#reviews" className="flex items-center gap-2 mb-6 group">
+              <div className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-3.5 h-3.5 text-foreground" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
               </div>
-              <span className="text-xs text-gray-400 font-sans tracking-wide uppercase">4.9/5 from Verified Buyers</span>
+              <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                12 Reviews
+              </span>
             </a>
             
-            <div className="flex flex-col gap-2 mb-8">
-              <div className="flex items-end gap-3 text-2xl font-mono tracking-wider">
-                {product.compareAtPrice && <span className="text-gray-500 line-through text-xl">{product.compareAtPrice}</span>}
-                <p className="text-gray-300">{product.price} <span className="text-sm text-gray-500 font-sans">CAD</span></p>
-              </div>
-              <div className="flex items-center justify-center lg:justify-start gap-4 text-xs tracking-widest text-[#5a5a5a] uppercase mt-2 font-mono">
-                <span>Shop Pay</span><span>•</span><span>Apple Pay</span><span>•</span><span>Google Pay</span>
-              </div>
+            {/* Price */}
+            <div className="flex items-baseline gap-3 mb-6">
+              {product.compareAtPrice && (
+                <span className="text-lg text-muted-foreground line-through">
+                  {product.compareAtPrice}
+                </span>
+              )}
+              <span className="text-2xl font-medium">
+                {product.price} <span className="text-sm text-muted-foreground font-normal">CAD</span>
+              </span>
             </div>
             
-            <div className="text-sm text-gray-400 font-sans leading-relaxed tracking-wide space-y-4 prose prose-invert mx-auto lg:mx-0" dangerouslySetInnerHTML={{ __html: product.descriptionHtml && product.descriptionHtml.length > 5 ? product.descriptionHtml : '<p>Forged in the abyss. This artifact resonates with frequencies designed to elevate your state of being.</p>' }} />
-          </div>
-          
-          <div className="w-full mb-12">
-            <div className="mb-6"><AddToCartButton product={product} /></div>
-            <TrustBadges />
-          </div>
-          
-          <div className="w-full flex flex-col gap-10 mt-8 border-t border-[rgba(255,255,255,0.05)] pt-12 text-left">
-            <div>
-              <h3 className="font-serif text-xl text-[var(--color-gold-muted)] uppercase tracking-widest mb-4">Why This Piece Is Special</h3>
-              <ul className="space-y-3 font-sans text-sm tracking-wide text-gray-300 uppercase">
-                {["450gsm heavyweight cotton", "Oversized, structured silhouette", "Double‑stitched seams", "Limited to 10 units", "Designed in Canada"].map((s, i) => <li key={i}>• {s}</li>)}
-              </ul>
+            {/* Description */}
+            <div 
+              className="text-sm text-muted-foreground leading-relaxed mb-8 prose prose-sm prose-invert max-w-none"
+              dangerouslySetInnerHTML={{ 
+                __html: product.descriptionHtml && product.descriptionHtml.length > 5 
+                  ? product.descriptionHtml 
+                  : '<p>Premium heavyweight cotton with a structured oversized silhouette. Limited to 10 units.</p>' 
+              }} 
+            />
+
+            {/* Add to Cart */}
+            <AddToCartButton product={product} />
+            
+            {/* Trust indicators */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground mb-8">
+              <span className="flex items-center gap-1.5">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
+                </svg>
+                Free shipping over $150
+              </span>
+              <span className="flex items-center gap-1.5">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                14-day returns
+              </span>
+              <span className="flex items-center gap-1.5">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                Secure checkout
+              </span>
             </div>
-            <div>
-              <h3 className="font-serif text-xl text-[var(--color-gold-muted)] uppercase tracking-widest mb-4">Symbol Meaning</h3>
-              <div className="font-sans text-sm tracking-wide text-gray-300 space-y-2">
-                <p className="text-white font-bold">Metatron&apos;s Cube</p>
-                <p>Represents clarity, structure, and the alignment of inner and outer worlds.</p>
-              </div>
-            </div>
-            <div>
-              <h3 className="font-serif text-xl text-[var(--color-gold-muted)] uppercase tracking-widest mb-4">Fit &amp; Feel</h3>
-              <ul className="space-y-3 font-sans text-sm tracking-wide text-gray-300 uppercase">
-                {["Oversized", "Drop shoulder", "Thick, warm, premium feel", "True to size for oversized look"].map((s, i) => <li key={i}>• {s}</li>)}
-              </ul>
-            </div>
-            <FrequencySignup />
+
+            {/* Accordion */}
+            <ProductAccordion items={accordionItems} />
           </div>
         </div>
       </div>
       
-      <div className="w-full mt-24 border-t border-[rgba(255,255,255,0.05)] pt-16">
-        <h2 className="font-serif text-2xl text-center text-white mb-8 uppercase tracking-widest">Worn by the Community</h2>
-        <div className="grid grid-cols-3 gap-4 max-w-5xl mx-auto">
-          {[
-            { src: "/jayson-social.jpg", label: "The Frequency Spreads", url: "https://www.facebook.com/photo?fbid=10164200068961063&set=a.10154362149296063" },
-            { src: "/david-social.jpg", label: "David Goudro", url: "https://www.instagram.com/reel/DWGyGd1Eby5/" },
-            { src: "/kelly-social.jpg", label: "Virgin Radio Kelly", url: "https://www.instagram.com/p/DVCd7LUkbxS/" },
-          ].map((img, i) => (
-            <a key={i} href={img.url} target="_blank" rel="noopener noreferrer" className="aspect-square relative overflow-hidden border border-[rgba(255,255,255,0.05)] group cursor-pointer hover:border-[var(--color-gold-muted)] transition-colors">
-              <Image src={img.src} alt={img.label} fill className="object-cover grayscale group-hover:grayscale-0 opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <span className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[0.6rem] text-gray-300 font-sans tracking-widest uppercase z-10 group-hover:text-white transition-colors text-center whitespace-nowrap">{img.label}</span>
-            </a>
-          ))}
-        </div>
-      </div>
-      
-      <div className="w-full mt-24 border-t border-[rgba(255,255,255,0.05)] pt-16 pb-16" id="reviews">
-        <h2 className="font-serif text-3xl text-center text-white mb-12 tracking-widest uppercase">Alchemical Reports</h2>
-        <div className="max-w-5xl mx-auto px-4">
-          {/* TrustIndex Widget — populated by loader.js */}
+      {/* Reviews Section */}
+      <section id="reviews" className="border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8 py-16">
+          <h2 className="text-xl font-medium tracking-tight mb-8 text-center">Customer Reviews</h2>
           <div className="trustindex-widget" data-url="2344a8869a5f373c8f9603a105f" />
-
         </div>
-      </div>
+      </section>
       
+      {/* Related Products */}
       {related.length > 0 && (
-        <div className="w-full mt-24 border-t border-[rgba(255,255,255,0.05)] pt-16">
-          <h2 className="font-serif text-3xl text-center text-white mb-16 tracking-widest uppercase">You May Also Like</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-            {related.map(p => (
-              <a key={p.id} href={`/product/${p.handle}`} className="group relative block transition-all duration-500 hover:-translate-y-2">
-                <div className="aspect-[4/5] bg-black border border-[rgba(255,255,255,0.05)] flex items-center justify-center p-4 relative overflow-hidden group-hover:border-[var(--color-gold-muted)] transition-colors">
-                  <div className="absolute inset-0 bg-[url('/esoteric-backdrop.webp')] bg-cover bg-center opacity-50 group-hover:opacity-100 transition-opacity" />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.image.url} alt={p.image.alt} className="w-full h-full object-contain relative z-10 drop-shadow-2xl group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-                </div>
-                <div className="mt-4 text-center">
-                  <h3 className="text-white font-serif text-sm group-hover:text-[var(--color-gold-muted)] transition-colors">{p.title}</h3>
-                  <div className="flex justify-center items-center gap-2 mt-1">
-                    {p.compareAtPrice && <span className="text-gray-500 line-through text-[0.65rem] font-mono">{p.compareAtPrice}</span>}
-                    <p className="text-[var(--color-gold-muted)] font-mono text-xs">{p.price}</p>
+        <section className="border-t border-border">
+          <div className="max-w-7xl mx-auto px-4 lg:px-8 py-16">
+            <h2 className="text-xl font-medium tracking-tight mb-8 text-center">You May Also Like</h2>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+              {related.map(p => (
+                <Link 
+                  key={p.id} 
+                  href={`/product/${p.handle}`} 
+                  className="group block"
+                >
+                  <div className="aspect-[3/4] relative bg-secondary overflow-hidden mb-3">
+                    <Image 
+                      src={p.image.url} 
+                      alt={p.image.alt} 
+                      fill 
+                      className="object-cover transition-transform duration-500 group-hover:scale-105" 
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      loading="lazy" 
+                    />
                   </div>
-                </div>
-              </a>
-            ))}
+                  <h3 className="text-sm font-medium truncate group-hover:underline underline-offset-4">
+                    {p.title}
+                  </h3>
+                  <div className="flex items-baseline gap-2 mt-1">
+                    {p.compareAtPrice && (
+                      <span className="text-xs text-muted-foreground line-through">{p.compareAtPrice}</span>
+                    )}
+                    <span className="text-sm">{p.price}</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        </section>
       )}
+
+      {/* Sticky Add to Cart */}
       <StickyMobileCart product={product} />
     </div>
   );

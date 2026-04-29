@@ -33,11 +33,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-background text-foreground bg-noise relative">
+    <html lang="en" className={`${inter.variable} ${playfair.variable} h-full antialiased bg-background`}>
+      <body className="min-h-full flex flex-col bg-background text-foreground relative">
         <AnnouncementBar />
         <HeaderNav />
-        <div className="fixed inset-0 pointer-events-none z-[-1] opacity-5 bg-[url('/luxury-occult-bg.webp')] bg-cover bg-center mix-blend-overlay" />
         <main className="flex-1 flex flex-col relative z-0">{children}</main>
         <ReviewQR />
         <Footer />
