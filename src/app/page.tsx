@@ -49,7 +49,8 @@ export default async function Home() {
           {/* Single CTA */}
           <Link 
             href="/collection/all" 
-            className="inline-flex items-center justify-center gap-3 bg-[#fafafa] text-[#0a0a0a] px-12 py-5 text-sm font-medium tracking-[0.1em] uppercase hover:bg-[#c4a077] transition-colors"
+            style={{ color: '#0a0a0a', backgroundColor: '#fafafa' }}
+            className="inline-flex items-center justify-center gap-3 px-12 py-5 text-sm font-medium tracking-[0.1em] uppercase hover:bg-[#c4a077] transition-colors"
           >
             Shop Collection
             <ArrowRight className="w-4 h-4" />

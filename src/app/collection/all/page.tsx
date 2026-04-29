@@ -64,7 +64,7 @@ async function ProductsSection() {
 
 export default function AllCollectionPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-24 md:pt-32 pb-24">
+    <div className="min-h-screen bg-[#0a0a0a] pt-32 md:pt-40 pb-24">
       <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
         {/* Page header */}
         <div className="mb-12 md:mb-16">

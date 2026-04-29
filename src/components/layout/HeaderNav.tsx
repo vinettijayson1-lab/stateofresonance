@@ -59,8 +59,11 @@ export default function HeaderNav() {
               State of Resonance
             </Link>
 
+            {/* Separator */}
+            <span className="hidden md:block w-px h-5 bg-[#2a2a2a] flex-shrink-0 mx-6" />
+
             {/* Desktop nav links - centered */}
-            <div className="hidden md:flex items-center justify-center gap-6 flex-1 mx-8">
+            <div className="hidden md:flex items-center justify-center gap-6 flex-1 mr-6">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}

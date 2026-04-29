@@ -13,7 +13,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-[#0a0a0a]">
       
       {/* Hero */}
-      <section className="relative min-h-[70vh] flex items-center justify-center pt-20">
+      <section className="relative min-h-[70vh] flex items-center justify-center pt-32 md:pt-40">
         <div className="absolute inset-0">
           <Image 
             src="/hero-celestial.webp" 

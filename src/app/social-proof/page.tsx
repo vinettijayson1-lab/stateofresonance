@@ -14,7 +14,7 @@ export default function SocialProofPage() {
   return (
     <div className="min-h-screen bg-black">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative w-full pt-56 md:pt-64 pb-32 flex flex-col items-center justify-center border-b border-[rgba(255,255,255,0.05)] overflow-hidden">
+      <section className="relative w-full pt-36 md:pt-44 pb-32 flex flex-col items-center justify-center border-b border-[rgba(255,255,255,0.05)] overflow-hidden">
         <Image src="/hero-celestial.png" alt="Social Proof" fill sizes="100vw" className="object-cover opacity-30 mix-blend-luminosity" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black" />
         

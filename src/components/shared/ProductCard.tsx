@@ -24,7 +24,7 @@ export default function ProductCard({ p, priority = false }: { p: ShopifyProduct
       variantId: firstAvailableVariant.id,
       title: `${p.title}${firstAvailableVariant.title !== 'Default Title' ? ` - ${firstAvailableVariant.title}` : ''}`,
       price: firstAvailableVariant.price,
-      image: p.image.url,
+      image: p.image?.url ?? '',
       quantity: 1,
     });
     
@@ -35,14 +35,20 @@ export default function ProductCard({ p, priority = false }: { p: ShopifyProduct
     <Link href={`/product/${p.handle}`} className="group block w-full">
       {/* Image container */}
       <div className="relative aspect-[3/4] bg-[#111] overflow-hidden mb-4">
-        <Image 
-          src={p.image.url} 
-          alt={p.image.alt || p.title} 
-          fill 
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          priority={priority}
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
-        />
+        {p.image?.url ? (
+          <Image 
+            src={p.image.url} 
+            alt={p.image.alt || p.title} 
+            fill 
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            priority={priority}
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-[#111]">
+            <span className="text-[#333] text-xs tracking-widest uppercase">No Image</span>
+          </div>
+        )}
         
         {/* Sale badge */}
         {p.compareAtPrice && (
