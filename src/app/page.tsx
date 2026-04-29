@@ -27,7 +27,7 @@ export default async function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#0f0f0f] via-[#0a0a0a] to-[#0a0a0a]" />
         
         {/* Hero content - Centered */}
-        <div className="relative z-10 w-full max-w-4xl mx-auto px-8 text-center pt-32 pb-20">
+        <div className="relative z-10 w-full max-w-3xl mx-auto px-8 flex flex-col items-center text-center pt-32 pb-20">
           {/* Eyebrow */}
           <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#c4a077] mb-8">
             Premium Heavyweight Streetwear
@@ -41,12 +41,12 @@ export default async function Home() {
           </h1>
           
           {/* Subheadline */}
-          <p className="text-lg text-[#737373] max-w-xl mx-auto mb-12 leading-relaxed">
+          <p className="text-lg text-[#737373] max-w-xl mb-12 leading-relaxed">
             Premium streetwear designed for those who walk the path of inner alignment. 
             450gsm heavyweight cotton. Limited to 10 units per design.
           </p>
           
-          {/* Single CTA */}
+          {/* Single CTA — same width context as eyebrow via inline-flex centering */}
           <Link 
             href="/collection/all" 
             style={{ color: '#0a0a0a', backgroundColor: '#fafafa' }}

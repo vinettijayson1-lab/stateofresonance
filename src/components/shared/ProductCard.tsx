@@ -40,6 +40,7 @@ export default function ProductCard({ p, priority = false }: { p: ShopifyProduct
             src={p.image.url} 
             alt={p.image.alt || p.title} 
             fill 
+            unoptimized
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             priority={priority}
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" 

@@ -30,6 +30,7 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
           src={displayImages[activeIndex].url} 
           alt={displayImages[activeIndex].alt || title}
           fill 
+          unoptimized
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover"
           priority
@@ -58,6 +59,7 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
                 src={img.url} 
                 alt={img.alt || `${title} - Image ${index + 1}`}
                 fill 
+                unoptimized
                 sizes="80px"
                 className="object-cover"
               />
@@ -87,9 +89,9 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
               src={displayImages[activeIndex].url} 
               alt={displayImages[activeIndex].alt || title}
               fill 
+              unoptimized
               sizes="100vw"
               className="object-contain"
-              quality={100}
             />
           </div>
           
