@@ -116,15 +116,23 @@ export default async function handler(req: any, res: any) {
         position: img.position || 99
       }));
 
-      // FRONT-FACING IMAGE PRIORITY:
-      // 1. Our curated override (photoshoot image) — highest quality
-      // 2. Image with 'front' in alt text or filename from Shopify
-      // 3. First image (Shopify default)
-      const frontImage = optimizedImages.find((img: any) =>
-        (img.alt || '').toLowerCase().includes('front') ||
-        (img.src || '').toLowerCase().includes('front')
-      );
-      const primaryRawImage = (frontImage || optimizedImages[0])?.src || '/assets/placeholder.png';
+      // PRIORITY: Transparent front-facing image
+      const frontImage = optimizedImages.find((img: any) => {
+        const alt = (img.alt || '').toLowerCase();
+        const src = (img.src || '').toLowerCase();
+        return alt.includes('front') || src.includes('front') || alt.includes('transparent');
+      });
+      
+      // If we can't find 'front', but there is more than 1 image, the front might be the second image 
+      // (since often the back art is placed first in Shopify)
+      let primaryRawImage = optimizedImages[0]?.src || '/assets/placeholder.png';
+      if (frontImage) {
+        primaryRawImage = frontImage.src;
+      } else if (optimizedImages.length > 1) {
+        // Fallback: If no explicit front tag, assume second image is the front if the first is the back art
+        primaryRawImage = optimizedImages[1].src;
+      }
+      
       const primaryImage = primaryRawImage;
 
       return {

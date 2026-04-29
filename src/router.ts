@@ -12,16 +12,11 @@ const router = createRouter({
     },
     {
       path: '/best-sellers',
-      name: 'BestSellers',
-      component: () => import('./views/BestSellers.vue')
+      redirect: '/collections/all'
     },
     {
       path: '/sanctuary',
-      redirect: '/best-sellers'
-    },
-    {
-      path: '/sanctuary',
-      redirect: '/best-sellers'
+      redirect: '/collections/all'
     },
     {
       path: '/shop',
@@ -53,7 +48,7 @@ const router = createRouter({
     },
     {
       path: '/collections/the-ghost-and-bones',
-      redirect: '/best-sellers'
+      redirect: '/collections/all'
     },
     {
       path: '/collections/:handle',
