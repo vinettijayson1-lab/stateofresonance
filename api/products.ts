@@ -125,7 +125,7 @@ export default async function handler(req: any, res: any) {
         (img.src || '').toLowerCase().includes('front')
       );
       const primaryRawImage = (frontImage || optimizedImages[0])?.src || '/assets/placeholder.png';
-      const primaryImage = getLuxImage(p.handle, primaryRawImage);
+      const primaryImage = primaryRawImage;
 
       return {
         id: p.id ? p.id.toString() : Math.random().toString(36).substring(7),
