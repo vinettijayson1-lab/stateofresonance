@@ -1,4 +1,4 @@
-import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
+import { fetchProducts } from "@/lib/shopify";
 import Link from "next/link";
 import Image from "next/image";
 import EmailCaptureForm from "@/components/layout/EmailCaptureForm";

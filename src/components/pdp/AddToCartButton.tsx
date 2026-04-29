@@ -1,7 +1,7 @@
 "use client";
 
 import { useCartStore } from "@/store/cart";
-import { useState, useEffect, useRef, Suspense } from "react";
+import { useState, useRef, Suspense } from "react";
 import { ShopifyProduct } from "@/lib/shopify";
 import { trackAddToCart } from "@/lib/tracking";
 import SizeGuideModal from "./SizeGuideModal";
@@ -14,17 +14,6 @@ function AddToCartInner({ product }: { product: ShopifyProduct }) {
   const variantParam = searchParams.get('variant');
   
   const buttonRef = useRef<HTMLDivElement>(null);
-  const [showSticky, setShowSticky] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      // Show sticky when main button scrolls up past viewport
-      setShowSticky(entry.boundingClientRect.y < 0 && !entry.isIntersecting);
-    }, { threshold: 0 });
-
-    if (buttonRef.current) observer.observe(buttonRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>(() => {
     if (variantParam && product?.variants) {

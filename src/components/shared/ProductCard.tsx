@@ -3,8 +3,6 @@ import Image from 'next/image';
 import { ShopifyProduct } from '@/lib/shopify';
 
 export default function ProductCard({ p, priority = false }: { p: ShopifyProduct, priority?: boolean }) {
-  const numericId = p.id.replace('gid://shopify/Product/', '');
-
   return (
     <Link href={`/product/${p.handle}`} className="group w-full max-w-sm flex flex-col items-center relative">
       {/* Aura glow behind card */}
