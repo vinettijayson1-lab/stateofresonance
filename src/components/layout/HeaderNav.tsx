@@ -7,8 +7,14 @@ import { Menu, X, ShoppingBag } from 'lucide-react';
 
 const NAV_LINKS = [
   { href: '/collection/all', label: 'Shop' },
-  { href: '/about', label: 'Story' },
+  { href: '/lookbook', label: 'Lookbook' },
+  { href: '/collection/best-sellers', label: 'Best Sellers' },
+  { href: '/social-proof', label: 'Social Proof' },
+  { href: '/transmissions', label: 'Transmissions' },
+  { href: '/collab', label: 'Collaborate' },
+  { href: '/about', label: 'About' },
   { href: '/symbols', label: 'Symbols' },
+  { href: '/faq', label: 'FAQ' },
 ];
 
 export default function HeaderNav() {

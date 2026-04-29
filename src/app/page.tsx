@@ -1,11 +1,14 @@
 import { fetchProducts } from "@/lib/shopify";
+import { getSortedTransmissionsData } from "@/lib/transmissions";
 import Link from "next/link";
 import Image from "next/image";
 import ProductCard from "@/components/shared/ProductCard";
 import { ArrowRight } from "lucide-react";
+import Script from "next/script";
 
 export default async function Home() {
   const allProducts = await fetchProducts();
+  const allTransmissions = getSortedTransmissionsData();
   
   const sortedProducts = [...allProducts].sort((a, b) => {
     const priceA = parseFloat(a.price.replace(/[^0-9.]/g, '')) || 999;
@@ -14,6 +17,7 @@ export default async function Home() {
   });
 
   const featuredProducts = sortedProducts.slice(0, 6);
+  const featuredTransmissions = allTransmissions.slice(0, 4);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
@@ -163,56 +167,75 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Symbols Section */}
-      <section className="py-24 md:py-32 border-t border-[#1a1a1a]">
-        <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#737373] mb-3">
-              Sacred Geometry
-            </p>
-            <h2 className="font-serif text-4xl md:text-5xl text-[#fafafa] mb-6">
-              The Symbols We Carry
-            </h2>
-            <p className="text-[#a3a3a3] leading-relaxed">
-              Every symbol on our pieces carries meaning rooted in ancient geometry 
-              and spiritual archetypes. Not magic - just powerful intention.
-            </p>
-          </div>
-          
-          {/* Symbols grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {[
-              { name: "Metatron's Cube", meaning: "Clarity, structure, alignment" },
-              { name: "Flower of Life", meaning: "Expansion, unity, creation" },
-              { name: "963 Hz", meaning: "Awakening, intuition, higher self" },
-              { name: "OM", meaning: "Grounding, breath, inner stillness" },
-            ].map((symbol, i) => (
-              <div 
-                key={i} 
-                className="p-6 md:p-8 border border-[#1a1a1a] hover:border-[#262626] transition-colors group"
-              >
-                <div className="w-12 h-12 border border-[#262626] rounded-full flex items-center justify-center mb-6 group-hover:border-[#c4a077] transition-colors">
-                  <span className="text-[#c4a077] text-lg font-serif">{i + 1}</span>
-                </div>
-                <h3 className="font-serif text-lg text-[#fafafa] mb-2">{symbol.name}</h3>
-                <p className="text-sm text-[#737373]">{symbol.meaning}</p>
+      {/* Transmissions / Blog Section */}
+      {featuredTransmissions.length > 0 && (
+        <section className="py-24 md:py-32 border-t border-[#1a1a1a]">
+          <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+              <div>
+                <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#737373] mb-3">
+                  The Archive
+                </p>
+                <h2 className="font-serif text-4xl md:text-5xl text-[#fafafa]">
+                  Transmissions
+                </h2>
               </div>
-            ))}
+              <Link 
+                href="/transmissions" 
+                className="inline-flex items-center gap-2 text-sm text-[#a3a3a3] hover:text-[#fafafa] transition-colors group"
+              >
+                View All Articles
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+            
+            {/* Blog grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {featuredTransmissions.map((transmission) => (
+                <Link 
+                  key={transmission.slug} 
+                  href={`/transmissions/${transmission.slug}`}
+                  className="group"
+                >
+                  <article className="h-full flex flex-col p-6 border border-[#1a1a1a] hover:border-[#262626] transition-colors">
+                    {/* Article number/icon */}
+                    <div className="w-10 h-10 border border-[#262626] rounded-full flex items-center justify-center mb-6 group-hover:border-[#c4a077] transition-colors">
+                      <span className="text-[#c4a077] text-sm font-serif">◈</span>
+                    </div>
+                    
+                    {/* Article content */}
+                    <div className="flex-1 flex flex-col">
+                      <time className="text-xs text-[#737373] mb-3 tracking-wider">
+                        {new Date(transmission.date).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </time>
+                      <h3 className="font-serif text-lg text-[#fafafa] group-hover:text-[#c4a077] transition-colors line-clamp-2 mb-3">
+                        {transmission.title}
+                      </h3>
+                      {transmission.excerpt && (
+                        <p className="text-sm text-[#737373] line-clamp-3 leading-relaxed">
+                          {transmission.excerpt}
+                        </p>
+                      )}
+                    </div>
+                    
+                    <div className="mt-6 pt-4 border-t border-[#1a1a1a]">
+                      <span className="text-xs text-[#c4a077] tracking-wider uppercase group-hover:underline">
+                        Read More →
+                      </span>
+                    </div>
+                  </article>
+                </Link>
+              ))}
+            </div>
           </div>
-          
-          <div className="text-center mt-12">
-            <Link 
-              href="/symbols" 
-              className="inline-flex items-center gap-2 text-sm text-[#a3a3a3] hover:text-[#fafafa] transition-colors group"
-            >
-              Explore All Symbols
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Social Proof / Reviews Teaser */}
+      {/* Social Proof / Reviews Section with TrustIndex */}
       <section className="py-24 md:py-32 border-t border-[#1a1a1a] bg-[#0f0f0f]">
         <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -224,15 +247,27 @@ export default async function Home() {
               ))}
             </div>
             <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#737373] mb-3">
-              4.9/5 from Verified Buyers
+              Verified Reviews
             </p>
             <h2 className="font-serif text-4xl md:text-5xl text-[#fafafa]">
               What People Say
             </h2>
           </div>
           
-          {/* Featured review */}
-          <blockquote className="max-w-3xl mx-auto text-center">
+          {/* TrustIndex Widget */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div 
+              className="trustindex-widget" 
+              data-url="cabe8cb70335182b45167fb72cb"
+            />
+            <Script 
+              src="https://cdn.trustindex.io/loader.js?cabe8cb70335182b45167fb72cb" 
+              strategy="afterInteractive"
+            />
+          </div>
+          
+          {/* Featured review fallback */}
+          <blockquote className="max-w-3xl mx-auto text-center border-t border-[#1a1a1a] pt-12">
             <p className="font-serif text-2xl md:text-3xl text-[#fafafa] italic leading-relaxed mb-8">
               &ldquo;The quality is unlike anything I&apos;ve felt. Heavy, structured, premium. 
               This isn&apos;t just a shirt - it&apos;s a statement.&rdquo;
@@ -241,6 +276,17 @@ export default async function Home() {
               — Verified Buyer, Toronto
             </cite>
           </blockquote>
+          
+          {/* Link to full social proof page */}
+          <div className="text-center mt-12">
+            <Link 
+              href="/social-proof" 
+              className="inline-flex items-center gap-2 text-sm text-[#a3a3a3] hover:text-[#fafafa] transition-colors group"
+            >
+              See All Reviews & Social Proof
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
       </section>
 
