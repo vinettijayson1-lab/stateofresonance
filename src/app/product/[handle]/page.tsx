@@ -53,7 +53,6 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   const product = allProducts.find(p => p.handle === handle);
   if (!product) return notFound();
   const related = allProducts.filter(p => p.handle !== handle).slice(0, 4);
-  const numericId = product.id.replace('gid://shopify/Product/', '');
   
   return (
     <div className="w-full min-h-screen relative z-10 pt-24 lg:pt-40 pb-24 px-4 sm:px-8 max-w-7xl mx-auto flex flex-col">

@@ -18,18 +18,6 @@ export async function middleware(request: NextRequest) {
 
   try {
     // 2. Query Shopify Storefront API to see if this path is a registered redirect
-    const response = await fetch(process.env.SHOPIFY_STOREFRONT_API_URL!, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!,
-      },
-      // We use next: { revalidate: 60 } so it caches the redirect for 60 seconds
-      // instead of hitting Shopify on literally every single click
-      next: { revalidate: 60 } 
-    });
-
-    // We have to append the query directly to the request body
     const queryResponse = await fetch(process.env.SHOPIFY_STOREFRONT_API_URL!, {
         method: 'POST',
         headers: {

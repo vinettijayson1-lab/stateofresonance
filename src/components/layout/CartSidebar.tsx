@@ -3,15 +3,16 @@
 import { useCartStore } from '@/store/cart';
 import { trackInitiateCheckout } from '@/lib/tracking';
 import { X, Minus, Plus } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useSyncExternalStore } from 'react';
+
+// Subscribe to a simple "mounted" store that emits true on client
+const subscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 export default function CartSidebar() {
-  const { items, isOpen, toggleCart, removeItem, updateQuantity, getCheckoutUrl } = useCartStore();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { items, isOpen, toggleCart, removeItem, updateQuantity } = useCartStore();
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   if (!mounted || !isOpen) return null;
 

@@ -16,9 +16,6 @@ const win = () => window as unknown as Record<string, unknown>;
 const hasFbq = () => typeof window !== 'undefined' && typeof win().fbq === 'function';
 const hasGtag = () => typeof window !== 'undefined' && typeof win().gtag === 'function';
 
-// New checker for Shopify's global analytics object
-const hasShopify = () => typeof window !== 'undefined' && typeof win().Shopify !== 'undefined';
-
 const fbq = () => win().fbq as (...a: unknown[]) => void;
 const gtag = () => win().gtag as (...a: unknown[]) => void;
 const price = (p: string) => parseFloat(p.replace(/[^0-9.]/g, '')) || 0;
