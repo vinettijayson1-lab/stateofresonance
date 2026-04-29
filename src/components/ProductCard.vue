@@ -278,6 +278,33 @@ onMounted(() => {
   color: var(--color-gold-muted);
 }
 
+@media (max-width: 768px) {
+  .product-info {
+    padding: 0.75rem 0.5rem 1rem;
+  }
+  .product-meta {
+    font-size: 0.5rem;
+    margin-bottom: 0.3rem;
+  }
+  .product-name {
+    font-size: 0.7rem;
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+  .product-price {
+    font-size: 0.7rem;
+  }
+  .product-badges {
+    top: 0.5rem;
+    right: 0.5rem;
+    gap: 0.25rem;
+  }
+  .badge {
+    font-size: 0.4rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
+
 .product-footer {
   display: flex;
   justify-content: space-between;
