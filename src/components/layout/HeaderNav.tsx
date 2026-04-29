@@ -2,71 +2,173 @@
 
 import Link from 'next/link';
 import { useCartStore } from '@/store/cart';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Menu, X, ShoppingBag } from 'lucide-react';
 
 const NAV_LINKS = [
-  { label: 'Shop', href: '/collection/all' },
-  { label: 'Lookbook', href: '/lookbook' },
-  { label: 'Best Sellers', href: '/collection/best-sellers' },
-  { label: 'Social Proof', href: '/social-proof' },
-  { label: 'Transmissions', href: '/transmissions' },
-  { label: 'Collaborate', href: '/collab' },
-  { label: 'About', href: '/about' },
-  { label: 'Symbols', href: '/symbols' },
-  { label: 'FAQ', href: '/faq' },
-  { label: 'Contact', href: 'mailto:support@stateofresonance.ca' },
+  { href: '/collection/all', label: 'Shop' },
+  { href: '/lookbook', label: 'Lookbook' },
+  { href: '/collection/best-sellers', label: 'Best Sellers' },
+  { href: '/social-proof', label: 'Social Proof' },
+  { href: '/transmissions', label: 'Transmissions' },
+  { href: '/collab', label: 'Collaborate' },
+  { href: '/about', label: 'About' },
+  { href: '/symbols', label: 'Symbols' },
+  { href: '/faq', label: 'FAQ' },
 ];
 
 export default function HeaderNav() {
   const items = useCartStore(s => s.items);
   const toggleCart = useCartStore(s => s.toggleCart);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const count = items.reduce((s, i) => s + i.quantity, 0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Lock body scroll when mobile menu is open (iOS-safe)
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = original; };
+    }
+  }, [mobileMenuOpen]);
+
+  const itemCount = hydrated ? items.reduce((sum, item) => sum + item.quantity, 0) : 0;
 
   return (
-    <header className="sticky top-0 w-full z-50 bg-black/60 backdrop-blur-md border-b border-[rgba(255,255,255,0.05)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
-        <Link href="/" className="font-serif text-lg tracking-[0.15em] text-white uppercase hover:text-[var(--color-gold-muted)] transition-colors">
-          State of Resonance
-        </Link>
+    <>
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled 
+            ? 'bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#1a1a1a]' 
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
+          <nav className="flex items-center justify-between h-16 md:h-20">
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="md:hidden p-2 text-[#fafafa] hover:text-[#737373] transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map(link => (
-            <Link key={link.href} href={link.href} className="text-[0.7rem] font-sans tracking-[0.2em] text-gray-400 uppercase hover:text-white transition-colors">
-              {link.label}
+            {/* Logo - left with proper spacing */}
+            <Link 
+              href="/" 
+              className="font-serif text-lg md:text-xl tracking-wide text-[#fafafa] flex-shrink-0"
+            >
+              State of Resonance
             </Link>
-          ))}
-          <button onClick={toggleCart} className="relative text-gray-400 hover:text-white transition-colors" aria-label="Toggle cart">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-            {count > 0 && <span className="absolute -top-2 -right-2 bg-[var(--color-gold)] text-black text-[0.55rem] font-bold w-4 h-4 rounded-full flex items-center justify-center">{count}</span>}
-          </button>
-        </nav>
 
-        {/* Mobile Hamburger + Cart */}
-        <div className="flex items-center gap-2 md:hidden">
-          <button onClick={toggleCart} className="relative text-gray-400 p-3 -m-1 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Toggle cart">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-            {count > 0 && <span className="absolute top-0 right-0 bg-[var(--color-gold)] text-black text-[0.55rem] font-bold w-4 h-4 rounded-full flex items-center justify-center">{count}</span>}
-          </button>
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-white p-3 -m-1 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Toggle menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              {mobileOpen ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> : <><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>}
-            </svg>
-          </button>
+            {/* Separator */}
+            <span className="hidden md:block w-px h-5 bg-[#2a2a2a] flex-shrink-0 mx-6" />
+
+            {/* Desktop nav links - centered */}
+            <div className="hidden md:flex items-center justify-center gap-6 flex-1 mr-6">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-[10px] font-medium tracking-[0.08em] uppercase text-[#737373] hover:text-[#fafafa] transition-colors whitespace-nowrap"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Cart - right */}
+            <button
+              onClick={toggleCart}
+              className="relative p-2 text-[#fafafa] hover:text-[#737373] transition-colors flex-shrink-0"
+              aria-label="Open cart"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {itemCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#fafafa] text-[#0a0a0a] text-[10px] font-medium flex items-center justify-center rounded-full">
+                  {itemCount}
+                </span>
+              )}
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      {/* Mobile menu overlay */}
+      <div
+        className={`fixed inset-0 z-50 md:hidden transition-opacity duration-300 ${
+          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div 
+          className="absolute inset-0 bg-[#0a0a0a]/80 backdrop-blur-sm"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+        
+        <div 
+          className={`absolute top-0 left-0 bottom-0 w-full max-w-sm bg-[#0a0a0a] border-r border-[#262626] transform transition-transform duration-300 ${
+            mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          <div className="flex items-center justify-between h-16 px-4 border-b border-[#1a1a1a]">
+            <span className="font-serif text-lg text-[#fafafa]">Menu</span>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 -mr-2 text-[#fafafa] hover:text-[#737373] transition-colors"
+              aria-label="Close menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+          
+          <nav className="p-6">
+            <ul className="space-y-1">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-3 text-2xl font-serif text-[#fafafa] hover:text-[#737373] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            
+            <div className="mt-12 pt-6 border-t border-[#1a1a1a]">
+              <p className="text-xs font-medium tracking-[0.1em] uppercase text-[#737373] mb-4">Follow us</p>
+              <div className="flex gap-6">
+                <a 
+                  href="https://instagram.com/stateofresonance" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm text-[#737373] hover:text-[#fafafa] transition-colors"
+                >
+                  Instagram
+                </a>
+                <a 
+                  href="https://tiktok.com/@stateofresonance" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm text-[#737373] hover:text-[#fafafa] transition-colors"
+                >
+                  TikTok
+                </a>
+              </div>
+            </div>
+          </nav>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <nav className="md:hidden bg-black border-t border-[rgba(255,255,255,0.05)] px-6 py-8 flex flex-col gap-6">
-          {NAV_LINKS.map(link => (
-            <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="text-sm font-sans tracking-[0.2em] text-gray-300 uppercase hover:text-[var(--color-gold)] transition-colors">
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      )}
-    </header>
+    </>
   );
 }

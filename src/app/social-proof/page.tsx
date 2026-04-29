@@ -1,4 +1,5 @@
 import Image from "next/image";
+import TrustindexWidget from "@/components/shared/TrustindexWidget";
 
 const LINKS = [
   { label: "The Frequency Spreads", platform: "Facebook", image: "/jayson-social.jpg", url: "https://www.facebook.com/photo?fbid=10164200068961063&set=a.10154362149296063" },
@@ -14,7 +15,7 @@ export default function SocialProofPage() {
   return (
     <div className="min-h-screen bg-black">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative w-full pt-56 md:pt-64 pb-32 flex flex-col items-center justify-center border-b border-[rgba(255,255,255,0.05)] overflow-hidden">
+      <section className="relative w-full pt-36 md:pt-44 pb-32 flex flex-col items-center justify-center border-b border-[rgba(255,255,255,0.05)] overflow-hidden">
         <Image src="/hero-celestial.png" alt="Social Proof" fill sizes="100vw" className="object-cover opacity-30 mix-blend-luminosity" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black" />
         
@@ -87,7 +88,7 @@ export default function SocialProofPage() {
           <h2 className="font-serif text-3xl md:text-4xl text-white mb-4 tracking-wide uppercase">Alchemical Reports</h2>
           <p className="text-gray-400 text-sm font-sans tracking-widest uppercase">What seekers are saying about their artifacts.</p>
         </div>
-        <div className="trustindex-widget" data-url="cabe8cb70335182b45167fb72cb" />
+        <TrustindexWidget token="cabe8cb70335182b45167fb72cb" loader="loader-feed" />
       </section>
 
       {/* ═══════ QR CODE — LEAVE A REVIEW ═══════ */}

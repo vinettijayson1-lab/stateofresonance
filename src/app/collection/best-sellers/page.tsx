@@ -14,7 +14,7 @@ export default async function BestSellersPage() {
   const bestSellers = products.slice(0, 4);
 
   return (
-    <div className="w-full min-h-screen pt-56 md:pt-64 pb-24 flex flex-col items-center bg-black">
+    <div className="w-full min-h-screen pt-36 md:pt-40 pb-24 flex flex-col items-center bg-black">
       {/* ═══════ HEADER ═══════ */}
       <section className="pb-16 px-6 max-w-7xl mx-auto text-center border-b border-[rgba(255,255,255,0.05)] w-full">
         <h1 className="text-4xl lg:text-6xl font-serif tracking-wide text-white mb-6 uppercase">Best Sellers</h1>

@@ -22,7 +22,7 @@ export default function LookbookPage() {
     <div className="relative min-h-screen bg-[#0a0a0a] text-white overflow-hidden selection:bg-white selection:text-black">
       {/* Film Grain removed per request for clean photos */}
 
-      <div className="relative z-10 py-16 md:py-32 px-4 md:px-12 max-w-[1800px] mx-auto">
+      <div className="relative z-10 pt-32 md:pt-40 pb-16 md:pb-32 px-4 md:px-12 max-w-[1800px] mx-auto">
         <div className="mb-12 md:mb-20 text-center">
           <p className="font-sans text-[0.65rem] md:text-xs tracking-[0.4em] md:tracking-[0.5em] text-gray-500 uppercase mb-3 md:mb-4">Archive 001</p>
           <h1 className="font-playfair text-4xl md:text-5xl lg:text-7xl tracking-widest leading-tight mb-4 md:mb-6 uppercase">

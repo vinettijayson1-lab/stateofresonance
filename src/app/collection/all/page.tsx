@@ -1,28 +1,100 @@
 import { fetchProducts } from "@/lib/shopify";
 import type { Metadata } from "next";
-import ProductCard from "@/components/shared/ProductCard";
+import { Suspense } from "react";
+import ProductGrid from "@/components/collection/ProductGrid";
+import FilterSidebar from "@/components/collection/FilterSidebar";
+import { ProductCardSkeleton } from "@/components/shared/ProductCard";
 
 export const metadata: Metadata = {
   title: "Shop All",
-  description: "Browse the full archive of State of Resonance. 450gsm heavyweight occult streetwear, embroidered locally.",
+  description: "Browse the full collection of State of Resonance premium heavyweight streetwear. 450gsm cotton, limited drops, designed in Canada.",
   alternates: { canonical: "https://stateofresonance.ca/collection/all" }
 };
 
-export default async function AllCollectionPage() {
+function ProductGridSkeleton() {
+  return (
+    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+      {[...Array(6)].map((_, i) => (
+        <ProductCardSkeleton key={i} />
+      ))}
+    </div>
+  );
+}
+
+async function ProductsSection() {
   const products = await fetchProducts();
+  
   const sortedProducts = [...products].sort((a, b) => {
     const priceA = parseFloat(a.price.replace(/[^0-9.]/g, '')) || 999;
     const priceB = parseFloat(b.price.replace(/[^0-9.]/g, '')) || 999;
     return priceA - priceB;
   });
+
+  // Extract unique categories and sizes for filters
+  const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
+  const sizes = [...new Set(products.flatMap(p => 
+    p.options.find(o => o.name.toLowerCase() === 'size')?.values || []
+  ))];
+
   return (
-    <div className="min-h-screen pt-56 md:pt-64 pb-24 px-6 max-w-[1400px] mx-auto">
-      <div className="text-center mb-16">
-        <h1 className="font-serif text-4xl md:text-5xl text-white uppercase tracking-widest mb-4">The Full Archive</h1>
-        <p className="text-gray-400 font-sans tracking-widest uppercase text-sm">Every artifact. Every frequency.</p>
+    <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+      {/* Sidebar filters */}
+      <aside className="lg:w-64 flex-shrink-0">
+        <FilterSidebar categories={categories} sizes={sizes} />
+      </aside>
+      
+      {/* Product grid */}
+      <div className="flex-1">
+        <div className="flex items-center justify-between mb-8">
+          <p className="text-sm text-[#737373]">
+            {sortedProducts.length} products
+          </p>
+          <select className="bg-transparent border border-[#262626] text-[#fafafa] text-sm px-3 py-2 focus:outline-none focus:border-[#fafafa]">
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="newest">Newest</option>
+          </select>
+        </div>
+        
+        <ProductGrid products={sortedProducts} />
       </div>
-      <div className="flex flex-wrap justify-center gap-8 w-full">
-        {sortedProducts.map((p, index) => <ProductCard key={p.id} p={p} priority={index < 4} />)}
+    </div>
+  );
+}
+
+export default function AllCollectionPage() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] pt-32 md:pt-40 pb-24">
+      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
+        {/* Page header */}
+        <div className="mb-12 md:mb-16">
+          <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#737373] mb-3">
+            The Collection
+          </p>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[#fafafa]">
+            Shop All
+          </h1>
+        </div>
+        
+        <Suspense fallback={
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            <aside className="lg:w-64 flex-shrink-0">
+              <div className="space-y-6">
+                <div className="h-6 w-24 bg-[#1a1a1a] animate-pulse" />
+                <div className="space-y-3">
+                  {[...Array(4)].map((_, i) => (
+                    <div key={i} className="h-4 w-32 bg-[#1a1a1a] animate-pulse" />
+                  ))}
+                </div>
+              </div>
+            </aside>
+            <div className="flex-1">
+              <ProductGridSkeleton />
+            </div>
+          </div>
+        }>
+          <ProductsSection />
+        </Suspense>
       </div>
     </div>
   );

@@ -1,13 +1,66 @@
+import type { Metadata } from 'next';
+import ContentLayout, { ContentSection } from '@/components/layout/ContentLayout';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description: 'Privacy policy for State of Resonance - how we collect, use, and protect your personal information.',
+};
+
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen pt-48 pb-24 px-6 max-w-3xl mx-auto">
-      <h1 className="text-4xl font-serif text-white mb-12 text-center tracking-widest uppercase">Privacy Policy</h1>
-      <div className="space-y-6 text-gray-400 text-sm font-sans leading-relaxed tracking-wide text-center">
-        <p>State of Resonance (stateofresonance.ca) collects personal information (email, shipping address, payment details) solely to fulfill orders and improve the shopping experience. We use Shopify to process transactions securely.</p>
-        <p>We use analytics tools including Google Analytics 4, Meta Pixel, and Microsoft Clarity to understand site usage patterns. These tools may use cookies. You may disable cookies via your browser settings.</p>
-        <p>We use Klaviyo to manage email marketing. By subscribing, you consent to receive promotional communications. You may unsubscribe at any time.</p>
-        <p>We do not sell your personal information to third parties. For data requests or deletion, contact support@stateofresonance.ca.</p>
-      </div>
-    </div>
+    <ContentLayout 
+      title="Privacy Policy" 
+      eyebrow="Legal"
+      lastUpdated="April 2025"
+      breadcrumb={[{ label: 'Privacy Policy', href: '/privacy' }]}
+    >
+      <ContentSection title="Information We Collect">
+        <p>
+          State of Resonance (stateofresonance.ca) collects personal information 
+          including your email, shipping address, and payment details solely to 
+          fulfill orders and improve your shopping experience.
+        </p>
+        <p>
+          We use Shopify to process transactions securely. Your payment information 
+          is encrypted and handled directly by Shopify&apos;s payment processors.
+        </p>
+      </ContentSection>
+
+      <ContentSection title="Analytics & Cookies">
+        <p>
+          We use analytics tools including Google Analytics 4, Meta Pixel, and 
+          Microsoft Clarity to understand site usage patterns. These tools may 
+          use cookies to track your browsing behavior.
+        </p>
+        <p>
+          You may disable cookies via your browser settings at any time. This may 
+          affect some functionality of the site.
+        </p>
+      </ContentSection>
+
+      <ContentSection title="Email Marketing">
+        <p>
+          We use Klaviyo to manage email marketing. By subscribing to our newsletter, 
+          you consent to receive promotional communications about new drops, exclusive 
+          offers, and brand updates.
+        </p>
+        <p>
+          You may unsubscribe at any time by clicking the unsubscribe link in any email.
+        </p>
+      </ContentSection>
+
+      <ContentSection title="Your Data Rights">
+        <p>
+          We do not sell your personal information to third parties. We only share 
+          data with service providers necessary to fulfill your orders.
+        </p>
+        <p>
+          For data requests or deletion, contact us at{' '}
+          <a href="mailto:support@stateofresonance.ca" className="text-[#c4a077] hover:text-[#fafafa] transition-colors">
+            support@stateofresonance.ca
+          </a>
+        </p>
+      </ContentSection>
+    </ContentLayout>
   );
 }

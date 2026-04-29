@@ -81,11 +81,12 @@ async function shopifyFetch<T>(query: string): Promise<T> {
       'X-Shopify-Storefront-Access-Token': TOKEN,
     },
     body: JSON.stringify({ query }),
-    next: { revalidate: 60 },
+    cache: 'no-store',
   });
 
   if (!res.ok) {
-    throw new Error(`Shopify Storefront API error: ${res.status}`);
+    const text = await res.text();
+    throw new Error(`Shopify Storefront API error: ${res.status} — ${text.slice(0, 200)}`);
   }
 
   const json = await res.json();
@@ -96,6 +97,10 @@ async function shopifyFetch<T>(query: string): Promise<T> {
 }
 
 function cleanImageUrl(url: string): string {
+  // Keep Shopify CDN URLs intact - they need version parameters
+  if (url.includes('cdn.shopify.com')) {
+    return url;
+  }
   const i = url.indexOf('?');
   return i > -1 ? url.substring(0, i) : url;
 }
@@ -194,8 +199,9 @@ export async function fetchProducts(): Promise<ShopifyProduct[]> {
 }
 
 async function fetchProductsFallback(): Promise<ShopifyProduct[]> {
-  const res = await fetch(`https://${DOMAIN}/products.json?limit=250`, { next: { revalidate: 60 } });
+  const res = await fetch(`https://${DOMAIN}/products.json?limit=250`, { cache: 'no-store' });
   if (!res.ok) return [];
+  
   const data = await res.json();
   return data.products.map((p: Record<string, unknown>) => {
     const imageObjs = ((p.images as { src: string, alt?: string }[]) || []).map(i => ({url: cleanImageUrl(i.src), alt: i.alt || ''}));
