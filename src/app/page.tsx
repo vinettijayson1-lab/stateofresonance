@@ -69,9 +69,9 @@ export default async function Home() {
 
       {/* Featured Products Grid */}
       <section className="py-32 border-t border-[#141414]">
-        <div className="w-full max-w-[1200px] mx-auto px-8">
-          {/* Centered section header */}
-          <div className="text-center mb-16">
+        <div className="w-full max-w-[1200px] mx-auto px-8 flex flex-col items-center">
+          {/* Section header — same max-width as hero so it shares the center axis */}
+          <div className="w-full max-w-3xl flex flex-col items-center text-center mb-16">
             <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#525252] mb-4">
               The Collection
             </p>
@@ -81,14 +81,14 @@ export default async function Home() {
           </div>
           
           {/* Product grid - clean 3 column */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             {featuredProducts.map((p, index) => (
               <ProductCard key={p.id} p={p} priority={index < 3} />
             ))}
           </div>
           
           {/* View all link */}
-          <div className="text-center mt-16">
+          <div className="mt-16">
             <Link 
               href="/collection/all" 
               className="inline-flex items-center gap-2 text-sm text-[#737373] hover:text-[#fafafa] transition-colors tracking-[0.1em] uppercase"
@@ -102,9 +102,9 @@ export default async function Home() {
 
       {/* Social Proof / TrustIndex - Prominent placement */}
       <section className="py-24 border-t border-[#141414] bg-[#0c0c0c]">
-        <div className="w-full max-w-[1000px] mx-auto px-8">
+        <div className="w-full max-w-3xl mx-auto px-8 flex flex-col items-center text-center">
           {/* Centered header */}
-          <div className="text-center mb-12">
+          <div className="mb-12">
             <div className="flex items-center justify-center gap-1 mb-4">
               {[...Array(5)].map((_, i) => (
                 <svg key={i} className="w-5 h-5 text-[#c4a077]" fill="currentColor" viewBox="0 0 20 20">
@@ -121,7 +121,7 @@ export default async function Home() {
           </div>
           
           {/* Featured review */}
-          <blockquote className="text-center max-w-2xl mx-auto">
+          <blockquote className="max-w-2xl">
             <p className="font-serif text-xl md:text-2xl text-[#fafafa] italic leading-relaxed mb-6">
               &ldquo;The quality is unlike anything I&apos;ve felt. Heavy, structured, premium. 
               This isn&apos;t just a shirt - it&apos;s a statement.&rdquo;
@@ -132,7 +132,7 @@ export default async function Home() {
           </blockquote>
           
           {/* Link to social proof */}
-          <div className="text-center mt-12">
+          <div className="mt-12">
             <Link 
               href="/social-proof" 
               className="inline-flex items-center gap-2 text-sm text-[#737373] hover:text-[#fafafa] transition-colors tracking-[0.1em] uppercase"
@@ -146,7 +146,7 @@ export default async function Home() {
 
       {/* Philosophy Section — fully centered to match the rest of the page */}
       <section className="py-32 border-t border-[#141414]">
-        <div className="w-full max-w-[1100px] mx-auto px-8 flex flex-col items-center text-center">
+        <div className="w-full max-w-3xl mx-auto px-8 flex flex-col items-center text-center">
           {/* Eyebrow */}
           <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#525252] mb-6">
             Our Philosophy
@@ -210,9 +210,9 @@ export default async function Home() {
       {/* Transmissions / Blog Section */}
       {featuredTransmissions.length > 0 && (
         <section className="py-32 border-t border-[#141414]">
-          <div className="w-full max-w-[1200px] mx-auto px-8">
-            {/* Centered header */}
-            <div className="text-center mb-16">
+          <div className="w-full max-w-[1200px] mx-auto px-8 flex flex-col items-center">
+            {/* Section header — same max-width as hero so it shares the center axis */}
+            <div className="w-full max-w-3xl flex flex-col items-center text-center mb-16">
               <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#525252] mb-4">
                 The Archive
               </p>
@@ -221,15 +221,15 @@ export default async function Home() {
               </h2>
             </div>
             
-            {/* Blog grid - 3 columns */}
-            <div className="grid md:grid-cols-3 gap-8">
+            {/* Blog grid - 3 columns, centered text within each card */}
+            <div className="w-full grid md:grid-cols-3 gap-8">
               {featuredTransmissions.map((transmission) => (
                 <Link 
                   key={transmission.slug} 
                   href={`/transmissions/${transmission.slug}`}
                   className="group"
                 >
-                  <article className="h-full flex flex-col">
+                  <article className="h-full flex flex-col items-center text-center">
                     {/* Date */}
                     <time className="text-[11px] text-[#525252] mb-4 tracking-[0.15em] uppercase">
                       {new Date(transmission.date).toLocaleDateString('en-US', {
@@ -261,7 +261,7 @@ export default async function Home() {
             </div>
             
             {/* View all */}
-            <div className="text-center mt-16">
+            <div className="mt-16">
               <Link 
                 href="/transmissions" 
                 className="inline-flex items-center gap-2 text-sm text-[#737373] hover:text-[#fafafa] transition-colors tracking-[0.1em] uppercase"
@@ -276,7 +276,7 @@ export default async function Home() {
 
       {/* Newsletter Section - Clean and minimal with generous breathing room */}
       <section className="pt-40 md:pt-48 pb-40 md:pb-48 border-t border-[#141414]">
-        <div className="w-full max-w-xl mx-auto px-8 flex flex-col items-center text-center">
+        <div className="w-full max-w-3xl mx-auto px-8 flex flex-col items-center text-center">
           <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#525252] mb-5">
             Join The Circle
           </p>
