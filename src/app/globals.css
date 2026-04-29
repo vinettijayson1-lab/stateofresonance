@@ -99,10 +99,7 @@ a {
 }
 
 /* Button reset */
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
+button:not([class*="bg-"]):not([class*="border-"]) {
   background: none;
 }
 
