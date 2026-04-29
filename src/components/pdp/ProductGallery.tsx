@@ -20,10 +20,10 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
   const displayImages = images.length > 0 ? images : [{ url: '/placeholder.jpg', alt: title }];
 
   return (
-    <div className="space-y-4">
-      {/* Main image */}
+    <div className="space-y-3">
+      {/* Main image — shorter aspect on mobile so product + price fit in one viewport */}
       <div 
-        className="relative aspect-[3/4] bg-[#111] overflow-hidden cursor-zoom-in"
+        className="relative aspect-square sm:aspect-[4/5] lg:aspect-[3/4] bg-[#111] overflow-hidden cursor-zoom-in"
         onClick={() => setIsZoomed(true)}
       >
         <Image 
@@ -36,20 +36,20 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
           priority
         />
         
-        {/* Zoom hint */}
-        <div className="absolute bottom-4 right-4 bg-[#0a0a0a]/80 backdrop-blur-sm px-3 py-1.5 text-xs text-[#a3a3a3]">
+        {/* Zoom hint — desktop only */}
+        <div className="hidden md:block absolute bottom-4 right-4 bg-[#0a0a0a]/80 backdrop-blur-sm px-3 py-1.5 text-xs text-[#a3a3a3]">
           Click to zoom
         </div>
       </div>
       
-      {/* Thumbnails */}
+      {/* Thumbnails — smaller on mobile */}
       {displayImages.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto pb-2 hide-scrollbar">
+        <div className="flex gap-2 overflow-x-auto pb-1 hide-scrollbar">
           {displayImages.map((img, index) => (
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`relative w-20 h-24 flex-shrink-0 bg-[#111] overflow-hidden transition-all ${
+              className={`relative w-14 h-16 sm:w-16 sm:h-20 lg:w-20 lg:h-24 flex-shrink-0 bg-[#111] overflow-hidden transition-all ${
                 index === activeIndex 
                   ? 'ring-1 ring-[#fafafa]' 
                   : 'opacity-60 hover:opacity-100'

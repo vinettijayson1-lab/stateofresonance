@@ -85,8 +85,8 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       />
       
       {/* Breadcrumb */}
-      <nav className="pt-24 md:pt-28 px-8 max-w-[1200px] mx-auto">
-        <ol className="flex items-center gap-2 text-sm text-[#525252]">
+      <nav className="pt-20 md:pt-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+        <ol className="flex items-center gap-2 text-xs sm:text-sm text-[#525252]">
           <li>
             <Link href="/" className="hover:text-[#fafafa] transition-colors">Home</Link>
           </li>
@@ -95,13 +95,13 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
             <Link href="/collection/all" className="hover:text-[#fafafa] transition-colors">Shop</Link>
           </li>
           <ChevronRight className="w-3 h-3" />
-          <li className="text-[#fafafa] truncate max-w-[200px]">{product.title}</li>
+          <li className="text-[#fafafa] truncate max-w-[160px] sm:max-w-[200px]">{product.title}</li>
         </ol>
       </nav>
       
       {/* Main product section */}
-      <section className="pt-8 pb-24 px-8 max-w-[1200px] mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+      <section className="pt-4 md:pt-8 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-12 lg:gap-20">
           {/* Left: Gallery */}
           <div className="lg:sticky lg:top-28 lg:self-start">
             <ProductGallery images={product.images} title={product.title} />
@@ -110,17 +110,17 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
           {/* Right: Product info */}
           <div className="lg:py-4">
             {/* Category */}
-            <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#c4a077] mb-4">
+            <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#c4a077] mb-3">
               {product.category || 'Premium Streetwear'}
             </p>
             
             {/* Title */}
-            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#fafafa] mb-6 leading-[1.1]">
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#fafafa] mb-4 leading-[1.1]">
               {product.title}
             </h1>
             
-            {/* Rating with TrustIndex link */}
-            <div className="flex items-center gap-3 mb-6">
+            {/* Rating */}
+            <div className="flex items-center gap-2 mb-4">
               <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <svg key={i} className="w-4 h-4 text-[#c4a077]" fill="currentColor" viewBox="0 0 20 20">
@@ -128,58 +128,50 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                   </svg>
                 ))}
               </div>
-              <span className="text-sm text-[#525252]">4.9/5 from verified buyers</span>
+              <a href="#reviews" className="text-xs sm:text-sm text-[#525252] hover:text-[#fafafa] transition-colors">
+                4.9/5 from verified buyers
+              </a>
             </div>
             
-            {/* Price - Large and prominent */}
-            <div className="flex items-baseline gap-3 mb-8">
+            {/* Price */}
+            <div className="flex items-baseline gap-3 mb-6">
               {product.compareAtPrice && (
-                <span className="text-xl text-[#525252] line-through">{product.compareAtPrice}</span>
+                <span className="text-lg text-[#525252] line-through">{product.compareAtPrice}</span>
               )}
               <span className="text-3xl md:text-4xl font-serif text-[#fafafa]">{product.price}</span>
               <span className="text-sm text-[#525252]">CAD</span>
             </div>
             
-            {/* Description */}
+            {/* Add to cart section — moved up for mobile so it's visible without scrolling much */}
+            <AddToCartSection product={product} />
+            
+            {/* Trust Badges — right below add to cart, key conversion area */}
+            <div className="mt-6">
+              <TrustBadges />
+            </div>
+            
+            {/* Description — moved below CTA on mobile */}
             {product.descriptionHtml && product.descriptionHtml.length > 5 && (
               <div 
-                className="prose prose-sm prose-invert mb-8 text-[#737373] leading-relaxed [&_p]:mb-4"
+                className="prose prose-sm prose-invert mt-8 text-[#737373] leading-relaxed [&_p]:mb-4"
                 dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} 
               />
             )}
             
-            {/* Trust indicators - inline */}
-            <div className="flex flex-wrap items-center gap-6 mb-8 py-6 border-y border-[#141414]">
-              <div className="flex items-center gap-2 text-sm text-[#737373]">
-                <svg className="w-4 h-4 text-[#c4a077]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-                </svg>
-                450gsm Heavyweight
-              </div>
-              <div className="flex items-center gap-2 text-sm text-[#737373]">
-                <svg className="w-4 h-4 text-[#c4a077]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-                </svg>
-                Limited Edition
-              </div>
-              <div className="flex items-center gap-2 text-sm text-[#737373]">
-                <svg className="w-4 h-4 text-[#c4a077]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-                </svg>
-                Free Shipping $100+
-              </div>
-            </div>
-            
-            {/* Add to cart section */}
-            <AddToCartSection product={product} />
-            
-            {/* Trust Badges - Right below add to cart for conversion */}
-            <div className="mt-8">
-              <TrustBadges />
-            </div>
+            {/* Quality bullets — compact stacked layout on mobile */}
+            <ul className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 py-5 border-y border-[#141414]">
+              {['450gsm Heavyweight', 'Limited Edition', 'Free Shipping $100+'].map((label) => (
+                <li key={label} className="flex items-center gap-2 text-sm text-[#737373]">
+                  <svg className="w-4 h-4 text-[#c4a077] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {label}
+                </li>
+              ))}
+            </ul>
             
             {/* Payment methods */}
-            <div className="mt-8 flex items-center justify-center gap-6 text-[#525252]">
+            <div className="mt-6 flex items-center justify-center flex-wrap gap-x-4 gap-y-2 text-[#525252]">
               <span className="text-[11px] tracking-[0.15em] uppercase">Shop Pay</span>
               <span className="text-[#1a1a1a]">|</span>
               <span className="text-[11px] tracking-[0.15em] uppercase">Apple Pay</span>
@@ -188,7 +180,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
             </div>
             
             {/* Accordions with important info */}
-            <div className="mt-12">
+            <div className="mt-8 md:mt-12">
               <ProductAccordion />
             </div>
           </div>
