@@ -20,12 +20,11 @@ export default function ProductCard({ p, priority = false }: { p: ShopifyProduct
     const firstAvailableVariant = p.variants.find(v => v.available) || p.variants[0];
     
     addItem({
+      id: firstAvailableVariant.id,
       variantId: firstAvailableVariant.id,
-      title: p.title,
-      variantTitle: firstAvailableVariant.title,
+      title: `${p.title}${firstAvailableVariant.title !== 'Default Title' ? ` - ${firstAvailableVariant.title}` : ''}`,
       price: firstAvailableVariant.price,
       image: p.image.url,
-      handle: p.handle,
       quantity: 1,
     });
     

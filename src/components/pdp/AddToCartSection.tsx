@@ -18,43 +18,49 @@ export default function AddToCartSection({ product }: AddToCartSectionProps) {
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
 
-  // Initialize with first available options
+  // Initialize with first available variant's options
   useEffect(() => {
-    const initialOptions: Record<string, string> = {};
-    product.options.forEach(option => {
-      // Try to find first available variant for this option
-      const availableVariant = product.variants.find(v => 
-        v.available && (v.option1 === option.values[0] || v.option2 === option.values[0])
-      );
-      initialOptions[option.name] = availableVariant 
-        ? option.values.find(val => val === availableVariant.option1 || val === availableVariant.option2) || option.values[0]
-        : option.values[0];
-    });
-    setSelectedOptions(initialOptions);
+    const firstAvailable = product.variants.find(v => v.available) || product.variants[0];
+    if (firstAvailable) {
+      const initialOptions: Record<string, string> = {};
+      product.options.forEach((option, idx) => {
+        // Map option index to variant option property
+        const variantOption = idx === 0 ? firstAvailable.option1 
+          : idx === 1 ? firstAvailable.option2 
+          : firstAvailable.option3;
+        initialOptions[option.name] = variantOption || option.values[0];
+      });
+      setSelectedOptions(initialOptions);
+    }
   }, [product]);
 
   // Find matching variant based on selected options
   const selectedVariant = product.variants.find(variant => {
-    const optionValues = Object.values(selectedOptions);
-    return optionValues.every(val => 
-      val === variant.option1 || val === variant.option2 || val === variant.option3
-    );
+    return product.options.every((option, idx) => {
+      const selectedValue = selectedOptions[option.name];
+      const variantValue = idx === 0 ? variant.option1 
+        : idx === 1 ? variant.option2 
+        : variant.option3;
+      return selectedValue === variantValue;
+    });
   }) || product.variants[0];
 
-  const isAvailable = selectedVariant?.available ?? false;
+  const isAvailable = selectedVariant?.available ?? true;
 
-  const handleAddToCart = async () => {
-    if (!isAvailable || isAdding) return;
+  const handleAddToCart = () => {
+    // Always use the first available variant if no variant is properly selected
+    const variant = selectedVariant || product.variants.find(v => v.available) || product.variants[0];
+    
+    if (!variant || isAdding) return;
     
     setIsAdding(true);
     
     addItem({
-      variantId: selectedVariant.id,
-      title: product.title,
-      variantTitle: selectedVariant.title,
-      price: selectedVariant.price,
+      id: variant.id,
+      variantId: variant.id,
+      title: `${product.title}${variant.title !== 'Default Title' ? ` - ${variant.title}` : ''}`,
+      price: variant.price,
       image: product.image.url,
-      handle: product.handle,
       quantity,
     });
     
