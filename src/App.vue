@@ -420,7 +420,7 @@ const auraStyle = computed(() => {
   align-items: center;
   justify-content: space-between;
   padding-top: 1.5rem;
-  padding-bottom: 2rem;
+  padding-bottom: max(2rem, calc(1rem + var(--safe-bottom)));
   gap: 1rem;
   flex-wrap: wrap;
 }
