@@ -18,7 +18,7 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen bg-black">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative w-full pt-56 md:pt-64 pb-32 flex flex-col items-center justify-center border-b border-[rgba(255,255,255,0.05)] overflow-hidden">
+      <section className="relative w-full pt-36 md:pt-44 pb-32 flex flex-col items-center justify-center border-b border-[rgba(255,255,255,0.05)] overflow-hidden">
         <div className="absolute inset-0 bg-[url('/luxury-occult-bg.png')] bg-cover bg-center opacity-30 mix-blend-luminosity" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black" />
         

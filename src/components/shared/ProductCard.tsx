@@ -1,48 +1,101 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { ShopifyProduct } from '@/lib/shopify';
+import { useCartStore } from '@/store/cart';
+import { useState } from 'react';
 
 export default function ProductCard({ p, priority = false }: { p: ShopifyProduct, priority?: boolean }) {
+  const addItem = useCartStore(s => s.addItem);
+  const [isAdding, setIsAdding] = useState(false);
+
+  const handleQuickAdd = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (isAdding) return;
+    setIsAdding(true);
+    
+    const firstAvailableVariant = p.variants.find(v => v.available) || p.variants[0];
+    
+    addItem({
+      id: firstAvailableVariant.id,
+      variantId: firstAvailableVariant.id,
+      title: `${p.title}${firstAvailableVariant.title !== 'Default Title' ? ` - ${firstAvailableVariant.title}` : ''}`,
+      price: firstAvailableVariant.price,
+      image: p.image?.url ?? '',
+      quantity: 1,
+    });
+    
+    setTimeout(() => setIsAdding(false), 1000);
+  };
+
   return (
-    <Link href={`/product/${p.handle}`} className="group w-full max-w-sm flex flex-col items-center relative">
-      {/* Aura glow behind card */}
-      <div className="absolute -inset-4 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.06)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none animate-float-orb" />
-      
-      <div className="w-full aspect-[4/5] relative overflow-hidden glass-card transition-all duration-500 group-hover:scale-[1.02] flex items-center justify-center p-4 md:p-8">
-        {/* Subtle inner gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30 z-[1]" />
+    <Link href={`/product/${p.handle}`} className="group block w-full">
+      {/* Image container */}
+      <div className="relative aspect-[3/4] bg-[#111] overflow-hidden mb-4">
+        {p.image?.url ? (
+          <Image 
+            src={p.image.url} 
+            alt={p.image.alt || p.title} 
+            fill 
+            unoptimized
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            priority={priority}
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-[#111]">
+            <span className="text-[#333] text-xs tracking-widest uppercase">No Image</span>
+          </div>
+        )}
         
-        {/* Compare At Badge */}
+        {/* Sale badge */}
         {p.compareAtPrice && (
-          <div className="absolute top-4 right-4 z-10 bg-[var(--color-gold)] text-black text-[0.6rem] font-bold uppercase tracking-widest px-3 py-1 shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+          <div className="absolute top-3 left-3 bg-[#fafafa] text-[#0a0a0a] text-[10px] font-medium tracking-[0.1em] uppercase px-2 py-1">
             Sale
           </div>
         )}
-
-        <Image 
-          src={p.image.url} 
-          alt={p.image.alt} 
-          fill 
-          sizes="(max-width: 768px) 75vw, (max-width: 1200px) 40vw, 30vw"
-          priority={priority}
-          loading={priority ? undefined : "lazy"}
-          className="object-contain p-6 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] group-hover:brightness-110 group-hover:scale-105 transition-all duration-700 ease-out relative z-[2]" 
-        />
         
-        <div className="absolute bottom-4 left-0 w-full flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 z-[3] translate-y-2 group-hover:translate-y-0">
-          <span className="bg-[var(--color-gold)] text-black px-6 py-2.5 text-[0.65rem] uppercase tracking-[0.2em] font-bold font-sans shadow-[0_0_20px_rgba(212,175,55,0.4)]">
-            View Artifact
-          </span>
-        </div>
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        
+        {/* Quick add button */}
+        <button
+          onClick={handleQuickAdd}
+          disabled={isAdding}
+          className="absolute bottom-4 left-4 right-4 bg-[#fafafa] text-[#0a0a0a] py-3 text-xs font-medium tracking-[0.1em] uppercase opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-[#f5f5f0] disabled:opacity-50"
+        >
+          {isAdding ? 'Added' : 'Quick Add'}
+        </button>
       </div>
 
-      <div className="mt-6 text-center w-full flex flex-col items-center">
-        <h2 className="text-lg md:text-xl font-serif text-white tracking-wide group-hover:text-[var(--color-gold)] transition-colors duration-300">{p.title}</h2>
-        <div className="flex gap-3 text-sm font-mono mt-2">
-          {p.compareAtPrice && <p className="text-gray-500 line-through">{p.compareAtPrice}</p>}
-          <p className="text-gray-300 tracking-wider font-bold">{p.price}</p>
+      {/* Product info */}
+      <div className="space-y-1">
+        <h3 className="font-serif text-base text-[#fafafa] group-hover:text-[#a3a3a3] transition-colors line-clamp-1">
+          {p.title}
+        </h3>
+        <div className="flex items-center gap-2">
+          {p.compareAtPrice && (
+            <span className="text-sm text-[#737373] line-through">{p.compareAtPrice}</span>
+          )}
+          <span className="text-sm text-[#a3a3a3]">{p.price} CAD</span>
         </div>
       </div>
     </Link>
+  );
+}
+
+// Skeleton loader for product cards
+export function ProductCardSkeleton() {
+  return (
+    <div className="w-full">
+      <div className="aspect-[3/4] bg-[#1a1a1a] animate-pulse mb-4" />
+      <div className="space-y-2">
+        <div className="h-5 bg-[#1a1a1a] animate-pulse w-3/4" />
+        <div className="h-4 bg-[#1a1a1a] animate-pulse w-1/3" />
+      </div>
+    </div>
   );
 }
