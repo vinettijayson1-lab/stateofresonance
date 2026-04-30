@@ -181,14 +181,19 @@ onUnmounted(() => {
 
         <div v-else class="ritual-capture success-state" style="text-align: center;">
           <span class="hud-alert glow-gold" style="color: #4ade80; border-color: #4ade80;">✓ VIP ACCESS GRANTED</span>
-          <p class="meta-vibe" style="margin-bottom: 1rem; opacity: 0.5; letter-spacing: 0.3em;">USE CODE AT CHECKOUT</p>
-          <h2 class="hero-title discount-code" style="margin-bottom: 1.5rem; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; letter-spacing: 0.1em; border: 1px dashed rgba(212,175,55,0.5); padding: 1rem; background: rgba(212,175,55,0.05); display: inline-block;">
-            RESONANCE30
-          </h2>
+          <p class="meta-vibe" style="margin-bottom: 1rem; opacity: 0.5; letter-spacing: 0.3em;">STACK THESE CODES AT CHECKOUT</p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+            <h2 class="hero-title discount-code" style="font-size: clamp(1.5rem, 4vw, 2.2rem); line-height: 1.1; letter-spacing: 0.1em; border: 1px dashed rgba(212,175,55,0.5); padding: 0.8rem 1.2rem; background: rgba(212,175,55,0.05); margin: 0;">
+              RESONANCE30
+            </h2>
+            <h2 class="hero-title discount-code" style="font-size: clamp(1.5rem, 4vw, 2.2rem); line-height: 1.1; letter-spacing: 0.1em; border: 1px dashed rgba(212,175,55,0.5); padding: 0.8rem 1.2rem; background: rgba(212,175,55,0.05); margin: 0;">
+              FREESHIP
+            </h2>
+          </div>
           <p class="exit-desc" style="margin-bottom: 3rem;">
-            Your code for 30% off and free shipping is active. Apply it at checkout to secure your artifact. Welcome to the Inner Circle.
+            Stack both codes at checkout to unlock 30% off and free shipping. Secure your artifact today. Welcome to the Inner Circle.
           </p>
-          <button @click="closeGate" class="btn-gold" style="width: 100%;">APPLY CODE & SHOP →</button>
+          <button @click="closeGate" class="btn-gold" style="width: 100%;">APPLY CODES & SHOP →</button>
           
           <p class="motto-signoff" style="font-size: 0.5rem; letter-spacing: 0.4em; color: var(--color-gold-muted); margin-top: 2rem; text-transform: uppercase; opacity: 0.5;">
             Wear your frequency. Let your vibes Resonate. State of Resonance.
