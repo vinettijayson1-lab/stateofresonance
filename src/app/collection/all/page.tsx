@@ -6,9 +6,38 @@ import FilterSidebar from "@/components/collection/FilterSidebar";
 import { ProductCardSkeleton } from "@/components/shared/ProductCard";
 
 export const metadata: Metadata = {
-  title: "Shop All",
-  description: "Browse the full collection of State of Resonance premium heavyweight streetwear. 450gsm cotton, limited drops, designed in Canada.",
-  alternates: { canonical: "https://stateofresonance.ca/collection/all" }
+  title: "Shop All | Premium Heavyweight Streetwear Collection",
+  description: "Browse our complete collection of heavyweight streetwear. 450gsm cotton, limited to 10 units per design. Premium quality streetwear designed in Canada. Free shipping over $100.",
+  keywords: [
+    "shop streetwear",
+    "premium clothing collection",
+    "heavyweight cotton",
+    "canadian streetwear",
+    "450gsm clothing",
+    "limited edition streetwear",
+  ],
+  alternates: { 
+    canonical: "https://stateofresonance.ca/collection/all" 
+  },
+  openGraph: {
+    title: "Shop All Premium Streetwear | State of Resonance",
+    description: "Browse our complete collection of heavyweight streetwear. 450gsm cotton, limited drops.",
+    url: "https://stateofresonance.ca/collection/all",
+    type: "website",
+    images: [{
+      url: "https://stateofresonance.ca/hero-celestial.webp",
+      width: 1200,
+      height: 630,
+      alt: "State of Resonance Collection"
+    }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shop All Premium Streetwear | State of Resonance",
+    description: "Browse our complete collection of heavyweight streetwear. 450gsm cotton, limited drops.",
+    images: ["https://stateofresonance.ca/hero-celestial.webp"],
+  },
+};
 };
 
 function ProductGridSkeleton() {
