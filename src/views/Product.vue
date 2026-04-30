@@ -1153,8 +1153,9 @@ const onImgError = (e: any) => {
 
 @media (max-width: 768px) {
   .main-img-wrapper {
-    max-height: 55vh;
-    max-width: 100%;
+    width: 85%;
+    margin: 0 auto 1.5rem auto;
+    max-height: 45vh;
     aspect-ratio: 1/1;
   }
 }
