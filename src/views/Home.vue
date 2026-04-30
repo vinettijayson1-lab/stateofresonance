@@ -232,20 +232,23 @@ const archiveLogs = [
       <div class="container">
         <div class="fossil-email-inner">
           <div class="fossil-email-text">
-            <span class="fossil-eyebrow">Decode Your Symbol</span>
-            <h2 class="fossil-heading" style="font-size:clamp(2rem,5vw,3.5rem);">Enter the<br/>Frequency.</h2>
+            <span class="fossil-eyebrow">INNER CIRCLE EXCLUSIVE</span>
+            <h2 class="fossil-heading" style="font-size:clamp(2rem,5vw,3.5rem);">30% Off +<br/>Free Shipping.</h2>
           </div>
           <div class="fossil-email-form">
-            <p class="fossil-subtext" style="margin-bottom:2rem;">Get your free symbol guide + early drop access.</p>
+            <p class="fossil-subtext" style="margin-bottom:2rem;">Enter your email and phone number to unlock your welcome discount and get early access to limited-run drops.</p>
             <div v-if="subscribeStatus !== 'success'" class="fossil-email-input-group">
               <input v-model="seekerEmail" type="email" placeholder="YOUR EMAIL ADDRESS" class="fossil-email-input" id="home-email-input" />
               <input v-model="seekerPhone" type="tel" placeholder="PHONE NUMBER (OPTIONAL)" class="fossil-email-input" id="home-phone-input" />
               <button @click="handleEmailSync" class="btn-premium animate-glint" :disabled="subscribeStatus === 'loading'" id="home-email-submit" style="margin-top:0.5rem; padding: 1rem;">
-                {{ subscribeStatus === 'loading' ? 'Sending...' : 'Unlock Guide' }}
+                {{ subscribeStatus === 'loading' ? 'Sending...' : 'Unlock 30% Off' }}
               </button>
             </div>
             <p v-if="subscribeStatus !== 'success'" class="sms-disclaimer" style="font-size: 0.55rem; color: rgba(255,255,255,0.4); margin-top: 1.5rem; line-height: 1.4;">By entering your phone number, you consent to receive marketing text messages from State of Resonance. Consent is not a condition of purchase. Msg & data rates may apply. Reply STOP to cancel.</p>
-            <p v-else class="gold-text" style="font-size:0.75rem;letter-spacing:0.2em;">✦ GUIDE SENT. CHECK YOUR INBOX.</p>
+            <div v-else class="success-state" style="padding: 1rem; border: 1px dashed rgba(212,175,55,0.5); background: rgba(212,175,55,0.05); display: inline-block;">
+              <p class="gold-text" style="font-size:0.75rem;letter-spacing:0.2em; margin-bottom: 0.5rem;">✦ USE CODE AT CHECKOUT:</p>
+              <p style="font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 600; color: #fff; letter-spacing: 0.1em;">RESONANCE30</p>
+            </div>
           </div>
         </div>
       </div>

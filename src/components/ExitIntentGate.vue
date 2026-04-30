@@ -145,13 +145,13 @@ onUnmounted(() => {
         </div>
 
         <div v-if="!success" class="ritual-capture">
-          <span class="hud-alert glow-gold">FREE GUIDE — DECODE YOUR SYMBOL</span>
+          <span class="hud-alert glow-gold">VIP ACCESS — 30% OFF + FREE SHIPPING</span>
           <h2 class="hero-title" style="font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.1; margin-bottom: 1.5rem;">
-            What Does Your<br/><span class="gold-text">Symbol Mean?</span>
+            Unlock Your<br/><span class="gold-text">First Artifact.</span>
           </h2>
           
           <p class="exit-desc">
-            Every piece in the collection is built around a specific symbol and frequency. Enter your email and we'll send you the full Symbol Decoder — a free guide to the meaning behind each design.
+            Join the Inner Circle. Enter your email and phone number to immediately receive 30% off your first order, plus free shipping anywhere in Canada or the US.
           </p>
           
           <div class="email-capture">
@@ -171,7 +171,7 @@ onUnmounted(() => {
               @keyup.enter="captureIntent"
             />
             <button @click="captureIntent" class="btn-gold interactive animate-glint" :disabled="loading" style="width: 100%; margin-top: 1rem; height: 60px;">
-              {{ loading ? 'ONE MOMENT...' : 'SEND ME THE GUIDE' }}
+              {{ loading ? 'ONE MOMENT...' : 'UNLOCK 30% OFF' }}
             </button>
           </div>
           <p class="sms-disclaimer" style="font-size: 0.55rem; color: rgba(255,255,255,0.4); margin-top: 1rem; text-align: center; line-height: 1.4;">By entering your phone number, you consent to receive marketing text messages from State of Resonance. Consent is not a condition of purchase. Msg & data rates may apply. Reply STOP to cancel.</p>
@@ -180,15 +180,15 @@ onUnmounted(() => {
         </div>
 
         <div v-else class="ritual-capture success-state" style="text-align: center;">
-          <span class="hud-alert glow-gold" style="color: #4ade80; border-color: #4ade80;">✓ YOU'RE IN</span>
-          <p class="meta-vibe" style="margin-bottom: 1rem; opacity: 0.5; letter-spacing: 0.3em;">INNER CIRCLE — EARLY ACCESS</p>
-          <h2 class="hero-title" style="margin-bottom: 1.5rem; font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.1;">
-            You'll hear about<br/><span class="gold-text">new drops first.</span>
+          <span class="hud-alert glow-gold" style="color: #4ade80; border-color: #4ade80;">✓ VIP ACCESS GRANTED</span>
+          <p class="meta-vibe" style="margin-bottom: 1rem; opacity: 0.5; letter-spacing: 0.3em;">USE CODE AT CHECKOUT</p>
+          <h2 class="hero-title discount-code" style="margin-bottom: 1.5rem; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; letter-spacing: 0.1em; border: 1px dashed rgba(212,175,55,0.5); padding: 1rem; background: rgba(212,175,55,0.05); display: inline-block;">
+            RESONANCE30
           </h2>
           <p class="exit-desc" style="margin-bottom: 3rem;">
-            Check your inbox. We’ll notify you before pieces go live to the public. Limited runs — once they’re gone, they don’t come back.
+            Your code for 30% off and free shipping is active. Apply it at checkout to secure your artifact. Welcome to the Inner Circle.
           </p>
-          <button @click="closeGate" class="btn-gold" style="width: 100%;">SHOP THE COLLECTION →</button>
+          <button @click="closeGate" class="btn-gold" style="width: 100%;">APPLY CODE & SHOP →</button>
           
           <p class="motto-signoff" style="font-size: 0.5rem; letter-spacing: 0.4em; color: var(--color-gold-muted); margin-top: 2rem; text-transform: uppercase; opacity: 0.5;">
             Wear your frequency. Let your vibes Resonate. State of Resonance.
