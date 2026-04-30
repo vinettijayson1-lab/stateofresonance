@@ -4,7 +4,41 @@ import Link from "next/link";
 import Image from "next/image";
 import ProductCard from "@/components/shared/ProductCard";
 import { ArrowRight } from "lucide-react";
+import type { Metadata } from "next";
 
+// SEO Metadata for Home Page
+export const metadata: Metadata = {
+  title: "Premium Heavyweight Streetwear | State of Resonance",
+  description: "Limited edition heavyweight streetwear crafted from 450gsm cotton. Esoteric designs, premium quality. Only 10 units per design. Free shipping over $100.",
+  keywords: [
+    "premium streetwear canada",
+    "heavyweight cotton clothing",
+    "450gsm streetwear",
+    "limited edition clothing",
+    "esoteric streetwear",
+    "luxury streetwear toronto",
+    "canadian streetwear brand",
+    "occult fashion",
+  ],
+  openGraph: {
+    title: "State of Resonance | Premium Heavyweight Streetwear",
+    description: "Limited edition heavyweight streetwear crafted from 450gsm cotton. Designed in Canada.",
+    images: [{
+      url: "https://stateofresonance.ca/hero-celestial.webp",
+      width: 1200,
+      height: 630,
+      alt: "State of Resonance Premium Streetwear"
+    }],
+    type: "website",
+    url: "https://stateofresonance.ca",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "State of Resonance | Premium Heavyweight Streetwear",
+    description: "Limited edition heavyweight streetwear crafted from 450gsm cotton. Designed in Canada.",
+    images: ["https://stateofresonance.ca/hero-celestial.webp"],
+  },
+};
 export default async function Home() {
   const allProducts = await fetchProducts();
   const allTransmissions = getSortedTransmissionsData();
@@ -20,6 +54,39 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
+      {/* SEO Structured Data */}
+      <script 
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "State of Resonance",
+          "alternateName": "SOR",
+          "url": "https://stateofresonance.ca",
+          "description": "Premium heavyweight streetwear designed in Canada. Limited edition clothing crafted from 450gsm cotton.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "CA"
+          }
+        }) }}
+      />
+      <script 
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "State of Resonance",
+          "url": "https://stateofresonance.ca",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://stateofresonance.ca/collection/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }) }}
+      />
       
       {/* Hero Section - Clean, centered, editorial */}
       <section className="relative min-h-[90vh] flex items-center justify-center">
