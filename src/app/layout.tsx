@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
   other: {
     "facebook-domain-verification": "5mwd35tiaxnja0398tp7ct5dc1x1dr",
-    "google-site-verification": "FsFIRctLjbwsOkCtvffNKYyvSC02fra-Z79OQ6sDtWs",
+    "google-site-verification": "xhz0x2QY9LcSfg0NunizCHmbj1MEKwDW_6620np0E6g",
   },
 };
 
