@@ -39,12 +39,12 @@ const router = createRouter({
     {
       path: '/transmissions',
       name: 'Transmissions',
-      component: () => import('./views/Transmissions.vue')
+      component: () => import('./views/Archives.vue')
     },
     {
       path: '/transmissions/:slug',
       name: 'TransmissionDetail',
-      component: () => import('./views/TransmissionDetail.vue')
+      component: () => import('./views/ArchiveDetail.vue')
     },
     {
       path: '/collections/the-ghost-and-bones',
