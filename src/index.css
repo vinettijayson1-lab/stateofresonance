@@ -104,7 +104,26 @@ main { padding-top: clamp(80px, 12vh, 120px); }
 @media (hover: hover) and (pointer: fine) { .dropdown-link:hover { color: var(--color-gold); } }
 
 @media (max-width: 968px) {
-  .nav-links { display: flex; position: fixed; top: 0; right: 0; width: 85vw; height: 100dvh; background: #000; flex-direction: column; justify-content: center; padding: 5vh 5vw; gap: 2rem; transform: translateX(100%); transition: 0.6s var(--ease-out-expo); z-index: 10000 !important; border-left: 1px solid rgba(255,255,255,0.06); opacity: 1 !important; visibility: visible !important; }
+  .nav-bar { padding: 0.2rem 5vw; }
+  .nav-links {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100dvh;
+    background: #0a0a0c;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5vh 5vw;
+    gap: 1.5rem;
+    transform: translateX(100%);
+    transition: 0.6s var(--ease-out-expo);
+    z-index: 10000 !important;
+    border-left: 1px solid var(--glass-border);
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
   .nav-links.mobile-open { transform: translateX(0); }
   .mobile-toggle { display: flex; position: relative; z-index: 1001; }
   .mobile-only { display: block !important; }

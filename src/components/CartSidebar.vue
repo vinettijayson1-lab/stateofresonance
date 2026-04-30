@@ -804,13 +804,13 @@ watch(() => cart.isOpen, (val) => {
 .custom-scroll::-webkit-scrollbar-thumb { background: var(--glass-border); }
 
 @media (max-width: 880px) {
-  .cart-panel { width: 85vw; max-width: 400px; right: 0; }
+  .cart-panel { width: 100vw; max-width: 100%; right: 0; }
   .collection-visual-side { display: none; }
   .cart-layout-pines { flex-direction: column; }
 }
 
 @media (max-width: 480px) {
   .cart-title { font-size: 1.8rem; }
-  .collection-content-side { padding: 1.5rem 1rem; }
+  .collection-content-side { padding: 1.5rem 1rem calc(1.5rem + env(safe-area-inset-bottom)); }
 }
 </style>
