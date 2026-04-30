@@ -816,6 +816,10 @@ const onImgError = (e: any) => {
   align-items: start;
 }
 
+.product-gallery, .product-detail-info {
+  min-width: 0;
+}
+
 .main-img-wrapper {
   position: relative;
   width: 100%;
