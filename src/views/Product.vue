@@ -685,6 +685,11 @@ const onImgError = (e: any) => {
           <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
         </form>
 
+        <div class="product-description" style="margin-bottom: 2rem;">
+          <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Product Details</p>
+          <div v-html="product.description || ''"></div>
+        </div>
+
         <!-- WHY THIS PIECE IS SPECIAL -->
         <div v-if="isClothing" class="why-special-block">
           <p class="why-special-eyebrow">✦ WHY OUR PIECES FEEL DIFFERENT</p>
@@ -714,11 +719,6 @@ const onImgError = (e: any) => {
               <strong style="font-size: 0.8rem;">Symbolic designs with purpose</strong>
             </div>
           </div>
-        </div>
-
-        <div class="product-description">
-          <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Product Details</p>
-          <div v-html="product.description || ''"></div>
         </div>
 
         <!-- SYMBOL MEANINGS -->
