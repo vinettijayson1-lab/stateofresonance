@@ -141,6 +141,7 @@ export default async function handler(req: any, res: any) {
         id: p.id ? p.id.toString() : Math.random().toString(36).substring(7),
         title: p.title,
         handle: p.handle || '',
+        description: p.body_html || p.description || '',
         price: rawPrice,
         image: primaryImage,
         category: categoryStr,
