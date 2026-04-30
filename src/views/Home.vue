@@ -10,6 +10,7 @@ interface Product { id: string; title: string; price: string; category: string; 
 const attireProducts = ref<Product[]>([])
 const loading = ref(true)
 const seekerEmail = ref('')
+const seekerPhone = ref('')
 const subscribeStatus = ref<'idle'|'loading'|'success'|'error'>('idle')
 
 // Live clock
@@ -37,9 +38,26 @@ const handleEmailSync = async () => {
   if (!seekerEmail.value) return
   subscribeStatus.value = 'loading'
   try {
-    await klaviyoService.identify(seekerEmail.value, { source: 'Homepage Newsletter' })
-    subscribeStatus.value = 'success'
-    seekerEmail.value = ''
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: seekerEmail.value,
+        phone: seekerPhone.value,
+        sms_consent: !!seekerPhone.value,
+        source: 'Homepage Newsletter'
+      })
+    })
+    
+    if (res.ok) {
+      if ((window as any).fbq) (window as any).fbq('track', 'Lead', { content_category: 'Homepage Newsletter' })
+      klaviyoService.identify(seekerEmail.value, { source: 'Homepage Newsletter', ...(seekerPhone.value ? { '$phone_number': seekerPhone.value } : {}) })
+      subscribeStatus.value = 'success'
+      seekerEmail.value = ''
+      seekerPhone.value = ''
+    } else {
+      throw new Error('Subscription failed')
+    }
   } catch { subscribeStatus.value = 'error' }
 }
 
@@ -221,10 +239,12 @@ const archiveLogs = [
             <p class="fossil-subtext" style="margin-bottom:2rem;">Get your free symbol guide + early drop access.</p>
             <div v-if="subscribeStatus !== 'success'" class="fossil-email-input-group">
               <input v-model="seekerEmail" type="email" placeholder="YOUR EMAIL ADDRESS" class="fossil-email-input" id="home-email-input" />
-              <button @click="handleEmailSync" class="btn-premium animate-glint" :disabled="subscribeStatus === 'loading'" id="home-email-submit">
+              <input v-model="seekerPhone" type="tel" placeholder="PHONE NUMBER (OPTIONAL)" class="fossil-email-input" id="home-phone-input" />
+              <button @click="handleEmailSync" class="btn-premium animate-glint" :disabled="subscribeStatus === 'loading'" id="home-email-submit" style="margin-top:0.5rem; padding: 1rem;">
                 {{ subscribeStatus === 'loading' ? 'Sending...' : 'Unlock Guide' }}
               </button>
             </div>
+            <p v-if="subscribeStatus !== 'success'" class="sms-disclaimer" style="font-size: 0.55rem; color: rgba(255,255,255,0.4); margin-top: 1.5rem; line-height: 1.4;">By entering your phone number, you consent to receive marketing text messages from State of Resonance. Consent is not a condition of purchase. Msg & data rates may apply. Reply STOP to cancel.</p>
             <p v-else class="gold-text" style="font-size:0.75rem;letter-spacing:0.2em;">✦ GUIDE SENT. CHECK YOUR INBOX.</p>
           </div>
         </div>
@@ -478,8 +498,8 @@ const archiveLogs = [
 @media (max-width: 768px) { .fossil-email-inner { grid-template-columns: 1fr; gap: 3rem; } }
 .fossil-email-input-group {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 .fossil-email-input {
   flex: 1;

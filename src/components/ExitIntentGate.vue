@@ -7,6 +7,7 @@ import { klaviyoService } from '../services/klaviyo'
 const isVisible = ref(false)
 const hasFired = ref(false)
 const email = ref('')
+const phone = ref('')
 const error = ref('')
 const loading = ref(false)
 const success = ref(false)
@@ -92,6 +93,8 @@ const captureIntent = async () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
         email: email.value, 
+        phone: phone.value,
+        sms_consent: !!phone.value,
         source: 'Exit Intent — Inner Circle',
         properties: {
           tier: 'inner_circle_prospect'
@@ -159,10 +162,19 @@ onUnmounted(() => {
               class="members-input"
               @keyup.enter="captureIntent"
             />
+            <input 
+              type="tel" 
+              v-model="phone" 
+              placeholder="PHONE NUMBER (OPTIONAL)" 
+              class="members-input"
+              style="margin-top: 0.5rem;"
+              @keyup.enter="captureIntent"
+            />
             <button @click="captureIntent" class="btn-gold interactive animate-glint" :disabled="loading" style="width: 100%; margin-top: 1rem; height: 60px;">
               {{ loading ? 'ONE MOMENT...' : 'SEND ME THE GUIDE' }}
             </button>
           </div>
+          <p class="sms-disclaimer" style="font-size: 0.55rem; color: rgba(255,255,255,0.4); margin-top: 1rem; text-align: center; line-height: 1.4;">By entering your phone number, you consent to receive marketing text messages from State of Resonance. Consent is not a condition of purchase. Msg & data rates may apply. Reply STOP to cancel.</p>
           <p v-if="error" class="error-text">Please enter a valid email address.</p>
           <a @click.prevent="closeGate" class="sever-link interactive">I'll figure it out myself</a>
         </div>
