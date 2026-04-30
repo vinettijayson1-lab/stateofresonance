@@ -115,6 +115,24 @@ const archiveLogs = [
       </div>
     </div>
 
+    <!-- GATEWAY SECTION -->
+    <section class="fossil-gateway-section">
+      <div class="gateway-container">
+        <div class="gateway-image-wrapper">
+          <img src="/images/lookbook/20260426_152314.jpg" alt="Foundation Tee" class="gateway-image" />
+        </div>
+        <div class="gateway-text-content">
+          <span class="fossil-eyebrow">START YOUR JOURNEY</span>
+          <h2 class="fossil-heading" style="font-size:clamp(2.5rem, 5vw, 4rem); margin-bottom: 0.5rem;">The Foundation Tee.</h2>
+          <div class="gateway-price">$45 CAD</div>
+          <p class="fossil-subtext" style="max-width: 400px; margin-bottom: 2rem; opacity: 0.8;">
+            Experience the 450gsm heavyweight quality of State of Resonance with our entry-level artifact. Designed to be your daily armor.
+          </p>
+          <router-link to="/product/base-tee" class="btn-premium animate-glint" style="display: inline-block; text-align: center;">SECURE THE FOUNDATION →</router-link>
+        </div>
+      </div>
+    </section>
+
     <!-- SECTION 3: SHOP GRID -->
     <section class="fossil-shop-section">
       <div class="container">
@@ -348,6 +366,63 @@ const archiveLogs = [
 }
 .fossil-city-label { color: rgba(255,255,255,0.3); }
 .fossil-clock-time { color: rgba(255,255,255,0.7); font-variant-numeric: tabular-nums; }
+
+/* GATEWAY SECTION */
+.fossil-gateway-section {
+  background: var(--color-bg);
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.gateway-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: center;
+}
+.gateway-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+.gateway-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.2);
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+.gateway-image-wrapper:hover .gateway-image {
+  filter: grayscale(0%) contrast(1.1);
+  transform: scale(1.02);
+}
+.gateway-text-content {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.gateway-price {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  color: var(--color-gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+@media (max-width: 900px) {
+  .gateway-container {
+    grid-template-columns: 1fr;
+  }
+  .gateway-image-wrapper {
+    height: 400px;
+  }
+  .gateway-text-content {
+    padding: 2rem;
+  }
+}
 
 /* SHOP SECTION */
 .fossil-shop-section { padding: 6rem 0 0; background: #000; }
