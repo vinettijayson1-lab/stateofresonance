@@ -280,7 +280,7 @@ onMounted(() => {
 
 @media (max-width: 768px) {
   .product-img-wrapper {
-    aspect-ratio: 1/1;
+    aspect-ratio: 4/5;
   }
   .product-info {
     padding: 0.75rem 0.5rem 1rem;
