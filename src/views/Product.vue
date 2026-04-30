@@ -640,18 +640,18 @@ const onImgError = (e: any) => {
           >
             ✦ SELECT A SIZE TO CONTINUE
           </div>
-          <div v-if="isAvailable" class="commerce-primary-row" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <div class="qty-selector glass" style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 1rem; border: 1px solid var(--color-gold-muted); min-width: 120px; font-size: 1.2rem; background: rgba(0,0,0,0.4);">
-              <button @click="quantity > 1 ? quantity-- : null" class="qty-btn" style="background: none; border: none; color: #fff; cursor: pointer; padding: 0.5rem; opacity: 0.7; font-size: 1.2rem;">−</button>
+          <div v-if="isAvailable" class="commerce-primary-row" style="display: flex; gap: 0.5rem; flex-wrap: nowrap;">
+            <div class="qty-selector glass" style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem; border: 1px solid var(--color-gold-muted); min-width: 90px; font-size: 1rem; background: rgba(0,0,0,0.4);">
+              <button @click="quantity > 1 ? quantity-- : null" class="qty-btn" style="background: none; border: none; color: #fff; cursor: pointer; padding: 0.5rem; opacity: 0.7; font-size: 1rem;">−</button>
               <span class="qty-val" style="font-family: var(--font-heading); min-width: 20px; text-align: center;">{{ quantity }}</span>
-              <button @click="quantity++" class="qty-btn" style="background: none; border: none; color: #fff; cursor: pointer; padding: 0.5rem; opacity: 0.7; font-size: 1.2rem;">+</button>
+              <button @click="quantity++" class="qty-btn" style="background: none; border: none; color: #fff; cursor: pointer; padding: 0.5rem; opacity: 0.7; font-size: 1rem;">+</button>
             </div>
             <!-- PRIMARY: Add to Bag -->
-            <button @click="addToCartWithQty" class="btn-premium add-btn" style="flex: 1; padding: 1.25rem; font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase;">ADD TO BAG</button>
+            <button @click="addToCartWithQty" class="btn-premium add-btn" style="flex: 1; padding: 1rem 0.5rem; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;">ADD TO BAG</button>
           </div>
           
           <!-- SECONDARY: Buy Now -->
-          <a v-if="isAvailable" :href="shopifyUrl" class="btn-solid-gold animate-glint full-width-buy" style="display: block; text-align: center; margin-top: 1rem; padding: 1.25rem; background: var(--color-gold); border: 1px solid var(--color-gold); color: #000; font-weight: bold; text-decoration: none; letter-spacing: 0.2em; font-size: 1rem; text-transform: uppercase; transition: transform 0.3s ease;" @click="addToCartWithQty">
+          <a v-if="isAvailable" :href="shopifyUrl" class="btn-solid-gold animate-glint full-width-buy" style="display: block; text-align: center; margin-top: 0.5rem; padding: 1rem; background: var(--color-gold); border: 1px solid var(--color-gold); color: #000; font-weight: bold; text-decoration: none; letter-spacing: 0.2em; font-size: 0.9rem; text-transform: uppercase; transition: transform 0.3s ease;" @click="addToCartWithQty">
             BUY NOW
           </a>
 
