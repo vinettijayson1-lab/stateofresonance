@@ -8,7 +8,6 @@ import { Menu, X, ShoppingBag } from 'lucide-react';
 const NAV_LINKS = [
   { href: '/collection/all', label: 'Shop' },
   { href: '/lookbook', label: 'Lookbook' },
-  { href: '/collection/best-sellers', label: 'Best Sellers' },
   { href: '/social-proof', label: 'Social Proof' },
   { href: '/transmissions', label: 'Transmissions' },
   { href: '/collab', label: 'Collaborate' },
