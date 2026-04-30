@@ -9,6 +9,7 @@ export async function GET() {
   const transmissions = getSortedTransmissionsData();
   
 const statics = ["", '/collection/all', '/social-proof', '/about', '/symbols', '/faq', '/terms', '/privacy', '/transmissions'];
+  const dynamics = products.map(p => `/product/${p.handle}`);
   const blogDynamics = transmissions.map(t => `/transmissions/${t.slug}`);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
