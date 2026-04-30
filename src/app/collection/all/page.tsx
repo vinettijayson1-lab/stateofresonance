@@ -38,7 +38,6 @@ export const metadata: Metadata = {
     images: ["https://stateofresonance.ca/hero-celestial.webp"],
   },
 };
-};
 
 function ProductGridSkeleton() {
   return (
