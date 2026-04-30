@@ -151,7 +151,7 @@ onUnmounted(() => {
           </h2>
           
           <p class="exit-desc">
-            Join the Inner Circle. Enter your email and phone number to immediately receive 30% off your first order, plus free shipping anywhere in Canada or the US.
+            Join the Inner Circle. Enter your email and phone number to immediately receive 30% off and free shipping on your first order over $100.
           </p>
           
           <div class="email-capture">
@@ -190,9 +190,10 @@ onUnmounted(() => {
               FREESHIP
             </h2>
           </div>
-          <p class="exit-desc" style="margin-bottom: 3rem;">
+          <p class="exit-desc" style="margin-bottom: 0.5rem;">
             Stack both codes at checkout to unlock 30% off and free shipping. Secure your artifact today. Welcome to the Inner Circle.
           </p>
+          <p style="font-size: 0.6rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3rem;">*Valid on orders over $100</p>
           <button @click="closeGate" class="btn-gold" style="width: 100%;">APPLY CODES & SHOP →</button>
           
           <p class="motto-signoff" style="font-size: 0.5rem; letter-spacing: 0.4em; color: var(--color-gold-muted); margin-top: 2rem; text-transform: uppercase; opacity: 0.5;">

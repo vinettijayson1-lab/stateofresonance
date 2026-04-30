@@ -263,13 +263,16 @@ const archiveLogs = [
               </button>
             </div>
             <p v-if="subscribeStatus !== 'success'" class="sms-disclaimer" style="font-size: 0.55rem; color: rgba(255,255,255,0.4); margin-top: 1.5rem; line-height: 1.4;">By entering your phone number, you consent to receive marketing text messages from State of Resonance. Consent is not a condition of purchase. Msg & data rates may apply. Reply STOP to cancel.</p>
-            <div v-else class="success-state" style="padding: 1rem; border: 1px dashed rgba(212,175,55,0.5); background: rgba(212,175,55,0.05); display: inline-block;">
-              <p class="gold-text" style="font-size:0.75rem;letter-spacing:0.2em; margin-bottom: 0.5rem;">✦ STACK BOTH CODES AT CHECKOUT:</p>
-              <div style="display: flex; gap: 1rem; align-items: center; justify-content: center;">
-                <p style="font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 600; color: #fff; letter-spacing: 0.1em; margin: 0;">RESONANCE30</p>
-                <span style="color: rgba(255,255,255,0.3);">+</span>
-                <p style="font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 600; color: #fff; letter-spacing: 0.1em; margin: 0;">FREESHIP</p>
+            <div v-else style="display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;">
+              <div class="success-state" style="padding: 1rem; border: 1px dashed rgba(212,175,55,0.5); background: rgba(212,175,55,0.05); display: inline-block;">
+                <p class="gold-text" style="font-size:0.75rem;letter-spacing:0.2em; margin-bottom: 0.5rem;">✦ STACK BOTH CODES AT CHECKOUT:</p>
+                <div style="display: flex; gap: 1rem; align-items: center; justify-content: flex-start;">
+                  <p style="font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 600; color: #fff; letter-spacing: 0.1em; margin: 0;">RESONANCE30</p>
+                  <span style="color: rgba(255,255,255,0.3);">+</span>
+                  <p style="font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 600; color: #fff; letter-spacing: 0.1em; margin: 0;">FREESHIP</p>
+                </div>
               </div>
+              <p style="font-size: 0.65rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">*Valid on orders over $100</p>
             </div>
           </div>
         </div>
