@@ -231,12 +231,7 @@ const isCheckoutPage = computed(() => {
         </div>
       </nav>
 
-      <!-- Trust Badges Section - REPOSITIONED LOWER -->
-      <div class="header-trust-badges" v-show="headerExpanded" style="display: flex; justify-content: center; gap: 1rem; padding: 1rem 0; flex-wrap: wrap;">
-        <TrustBadge type="secure" />
-        <TrustBadge type="orders" />
-        <TrustBadge type="ssl" />
-      </div>
+
     </div>
 
     <CartSidebar />
