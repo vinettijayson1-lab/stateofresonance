@@ -15,7 +15,7 @@ const config = {
 <template>
   <div class="ti-badge">
     <div class="ti-badge-top">
-      <component :is="config[props.type].icon" class="ti-icon" :size="16" />
+      <component :is="config[props.type].icon" class="ti-icon" :size="14" />
       <span class="ti-title">{{ config[props.type].title }}</span>
     </div>
     <div class="ti-badge-bottom">
@@ -41,7 +41,7 @@ const config = {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.4rem 0.6rem;
+  padding: 0.3rem 0.5rem;
   background: #fff;
 }
 
@@ -52,7 +52,7 @@ const config = {
 
 .ti-title {
   color: #111;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   white-space: nowrap;
@@ -61,8 +61,8 @@ const config = {
 .ti-badge-bottom {
   background: #111;
   color: #fff;
-  font-size: 0.5rem;
-  padding: 0.2rem 0.6rem;
+  font-size: 0.45rem;
+  padding: 0.15rem 0.5rem;
   text-align: center;
   letter-spacing: 0.02em;
 }
