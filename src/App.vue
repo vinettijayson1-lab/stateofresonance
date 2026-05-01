@@ -127,6 +127,12 @@ const auraStyle = computed(() => {
   if (f === '528') color = 'rgba(74,222,128,0.05)'
   return { background: `radial-gradient(circle at 50% 30%, ${color} 0%, transparent 70%)` }
 })
+
+const isCheckoutPage = computed(() => {
+  if (typeof window === 'undefined') return false
+  const path = window.location.pathname
+  return path.includes('/checkout') || path.includes('/cart')
+})
 </script>
 
 <template>
@@ -230,10 +236,12 @@ const auraStyle = computed(() => {
 
       <!-- Trust Badges Section -->
       <div class="header-trust-badges" v-show="headerExpanded">
+        <!-- Always show these 3 static badges -->
         <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
         <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
         <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
-        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
+        <!-- Only show this validation badge on checkout/cart pages -->
+        <TrustindexWidget v-if="isCheckoutPage" src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
       </div>
     </div>
 
