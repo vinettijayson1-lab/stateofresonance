@@ -200,6 +200,13 @@ const liveViewers = computed(() => {
   return Math.floor(Math.random() * 12) + 4
 })
 
+const bnplInstallment = computed(() => {
+  const currentPriceStr = memberPrice.value || selectedVariant.value?.price || product.value?.price || '0'
+  const val = parseFloat(currentPriceStr.replace(/[^0-9.]/g, ''))
+  if (isNaN(val) || val < 20) return null // BNPL usually requires $20+ or $50+ minimum
+  return currencyStore.formatPrice(val / 4)
+})
+
 
 const remainingStock = computed(() => {
   if (!product.value) return 0
@@ -571,6 +578,12 @@ const onImgError = (e: any) => {
               <span v-if="memberPrice" class="original-price" style="text-decoration: line-through; opacity: 0.4; font-size: 0.8rem;">
                 {{ selectedVariant?.price || product?.price }} [BASE]
               </span>
+              <span v-if="bnplInstallment" class="bnpl-text" style="font-size: 0.65rem; color: var(--color-gold-muted); opacity: 0.9; margin-top: 0.2rem;">
+                Or 4 interest-free payments of <strong>{{ bnplInstallment }}</strong> with 
+                <span style="font-weight: 800; letter-spacing: 0.05em; color: #5A31F4; margin-left: 2px;">shop</span><span style="font-weight: 800; letter-spacing: 0.05em; color: #000; background: #fff; padding: 0 2px; border-radius: 2px; margin-right: 4px;">pay</span> 
+                or 
+                <span style="font-weight: 800; letter-spacing: 0.05em; color: #000; background: #00c8e5; padding: 1px 4px; border-radius: 12px; margin-left: 4px;">affirm</span>
+              </span>
             </div>
             <p class="meta-vibe" style="font-size: 0.55rem; margin-top: 0.25rem; opacity: 0.5;">
               Taxes Included for International Seeker / Calculated at Checkout for Canada
@@ -655,6 +668,21 @@ const onImgError = (e: any) => {
           <a v-if="isAvailable" :href="shopifyUrl" class="btn-solid-gold animate-glint full-width-buy" style="display: block; text-align: center; margin-top: 0.5rem; padding: 1rem; background: var(--color-gold); border: 1px solid var(--color-gold); color: #000; font-weight: bold; text-decoration: none; letter-spacing: 0.2em; font-size: 0.9rem; text-transform: uppercase; transition: transform 0.3s ease;" @click="addToCartWithQty">
             BUY NOW
           </a>
+
+          <!-- Gateway Product Upsell -->
+          <div v-if="product?.handle !== 'ghost-and-bones-resonance-base-t-shirt' && isClothing" class="gateway-upsell" style="margin-top: 1.5rem; border: 1px solid rgba(212, 175, 55, 0.3); background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 4px;">
+            <p style="font-size: 0.6rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.75rem; text-transform: uppercase; text-align: center;">✦ Frequently Bought Together</p>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+              <img src="/images/lookbook/20260426_152314.jpg" alt="Foundation Tee" style="width: 70px; height: 70px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);" />
+              <div style="flex: 1;">
+                <p style="font-size: 0.8rem; font-weight: bold; margin-bottom: 0.2rem;">The Foundation Tee</p>
+                <p style="font-size: 0.7rem; color: var(--color-gold-muted); margin-bottom: 0.5rem;">$45.00</p>
+                <button @click="cart.add({ id: 'gid://shopify/ProductVariant/44464521773207', title: 'The Foundation Tee (Garment Dyed)', price: '$45.00', image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/unisex-garment-dyed-heavyweight-t-shirt-pepper-front-66718d7bc8bd5.jpg', handle: 'ghost-and-bones-resonance-base-t-shirt', quantity: 1 })" style="background: none; border: 1px solid var(--color-gold-muted); color: var(--color-gold-muted); padding: 0.4rem 0.8rem; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.background='var(--color-gold-muted)'; this.style.color='#000';" onmouseout="this.style.background='none'; this.style.color='var(--color-gold-muted)';">
+                  Add to Bag
+                </button>
+              </div>
+            </div>
+          </div>
 
 
 

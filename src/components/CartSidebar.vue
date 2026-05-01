@@ -332,6 +332,18 @@ watch(() => cart.isOpen, (val) => {
         </div>
 
 
+        <div class="express-checkout-options" style="margin-bottom: 1rem; padding: 1rem; border: 1px dashed rgba(255,255,255,0.1); border-radius: 4px; background: rgba(0,0,0,0.5);">
+          <p style="font-size: 0.55rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); text-transform: uppercase; text-align: center; margin-bottom: 0.75rem;">Express Checkout</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+            <a :href="cart.checkoutUrl" @click="trackCheckout" style="background: #5A31F4; color: #fff; padding: 0.7rem; border-radius: 4px; text-decoration: none; text-align: center; font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 0.3rem;">
+              <span style="font-weight: 800; letter-spacing: 0.05em; font-size: 1rem;">shop</span><span style="font-weight: 800; letter-spacing: 0.05em; color: #000; background: #fff; padding: 0 2px; border-radius: 2px;">pay</span>
+            </a>
+            <a :href="cart.checkoutUrl" @click="trackCheckout" style="background: #fff; color: #000; padding: 0.7rem; border-radius: 4px; text-decoration: none; text-align: center; font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 0.3rem;">
+               Pay
+            </a>
+          </div>
+        </div>
+
         <a :href="cart.checkoutUrl" class="btn-premium checkout-btn" @click="trackCheckout">{{ $t('cart.initiate_alignment') }}</a>
       </footer>
     </div><!-- End collection-content-side -->
