@@ -101,19 +101,20 @@ export default function HeaderNav() {
             </button>
           </nav>
           {/* Trust Badges Section */}
+     {/* Trust Badges Section */}
       <div className="border-t border-[#1a1a1a] bg-transparent">
         <div className="flex items-center justify-center gap-6 py-4 px-4">
           <div id="trustindex-cert-1"></div>
           <div id="trustindex-cert-2"></div>
           <div id="trustindex-cert-3"></div>
           <div id="trustindex-cert-4"></div>
+          <script defer async src='https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e'></script>
+          <script defer async src='https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f'></script>
+          <script defer async src='https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1'></script>
+          <script defer async src='https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015'></script>
         </div>
       </div>
-
-    <script defer async src='https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e'></script>
-   <script defer async src='https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f'></script>
-   <script defer async src='https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1'></script>
-   <script defer async src='https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015'></script>
+      </header>
       </header>
 
       {/* Mobile menu overlay */}
