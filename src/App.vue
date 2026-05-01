@@ -227,6 +227,14 @@ const auraStyle = computed(() => {
           </button>
         </div>
       </nav>
+
+      <!-- Trust Badges Section -->
+      <div class="header-trust-badges" v-show="headerExpanded">
+        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
+        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
+        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
+        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
+      </div>
     </div>
 
     <CartSidebar />
@@ -509,6 +517,59 @@ const auraStyle = computed(() => {
   visibility: visible !important;
   transform: translateY(0) !important;
   pointer-events: all !important;
+}
+
+/* Header Trust Badges */
+.header-trust-badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fade-in-down 0.6s ease-out 0.2s forwards;
+  flex-wrap: wrap;
+}
+
+@keyframes fade-in-down {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Style Trustindex certification badges */
+.header-trust-badges :deep(.trustindex-widget),
+.header-trust-badges :deep([class*="trustindex"]) {
+  max-width: 150px;
+}
+
+/* Mobile responsiveness for trust badges */
+@media (max-width: 768px) {
+  .header-trust-badges {
+    gap: 1rem;
+    padding: 1.25rem 1rem;
+  }
+  
+  .header-trust-badges :deep(.trustindex-widget),
+  .header-trust-badges :deep([class*="trustindex"]) {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-trust-badges {
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+  
+  .header-trust-badges :deep(.trustindex-widget),
+  .header-trust-badges :deep([class*="trustindex"]) {
+    max-width: 100px;
+  }
 }
 
 /* Native Teaser Aesthetics (Vertical Fast-Tab) */
