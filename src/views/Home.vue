@@ -128,7 +128,7 @@ const archiveLogs = [
           <p class="fossil-subtext" style="max-width: 400px; margin-bottom: 2rem; opacity: 0.8;">
             Experience the 450gsm heavyweight quality of State of Resonance with our entry-level artifact. Designed to be your daily armor.
           </p>
-          <router-link to="/product/base-tee" class="btn-premium animate-glint" style="display: inline-block; text-align: center;">SECURE THE FOUNDATION →</router-link>
+          <router-link to="/product/ghost-and-bones-resonance-base-t-shirt" class="btn-premium animate-glint" style="display: inline-block; text-align: center;">SECURE THE FOUNDATION →</router-link>
         </div>
       </div>
     </section>
@@ -632,4 +632,3 @@ const archiveLogs = [
 .fossil-archive-link { font-family: 'Inter', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); border-bottom: 1px solid rgba(255,255,255,0.12); width: fit-content; padding-bottom: 0.15rem; transition: color 0.3s, border-color 0.3s; }
 .fossil-archive-card:hover .fossil-archive-link { color: #fff; border-color: rgba(255,255,255,0.5); }
 </style>
-
