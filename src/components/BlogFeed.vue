@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import fm from 'front-matter'
 
 interface Transmission {
   id: string
@@ -7,7 +8,7 @@ interface Transmission {
   excerpt: string
   category: string
   slug: string
-  image: string
+  image?: string
   publishedAt: string
 }
 
@@ -16,10 +17,33 @@ const loading = ref(true)
 
 const fetchTransmissions = async () => {
   try {
-    const res = await fetch('/api/transmissions')
-    if (!res.ok) throw new Error('Void Signal Lost')
-    const data = await res.json()
-    transmissions.value = data
+    // Import all markdown files as raw strings
+    const modules = import.meta.glob('../content/transmissions/*.md', { query: '?raw', import: 'default' })
+    
+    const loadedArticles: Transmission[] = []
+    
+    for (const path in modules) {
+      const rawContent = await modules[path]() as string
+      const parsed = fm<any>(rawContent)
+      
+      // Extract slug from filename (e.g., ../content/transmissions/my-post.md -> my-post)
+      const slug = path.split('/').pop()?.replace(/\.md$/, '') || ''
+      
+      loadedArticles.push({
+        id: slug,
+        slug,
+        title: parsed.attributes.title || 'Unknown Transmission',
+        excerpt: parsed.attributes.excerpt || '',
+        category: parsed.attributes.category || 'TRANSMISSION',
+        image: parsed.attributes.image,
+        publishedAt: parsed.attributes.date || new Date().toISOString()
+      })
+    }
+    
+    // Sort by date descending
+    loadedArticles.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    
+    transmissions.value = loadedArticles
   } catch (err) {
     console.error('Failed to sync transmissions:', err)
   } finally {

@@ -15,10 +15,34 @@ const loading = ref(true)
 
 const fetchArticle = async () => {
   try {
-    const slug = route.params.slug
-    const res = await fetch(`/api/transmissions?slug=${slug}`)
-    if (!res.ok) throw new Error('Transmission Lost')
-    article.value = await res.json()
+    const slugToFind = route.params.slug
+    const modules = import.meta.glob('../content/transmissions/*.md', { query: '?raw', import: 'default' })
+    
+    let foundRaw = null
+    for (const path in modules) {
+      const filename = path.split('/').pop()?.replace(/\.md$/, '')
+      if (filename === slugToFind) {
+        foundRaw = await modules[path]() as string
+        break
+      }
+    }
+    
+    if (!foundRaw) throw new Error('Transmission Lost')
+    
+    const fm = (await import('front-matter')).default
+    const { marked } = await import('marked')
+    
+    const parsed = fm<any>(foundRaw)
+    const htmlContent = marked(parsed.body)
+    
+    article.value = {
+      title: parsed.attributes.title || 'Unknown Transmission',
+      category: parsed.attributes.category || 'TRANSMISSION',
+      publishedAt: parsed.attributes.date || new Date().toISOString(),
+      image: parsed.attributes.image,
+      content: htmlContent,
+      featuredProducts: [] // Can be populated dynamically if needed
+    }
     
     // SEO Update
     document.title = `${article.value.title} | Void Transmissions`
