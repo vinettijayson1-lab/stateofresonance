@@ -230,6 +230,13 @@ const isClothing = computed(() => {
          specificCollections.some(col => cat.includes(col))
 })
 
+const isEmbroidered = computed(() => {
+  if (!product.value) return false
+  const title = product.value.title.toLowerCase()
+  const type = (product.value.type || '').toLowerCase()
+  return title.includes('hoodie') || title.includes('crewneck') || type.includes('hoodie') || type.includes('crewneck')
+})
+
 // Build the Shopify checkout URL
 const shopifyUrl = computed(() => {
   if (!product.value) return '#'
@@ -605,7 +612,7 @@ const onImgError = (e: any) => {
           <span class="ltd-flame">🏺</span>
           <div class="ltd-text">
             <span class="ltd-title" style="color: var(--color-gold);">ONLY {{ selectedVariant.inventory_quantity }} LEFT IN THIS SIZE</span>
-            <span class="ltd-sub" style="color: var(--color-gold-muted);">Each piece is made to order — embroidered and printed by hand. Once this size sells out, it may not return.</span>
+            <span class="ltd-sub" style="color: var(--color-gold-muted);">Each piece is made to order — <span v-if="isEmbroidered">embroidered and </span>printed by hand. Once this size sells out, it may not return.</span>
           </div>
         </div>
         <!-- Fallback badge when no real inventory (Printful/on-demand) -->
@@ -613,7 +620,7 @@ const onImgError = (e: any) => {
           <span class="ltd-flame">🏺</span>
           <div class="ltd-text">
             <span class="ltd-title" style="color: var(--color-gold);">MADE TO ORDER — LIMITED RUN</span>
-            <span class="ltd-sub" style="color: var(--color-gold-muted);">Each piece is made to order. I have the embroidery done at my local shop and print them myself, so every single artifact goes explicitly through my own hands.</span>
+            <span class="ltd-sub" style="color: var(--color-gold-muted);">Each piece is made to order. <span v-if="isEmbroidered">I have the embroidery done at my local shop and print them myself</span><span v-else>I print them myself</span>, so every single artifact goes explicitly through my own hands.</span>
           </div>
         </div>
         
