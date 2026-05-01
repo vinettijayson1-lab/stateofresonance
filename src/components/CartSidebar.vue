@@ -179,7 +179,7 @@ watch(() => cart.isOpen, (val) => {
       <div class="cart-layout-pines">
         <!-- Visual Resonance Side (Desktop) -->
         <div class="collection-visual-side">
-          <img src="/images/reservoir_split.png" alt="Collection Vibe" class="vibe-side-img" />
+          <img src="/images/lookbook/lookbook-hero.jpg" alt="Collection Vibe" class="vibe-side-img" />
           <div class="vibe-side-overlay"></div>
           <div class="collection-float-text">GHOST & BONES</div>
           <div class="singularity-point"></div>

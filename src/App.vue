@@ -7,6 +7,7 @@ import Lenis from 'lenis/dist/lenis.mjs'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import CurrencySwitcher from './components/CurrencySwitcher.vue'
 import TrustindexWidget from './components/TrustindexWidget.vue'
+import TrustBadge from './components/TrustBadge.vue'
 const CartSidebar = defineAsyncComponent(() => import('./components/CartSidebar.vue'))
 const ExitIntentGate = defineAsyncComponent(() => import('./components/ExitIntentGate.vue'))
 import { cart } from './store/cart'
@@ -231,18 +232,10 @@ const isCheckoutPage = computed(() => {
       </nav>
 
       <!-- Trust Badges Section - REPOSITIONED LOWER -->
-      <div class="header-trust-badges" v-show="headerExpanded">
-        <!-- Badge 1 - ID: 1703b7e689202141f136d18372e -->
-        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
-        
-        <!-- Badge 2 - ID: ea9bfdd7014018072776609e74f -->
-        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
-        
-        <!-- Badge 3 - ID: 6e7277670e8c181e27066a48ca1 -->
-        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
-        
-        <!-- Badge 4 - ID: ef204277027f181fb316fe34015 -->
-        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
+      <div class="header-trust-badges" v-show="headerExpanded" style="display: flex; justify-content: center; gap: 1rem; padding: 1rem 0; flex-wrap: wrap;">
+        <TrustBadge type="secure" />
+        <TrustBadge type="orders" />
+        <TrustBadge type="ssl" />
       </div>
     </div>
 
@@ -256,11 +249,10 @@ const isCheckoutPage = computed(() => {
       <div v-if="isCheckoutPage" class="checkout-trust-badges-section">
         <div class="checkout-trust-badges-container">
           <h3 class="checkout-trust-title">✓ Secure & Trusted Checkout</h3>
-          <div class="checkout-trust-badges">
-            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
-            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
-            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
-            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
+          <div class="checkout-trust-badges" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <TrustBadge type="secure" />
+            <TrustBadge type="orders" />
+            <TrustBadge type="ssl" />
           </div>
         </div>
       </div>

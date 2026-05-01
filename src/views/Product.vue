@@ -8,6 +8,7 @@ import gsap from 'gsap'
 import ProductCard from '../components/ProductCard.vue'
 import StickyBuyBar from '../components/StickyBuyBar.vue'
 import TrustindexWidget from '../components/TrustindexWidget.vue'
+import TrustBadge from '../components/TrustBadge.vue'
 
 import SocialShare from '../components/SocialShare.vue'
 import { currencyStore } from '../store/currency'
@@ -678,12 +679,11 @@ const onImgError = (e: any) => {
 
 
         <!-- Trustindex Verified Badges -->
-        <form @submit.prevent style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:flex-start; margin-bottom:2rem; margin-top:2rem;">
-          <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
-          <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
-          <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
-          <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
-        </form>
+        <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:flex-start; margin-bottom:2rem; margin-top:2rem;">
+          <TrustBadge type="secure" />
+          <TrustBadge type="orders" />
+          <TrustBadge type="ssl" />
+        </div>
 
         <div class="product-description" style="margin-bottom: 2rem;">
           <p style="font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Product Details</p>

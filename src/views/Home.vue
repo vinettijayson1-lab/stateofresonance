@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, defineAsyncComponent } from 'vue'
 import ProductCard from '../components/ProductCard.vue'
-import TrustindexWidget from '../components/TrustindexWidget.vue'
+import TrustBadge from '../components/TrustBadge.vue'
 import { klaviyoService } from '../services/klaviyo'
 
 const FaqSection = defineAsyncComponent(() => import('../components/FaqSection.vue'))
@@ -74,9 +74,9 @@ const archiveLogs = [
 
     <!-- TRUST WIDGET (Below Header, Above Hero) -->
     <div class="hero-trust-widget" style="padding: 1.5rem 1rem 0; background: #000; text-align: center; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-      <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
-      <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
-      <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
+      <TrustBadge type="secure" />
+      <TrustBadge type="orders" />
+      <TrustBadge type="ssl" />
     </div>
 
     <!-- SECTION 1: FOSSIL HERO -->
