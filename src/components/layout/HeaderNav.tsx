@@ -110,10 +110,10 @@ export default function HeaderNav() {
         </div>
       </div>
 
-    <Script defer async src='https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e' />
-      <Script defer async src='https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f' />
-      <Script defer async src='https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1' />
-      <Script defer async src='https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015' />
+    <script defer async src='https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e'></script>
+   <script defer async src='https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f'></script>
+   <script defer async src='https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1'></script>
+   <script defer async src='https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015'></script>
       </header>
 
       {/* Mobile menu overlay */}
