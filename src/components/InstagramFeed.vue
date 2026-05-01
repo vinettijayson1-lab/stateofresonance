@@ -32,12 +32,12 @@ import { Instagram } from 'lucide-vue-next'
 const images = [
   '/images/trust/trust-1.jpg',
   '/images/trust/trust-2.jpg',
-  '/assets/ritual_candles_photoshoot_trio.png',
-  '/assets/lavender_oil_photoshoot.png',
-  '/assets/obsidian_scrying_mirror_ritual.png',
-  '/assets/ritual_cauldron_photoshoot.png',
-  '/assets/frankincense_tears_photoshoot.png',
-  '/assets/pentacle_amulet_photoshoot.png'
+  '/images/lookbook/20260426_150335.jpg',
+  '/images/lookbook/20260426_150343.jpg',
+  '/images/lookbook/20260426_150444.jpg',
+  '/images/lookbook/20260426_150530.jpg',
+  '/images/lookbook/20260426_150732.jpg',
+  '/images/lookbook/20260426_150747.jpg'
 ]
 </script>
 

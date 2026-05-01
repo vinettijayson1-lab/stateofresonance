@@ -98,7 +98,7 @@ onMounted(() => {
             :alt="shot.label"
             class="lb-item-img"
             loading="lazy"
-            @error="(e: any) => e.target.src = '/images/upgraded/urban-hoodie-1.webp'"
+            @error="(e: any) => e.target.src = '/images/lookbook/20260426_152314.jpg'"
           />
           <div class="lb-item-overlay">
             <div class="lb-item-info">

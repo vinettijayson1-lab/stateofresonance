@@ -49,16 +49,16 @@ const dropItems = [
     id: 'arcane',
     name: 'ARCANE ILLUMINATION',
     frequency: '528Hz',
-    imageFront: '/assets/drops/arcane-illumination-sandshell-front.png',
-    imageBack: '/assets/drops/arcane-illumination-sandshell-back.png',
+    imageFront: '/images/lookbook/20260426_151256.jpg',
+    imageBack: '/images/lookbook/20260426_151344.jpg',
     description: 'A conduit of light in the void. Heavyweight protection tailored for elevated biological fields.'
   },
   {
     id: 'rebirth',
     name: 'REBIRTH AND DEATH',
     frequency: '963Hz',
-    imageFront: '/assets/drops/death-and-rebirth-black-front.png',
-    imageBack: '/assets/drops/death-and-rebirth-black-back.png',
+    imageFront: '/images/lookbook/20260426_151349.jpg',
+    imageBack: '/images/lookbook/20260426_151450.jpg',
     description: 'Total synchronization through destruction and renewal. The ultimate piece for shadow integration.'
   }
 ]

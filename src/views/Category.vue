@@ -90,7 +90,7 @@ const getCollectionHandle = (groupName: string) => {
 }
 
 const onImgError = (e: any) => {
-  e.target.src = '/assets/placeholder.png'
+  e.target.src = '/images/lookbook/lookbook-hero.jpg'
 }
 
 const activeGroup = ref<string | null>(null)

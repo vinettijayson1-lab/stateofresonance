@@ -28,7 +28,7 @@ const props = defineProps<{
 }>()
 
 const onImgError = (e: any) => {
-  e.target.src = '/assets/placeholder.png'
+  e.target.src = '/images/lookbook/lookbook-hero.jpg'
 }
 
 // Shopify CDN image resizing — adds ?width=600 to serve appropriately sized images

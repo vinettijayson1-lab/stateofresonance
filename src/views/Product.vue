@@ -480,7 +480,7 @@ onMounted(async () => {
 })
 
 const onImgError = (e: any) => {
-  e.target.src = '/assets/placeholder.png'
+  e.target.src = '/images/lookbook/lookbook-hero.jpg'
 }
 </script>
 

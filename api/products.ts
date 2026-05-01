@@ -127,7 +127,7 @@ export default async function handler(req: any, res: any) {
       const firstPng = optimizedImages.find((img: any) => (img.src || '').toLowerCase().includes('.png'));
       
       // 3. Fallback to the first image overall
-      let primaryRawImage = optimizedImages[0]?.src || '/assets/placeholder.png';
+      let primaryRawImage = optimizedImages[0]?.src || '/images/lookbook/lookbook-hero.jpg';
       
       if (frontImage) {
         primaryRawImage = frontImage.src;

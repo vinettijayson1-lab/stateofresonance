@@ -87,19 +87,19 @@ const COLLECTION_META = computed<Record<string, { title: string; subtitle: strin
     title: 'Hoodies',
     subtitle: 'Premium Heavyweight Pullovers',
     categories: ['Attire', 'Apparel'],
-    image: '/images/upgraded/urban-hoodie-9.webp'
+    image: '/images/lookbook/20260426_150530.jpg'
   },
   tees: {
     title: 'Graphic Tees',
     subtitle: 'Oversized Garment-Dyed Shirts',
     categories: ['Attire', 'Apparel'],
-    image: '/images/upgraded/unisex-garment-dyed-heavyweight-t-shirt-3.webp'
+    image: '/images/lookbook/20260426_150747.jpg'
   },
   crewnecks: {
     title: 'Crewnecks',
     subtitle: 'Structured Heavyweight Sweaters',
     categories: ['Attire', 'Apparel'],
-    image: '/images/upgraded/og-crewnwck.webp'
+    image: '/images/lookbook/20260426_152340-edit-20260429171747.jpg'
   },
   accessories: {
     title: 'Accessories',
