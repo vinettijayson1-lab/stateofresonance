@@ -114,11 +114,11 @@ export default function HeaderNav() {
           <script defer async src='https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015'></script>
         </div>
 
-     Line 117:     </header>
-   Line 118:     
-   Line 119:     {/* Mobile menu overlay */}
-   Line 120:     <div
-   Line 121:       className={`fixed inset-0 z-50...
+         </header>
+       
+      {/* Mobile menu overlay */}
+        <div
+         className={`fixed inset-0 z-50...
         className={`fixed inset-0 z-50 md:hidden transition-opacity duration-300 ${
           mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
