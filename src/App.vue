@@ -236,12 +236,20 @@ const isCheckoutPage = computed(() => {
 
       <!-- Trust Badges Section -->
       <div class="header-trust-badges" v-show="headerExpanded">
-        <!-- Always show these 3 static badges -->
+        <!-- Badge 1 - ID: 1703b7e689202141f136d18372e -->
         <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
+        
+        <!-- Badge 2 - ID: ea9bfdd7014018072776609e74f -->
         <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
+        
+        <!-- Badge 3 - ID: 6e7277670e8c181e27066a48ca1 -->
         <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
-        <!-- Only show this validation badge on checkout/cart pages -->
-        <TrustindexWidget v-if="isCheckoutPage" src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
+        
+        <!-- Badge 4 - ID: ef204277027f181fb316fe34015 -->
+        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
+        
+        <!-- Badge 5 - NEW - ID: 5124a8170ddb93636e56f61a6f1 -->
+        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?5124a8170ddb93636e56f61a6f1" />
       </div>
     </div>
 
@@ -251,6 +259,20 @@ const isCheckoutPage = computed(() => {
     <div id="teleport-target"></div>
 
     <main>
+      <!-- Trust Badges on Checkout/Cart Pages -->
+      <div v-if="isCheckoutPage" class="checkout-trust-badges-section">
+        <div class="checkout-trust-badges-container">
+          <h3 class="checkout-trust-title">✓ Secure & Trusted Checkout</h3>
+          <div class="checkout-trust-badges">
+            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
+            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
+            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
+            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
+            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?5124a8170ddb93636e56f61a6f1" />
+          </div>
+        </div>
+      </div>
+
       <router-view v-slot="{ Component }">
         <transition name="page-fade" mode="out-in">
           <component :is="Component" />
@@ -550,8 +572,8 @@ const isCheckoutPage = computed(() => {
 }
 
 /* Style Trustindex certification badges */
-.header-trust-badges :deep(.trustindex-widget),
-.header-trust-badges :deep([class*="trustindex"]) {
+.header-trust-badges .trustindex-widget,
+.header-trust-badges [class*="trustindex"] {
   max-width: 150px;
 }
 
@@ -562,8 +584,8 @@ const isCheckoutPage = computed(() => {
     padding: 1.25rem 1rem;
   }
   
-  .header-trust-badges :deep(.trustindex-widget),
-  .header-trust-badges :deep([class*="trustindex"]) {
+  .header-trust-badges .trustindex-widget,
+  .header-trust-badges [class*="trustindex"] {
     max-width: 120px;
   }
 }
@@ -574,8 +596,71 @@ const isCheckoutPage = computed(() => {
     padding: 1rem;
   }
   
-  .header-trust-badges :deep(.trustindex-widget),
-  .header-trust-badges :deep([class*="trustindex"]) {
+  .header-trust-badges .trustindex-widget,
+  .header-trust-badges [class*="trustindex"] {
+    max-width: 100px;
+  }
+}
+
+/* Checkout Trust Badges Section */
+.checkout-trust-badges-section {
+  background: rgba(10, 10, 12, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3rem 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.checkout-trust-badges-container {
+  text-align: center;
+}
+
+.checkout-trust-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 2rem;
+}
+
+.checkout-trust-badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.checkout-trust-badges .trustindex-widget,
+.checkout-trust-badges [class*="trustindex"] {
+  max-width: 150px;
+}
+
+@media (max-width: 768px) {
+  .checkout-trust-badges-section {
+    padding: 2rem 1rem;
+    margin: 1.5rem 1rem;
+  }
+  
+  .checkout-trust-badges {
+    gap: 1.5rem;
+  }
+  
+  .checkout-trust-badges .trustindex-widget,
+  .checkout-trust-badges [class*="trustindex"] {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-trust-badges {
+    gap: 1rem;
+  }
+  
+  .checkout-trust-badges .trustindex-widget,
+  .checkout-trust-badges [class*="trustindex"] {
     max-width: 100px;
   }
 }
