@@ -233,9 +233,20 @@ const isCheckoutPage = computed(() => {
           </button>
         </div>
       </nav>
+    </div>
 
-      <!-- Trust Badges Section - COMPLETELY REMOVED FOR TESTING -->
-      <!-- We'll add them back one by one -->
+    <!-- Trust Badges Between Header and Hero -->
+    <div class="trust-badges-strip">
+      <div class="trust-badges-container">
+        <!-- Always show these badges on every page -->
+        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?5124a8170ddb93636e56f61a6f1" />
+        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
+        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
+        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
+        
+        <!-- Only show "Secure Checkout" badge on checkout/cart pages where validation criteria are met -->
+        <TrustindexWidget v-if="isCheckoutPage" src="https://cdn.trustindex.io/loader-cert.js?46f51b770f469357c376a02a5f4" />
+      </div>
     </div>
 
     <CartSidebar />
@@ -244,19 +255,6 @@ const isCheckoutPage = computed(() => {
     <div id="teleport-target"></div>
 
     <main>
-      <!-- Trust Badges on Checkout/Cart Pages (FAULTY BADGE REMOVED) -->
-      <div v-if="isCheckoutPage" class="checkout-trust-badges-section">
-        <div class="checkout-trust-badges-container">
-          <h3 class="checkout-trust-title">✓ Secure & Trusted Checkout</h3>
-          <div class="checkout-trust-badges">
-            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
-            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
-            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
-            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
-          </div>
-        </div>
-      </div>
-
       <router-view v-slot="{ Component }">
         <transition name="page-fade" mode="out-in">
           <component :is="Component" />
@@ -533,19 +531,49 @@ const isCheckoutPage = computed(() => {
   pointer-events: all !important;
 }
 
-/* Header Trust Badges */
-.header-trust-badges {
+/* Trust Badges Strip - Between Header and Hero */
+.trust-badges-strip {
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 2rem 0;
+  position: relative;
+  z-index: 50;
+}
+
+.trust-badges-container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
-  padding: 1.5rem 2rem;
-  margin-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  opacity: 0;
-  transform: translateY(-10px);
-  animation: fade-in-down 0.6s ease-out 0.2s forwards;
+  gap: 2.5rem;
   flex-wrap: wrap;
+  padding: 0 2rem;
+}
+
+/* Style Trustindex certification badges */
+.trust-badges-container :deep(.trustindex-widget),
+.trust-badges-container :deep([class*="trustindex"]) {
+  max-width: 160px;
+  opacity: 0;
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.trust-badges-container :deep(.trustindex-widget):nth-child(1) { animation-delay: 0.1s; }
+.trust-badges-container :deep(.trustindex-widget):nth-child(2) { animation-delay: 0.2s; }
+.trust-badges-container :deep(.trustindex-widget):nth-child(3) { animation-delay: 0.3s; }
+.trust-badges-container :deep(.trustindex-widget):nth-child(4) { animation-delay: 0.4s; }
+.trust-badges-container :deep(.trustindex-widget):nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fade-in-down {
@@ -555,97 +583,35 @@ const isCheckoutPage = computed(() => {
   }
 }
 
-/* Style Trustindex certification badges */
-.header-trust-badges .trustindex-widget,
-.header-trust-badges [class*="trustindex"] {
-  max-width: 150px;
-}
-
 /* Mobile responsiveness for trust badges */
 @media (max-width: 768px) {
-  .header-trust-badges {
-    gap: 1rem;
-    padding: 1.25rem 1rem;
+  .trust-badges-strip {
+    padding: 1.5rem 0;
   }
   
-  .header-trust-badges .trustindex-widget,
-  .header-trust-badges [class*="trustindex"] {
-    max-width: 120px;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-trust-badges {
-    gap: 0.75rem;
-    padding: 1rem;
-  }
-  
-  .header-trust-badges .trustindex-widget,
-  .header-trust-badges [class*="trustindex"] {
-    max-width: 100px;
-  }
-}
-
-/* Checkout Trust Badges Section */
-.checkout-trust-badges-section {
-  background: rgba(10, 10, 12, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 3rem 2rem;
-  margin: 2rem auto;
-  max-width: 1200px;
-}
-
-.checkout-trust-badges-container {
-  text-align: center;
-}
-
-.checkout-trust-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 2rem;
-}
-
-.checkout-trust-badges {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.checkout-trust-badges .trustindex-widget,
-.checkout-trust-badges [class*="trustindex"] {
-  max-width: 150px;
-}
-
-@media (max-width: 768px) {
-  .checkout-trust-badges-section {
-    padding: 2rem 1rem;
-    margin: 1.5rem 1rem;
-  }
-  
-  .checkout-trust-badges {
+  .trust-badges-container {
     gap: 1.5rem;
+    padding: 0 1rem;
   }
   
-  .checkout-trust-badges .trustindex-widget,
-  .checkout-trust-badges [class*="trustindex"] {
-    max-width: 120px;
+  .trust-badges-container :deep(.trustindex-widget),
+  .trust-badges-container :deep([class*="trustindex"]) {
+    max-width: 130px;
   }
 }
 
 @media (max-width: 480px) {
-  .checkout-trust-badges {
+  .trust-badges-strip {
+    padding: 1.25rem 0;
+  }
+  
+  .trust-badges-container {
     gap: 1rem;
   }
   
-  .checkout-trust-badges .trustindex-widget,
-  .checkout-trust-badges [class*="trustindex"] {
-    max-width: 100px;
+  .trust-badges-container :deep(.trustindex-widget),
+  .trust-badges-container :deep([class*="trustindex"]) {
+    max-width: 110px;
   }
 }
 
