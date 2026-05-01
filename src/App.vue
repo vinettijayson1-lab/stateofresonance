@@ -234,20 +234,8 @@ const isCheckoutPage = computed(() => {
         </div>
       </nav>
 
-      <!-- Trust Badges Section (FAULTY BADGE REMOVED) -->
-      <div class="header-trust-badges" v-show="headerExpanded">
-        <!-- Badge 1 - ID: 1703b7e689202141f136d18372e -->
-        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
-        
-        <!-- Badge 2 - ID: ea9bfdd7014018072776609e74f -->
-        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
-        
-        <!-- Badge 3 - ID: 6e7277670e8c181e27066a48ca1 -->
-        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
-        
-        <!-- Badge 4 - ID: ef204277027f181fb316fe34015 -->
-        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
-      </div>
+      <!-- Trust Badges Section - COMPLETELY REMOVED FOR TESTING -->
+      <!-- We'll add them back one by one -->
     </div>
 
     <CartSidebar />
