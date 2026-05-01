@@ -114,7 +114,7 @@ export default function HeaderNav() {
           <script defer async src='https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015'></script>
         </div>
 
-         </header>
+          <header  
        
       {/* Mobile menu overlay */}
         <div
