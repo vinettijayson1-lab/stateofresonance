@@ -2,7 +2,7 @@
 import { cart } from '../store/cart'
 import gsap from 'gsap'
 import { watch, computed } from 'vue'
-import TrustPulse from './TrustPulse.vue'
+// import TrustPulse from './TrustPulse.vue'
 import { ShieldCheck, Lock, CreditCard, ShoppingCart } from 'lucide-vue-next'
 import { currencyStore } from '../store/currency'
 
@@ -268,7 +268,7 @@ watch(() => cart.isOpen, (val) => {
           </div>
         </div>
         
-        <TrustPulse />
+        <!-- <TrustPulse /> -->
       </div>
 
       <footer v-if="cart.items.length > 0" class="cart-footer sticky-footer">

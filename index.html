@@ -19,13 +19,17 @@
     <!-- Trustindex.io Widget Loader -->
     <script defer async src="https://cdn.trustindex.io/loader.js?8c1bb1d6840c23179906838fc83"></script>
     
-    <!-- =========================================================
-         ACTION REQUIRED: KLAVIYO PUBLIC KEY
-         Replace "YOUR_KLAVIYO_PUBLIC_KEY" below with your actual 6-character
-         Public API Key from Klaviyo (e.g. "R7kP2y") to enable "Active on Site" tracking.
-         ========================================================= -->
     <!-- Klaviyo Onsite Tracking (Omniscience Protocol) -->
     <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VLSSCN"></script>
+
+    <!-- Google Analytics (Un-deferred to fix tracking issues) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1Q6RNL65J4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1Q6RNL65J4');
+    </script>
     
     <!-- Primary SEO -->
     <title>State of Resonance | Esoteric Luxury Streetwear Canada</title>
@@ -180,17 +184,7 @@
         ttq.page();
       }(window, document, 'ttq');
 
-      // Google Analytics
-      var gaScript = document.createElement('script');
-      gaScript.async = true;
-      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-1Q6RNL65J4';
-      document.head.appendChild(gaScript);
-      gaScript.onload = function() {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-1Q6RNL65J4');
-      };
+
 
       // Microsoft Clarity script moved to un-deferred <head>
     };

@@ -81,7 +81,7 @@ const submit = async () => {
     <!-- HERO -->
     <div class="collab-hero">
       <div class="collab-hero-bg">
-        <img src="/images/upgraded/lookbook-hero.jpg" alt="Collaborate with State of Resonance" class="collab-hero-img" />
+        <img src="/images/lookbook/lookbook-hero.jpg" alt="Collaborate with State of Resonance" class="collab-hero-img" />
         <div class="collab-hero-overlay"></div>
       </div>
       <div class="collab-hero-content container">
@@ -136,7 +136,7 @@ const submit = async () => {
           </ul>
         </div>
         <div class="collab-who-img-wrap">
-          <img src="/images/upgraded/urban-garment-dyed-hoodie-1.webp" alt="State of Resonance Garment" class="collab-who-img" />
+          <img src="/images/upgraded/ps-edit-2.jpg" alt="State of Resonance Garment" class="collab-who-img" />
         </div>
       </div>
     </section>

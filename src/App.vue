@@ -150,10 +150,6 @@ const isCheckoutPage = computed(() => {
 
         <router-link to="/" class="nav-logo" @click="mobileMenuOpen = false">
           RESONANCE
-          <div class="live-signal-mini">
-            <span class="pulse-dot"></span>
-            <span class="signal-count">{{ resonance.detectedFrequency }}</span>
-          </div>
         </router-link>
 
         <div class="nav-links" :class="{ 'mobile-open': mobileMenuOpen }">
