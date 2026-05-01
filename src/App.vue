@@ -234,7 +234,7 @@ const isCheckoutPage = computed(() => {
         </div>
       </nav>
 
-      <!-- Trust Badges Section -->
+      <!-- Trust Badges Section (FAULTY BADGE REMOVED) -->
       <div class="header-trust-badges" v-show="headerExpanded">
         <!-- Badge 1 - ID: 1703b7e689202141f136d18372e -->
         <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?1703b7e689202141f136d18372e" />
@@ -247,9 +247,6 @@ const isCheckoutPage = computed(() => {
         
         <!-- Badge 4 - ID: ef204277027f181fb316fe34015 -->
         <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
-        
-        <!-- Badge 5 - NEW - ID: 5124a8170ddb93636e56f61a6f1 -->
-        <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?5124a8170ddb93636e56f61a6f1" />
       </div>
     </div>
 
@@ -259,7 +256,7 @@ const isCheckoutPage = computed(() => {
     <div id="teleport-target"></div>
 
     <main>
-      <!-- Trust Badges on Checkout/Cart Pages -->
+      <!-- Trust Badges on Checkout/Cart Pages (FAULTY BADGE REMOVED) -->
       <div v-if="isCheckoutPage" class="checkout-trust-badges-section">
         <div class="checkout-trust-badges-container">
           <h3 class="checkout-trust-title">✓ Secure & Trusted Checkout</h3>
@@ -268,7 +265,6 @@ const isCheckoutPage = computed(() => {
             <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ea9bfdd7014018072776609e74f" />
             <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?6e7277670e8c181e27066a48ca1" />
             <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?ef204277027f181fb316fe34015" />
-            <TrustindexWidget src="https://cdn.trustindex.io/loader-cert.js?5124a8170ddb93636e56f61a6f1" />
           </div>
         </div>
       </div>
