@@ -127,7 +127,7 @@ const archiveLogs = [
     <section class="fossil-gateway-section">
       <div class="gateway-container">
         <div class="gateway-image-wrapper">
-          <img src="/images/lookbook/20260426_152314.jpg" alt="Foundation Tee" class="gateway-image" />
+          <img src="https://cdn.shopify.com/s/files/1/0787/0808/0663/files/ghost-and-bones-resonance-base-t-shirt-3967446.png?v=1777596426" alt="Foundation Tee" class="gateway-image" />
         </div>
         <div class="gateway-text-content">
           <span class="fossil-eyebrow">START YOUR JOURNEY</span>
