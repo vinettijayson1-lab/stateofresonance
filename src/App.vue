@@ -5,7 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { CSSPlugin } from 'gsap/CSSPlugin'
 import Lenis from 'lenis/dist/lenis.mjs'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
-import CurrencySwitcher from './components/CurrencySwitcher.vue'
 import TrustindexWidget from './components/TrustindexWidget.vue'
 import TrustBadge from './components/TrustBadge.vue'
 const CartSidebar = defineAsyncComponent(() => import('./components/CartSidebar.vue'))
@@ -185,18 +184,7 @@ const isCheckoutPage = computed(() => {
             <span class="label-hover">MEMBERS</span>
           </router-link>
 
-          <div v-show="mobileMenuOpen" class="mobile-calibration-hub glass" :class="{ 'is-revealed': mobileMenuOpen }">
-            <div class="calibration-row">
-              <div class="calibration-section">
-                <span class="util-label">VALUATION</span>
-                <CurrencySwitcher @select="mobileMenuOpen = false" />
-              </div>
-              <div class="calibration-section">
-                <span class="util-label">DIALECT</span>
-                <LanguageSwitcher @select="barVisible = false; mobileMenuOpen = false" />
-              </div>
-            </div>
-          </div>
+
         </div>
 
         <div class="nav-actions">
@@ -207,12 +195,7 @@ const isCheckoutPage = computed(() => {
             </svg>
           </router-link>
 
-          <div class="desktop-only header-tools-sector">
-            <div class="flex items-center gap-8">
-              <div class="flex flex-col items-end"><CurrencySwitcher @select="handleToolsSelect" /></div>
-              <div class="flex flex-col items-end"><LanguageSwitcher @select="barVisible = false; handleToolsSelect()" /></div>
-            </div>
-          </div>
+
 
           <button @click="toggleHeader" class="calibration-toggle desktop-only interactive" :class="{ 'is-active': headerExpanded }" :title="headerExpanded ? 'Close' : 'Open'">
             <div class="flex flex-col items-center justify-center">
