@@ -11,7 +11,6 @@ interface Product { id: string; title: string; price: string; category: string; 
 const attireProducts = ref<Product[]>([])
 const loading = ref(true)
 const seekerEmail = ref('')
-const seekerPhone = ref('')
 const subscribeStatus = ref<'idle'|'loading'|'success'|'error'>('idle')
 
 // Live clock
@@ -44,18 +43,15 @@ const handleEmailSync = async () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: seekerEmail.value,
-        phone: seekerPhone.value,
-        sms_consent: !!seekerPhone.value,
         source: 'Homepage Newsletter'
       })
     })
     
     if (res.ok) {
       if ((window as any).fbq) (window as any).fbq('track', 'Lead', { content_category: 'Homepage Newsletter' })
-      klaviyoService.identify(seekerEmail.value, { source: 'Homepage Newsletter', ...(seekerPhone.value ? { '$phone_number': seekerPhone.value } : {}) })
+      klaviyoService.identify(seekerEmail.value, { source: 'Homepage Newsletter' })
       subscribeStatus.value = 'success'
       seekerEmail.value = ''
-      seekerPhone.value = ''
     } else {
       throw new Error('Subscription failed')
     }
@@ -82,19 +78,15 @@ const archiveLogs = [
     <!-- SECTION 1: FOSSIL HERO -->
     <section class="fossil-hero">
       <div class="fossil-hero-bg">
-        <img src="/images/upgraded/ps-edit-2.jpg" alt="State of Resonance" class="fossil-hero-img" fetchpriority="high" />
-        <div class="fossil-hero-overlay"></div>
+        <img src="/images/occult_bg.jpg" alt="State of Resonance" class="fossil-hero-img" fetchpriority="high" />
+        <div class="fossil-hero-overlay" style="background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 40%, #000 100%);"></div>
       </div>
 
       <!-- Centered Vertical Nav (Fossil style) -->
       <div class="fossil-hero-center">
         <h1 class="fossil-brand-wordmark">STATE OF RESONANCE</h1>
-        <nav class="fossil-center-nav" aria-label="Primary navigation">
-          <router-link to="/best-sellers" class="fossil-nav-item">Shop</router-link>
-          <router-link to="/best-sellers" class="fossil-nav-item">New Arrivals</router-link>
-          <router-link to="/lookbook" class="fossil-nav-item">Lookbook</router-link>
-          <router-link to="/transmissions" class="fossil-nav-item">Archives</router-link>
-          <router-link to="/contact" class="fossil-nav-item">Contact</router-link>
+        <nav class="fossil-center-nav" aria-label="Primary navigation" style="margin-top: 1.5rem;">
+          <router-link to="/best-sellers" class="btn-premium animate-glint" style="font-size: 1rem; padding: 1.2rem 3rem;">SHOP THE COLLECTION</router-link>
         </nav>
       </div>
 
@@ -265,12 +257,10 @@ const archiveLogs = [
             <p class="fossil-subtext" style="margin-bottom:2rem;">Enter your email and phone number to unlock your welcome discount and get early access to limited-run drops.</p>
             <div v-if="subscribeStatus !== 'success'" class="fossil-email-input-group">
               <input v-model="seekerEmail" type="email" placeholder="YOUR EMAIL ADDRESS" class="fossil-email-input" id="home-email-input" />
-              <input v-model="seekerPhone" type="tel" placeholder="PHONE NUMBER (OPTIONAL)" class="fossil-email-input" id="home-phone-input" />
               <button @click="handleEmailSync" class="btn-premium animate-glint" :disabled="subscribeStatus === 'loading'" id="home-email-submit" style="margin-top:0.5rem; padding: 1rem;">
                 {{ subscribeStatus === 'loading' ? 'Sending...' : 'Unlock 30% Off' }}
               </button>
             </div>
-            <p v-if="subscribeStatus !== 'success'" class="sms-disclaimer" style="font-size: 0.55rem; color: rgba(255,255,255,0.4); margin-top: 1.5rem; line-height: 1.4;">By entering your phone number, you consent to receive marketing text messages from State of Resonance. Consent is not a condition of purchase. Msg & data rates may apply. Reply STOP to cancel.</p>
             <div v-else style="display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;">
               <div class="success-state" style="padding: 1rem; border: 1px dashed rgba(212,175,55,0.5); background: rgba(212,175,55,0.05); display: inline-block;">
                 <p class="gold-text" style="font-size:0.75rem;letter-spacing:0.2em; margin-bottom: 0.5rem;">✦ STACK BOTH CODES AT CHECKOUT:</p>
@@ -617,6 +607,9 @@ const archiveLogs = [
   .fossil-nav-item { font-size: clamp(1.8rem, 8vw, 2.5rem); }
   .fossil-city-clock { font-size: 0.6rem; bottom: 1.5rem; }
   .fossil-shop-header { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 2rem; }
+  .fossil-shop-section, .fossil-brand-story, .fossil-pillars, .fossil-archives-section, .fossil-email-section, .fossil-gateway-section {
+    padding: 3.5rem 0 !important;
+  }
 }
 
 /* ARCHIVES SECTION */
