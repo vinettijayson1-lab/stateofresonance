@@ -811,8 +811,19 @@ const onImgError = (e: any) => {
           </div>
         </div>
 
-        <SocialShare :title="product.title" :image="product.image" style="margin-top: 2rem;" />
+        <SocialShare v-if="product" :title="product.title" :image="product.image" style="margin-top: 2rem;" />
       </div>
+    </div>
+
+    <!-- Product Not Found Fallback -->
+    <div v-else class="product-not-found glass" style="text-align: center; padding: 10vh 2rem; border: 1px solid rgba(255, 255, 255, 0.1); max-width: 600px; margin: 5vh auto;">
+      <h1 class="hero-title" style="margin-bottom: 1.5rem; color: var(--color-gold);">Artifact Unreachable</h1>
+      <p style="opacity: 0.7; font-size: 0.9rem; line-height: 1.6; margin-bottom: 2rem;">
+        The frequency you are searching for has dissolved back into the Void or the Shopify synchronization is currently offline. 
+      </p>
+      <router-link to="/best-sellers" class="btn-solid-gold" style="display: inline-block; padding: 1rem 2rem; text-decoration: none; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;">
+        Return to the Collection
+      </router-link>
     </div>
 
 
