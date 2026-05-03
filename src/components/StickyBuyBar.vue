@@ -30,6 +30,7 @@ const addToCart = () => {
     price: props.selectedVariant?.price || props.product.price,
     variantId: props.selectedVariant?.id || props.product.variantId
   })
+  cart.isOpen = true
 }
 </script>
 

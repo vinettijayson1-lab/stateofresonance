@@ -156,7 +156,7 @@ const addToCartWithQty = () => {
   }
   
   cart.add(item, quantity.value)
-  
+  cart.isOpen = true
 }
 
 const selectedVariant = computed(() => {
