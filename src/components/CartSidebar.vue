@@ -283,37 +283,7 @@ watch(() => cart.isOpen, (val) => {
             <span>-{{ currencyStore.formatPrice(cart.savings) }}</span>
           </div>
           
-          <!-- Province Selector & Tax -->
-          <div class="tax-alignment">
-            <div class="tax-selector-row">
-              <span class="meta-vibe">{{ $t('cart.region_alignment') }}</span>
-              <select v-model="cart.selectedProvince" class="province-select">
-                <option value="International">International (Tax Included)</option>
-                <optgroup label="Canada">
-                  <option value="ON">Ontario (13% HST)</option>
-                  <option value="QC">Quebec (14.975% GST/QST)</option>
-                  <option value="BC">British Columbia (12% GST/PST)</option>
-                  <option value="AB">Alberta (5% GST)</option>
-                  <option value="MB">Manitoba (12% GST/RST)</option>
-                  <option value="SK">Saskatchewan (11% GST/PST)</option>
-                  <option value="NB">New Brunswick (15% HST)</option>
-                  <option value="NS">Nova Scotia (15% HST)</option>
-                  <option value="NL">Newfoundland (15% HST)</option>
-                  <option value="PE">PEI (15% HST)</option>
-                  <option value="YT">Yukon (5% GST)</option>
-                  <option value="NT">NWT (5% GST)</option>
-                  <option value="NU">Nunavut (5% GST)</option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="total-row tax-info">
-              <span v-if="cart.selectedProvince === 'International'" class="meta-vibe gold-text">{{ $t('cart.tax_included') }}</span>
-              <template v-else>
-                <span class="meta-vibe">{{ $t('cart.estimated_tax', { rate: (cart.taxRate * 100).toFixed(1) }) }}</span>
-                <span>${{ cart.taxAmount.toFixed(2) }}</span>
-              </template>
-            </div>
-          </div>
+          <!-- Province Selector & Tax Removed for optimized checkout flow -->
         </div>
         
         <div class="checkout-trust glass">

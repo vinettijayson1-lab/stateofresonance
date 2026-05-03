@@ -629,7 +629,7 @@ const onImgError = (e: any) => {
         </p>
 
         <!-- Variant Selectors -->
-        <div v-if="product.options && product.options.length > 0" class="variant-selectors" style="margin-bottom: 2rem;">
+        <div v-if="product.options && product.options.length > 0 && !(product.options.length === 1 && product.options[0].name === 'Title' && product.options[0].values.includes('Default Title'))" class="variant-selectors" style="margin-bottom: 2rem;">
           <div v-for="opt in product.options" :key="opt.name" class="option-group">
             <div class="option-label-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
               <p class="option-label">{{ opt.name }}</p>
