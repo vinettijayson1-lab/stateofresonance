@@ -78,7 +78,7 @@ const archiveLogs = [
     <!-- SECTION 1: FOSSIL HERO -->
     <section class="fossil-hero">
       <div class="fossil-hero-bg">
-        <img src="/images/luxury-occult-bg.png" alt="State of Resonance" class="fossil-hero-img" fetchpriority="high" />
+        <img src="/images/lookbook/lookbook-hero.jpg" alt="State of Resonance" class="fossil-hero-img" fetchpriority="high" />
         <div class="fossil-hero-overlay" style="background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 40%, #000 100%);"></div>
       </div>
 
