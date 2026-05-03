@@ -69,7 +69,7 @@ const archiveLogs = [
   <div class="home-view">
 
     <!-- TRUST WIDGET (Below Header, Above Hero) -->
-    <div class="hero-trust-widget" style="padding: 1.5rem 1rem 0; background: #000; text-align: center; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+    <div class="hero-trust-widget" style="padding: 2rem 1rem 1rem; background: #000; text-align: center; display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap;">
       <TrustBadge type="secure" />
       <TrustBadge type="orders" />
       <TrustBadge type="ssl" />
@@ -281,6 +281,11 @@ const archiveLogs = [
 </template>
 
 <style scoped>
+.home-view {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 /* FOSSIL HERO */
 .fossil-hero {
   position: relative;
