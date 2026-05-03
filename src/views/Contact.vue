@@ -3,8 +3,6 @@ import { onMounted, ref } from 'vue'
 import gsap from 'gsap'
 import { 
   Sparkles, 
-  Search, 
-  ShoppingBag, 
   Crown, 
   BookOpen, 
   Instagram, 
@@ -21,18 +19,6 @@ const links = [
     url: '/quiz',
     icon: Sparkles,
     highlight: true
-  },
-  {
-    title: 'THE SANCTUARY',
-    subtitle: 'Explore the full piece collection.',
-    url: '/shop',
-    icon: Search
-  },
-  {
-    title: 'GHOST & BONES ATTIRE',
-    subtitle: 'Limited run frequency-wear.',
-    url: '/collections/the-ghost-and-bones',
-    icon: ShoppingBag
   },
   {
     title: 'COLLABS APPLICATION',
