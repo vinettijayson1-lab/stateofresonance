@@ -1,39 +1,46 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
+import Sitemap from 'vite-ssg-sitemap'
 // https://vite.dev/config/
-export default defineConfig({
-  base: '/',
-  plugins: [vue()],
-
-  // =====================================================
-  // SSG CONFIGURATION (Vite-SSG)
-  // =====================================================
-  ssgOptions: {
-    script: 'async',
-    formatting: 'minify',
-    async includedRoutes(paths, routes) {
-      // Base static routes (no parameters)
-      const staticPaths = paths.filter(path => !path.includes(':') && !path.includes('*'))
-      
-      let dynamicPaths: string[] = []
-      try {
-        // Fetch products to generate /product/:handle pages statically
-        const res = await fetch('http://localhost:3000/api/products')
-        if (res.ok) {
-          const products = await res.json()
-          if (Array.isArray(products)) {
-            const productRoutes = products.map((p: any) => `/product/${p.handle}`)
-            dynamicPaths.push(...productRoutes)
-          }
-        }
-      } catch (e) {
-        console.warn('Warning: Could not fetch products for SSG. Ensure API is running on localhost:3000 if you want pre-rendered product pages.')
+export default defineConfig(async () => {
+  let dynamicPaths: string[] = []
+  try {
+    // Fetch directly from Shopify public JSON endpoint to avoid Vercel build dependency on local API
+    const res = await fetch('https://state-of-resonance.myshopify.com/products.json?limit=250')
+    if (res.ok) {
+      const data = await res.json()
+      if (data && data.products) {
+        dynamicPaths = data.products.map((p: any) => `/product/${p.handle}`)
       }
-      
-      return Array.from(new Set([...staticPaths, ...dynamicPaths]))
     }
-  },
+  } catch (e) {
+    console.warn('Warning: Could not fetch products from Shopify for SSG.')
+  }
+
+  return {
+    base: '/',
+    plugins: [
+      vue()
+    ],
+
+    // =====================================================
+    // SSG CONFIGURATION (Vite-SSG)
+    // =====================================================
+    ssgOptions: {
+      script: 'async',
+      formatting: 'minify',
+      async includedRoutes(paths, routes) {
+        // Base static routes (no parameters)
+        const staticPaths = paths.filter(path => !path.includes(':') && !path.includes('*'))
+        return Array.from(new Set([...staticPaths, ...dynamicPaths]))
+      },
+      onFinished() {
+        Sitemap({
+          hostname: 'https://stateofresonance.ca'
+        })
+      }
+    },
 
   // =====================================================
   // BUILD OPTIMIZATIONS — target 90+ PageSpeed
@@ -90,4 +97,5 @@ export default defineConfig({
       }
     }
   }
+  } // End return object
 })

@@ -65,19 +65,13 @@ const handleEmailSync = async () => {
 <template>
 <div class="home">
 
-  <!-- TRUST -->
-  <div class="trust">
-    <TrustBadge type="secure" />
-    <TrustBadge type="orders" />
-    <TrustBadge type="ssl" />
-  </div>
 
   <!-- HERO -->
   <section class="hero">
 
     <!-- ✅ IMAGE WRAPPED FOR CROP -->
     <div class="hero-img-wrap">
-      <img src="/images/lookbook/lookbook-hero.jpg" class="hero-img" />
+      <img src="/images/lookbook/lookbook-hero.jpg" class="hero-img" alt="State of Resonance Esoteric Streetwear Lookbook" width="1080" height="1350" fetchpriority="high" />
     </div>
 
     <div class="overlay"></div>
@@ -89,7 +83,7 @@ const handleEmailSync = async () => {
         Esoteric streetwear engineered for presence.
       </p>
 
-      <router-link to="/best-sellers" class="btn">
+      <router-link to="/best-sellers" class="btn" aria-label="Shop our esoteric streetwear collection">
         SHOP COLLECTION →
       </router-link>
     </div>
@@ -98,6 +92,13 @@ const handleEmailSync = async () => {
       MONTRÉAL: {{ clockTime }}
     </div>
   </section>
+
+  <!-- TRUST -->
+  <div class="trust" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; padding: 1.5rem 1rem; background: transparent; position: relative; z-index: 10;">
+    <TrustBadge type="secure" />
+    <TrustBadge type="orders" />
+    <TrustBadge type="ssl" />
+  </div>
 
   <!-- STRIP -->
   <div class="strip">
@@ -112,6 +113,10 @@ const handleEmailSync = async () => {
 
     <img
       src="https://cdn.shopify.com/s/files/1/0787/0808/0663/files/ghost-and-bones-resonance-base-t-shirt-3967446.png"
+      alt="The Foundation Tee - 450GSM Heavyweight Cotton"
+      width="600"
+      height="600"
+      loading="lazy"
     />
 
     <div>
@@ -124,7 +129,7 @@ const handleEmailSync = async () => {
         <li>Minimal symbolic design</li>
       </ul>
 
-      <router-link to="/product/ghost-and-bones-resonance-base-t-shirt" class="btn">
+      <router-link to="/product/ghost-and-bones-resonance-base-t-shirt" class="btn" aria-label="Shop The Foundation Tee">
         SHOP FOUNDATION →
       </router-link>
     </div>
