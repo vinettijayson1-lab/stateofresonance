@@ -160,12 +160,12 @@ export const cart: CartStore = reactive({
   },
   
   remove(id: string, variantId?: string | null) {
-    this.items = this.items.filter(item => !(item.id === id && item.variantId === (variantId || null)))
+    this.items = this.items.filter(item => !(item.id === id && (item.variantId || null) === (variantId || null)))
     this.syncToAbandonedReservoir();
   },
   
   updateQuantity(id: string, delta: number, variantId?: string | null) {
-    const item = this.items.find(item => item.id === id && item.variantId === (variantId || null))
+    const item = this.items.find(item => item.id === id && (item.variantId || null) === (variantId || null))
     if (item) {
       item.quantity += delta
       if (item.quantity <= 0) this.remove(id, variantId)
