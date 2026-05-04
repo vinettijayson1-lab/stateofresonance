@@ -127,6 +127,37 @@ const sizeError = ref(false)
 const quantity = ref(1)
 
 const addToCartWithQty = () => {
+const addToCartWithQty = () => {
+  if (!product.value) return
+
+  // ✅ size validation stays first
+  const sizeOpt = product.value.options?.find((o: any) => o.name === 'Size')
+
+  if (sizeOpt && !userSelected.value.includes('Size')) {
+    sizeError.value = true
+    setTimeout(() => { sizeError.value = false }, 3000)
+    return
+  }
+
+  sizeError.value = false
+
+  const item = { ...product.value }
+  const variant = selectedVariant.value
+
+  if (variant) {
+    item.variantId = variant.id
+    item.image = variant.image?.src || item.image
+    item.price = variant.price
+  }
+
+  cart.add(item, quantity.value)
+  cart.isOpen = true
+
+  // ✅ ✅ ONLY TRIGGER UPSELL AFTER SUCCESSFUL ADD
+  showUpsell.value = true
+  lastAddedProduct.value = product.value
+}
+
   if (!product.value) return
 
   // Guard: require explicit size selection if product has a Size option
