@@ -628,6 +628,14 @@ const onImgError = (e: any) => {
           Wear your frequency. Let your vibes Resonate. State of Resonance.
         </p>
 
+        <!-- STEP 2: Product Benefits -->
+        <ul class="quick-benefits">
+          <li>450GSM heavyweight cotton</li>
+          <li>Structured oversized premium fit</li>
+          <li>Designed in Canada</li>
+          <li>Limited production run</li>
+        </ul>
+
         <!-- Variant Selectors -->
         <div v-if="product.options && product.options.length > 0 && !(product.options.length === 1 && product.options[0].name === 'Title' && product.options[0].values.includes('Default Title'))" class="variant-selectors" style="margin-bottom: 2rem;">
           <div v-for="opt in product.options" :key="opt.name" class="option-group">
@@ -654,6 +662,12 @@ const onImgError = (e: any) => {
         
         <!-- Primary Actions: Add to Bag FIRST, Buy Now SECOND -->
         <div class="product-actions-luxury" style="margin-bottom: 2rem;">
+          
+          <!-- STEP 3: Urgency Hook -->
+          <p class="pdp-urgency-hook">
+            Only a limited number remain — once sold out, this piece may not return.
+          </p>
+
           <!-- Size selection error nudge -->
           <div 
             v-if="sizeError" 
@@ -667,8 +681,8 @@ const onImgError = (e: any) => {
               <span class="qty-val" style="font-family: var(--font-heading); min-width: 20px; text-align: center;">{{ quantity }}</span>
               <button @click="quantity++" class="qty-btn" style="background: none; border: none; color: #fff; cursor: pointer; padding: 0.5rem; opacity: 0.7; font-size: 1rem;">+</button>
             </div>
-            <!-- PRIMARY: Add to Bag -->
-            <button @click="addToCartWithQty" class="btn-premium add-btn" style="flex: 1; padding: 1rem 0.5rem; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;">ADD TO BAG</button>
+            <!-- STEP 4: Updated CTA Button Text -->
+            <button @click="addToCartWithQty" class="btn-premium add-btn" style="flex: 1; padding: 1rem 0.5rem; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;">ADD TO BAG — LIMITED PIECE</button>
           </div>
           
           <!-- SECONDARY: Buy Now -->
@@ -691,15 +705,11 @@ const onImgError = (e: any) => {
             </div>
           </div>
 
-
-
-          <!-- Trust nudges near CTA -->
-          <div class="pdp-trust-strip" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.25rem; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); font-size: 0.75rem;">
-            <span class="pdp-trust-item">⭐ 5.0 Google Verified</span>
+          <!-- STEP 5: Cleaned Trust Strip -->
+          <div class="pdp-trust-strip" style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.25rem; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); font-size: 0.75rem; justify-content: center;">
+            <span class="pdp-trust-item">⭐ 5.0 Verified</span>
             <span class="pdp-trust-item">🚚 Free Shipping $110+</span>
             <span class="pdp-trust-item">↩️ 30-Day Returns</span>
-            <span class="pdp-trust-item">🔒 Secure Checkout</span>
-            <span class="pdp-trust-item">🇨🇦 Ships from Canada</span>
           </div>
 
         </div>
@@ -919,12 +929,14 @@ const onImgError = (e: any) => {
   object-fit: contain;
 }
 
+/* STEP 1: FIXED IMAGE STYLING */
 .main-img-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background-color: transparent;
-  mix-blend-mode: lighten;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 25% !important;
+  background: #000 !important;
+  mix-blend-mode: normal !important;
 }
 
 .construction-overlay {
@@ -992,6 +1004,40 @@ const onImgError = (e: any) => {
 .product-description {
   opacity: 0.7;
   max-width: 40ch;
+}
+
+/* STEP 2: PRODUCT BENEFITS STYLING */
+.quick-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 2rem 0;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+.quick-benefits li {
+  padding-left: 1.2rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.quick-benefits li:before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--color-gold-muted);
+  font-size: 0.7rem;
+}
+
+/* STEP 3: URGENCY HOOK STYLING */
+.pdp-urgency-hook {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  margin-bottom: 1rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: var(--color-gold-muted);
 }
 
 /* Frequency Specs */
