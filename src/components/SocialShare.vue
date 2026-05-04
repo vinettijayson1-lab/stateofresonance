@@ -34,7 +34,7 @@ const props = defineProps<{
   image?: string
 }>()
 
-const url = computed(() => window.location.href)
+const url = computed(() => typeof window !== 'undefined' ? window.location.href : '')
 const encodedUrl = computed(() => encodeURIComponent(url.value))
 const encodedTitle = computed(() => encodeURIComponent(props.title))
 const encodedImg = computed(() => encodeURIComponent(props.image || ''))

@@ -7,6 +7,35 @@ export default defineConfig({
   plugins: [vue()],
 
   // =====================================================
+  // SSG CONFIGURATION (Vite-SSG)
+  // =====================================================
+  ssgOptions: {
+    script: 'async',
+    formatting: 'minify',
+    async includedRoutes(paths, routes) {
+      // Base static routes (no parameters)
+      const staticPaths = paths.filter(path => !path.includes(':') && !path.includes('*'))
+      
+      let dynamicPaths: string[] = []
+      try {
+        // Fetch products to generate /product/:handle pages statically
+        const res = await fetch('http://localhost:3000/api/products')
+        if (res.ok) {
+          const products = await res.json()
+          if (Array.isArray(products)) {
+            const productRoutes = products.map((p: any) => `/product/${p.handle}`)
+            dynamicPaths.push(...productRoutes)
+          }
+        }
+      } catch (e) {
+        console.warn('Warning: Could not fetch products for SSG. Ensure API is running on localhost:3000 if you want pre-rendered product pages.')
+      }
+      
+      return Array.from(new Set([...staticPaths, ...dynamicPaths]))
+    }
+  },
+
+  // =====================================================
   // BUILD OPTIMIZATIONS — target 90+ PageSpeed
   // =====================================================
   build: {

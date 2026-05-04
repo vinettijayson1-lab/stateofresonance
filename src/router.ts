@@ -1,10 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
 import Home from './views/Home.vue'
 // Alchemy is deprecated in favor of Contact
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [
+export const routes = [
     {
       path: '/',
       name: 'Home',
@@ -128,9 +125,9 @@ const router = createRouter({
       path: '/alchemist',
       name: 'Alchemist',
       component: () => import('./views/AlchemistDashboard.vue'),
-      beforeEnter: (_to, _from, next) => {
-        const isMasterUnlocked = localStorage.getItem('sor_master_unlock') === 'active';
-        if (isMasterUnlocked) next()
+      beforeEnter: (_to: any, _from: any, next: any) => {
+        const isMasterUnlocked = typeof window !== 'undefined' ? localStorage.getItem('sor_master_unlock') === 'active' : false;
+        if (isMasterUnlocked || typeof window === 'undefined') next()
         else next('/lock')
       }
     },
@@ -189,20 +186,13 @@ const router = createRouter({
       name: 'NotFound',
       redirect: '/'
     }
-  ],
-  scrollBehavior(_to, _from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { top: 0, behavior: 'auto' }
-    }
-  }
-})
+  ]
 
+export function setupRouterGuards(router: any) {
 // === SEEKER REFERRAL INTERCEPTOR ===
-router.beforeEach((to, _from, next) => {
+router.beforeEach((to: any, _from: any, next: any) => {
 
-  if (to.query.ref) {
+  if (to.query.ref && typeof window !== 'undefined') {
     localStorage.setItem('sor_referred_by', to.query.ref as string);
   }
   next();
@@ -421,13 +411,13 @@ const seoMap: Record<string, any> = {
 
 
 
-router.afterEach((to) => {
-  // 1. Detect Current Locale (from localStorage, matching vue-i18n)
-  const currentLang = localStorage.getItem('user-locale') || 'en'
-  const langMapped = currentLang === 'fr' ? 'fr' : 'en'
-
+router.afterEach((to: any) => {
   // --- GLOBAL PIXEL SPA SYNCHRONIZATION ---
   if (typeof window !== 'undefined') {
+    // 1. Detect Current Locale
+    const currentLang = localStorage.getItem('user-locale') || 'en'
+    const langMapped = currentLang === 'fr' ? 'fr' : 'en'
+
     // Delay slightly to let page title render
     setTimeout(() => {
       // 1. Meta Pixel
@@ -453,71 +443,72 @@ router.afterEach((to) => {
         (window as any).pintrk('track', 'pagevisit');
       }
     }, 150);
-  }
 
-  // 2. Select Metadata based on language and route
-  const langSeoMap = seoMap[langMapped] || seoMap.en
-  const seoConfig = langSeoMap[to.name as string] || defaultMeta[langMapped]
-  
-  // Support dynamic meta from components via Route meta or params
-  const title = (to.meta.title as string) || seoConfig.title || defaultMeta[langMapped].title
-  const desc = (to.meta.description as string) || seoConfig.description || defaultMeta[langMapped].description
-  const robots = seoConfig.robots || defaultMeta[langMapped].robots
-  const url = `https://stateofresonance.ca${to.fullPath}`
+    // 2. Select Metadata based on language and route
+    const langSeoMap = seoMap[langMapped] || seoMap.en
+    const seoConfig = langSeoMap[to.name as string] || defaultMeta[langMapped]
+    
+    // Support dynamic meta from components via Route meta or params
+    const title = (to.meta.title as string) || seoConfig.title || defaultMeta[langMapped].title
+    const desc = (to.meta.description as string) || seoConfig.description || defaultMeta[langMapped].description
+    const robots = seoConfig.robots || defaultMeta[langMapped].robots
+    const url = `https://stateofresonance.ca${to.fullPath}`
 
-  // 3. Update Document Title
-  document.title = title
-  
-  // 4. Update Meta Description
-  let metaDesc = document.querySelector('meta[name="description"]')
-  if (metaDesc) metaDesc.setAttribute('content', desc)
-  
-  // 3. Update Robots
-  let metaRobots = document.querySelector('meta[name="robots"]')
-  if (metaRobots) {
-    metaRobots.setAttribute('content', robots)
-  } else {
-    const el = document.createElement('meta')
-    el.name = 'robots'
-    el.content = robots
-    document.head.appendChild(el)
-  }
+    // 3. Update Document Title
+    document.title = title
+    
+    // 4. Update Meta Description
+    let metaDesc = document.querySelector('meta[name="description"]')
+    if (metaDesc) metaDesc.setAttribute('content', desc)
+    
+    // 3. Update Robots
+    let metaRobots = document.querySelector('meta[name="robots"]')
+    if (metaRobots) {
+      metaRobots.setAttribute('content', robots)
+    } else {
+      const el = document.createElement('meta')
+      el.name = 'robots'
+      el.content = robots
+      document.head.appendChild(el)
+    }
 
-  // 4. Update Canonical (Strict, dropping query params to prevent duplicate content flags)
-  let cleanUrl = url.split('?')[0]
-  let linkCanonical = document.querySelector('link[rel="canonical"]')
-  if (linkCanonical) {
-    linkCanonical.setAttribute('href', cleanUrl)
-  } else {
-    const el = document.createElement('link')
-    el.rel = 'canonical'
-    el.href = cleanUrl
-    document.head.appendChild(el)
-  }
+    // 4. Update Canonical
+    let cleanUrl = url.split('?')[0]
+    let linkCanonical = document.querySelector('link[rel="canonical"]')
+    if (linkCanonical) {
+      linkCanonical.setAttribute('href', cleanUrl)
+    } else {
+      const el = document.createElement('link')
+      el.rel = 'canonical'
+      el.href = cleanUrl
+      document.head.appendChild(el)
+    }
 
-  // 5. Update Open Graph
-  let ogTitle = document.querySelector('meta[property="og:title"]')
-  if (ogTitle) ogTitle.setAttribute('content', title)
-  
-  let ogDesc = document.querySelector('meta[property="og:description"]')
-  if (ogDesc) ogDesc.setAttribute('content', desc)
-  
-  let ogUrl = document.querySelector('meta[property="og:url"]')
-  if (ogUrl) ogUrl.setAttribute('content', url)
-  
-  // 6. Update OG Image (Default: Seer Brand Hero)
-  let ogImage = document.querySelector('meta[property="og:image"]')
-  if (ogImage && !to.meta.image) {
-    ogImage.setAttribute('content', 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/resonance_brand_seer_og_image_1774962124899.png')
+    // 5. Update Open Graph
+    let ogTitle = document.querySelector('meta[property="og:title"]')
+    if (ogTitle) ogTitle.setAttribute('content', title)
+    
+    let ogDesc = document.querySelector('meta[property="og:description"]')
+    if (ogDesc) ogDesc.setAttribute('content', desc)
+    
+    let ogUrl = document.querySelector('meta[property="og:url"]')
+    if (ogUrl) ogUrl.setAttribute('content', url)
+    
+    // 6. Update OG Image
+    let ogImage = document.querySelector('meta[property="og:image"]')
+    if (ogImage && !to.meta.image) {
+      ogImage.setAttribute('content', 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/resonance_brand_seer_og_image_1774962124899.png')
+    }
   }
 })
 
 // --- HARDENED SPA CHUNK RECOVERY ---
-router.onError((error, to) => {
-  if (error.message.includes('Failed to fetch dynamically imported module') || error.name === 'ChunkLoadError') {
-    // Force a hard reload if the user's cached chunk hashes no longer match the latest deployment
-    window.location.href = to.fullPath
+router.onError((error: any, to: any) => {
+  if (typeof window !== 'undefined') {
+    if (error.message.includes('Failed to fetch dynamically imported module') || error.name === 'ChunkLoadError') {
+      window.location.href = to.fullPath
+    }
   }
 })
 
-export default router
+} // End setupRouterGuards

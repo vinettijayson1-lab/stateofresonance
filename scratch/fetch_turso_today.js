@@ -28,7 +28,7 @@ async function checkDatabase() {
        console.log("Recent Subscribers:", signups.rows);
     }
     if (res.rows.find(r => r.name === 'Order')) {
-       const orders = await client.execute("SELECT * FROM \\\"Order\\\" ORDER BY createdAt DESC LIMIT 5");
+       const orders = await client.execute("SELECT * FROM `Order` ORDER BY createdAt DESC LIMIT 5");
        console.log("Recent Orders:", orders.rows);
     }
   } catch (err) {

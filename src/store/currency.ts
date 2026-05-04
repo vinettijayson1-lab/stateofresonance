@@ -11,7 +11,7 @@ interface CurrencyStore {
 }
 
 export const currencyStore: CurrencyStore = reactive({
-  active: (localStorage.getItem('user-currency') as CurrencyCode) || 'CAD',
+  active: (typeof window !== 'undefined' ? localStorage.getItem('user-currency') as CurrencyCode : null) || 'CAD',
   
   // Base is CAD (1.0)
   rates: {
@@ -28,7 +28,9 @@ export const currencyStore: CurrencyStore = reactive({
 
   setCurrency(code: CurrencyCode) {
     this.active = code
-    localStorage.setItem('user-currency', code)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('user-currency', code)
+    }
   },
 
   formatPrice(cadValue: number) {

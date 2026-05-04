@@ -24,13 +24,12 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
+const emit = defineEmits<{
+  (e: 'add-to-cart'): void
+}>()
+
 const addToCart = () => {
-  cart.add({
-    ...props.product,
-    price: props.selectedVariant?.price || props.product.price,
-    variantId: props.selectedVariant?.id || props.product.variantId
-  })
-  cart.isOpen = true
+  emit('add-to-cart')
 }
 </script>
 

@@ -4,7 +4,7 @@ import fr from '../locales/fr_v4.json'
 
 const i18n = createI18n({
   legacy: false, // Use Composition API
-  locale: localStorage.getItem('user-locale') || 'en',
+  locale: typeof window !== 'undefined' ? (localStorage.getItem('user-locale') || 'en') : 'en',
   fallbackLocale: 'en',
   messages: {
     en,

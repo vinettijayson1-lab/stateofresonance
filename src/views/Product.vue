@@ -9,6 +9,7 @@ import ProductCard from '../components/ProductCard.vue'
 import StickyBuyBar from '../components/StickyBuyBar.vue'
 import TrustindexWidget from '../components/TrustindexWidget.vue'
 import TrustBadge from '../components/TrustBadge.vue'
+import UpsellPopup from '../components/upsellpopup.vue'
 
 import SocialShare from '../components/SocialShare.vue'
 import { currencyStore } from '../store/currency'
@@ -56,6 +57,8 @@ const accessEmail = ref('')
 const accessError = ref('')
 const subLoading = ref(false)
 const subSuccess = ref(false)
+const showUpsell = ref(false)
+const lastAddedProduct = ref<Product | null>(null)
 
 const unlockAccess = () => {
   const code = accessCode.value.toUpperCase().replace(/\s/g, '')
@@ -127,37 +130,6 @@ const sizeError = ref(false)
 const quantity = ref(1)
 
 const addToCartWithQty = () => {
-const addToCartWithQty = () => {
-  if (!product.value) return
-
-  // ✅ size validation stays first
-  const sizeOpt = product.value.options?.find((o: any) => o.name === 'Size')
-
-  if (sizeOpt && !userSelected.value.includes('Size')) {
-    sizeError.value = true
-    setTimeout(() => { sizeError.value = false }, 3000)
-    return
-  }
-
-  sizeError.value = false
-
-  const item = { ...product.value }
-  const variant = selectedVariant.value
-
-  if (variant) {
-    item.variantId = variant.id
-    item.image = variant.image?.src || item.image
-    item.price = variant.price
-  }
-
-  cart.add(item, quantity.value)
-  cart.isOpen = true
-
-  // ✅ ✅ ONLY TRIGGER UPSELL AFTER SUCCESSFUL ADD
-  showUpsell.value = true
-  lastAddedProduct.value = product.value
-}
-
   if (!product.value) return
 
   // Guard: require explicit size selection if product has a Size option
@@ -183,17 +155,20 @@ const addToCartWithQty = () => {
   
   // Use member discount price if unlocked
   if (memberPrice.value) {
-  item.price = memberPrice.value
-}
+    item.price = memberPrice.value
+  }
 
-cart.add(item, quantity.value)
-cart.isOpen = true
+  cart.add(item, quantity.value)
 
-const el = document.querySelector('.add-btn')
-if (el) {
-  el.classList.add('added')
-  setTimeout(() => el.classList.remove('added'), 800)
-}
+  // Trigger Upsell Popup instead of opening cart directly
+  showUpsell.value = true
+  lastAddedProduct.value = product.value
+
+  const el = document.querySelector('.add-btn')
+  if (el) {
+    el.classList.add('added')
+    setTimeout(() => el.classList.remove('added'), 800)
+  }
 }
 
   const handleBuyNow = (e: MouseEvent) => {
@@ -752,7 +727,7 @@ const onImgError = (e: any) => {
 </a>
 
           <!-- Gateway Product Upsell -->
-          <div v-if="product?.handle !== 'ghost-and-bones-resonance-base-t-shirt' && isClothing" class="gateway-upsell" style="margin-top: 1.5rem; border: 1px solid rgba(212, 175, 55, 0.3); background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 4px;">
+          <div v-if="product?.handle !== 'ghost-and-bones-resonance-base-t-shirt'" class="gateway-upsell" style="margin-top: 1.5rem; border: 1px solid rgba(212, 175, 55, 0.3); background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 4px;">
             <p style="font-size: 0.6rem; letter-spacing: 0.2em; color: var(--color-gold-muted); margin-bottom: 0.75rem; text-transform: uppercase; text-align: center;">✦ Frequently Bought Together</p>
             <div style="display: flex; gap: 1rem; align-items: center;">
               <img src="https://cdn.shopify.com/s/files/1/0787/0808/0663/files/ghost-and-bones-resonance-base-t-shirt-3967446.png?v=1777596426" alt="Foundation Tee" style="width: 70px; height: 70px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);" />
@@ -921,6 +896,13 @@ const onImgError = (e: any) => {
       :product="product" 
       :selectedVariant="selectedVariant" 
       :shopifyUrl="shopifyUrl" 
+      @add-to-cart="addToCartWithQty"
+    />
+
+    <UpsellPopup 
+      :isOpen="showUpsell" 
+      :triggerProduct="lastAddedProduct" 
+      @close="showUpsell = false; cart.isOpen = true" 
     />
   </div>
 </template>
