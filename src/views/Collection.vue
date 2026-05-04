@@ -69,13 +69,13 @@ const COLLECTION_META = computed<Record<string, { title: string; subtitle: strin
     title: t('collections.all.title', 'The Complete Archive').replace('\n', ' '),
     subtitle: t('collections.all.subtitle', 'All Artifacts & Attire'),
     categories: [],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   'the-ghost-and-bones': {
     title: t('collections.ghost_bones.title', 'The GHOST and BONES').replace('\n', ' '),
     subtitle: t('collections.ghost_bones.subtitle', 'Premium Resonance Attire'),
     categories: ['Apparel', 'The GHOST and BONES', 'Urban Esoterica'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   'her-resonance': {
     title: t('hero.her_resonance', 'Her Resonance').replace('\n', ' '),
@@ -105,13 +105,13 @@ const COLLECTION_META = computed<Record<string, { title: string; subtitle: strin
     title: 'Accessories',
     subtitle: 'Symbolic Adornments & Artifacts',
     categories: ['Sacred Adornments', 'Mystic Curiosities', 'Earth Relics'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   attire: {
     title: 'Attire',
     subtitle: 'The Attire Shop',
     categories: ['Apparel', 'The GHOST and BONES', 'Urban Esoterica'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   'ritual-tools': {
     title: 'Ritual Tools',
@@ -129,13 +129,13 @@ const COLLECTION_META = computed<Record<string, { title: string; subtitle: strin
     title: 'Mystic Curiosities',
     subtitle: 'Rare Esoteric Discoveries',
     categories: ['Mystic Curiosities'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   'divination-tools': {
     title: 'Divination Tools',
     subtitle: 'Instruments of Sight & Knowing',
     categories: ['Divination Tools'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   'sacred-adornments': {
     title: 'Sacred Adornments',
@@ -147,55 +147,55 @@ const COLLECTION_META = computed<Record<string, { title: string; subtitle: strin
     title: 'Sacred Smoke',
     subtitle: 'Cleansing & Ceremonial Botanicals',
     categories: ['Sacred Smoke', 'Alchemical Botanicals'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   'earth-relics': {
     title: 'Earth Minerals',
     subtitle: 'Crystals, Stones & Earth Relics',
     categories: ['Earth Relics'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   'alchemical-botanicals': {
     title: 'Alchemical Botanicals',
     subtitle: 'Sacred Plant Medicine & Herbs',
     categories: ['Alchemical Botanicals'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   'alchemical-elixirs': {
     title: 'Alchemical Elixirs',
     subtitle: 'Oils, Mists & Vibrational Elixirs',
     categories: ['Alchemical Elixirs'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   'illuminations': {
     title: 'Illuminations',
     subtitle: 'Candles, Lamps & Sacred Light',
     categories: ['Illuminations'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   'esoteric-protection': {
     title: 'Esoteric Protection',
     subtitle: 'Shields, Wards & Protective Garments',
     categories: ['Esoteric Protection'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   'esoteric-manuscripts': {
     title: 'Esoteric Manuscripts',
     subtitle: 'Books, Grimoires & Sacred Texts',
     categories: ['Esoteric Manuscripts'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   'sacred-geometry': {
     title: 'Sacred Geometry',
     subtitle: 'Symbols, Mandalas & Geometric Garments',
     categories: ['Sacred Geometry'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   },
   vault: {
     title: 'The Vault',
     subtitle: 'Members-Only Singularities',
     categories: ['Vault'],
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+    image: '/images/lookbook/lookbook-hero.jpg'
   }
 }))
 
@@ -209,7 +209,7 @@ const meta = computed(() => COLLECTION_META.value[collectionHandle] || {
   title: formatHandle(collectionHandle),
   subtitle: 'Esoteric Piece Collection',
   categories: [],
-  image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129'
+  image: '/images/lookbook/lookbook-hero.jpg'
 })
 
 const onImgError = (e: any) => {

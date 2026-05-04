@@ -59,7 +59,7 @@ const ATTIRE_COLLECTIONS = computed(() => [
     name: t('collections.ghost_bones.title', 'The GHOST and BONES'), 
     handle: 'the-ghost-and-bones', 
     desc: t('collections.ghost_bones.meta', 'Premium Resonance Attire'), 
-    image: 'https://cdn.shopify.com/s/files/1/0787/0808/0663/files/rn-image_picker_lib_temp_52fa23e3-21ba-4def-a365-2a44b48c900a.png?v=1770669129' 
+    image: '/images/lookbook/lookbook-hero.jpg' 
   },
   { 
     name: t('hero.her_resonance', 'Her Resonance'), 
