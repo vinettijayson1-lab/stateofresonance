@@ -84,6 +84,7 @@ export default async function handler(req: any, res: any) {
 
       xml += `    <item>\n`;
       xml += `      <g:id>${escapeXml(String(id))}</g:id>\n`;
+      xml += `      <g:item_group_id>${escapeXml(String(p.id))}</g:item_group_id>\n`;
       xml += `      <g:title>${escapeXml(title)}</g:title>\n`;
       xml += `      <g:description>${escapeXml(description.substring(0, 5000))}</g:description>\n`;
       xml += `      <g:link>${escapeXml(link)}</g:link>\n`;

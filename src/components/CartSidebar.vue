@@ -77,6 +77,7 @@ const trackCheckout = () => {
     (window as any).fbq('track', 'InitiateCheckout', {
       value: priceVal * (currencyStore.rates[currency] || 1),
       currency: currency,
+      content_type: 'product',
       content_ids: cart.items.map(i => getRawId(i.variantId || i.id)),
       num_items: cart.items.reduce((s, i) => s + i.quantity, 0),
       contents: cart.items.map(i => ({

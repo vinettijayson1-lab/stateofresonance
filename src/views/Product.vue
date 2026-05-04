@@ -346,7 +346,7 @@ onMounted(async () => {
         (window as any).fbq('track', 'ViewContent', {
           content_name: product.value.title,
           content_ids: [rawVariantId],
-          content_type: 'product_group',
+          content_type: 'product',
           value: pPrice * (currencyStore.rates[currencyStore.active] || 1),
           currency: currencyStore.active
         }, { eventID: eventId });

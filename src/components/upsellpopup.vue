@@ -116,9 +116,11 @@ const addUpsell = () => {
   
   // Track upsell conversion
   if ((window as any).fbq) {
+    const rawId = item.variantId.split('/').pop() || item.variantId;
     (window as any).fbq('track', 'AddToCart', {
       content_name: item.title,
-      content_ids: [item.variantId],
+      content_ids: [rawId],
+      content_type: 'product',
       value: parseFloat(item.price.replace(/[^0-9.]/g, '')),
       currency: 'CAD'
     })
