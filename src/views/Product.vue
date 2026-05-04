@@ -269,7 +269,6 @@ const shopifyUrl = computed(() => {
     if (typeof vid === 'string' && vid.includes('gid://')) {
       vid = vid.split('/').pop() || vid
     }
-    }
     return `https://state-of-resonance.myshopify.com/cart/${vid}:${quantity.value}`
   }
   return `https://state-of-resonance.myshopify.com/products/${product.value.handle}`
