@@ -23,6 +23,7 @@ const updateClock = () => {
 onMounted(async () => {
   updateClock()
   setInterval(updateClock, 1000)
+
   try {
     const res = await fetch('/api/products?limit=24')
     const data = await res.json()
@@ -73,13 +74,17 @@ const handleEmailSync = async () => {
 
   <!-- HERO -->
   <section class="hero">
-    <img src="/images/lookbook/lookbook-hero.jpg" class="hero-img" />
+
+    <!-- ✅ IMAGE WRAPPED FOR CROP -->
+    <div class="hero-img-wrap">
+      <img src="/images/lookbook/lookbook-hero.jpg" class="hero-img" />
+    </div>
+
     <div class="overlay"></div>
 
     <div class="hero-content">
       <h1>STATE OF RESONANCE</h1>
 
-      <!-- ✅ FIXED MESSAGE -->
       <p class="hero-sub">
         Esoteric streetwear engineered for presence.
       </p>
@@ -113,7 +118,6 @@ const handleEmailSync = async () => {
       <h2>The Foundation Tee</h2>
       <p class="price">$45 CAD</p>
 
-      <!-- ✅ HIGH-CONVERTING -->
       <ul>
         <li>450GSM heavyweight cotton</li>
         <li>Structured premium fit</li>
@@ -142,7 +146,6 @@ const handleEmailSync = async () => {
       />
     </div>
 
-    <!-- ✅ TRUST BOOST -->
     <div class="mini-trust">
       <span>✅ 5.0 Rated</span>
       <span>🚚 Free Shipping</span>
@@ -192,26 +195,43 @@ const handleEmailSync = async () => {
 </template>
 
 <style scoped>
-.home { background:black; color:white; }
+.home {
+  background:black;
+  color:white;
+}
 
 /* HERO */
 .hero {
   position:relative;
   height:90vh;
+  overflow:hidden;
+}
+
+/* ✅ CROPPING CONTAINER */
+.hero-img-wrap {
+  position:absolute;
+  inset:0;
+  overflow:hidden;
 }
 
 .hero-img {
   width:100%;
-  height:100%;
+  height:120%;
+
   object-fit:cover;
+
+  /* ✅ PUSH IMAGE UP → REMOVES STAR */
+  transform: translateY(-120px);
 }
 
+/* OVERLAY */
 .overlay {
   position:absolute;
   inset:0;
   background:rgba(0,0,0,0.5);
 }
 
+/* TEXT */
 .hero-content {
   position:absolute;
   top:50%;
@@ -257,7 +277,6 @@ const handleEmailSync = async () => {
   gap:20px;
 }
 
-/* TRUST */
 .mini-trust {
   display:flex;
   justify-content:center;
