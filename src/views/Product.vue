@@ -152,13 +152,37 @@ const addToCartWithQty = () => {
   
   // Use member discount price if unlocked
   if (memberPrice.value) {
+  item.price = memberPrice.value
+}
+
+cart.add(item, quantity.value)
+cart.isOpen = true
+
+const el = document.querySelector('.add-btn')
+if (el) {
+  el.classList.add('added')
+  setTimeout(() => el.classList.remove('added'), 800)
+}
+}
+
+  const handleBuyNow = (e: MouseEvent) => {
+  if (!product.value) return
+  
+  const item = { ...product.value }
+  const variant = selectedVariant.value
+  
+  if (variant) {
+    item.variantId = variant.id
+    item.image = variant.image?.src || item.image
+    item.price = variant.price
+  }
+  
+  if (memberPrice.value) {
     item.price = memberPrice.value
   }
   
   cart.add(item, quantity.value)
-  cart.isOpen = true
 }
-
 const selectedVariant = computed(() => {
   if (!product.value || !product.value.variants) return null
   return product.value.variants.find(v => {
@@ -245,7 +269,7 @@ const shopifyUrl = computed(() => {
     if (typeof vid === 'string' && vid.includes('gid://')) {
       vid = vid.split('/').pop() || vid
     }
-    return `https://state-of-resonance.myshopify.com/cart/${vid}:1`
+    return `https://state-of-resonance.myshopify.com/cart/${vid}:${quantity.value}
   }
   return `https://state-of-resonance.myshopify.com/products/${product.value.handle}`
 })
@@ -686,7 +710,7 @@ const onImgError = (e: any) => {
           </div>
           
           <!-- SECONDARY: Buy Now -->
-          <a v-if="isAvailable" :href="shopifyUrl" class="btn-solid-gold animate-glint full-width-buy" style="display: block; text-align: center; margin-top: 0.5rem; padding: 1rem; background: var(--color-gold); border: 1px solid var(--color-gold); color: #000; font-weight: bold; text-decoration: none; letter-spacing: 0.2em; font-size: 0.9rem; text-transform: uppercase; transition: transform 0.3s ease;" @click="addToCartWithQty">
+          <a v-if="isAvailable" :href="shopifyUrl" @click="handleBuyNow" class="btn-solid-gold animate-glint full-width-buy" style="display: block; text-align: center; margin-top: 0.5...a v-if="isAvailable" :href="shopifyUrl" class="btn-solid-gold animate-glint full-width-buy" style="display: block; text-align: center; margin-top: 0.5rem; padding: 1rem; background: var(--color-gold); border: 1px solid var(--color-gold); color: #000; font-weight: bold; text-decoration: none; letter-spacing: 0.2em; font-size: 0.9rem; text-transform: uppercase; transition: transform 0.3s ease;" @click="addToCartWithQty">
             BUY NOW
           </a>
 
@@ -1490,5 +1514,10 @@ const onImgError = (e: any) => {
   color: rgba(255,255,255,0.5);
   line-height: 1.6;
   margin: 0;
-}
+/* Button Feedback Animation */
+.added {
+  transform: scale(0.96) !important;
+  opacity: 0.85 !important;
+  transition: all 0.2s ease !important;
+}}
 </style>
