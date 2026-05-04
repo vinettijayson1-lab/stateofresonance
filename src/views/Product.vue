@@ -269,11 +269,12 @@ const shopifyUrl = computed(() => {
     if (typeof vid === 'string' && vid.includes('gid://')) {
       vid = vid.split('/').pop() || vid
     }
-    return `https://state-of-resonance.myshopify.com/cart/${vid}:${quantity.value}
+    }
+    return `https://state-of-resonance.myshopify.com/cart/${vid}:${quantity.value}`
   }
   return `https://state-of-resonance.myshopify.com/products/${product.value.handle}`
 })
-
+ 
 const addToCart = () => {
   if (!product.value) return
   const item = { ...product.value, price: selectedVariant.value?.price || product.value.price, variantId: selectedVariant.value?.id || product.value.variantId }
