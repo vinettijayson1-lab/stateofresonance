@@ -710,9 +710,15 @@ const onImgError = (e: any) => {
           </div>
           
           <!-- SECONDARY: Buy Now -->
-          <a v-if="isAvailable" :href="shopifyUrl" @click="handleBuyNow" class="btn-solid-gold animate-glint full-width-buy" style="display: block; text-align: center; margin-top: 0.5...a v-if="isAvailable" :href="shopifyUrl" class="btn-solid-gold animate-glint full-width-buy" style="display: block; text-align: center; margin-top: 0.5rem; padding: 1rem; background: var(--color-gold); border: 1px solid var(--color-gold); color: #000; font-weight: bold; text-decoration: none; letter-spacing: 0.2em; font-size: 0.9rem; text-transform: uppercase; transition: transform 0.3s ease;" @click="addToCartWithQty">
-            BUY NOW
-          </a>
+      <!-- SECONDARY: Buy Now -->
+<a 
+  v-if="isAvailable" 
+  :href="shopifyUrl" 
+  @click="handleBuyNow"
+  class="btn-solid-gold animate-glint full-width-buy"
+>
+  BUY NOW
+</a>
 
           <!-- Gateway Product Upsell -->
           <div v-if="product?.handle !== 'ghost-and-bones-resonance-base-t-shirt' && isClothing" class="gateway-upsell" style="margin-top: 1.5rem; border: 1px solid rgba(212, 175, 55, 0.3); background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 4px;">
