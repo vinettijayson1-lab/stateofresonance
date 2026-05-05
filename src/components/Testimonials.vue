@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 interface Testimonial { name: string; location: string; text: string; rating: number; verified: boolean }
 
@@ -53,19 +53,6 @@ const FALLBACK: Testimonial[] = [
 ]
 
 const testimonials = ref<Testimonial[]>(FALLBACK)
-
-onMounted(async () => {
-  try {
-    const res = await fetch('/api/reviews?per_page=4&page=1')
-    if (!res.ok) return
-    const data = await res.json()
-    const live: Testimonial[] = (data.reviews || [])
-      .filter((r: any) => r.body && r.body.length > 20)
-      .slice(0, 4)
-      .map((r: any) => ({ name: r.reviewer?.name || 'A customer', location: r.reviewer?.location || '', text: r.body, rating: r.rating, verified: r.reviewer?.verified ?? false }))
-    if (live.length >= 2) testimonials.value = live
-  } catch { /* stay on fallback */ }
-})
 </script>
 
 <style scoped>

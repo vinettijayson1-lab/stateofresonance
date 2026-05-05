@@ -13,7 +13,7 @@ import UpsellPopup from '../components/upsellpopup.vue'
 
 import SocialShare from '../components/SocialShare.vue'
 import { currencyStore } from '../store/currency'
-import ProductReviews from '../components/ProductReviews.vue'
+
 import { Sparkles, Zap, Shield, HelpCircle } from 'lucide-vue-next'
 
 interface Variant {
@@ -488,15 +488,6 @@ onMounted(async () => {
       // Inject schema immediately (no rating yet)
       injectSchema()
 
-      // Then fetch real Judge.me rating & re-inject with aggregateRating
-      fetch(`/api/reviews?handle=${product.value.handle}&per_page=1&page=1`)
-        .then(r => r.ok ? r.json() : null)
-        .then(data => {
-          if (data?.avg_rating && data?.total_reviews) {
-            injectSchema(parseFloat(data.avg_rating), data.total_reviews)
-          }
-        })
-        .catch(() => { /* schema already injected without rating */ })
 
       // Inject BreadcrumbList schema — gives Google "State of Resonance > Shop > [Name]" in SERPs
       const breadcrumb = {
