@@ -12,7 +12,7 @@
           </div>
 
           <div class="upsell-product">
-            <img :src="upsellItem.image" :alt="upsellItem.title" />
+            <img :src="upsellItem.image" :alt="upsellItem.title" @error="$event.target.src = '/images/lookbook/lookbook-hero.jpg'" />
             <div class="upsell-details">
               <h4>{{ upsellItem.title }}</h4>
               <p class="upsell-description">{{ upsellItem.description }}</p>
@@ -310,6 +310,9 @@ const close = () => {
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .btn-upsell-no:hover {

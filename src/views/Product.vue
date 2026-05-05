@@ -386,6 +386,9 @@ onMounted(async () => {
       if (product.value.options) {
         product.value.options.forEach(opt => {
           selectedOptions.value[opt.name] = opt.values[0]
+          if (!userSelected.value.includes(opt.name)) {
+            userSelected.value.push(opt.name)
+          }
         })
       }
 
