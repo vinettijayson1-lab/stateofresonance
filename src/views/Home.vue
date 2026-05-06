@@ -58,9 +58,14 @@ const handleEmailSubmit = async () => {
     });
 
     if (response.ok) {
-      alert('Welcome! Check your email for your 30% discount code.');
-      email.value = '';
-    }
+  const data = await response.json();
+  // Show a nice message
+  alert('🎉 Welcome to State of Resonance! Check your email for WELCOME30 (30% off your first order)');
+  email.value = '';
+  
+  // Optional: redirect to shop
+  // router.push('/collections/all');
+}
   } catch (error) {
     console.error('Subscription error:', error);
   }
