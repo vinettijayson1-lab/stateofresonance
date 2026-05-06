@@ -11,19 +11,19 @@ const products = [
     id: 1,
     name: 'Threshold Hoodie',
     subtitle: 'Cipher Series',
-    price: 95,
+    price: 112,
   },
   {
     id: 2,
     name: 'All-Seeing Eye Hoodie',
     subtitle: 'Symbolic Collection',
-    price: 95,
+    price: 112,
   },
   {
     id: 3,
     name: 'Classic Crewneck',
     subtitle: 'Iconic Edition',
-    price: 65,
+    price: 112,
   },
 ];
 
