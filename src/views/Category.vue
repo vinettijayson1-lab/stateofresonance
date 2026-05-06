@@ -102,7 +102,9 @@ const fetchProducts = async () => {
     const title = categoryName.charAt(0).toUpperCase() + categoryName.slice(1)
     
     // Update SEO
-    document.title = `${title} | State of Resonance`
+   if (typeof document !== 'undefined') {
+     document.title = `${title} | State of Resonance`
+   }
     
     let url = `/api/products?category=${categoryName}&limit=250`
     
